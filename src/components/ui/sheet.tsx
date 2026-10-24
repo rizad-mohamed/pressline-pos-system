@@ -13,6 +13,7 @@ export function Sheet({
   footer,
   dirty = false,
   trigger,
+  onAfterClose,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -22,6 +23,7 @@ export function Sheet({
   footer?: React.ReactNode;
   dirty?: boolean;
   trigger?: React.ReactNode;
+  onAfterClose?: () => void;
 }) {
   const returnFocus = useRef<HTMLElement | null>(null);
   function change(next: boolean) {
@@ -54,6 +56,7 @@ export function Sheet({
               ? returnFocus.current
               : document.getElementById("main-content");
             target?.focus();
+            onAfterClose?.();
           }}
         >
           <div className="sheet-header">
