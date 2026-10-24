@@ -88,3 +88,5 @@ FUP-005 · `fix/svc-004-print-specification-labels`: restore explicit Binding / 
 FUP-006 · `fix/fup-006-workflow-orientation`: classify customer detail under Customers for breadcrumb/current-link orientation and use sentence case for material context; preserve customer reflow assertions.
 
 Final follow-up: all 20 exact IDs verified in the connected local frontend; 84 unit/component and 44 production browser tests pass. FUP-002/003/004/005/006 are corrected and included in the final gate. `test/fup-001-connected-workflows` is verified/integrated. `docs/fup-001-handover` maintains this handover and subsequent hash backfill; its own final hash is reported at delivery.
+
+Follow-up handover provenance backfilled: `docs/fup-001-handover` primary source `06da62a0a8f7ca8fbe999ad1143e1b0c13e741b7`, develop merge `d1c3e900448c22fbc4990c5dbb4911f5e8633b5f`. Actual primary snapshot: 50 registered/integrated retained branches and clean tree. The final audit-only commit follows on this same topic and is reported at delivery; application behavior and test counts are unchanged.

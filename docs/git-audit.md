@@ -878,7 +878,7 @@ The source-only navigation clearance commit a8c4c27 is linked to its complete PR
 
 ## Connected follow-up Git audit · 2026-10-25
 
-Started clean from develop `60ef6695c34cc6d0e8d3caea8d74f1fc33c1ddfa`; main `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604` remains unchanged. Snapshot develop before handover commits: `c264ab05611860a18772fa6966b5c7fac9ecc6f9`. No remote, push, history rewrite, topic deletion or deployment. Local-only Git identity was retained; global configuration untouched. QA checkpoints with observed failures stayed unmerged until repairs and all 44 production tests passed. Separate no-ff synchronization merges preserved QA and fix histories; two append-only audit conflicts preserved both sections.
+Started clean from develop `60ef6695c34cc6d0e8d3caea8d74f1fc33c1ddfa`; main `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604` remains unchanged. Snapshot develop before handover commits: `c264ab05611860a18772fa6966b5c7fac9ecc6f9`. No remote, push, history rewrite, topic deletion or deployment. Local-only Git identity was retained; global configuration untouched. QA checkpoints with observed failures stayed unmerged until repairs and all 44 production tests passed. Separate no-ff synchronization merges preserved QA and fix histories; append-only conflicts in the two audit files were resolved by preserving both sections at each synchronization checkpoint.
 
 | Retained topic                           | Actual topic tip                           | Local develop no-ff merge                  |
 | ---------------------------------------- | ------------------------------------------ | ------------------------------------------ |
@@ -1084,3 +1084,9 @@ c264ab05611860a18772fa6966b5c7fac9ecc6f9
 chore(integration): merge test/fup-001-connected-workflows
 Requirement: CUST-001 through CUST-006; SVC-001 through SVC-006; MAT-001 through MAT-008; FUP-002 through FUP-006. Validation: typecheck/lint/format/build and 84 tests passed; all 44 production Chromium tests passed with one worker and no retry/skip; 26 refreshed captures and two one-page PDFs, no browser/external errors; 22 contrast pairs; Taste 18 combinations 0 FAIL/5 contextual WARN and source 0 FAIL/29 WARN. Retain verified topic history; main unchanged.
 ```
+
+## Primary follow-up handover hash backfill · 2026-10-25
+
+Primary handover source `06da62a0a8f7ca8fbe999ad1143e1b0c13e741b7` was integrated by no-ff merge `d1c3e900448c22fbc4990c5dbb4911f5e8633b5f`. At that executed snapshot: 50 retained branches registered/integrated, 118 reachable commits, working tree clean, main exactly `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604`, no remote. All 20 follow-up IDs, 54 FR/35 NFR references and 238 HCI catalogue IDs retained; 78 local links resolved; original reference bytes and manifest/lock unchanged. Frontend code is unchanged after the final 84-unit/44-production-browser gate and refreshed visual review.
+
+This audit-only commit records the hashes that could not exist inside the primary handover commit. Its own hash and subsequent develop merge are necessarily reported in the final response; no self-referential hash is fabricated. All topic refs remain. Final checks are full documentation formatting, exact main comparison, topic integration/registration, clean status and absence of remote/push/publication.
