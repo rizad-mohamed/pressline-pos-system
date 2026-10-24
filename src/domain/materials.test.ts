@@ -84,6 +84,41 @@ const rolls = (d: DemoData) =>
   d.items.find((i) => i.id === "banner-roll")!.quantities;
 
 describe("explicit job material usage", () => {
+  it("retains accepted service identity when job descriptions and live catalogue names differ", () => {
+    let d = setup();
+    const service = d.services.at(-1)!;
+    d = apply(d, {
+      type: "create-order",
+      requestId: "custom-description",
+      branchId: "b1",
+      customer: { name: "", phone: "" },
+      lines: [
+        {
+          ...serviceInput(service),
+          description: "Birthday banner for collection",
+        },
+      ],
+      notes: "",
+      advanceCents: 0,
+    });
+    d = apply(
+      d,
+      {
+        type: "service-save",
+        requestId: "catalogue-renamed",
+        serviceId: service.id,
+        expectedVersion: service.version,
+        values: { ...service, name: "Large-format banner service" },
+      },
+      2,
+    );
+    d = confirm(d);
+    expect(d.orders[0].lines[0].description).toBe(
+      "Birthday banner for collection",
+    );
+    expect(d.usages[0].lines[0].serviceName).toBe("Banner Printing");
+    expect(d.movements[0].serviceName).toBe("Banner Printing");
+  });
   it("keeps catalogue selection, order save, plan editing and production independent of stock", () => {
     let d = setup();
     expect(d.orders[0].materialPlan?.lines[0].quantity).toBe(2);

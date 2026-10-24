@@ -80,3 +80,5 @@ Cross-feature verification: test/fup-001-connected-workflows. Final documentatio
 FUP-002 · `fix/fup-002-drawer-notifications`: reproduce and correct success-toast overlap of a subsequent mobile drawer action; focused browser regression and production gate required.
 
 FUP-003 · `fix/cust-006-long-name-reflow`: repair the observed long customer-name overflow at 200% text; preserve the failing assertion and verify mobile and focus recovery.
+
+FUP-004 · `fix/mat-004-service-evidence`: preserve the accepted catalogue service name in material evidence even if staff customize the job description or the catalogue is later renamed.

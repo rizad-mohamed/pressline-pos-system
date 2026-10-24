@@ -65,3 +65,7 @@ The new tagged axe scans passed for customer directory/editor/account, service r
 ## Long customer-name correction
 
 FUP-003 reproduced 3076px document width at a 1440px viewport/200% text in a focused browser test. The shared heading's flex child retained an unbroken name's intrinsic width. Constrain the child and selected-customer block to the available width and permit emergency word wrapping, preserving normal word boundaries. The same test then passed 200% profile text, 320px profile and selected POS customer; scoped formatting passed. Trace before correction is retained locally. The expanded QA topic remains unmerged until its unchanged assertions and complete production suite pass.
+
+## Accepted service evidence correction · 2026-10-25
+
+FUP-004 adds a domain regression for a custom job description followed by a catalogue rename. Before correction, 10 material tests passed and the new test failed: the event incorrectly labeled the service with the custom job description. Prefer the accepted service snapshot name, retaining manual-job descriptions as the fallback. All 11 material tests passed after correction; historical accepted catalogue identity, custom job text and current catalogue name remain distinct. The final gate sequence was interrupted before build to apply this correction; earlier completed typecheck/lint/format passed, and no completion is claimed for the interrupted unit run.
