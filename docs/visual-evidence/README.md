@@ -13,3 +13,5 @@ Captured from the final local production build with fictional demo data, Chromiu
 | Runtime                 | [Raw six-sample production lab](production-pos-lab.json), [browser errors](browser-errors.json)                                                                                       |
 
 Viewport emulation and PDF rendering do not establish physical-device, assistive-technology or printer compatibility. Runtime samples are account-primed local lab navigations; see scope and throttling in the raw JSON. No field CWV/INP or Lighthouse claim.
+
+Newer connected customer/service/material evidence is in [followup](followup/README.md). The captures and runtime values above remain the earlier premium-phase checkpoint, not the current feature evidence.

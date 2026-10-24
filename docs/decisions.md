@@ -36,3 +36,12 @@
 ## Connected follow-up authority
 
 The 2026-10-24 owner-approved follow-up now authorizes saved customers, managed services and explicit order-linked actual material consumption in the frontend mock store. Earlier no-consumption/no-new-services statements describe the prior phase. The planned implementation and reversible demo conventions are in followup-implementation.md; no live backend permission is granted.
+
+## Connected follow-up conventions confirmed · 2026-10-25
+
+- One shared v2 browser envelope, same storage key, pure validated v1 migration; no hydration write or automatic reset. Legacy free-text names are Unlinked and require explicit association. Old financial/stock records survive migration; preserved legacy stores do not receive fabricated banner opening stock.
+- Cashiers can create fictional customer records for checkout; administrators edit/archive/reactivate. Contacts remain optional, with generic international directory contact validation separate from the existing Sri Lankan SMS recipient rule. Customer figures are derived from permitted order/payment records, never mutable debt fields.
+- Print services reuse the established price engine/options. Unit services use exact unit cents plus per-line setup. Stable IDs/codes, versions and accepted name/category/rate/material snapshots preserve history. Category archive hides its services from new selection without deleting child history.
+- Explicit whole-unit actual usage is the only stock trigger. Planning, order save and production never consume stock. Count units (including meters) have no conversion. Aggregate stock/no-negative checks precede one validated mock update. Stable plan/event identity blocks repeated posting across request IDs/reload; stale storage/plan checks remain.
+- Only Administrator can fully compensate an erroneous recorded event, with a reason and new movements. Original events remain; corrected actual use is a separate additional plan/event. Order metadata edits never restore used materials. Stock events do not alter sales, customer debt or report definitions. No inventory costing/profit/purchasing rules were added.
+- Preserve the existing Pressline design and reviewed installed shadcn/Taste configuration. Restore explicit print Binding/Finishing labels; retain unit-service summaries without paper controls. Canonical toast layer is below modal overlays; names reflow at zoom. Keep the owner's development server running; production verification uses a separate loopback port.

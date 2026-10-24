@@ -28,3 +28,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Keep the locally hosted Manrope license and canonical paper/charcoal/lime roles. Review new control/text color pairs with `node scripts/check-design.mjs`.
 - Preserve one responsive current-order instance, named keyboard-focusable item/advance scrolling and visible totals/review footer. Test long content at 320px and desktop initial/scrolled viewport bounds when changing this layout.
 - Use the installed reviewed shadcn/Taste guidance within this frontend scope; retain existing modal/form contracts and manual order editing. Do not reinitialize components.json or add unsupported service prices.
+
+## Connected follow-up invariants
+
+- Browser data is v2 under the stable storage key. Preserve v1 records through validated in-memory migration; legacy customers remain explicitly Unlinked until associated. Never reset as migration.
+- Customer directory is shared; cashier financial history is branch-scoped. Preserve accepted customer/service/name/category/price/material snapshots when profiles/catalogue change or archive.
+- Only explicit confirmed actual material usage changes stock. Plans/order save/production do not. Aggregate whole stock units at the order branch; no-negative default, stable plan/event duplicate guard, atomic validated mock save, and no financial side effects.
+- Posted events are historical. Additional use is separate. Administrator correction requires a reason and compensating movements; never rewrite or silently restore used stock.
+- PRESSLINE_TEST_PORT selects a validated loopback production test port. The follow-up verified port 3001 while preserving the owner's dev server at 3000. Keep production verification sequential when a concurrent local build saturates the machine.

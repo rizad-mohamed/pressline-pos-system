@@ -52,28 +52,28 @@ All units are P0 for this authorized enhancement; lifecycle describes actual sou
 
 Requirements below come from the owner-approved follow-up; original FR/NFR references remain. Each requirement is registered before implementation. Exact source/merge references and final evidence are backfilled in the handover audit.
 
-| ID       | Acceptance                                                                         | Topic                           | State / evidence                                                                        |
-| -------- | ---------------------------------------------------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------- |
-| CUST-001 | Customer records and archive                                                       | feat/cust-001-directory         | implemented; focused checks recorded below/in change log; full integration gate pending |
-| CUST-002 | Fast POS selection and walk-in                                                     | feat/svc-004-pos-integration    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| CUST-003 | Derived scoped customer history/balances                                           | feat/cust-001-directory         | implemented; focused checks recorded below/in change log; full integration gate pending |
-| CUST-004 | Derived scoped customer history/balances                                           | feat/cust-001-directory         | implemented; focused checks recorded below/in change log; full integration gate pending |
-| CUST-005 | Versioned migration and legacy preservation                                        | feat/cust-005-storage-evolution | planned; domain/UI and integrated tests required                                        |
-| CUST-006 | Accessible customer recovery and privacy                                           | feat/cust-001-directory         | implemented; focused checks recorded below/in change log; full integration gate pending |
-| SVC-001  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | implemented; focused checks recorded below/in change log; full integration gate pending |
-| SVC-002  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | implemented; focused checks recorded below/in change log; full integration gate pending |
-| SVC-003  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | implemented; focused checks recorded below/in change log; full integration gate pending |
-| SVC-004  | Data-driven POS and historical snapshots                                           | feat/svc-004-pos-integration    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| SVC-005  | Safe category changes and banner acceptance                                        | feat/svc-001-managed-catalogue  | implemented; focused checks recorded below/in change log; full integration gate pending |
-| SVC-006  | Safe category changes and banner acceptance                                        | feat/svc-001-managed-catalogue  | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-001  | Whole-unit service material recipes                                                | feat/svc-001-managed-catalogue  | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-002  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-003  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-004  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-005  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-006  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-007  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
-| MAT-008  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
+| ID       | Acceptance                                                                         | Topic                           | State / evidence                                                              |
+| -------- | ---------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------- |
+| CUST-001 | Customer records and archive                                                       | feat/cust-001-directory         | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| CUST-002 | Fast POS selection and walk-in                                                     | feat/svc-004-pos-integration    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| CUST-003 | Derived scoped customer history/balances                                           | feat/cust-001-directory         | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| CUST-004 | Derived scoped customer history/balances                                           | feat/cust-001-directory         | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| CUST-005 | Versioned migration and legacy preservation                                        | feat/cust-005-storage-evolution | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| CUST-006 | Accessible customer recovery and privacy                                           | feat/cust-001-directory         | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| SVC-001  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| SVC-002  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| SVC-003  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| SVC-004  | Data-driven POS and historical snapshots                                           | feat/svc-004-pos-integration    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| SVC-005  | Safe category changes and banner acceptance                                        | feat/svc-001-managed-catalogue  | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| SVC-006  | Safe category changes and banner acceptance                                        | feat/svc-001-managed-catalogue  | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-001  | Whole-unit service material recipes                                                | feat/svc-001-managed-catalogue  | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-002  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-003  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-004  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-005  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-006  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-007  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
+| MAT-008  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | verified frontend; exact files/source/merge/tests in requirements-coverage.md |
 
 Cross-feature verification: test/fup-001-connected-workflows. Final documentation: docs/fup-001-handover. Scope audit: docs/fup-000-scope.
 
@@ -86,3 +86,5 @@ FUP-004 · `fix/mat-004-service-evidence`: preserve the accepted catalogue servi
 FUP-005 · `fix/svc-004-print-specification-labels`: restore explicit Binding / Finishing print-job labels while preserving unit-service specifications; original printing assertion must pass unchanged.
 
 FUP-006 · `fix/fup-006-workflow-orientation`: classify customer detail under Customers for breadcrumb/current-link orientation and use sentence case for material context; preserve customer reflow assertions.
+
+Final follow-up: all 20 exact IDs verified in the connected local frontend; 84 unit/component and 44 production browser tests pass. FUP-002/003/004/005/006 are corrected and included in the final gate. `test/fup-001-connected-workflows` is verified/integrated. `docs/fup-001-handover` maintains this handover and subsequent hash backfill; its own final hash is reported at delivery.
