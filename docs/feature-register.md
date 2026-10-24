@@ -44,4 +44,6 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 
 | PREM-006 | Complete premium frontend production regression evidence | updated | test/prem-006-visual-regression | integrated; a7fbe66 / merge 7ce0aa5 | Nine widths, 200% text, keyboard categories/mobile nav, contrast tokens and all preserved workflows on production build |
 
-| PREM-009 | Persistent desktop totals and visible order-review action | fixed | fix/prem-009-summary-visibility | integrated; awaiting hash | Measure actual panel top, scroll specifications, retain totals/review footer; verify initial and scrolled desktop bounds |
+| PREM-009 | Persistent desktop totals and visible order-review action | fixed | fix/prem-009-summary-visibility | integrated; 53bb11c / merge f228a49 | Measure actual panel top, scroll specifications, retain totals/review footer; verify initial and scrolled desktop bounds |
+
+| PREM-010 | Wait for asynchronous category focus before activation | fixed | test/prem-010-keyboard-synchronization | integrated; awaiting hash | Radix roving focus schedules movement; preserve keyboard selection assertions |

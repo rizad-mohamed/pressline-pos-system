@@ -9,11 +9,17 @@ test("service filters support keyboard selection and mobile sheets return focus"
   await page.goto("/pos");
   await page.getByRole("radio", { name: "All services", exact: true }).focus();
   await page.keyboard.press("ArrowRight");
+  await expect(
+    page.getByRole("radio", { name: "Printing", exact: true }),
+  ).toBeFocused();
   await page.keyboard.press("Space");
   await expect(
     page.getByRole("radio", { name: "Printing", exact: true }),
   ).toHaveAttribute("aria-checked", "true");
   await page.keyboard.press("ArrowRight");
+  await expect(
+    page.getByRole("radio", { name: "Binding & finishing", exact: true }),
+  ).toBeFocused();
   await page.keyboard.press("Space");
   await expect(
     page.getByRole("radio", { name: "Binding & finishing", exact: true }),
