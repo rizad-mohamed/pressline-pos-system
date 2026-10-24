@@ -699,3 +699,160 @@ M	docs/change-log.md
 M	docs/feature-register.md
 M	docs/validation-log.md
 ```
+
+## Premium enhancement audit · 2026-10-24
+
+Frontend baseline `c73980cc0090e31df800d46f0bff4a66aa18a3b5`. Pre-handover integration snapshot `2182df57573ce15bd93ff4cfef5afed7c2cfdfc2`. Main remains `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604`. Working on dedicated `docs/prem-007-redesign-handover`; its own source/merge hash is recorded by the subsequent audit commit and final handoff. No remote configured, push, main merge or deployment.
+
+The current repository has 37 local refs, including the open handover topic; original baseline had 26 refs/24 topics. All pre-handover topics are retained and ancestors of develop. Use `node scripts/verify-git.mjs` after final integration for the exact count and clean-tree outcome.
+
+| ID       | Retained topic                           | Source           | Integration      |
+| -------- | ---------------------------------------- | ---------------- | ---------------- |
+| PREM-001 | `docs/prem-001-redesign-audit`           | eb20d7e          | f57771a          |
+| PREM-002 | `chore/prem-002-design-tooling`          | b559192          | 8d7920a          |
+| PREM-003 | `feat/prem-003-premium-shell`            | cf858b8          | a00dd86          |
+| PREM-004 | `feat/prem-004-service-workspace`        | a4bbb44          | aefd582          |
+| PREM-005 | `style/prem-005-operational-screens`     | f80e521          | e802124          |
+| PREM-008 | `fix/prem-008-long-content-reflow`       | 3603fbc          | c925c05          |
+| PREM-006 | `test/prem-006-visual-regression`        | a7fbe66          | 7ce0aa5          |
+| PREM-009 | `fix/prem-009-summary-visibility`        | 8808589, 53bb11c | 232c67d, f228a49 |
+| PREM-010 | `test/prem-010-keyboard-synchronization` | cdca073          | 5bbdef5          |
+
+### Representative complete commit messages
+
+```text
+b559192 Codex Automation <codex@local.invalid>
+chore(ui): install reviewed design skills and shadcn primitives
+
+Why: implement the focused PREM-002; UI-001 acceptance unit.
+Requirement: PREM-002; UI-001.
+Behavior: install reviewed design skills and shadcn primitives.
+Validation: Installed both required skills; actively ran Taste app draw seed 20261024 and shadcn info/docs/dry-run/add; declined init overwrite; reviewed generated source and licenses; typecheck and lint passed; exact Radix lockfile with zero known audit vulnerabilities.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+cf858b8 Codex Automation <codex@local.invalid>
+feat(ui): establish Pressline paper-and-ink design system and navigation
+
+Why: implement the focused PREM-003; UI-001; FR-001-009 acceptance unit.
+Requirement: PREM-003; UI-001; FR-001-009.
+Behavior: establish Pressline paper-and-ink design system and navigation.
+Validation: Typecheck and lint passed; navigation and 200 percent reflow Playwright checks passed 2 of 2; all-route capture has zero page exceptions; desktop login dashboard POS and mobile POS visually reviewed; domain and repository preserved.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+a4bbb44 Codex Automation <codex@local.invalid>
+feat(pos): add service selection and adaptive current-order controls
+
+Why: implement the focused PREM-004; FR-010-030 acceptance unit.
+Requirement: PREM-004; FR-010-030.
+Behavior: add service selection and adaptive current-order controls.
+Validation: Typecheck and lint passed; 5 focused Chromium checks passed including original multi-item advance journey, invalid input, service filters/exact totals, empty-draft reload, mobile footer/review/focus; desktop empty/populated and mobile cart visually reviewed.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+f80e521 Codex Automation <codex@local.invalid>
+style(workspace): refine operational tables charts drawers and print surfaces
+
+Why: implement the focused PREM-005; UI-001; FR-001-054 acceptance unit.
+Requirement: PREM-005; UI-001; FR-001-054.
+Behavior: refine operational tables charts drawers and print surfaces.
+Validation: Typecheck lint and 58 unit/component tests passed; 8 operational journeys passed; full-route axe and settings/SMS checks passed 3 of 3; entry regression passed; two visual passes and Taste app measurements completed; no domain or data changes.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+3603fbc Codex Automation <codex@local.invalid>
+fix(ui): contain long order text and protect currency sizing on mobile
+
+Why: implement the focused PREM-008; UI-001; FR-015; WCAG-1.4.10 acceptance unit.
+Requirement: PREM-008; UI-001; FR-015; WCAG-1.4.10.
+Behavior: contain long order text and protect currency sizing on mobile.
+Validation: Typecheck and lint passed; strengthened mobile regression first exposed 464px internal overflow then 328px review overflow; repaired wrapping and currency flex sizing; all 4 focused Chromium checks passed including Unicode landscape reduced-motion and original POS behavior.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+a7fbe66 Codex Automation <codex@local.invalid>
+test(ui): verify premium workflows responsive layouts and contrast tokens
+
+Why: implement the focused PREM-006; TEST-001; UI-001 acceptance unit.
+Requirement: PREM-006; TEST-001; UI-001.
+Behavior: verify premium workflows responsive layouts and contrast tokens.
+Validation: Clean install typecheck lint format 58 unit tests and build passed; combined production Chromium 32 of 32 passed after unchanged injection-error rerun and 3 isolated repeats; 22 contrast pairs and 21 Taste viewport combinations passed; captured production gallery and one-page PDFs; PREM-009 footer finding tracked for focused repair.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+8808589 Codex Automation <codex@local.invalid>
+fix(pos): keep desktop totals and order review within the viewport
+
+Why: implement the focused PREM-009; FR-015; UI-001 acceptance unit.
+Requirement: PREM-009; FR-015; UI-001.
+Behavior: keep desktop totals and order review within the viewport.
+Validation: Regression first placed Review at 1211px in a 900px viewport; measured actual available height and separated scrolling specifications from persistent totals/actions; typecheck lint and all 7 focused browser checks passed; desktop/mobile images visually reviewed.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+53bb11c Codex Automation <codex@local.invalid>
+style(tests): normalize summary visibility regression formatting
+
+Why: implement the focused PREM-009 acceptance unit.
+Requirement: PREM-009.
+Behavior: normalize summary visibility regression formatting.
+Validation: Prettier check passed; formatting-only callback wrapping with unchanged assertions; prior 7 focused browser checks remain valid; final combined gates rerun next.
+Limit: local frontend demonstration; no production integrations.
+```
+
+### Review and provenance checks
+
+Inspected status, retained branches, oneline/decorated history, graph, full author/message records and name-status diffs. Each implementation commit explicitly staged intended paths, checked cached whitespace/secret patterns and retained a full staged review diff locally. Repository-local Codex Automation identity was used; no global configuration changed. Topic creation started from develop, and each verified unit was merged with --no-ff; extra footer formatting correction was retained separately. Domain/data diff against c73980c is empty. User-supplied reference hashes were checked before staging and remain unchanged.
+
+Created: original SVG mark/paper specimens, local licensed font, service catalogue/responsive summary, official primitives, tests/scripts, design/evidence docs. Updated: tokens, shell/access, shared wrappers, existing operational/print screens and ledgers. Fixed: internal long-content/currency overflow, mobile edit focus, control contrast and desktop footer visibility. Deleted: obsolete decorative KPI icon treatment and redundant generated class dependency; no business capability removed. Exact path provenance is reproducible with `git diff --name-status c73980c..develop` and `git log --all --name-status`.
+
+Final audit-only commits necessarily follow this snapshot; no self-referential hash or fabricated clean-tree result is embedded. The final user report supplies the delivered full tip.
+
+### Final navigation craft source
+
+```text
+a9e8fe7 Codex Automation <codex@local.invalid>
+style(navigation): give rail labels room to wrap naturally
+
+Why: implement the focused PREM-011 acceptance unit.
+Requirement: PREM-011.
+Behavior: give rail labels room to wrap naturally.
+Validation: Production build and 33 browser tests passed; measured Production word on one line; zoom and all widths passed.
+Limit: local frontend demonstration; no production integrations.
+```
+
+Integrated by 173ffec; production build and full 33-test suite passed after the change. The active word Production now occupies one measured line within the labeled rail.
+
+### Final navigation and keyboard source messages
+
+```text
+cdca073 Codex Automation <codex@local.invalid>
+test(pos): await category focus before keyboard activation
+
+Why: implement the focused PREM-010 acceptance unit.
+Requirement: PREM-010.
+Behavior: await category focus before keyboard activation.
+Validation: Five repeated production keyboard checks passed; explicit focus assertions preserve selection and drawer checks.
+Limit: local frontend demonstration; no production integrations.
+```
+
+```text
+a8c4c27 Codex Automation <codex@local.invalid>
+style(navigation): preserve rail text edge clearance
+
+Why: the final design inspector found SMS text 15px from the viewport edge after the wider label cap.
+Requirement: PREM-011; HCI hierarchy, readable navigation and responsive layout.
+Behavior: use a 72px cap so Production remains intact and SMS reports wraps with adequate clearance.
+Validation: production build, lint and all 33 E2E tests passed; all 21 final Taste workspace combinations clear.
+Limit: frontend presentation only. Lifecycle and source hash recorded in the following handover audit.
+```
+
+Final navigation source a8c4c27 is integrated by 2182df5. All 33 production browser tests and all 21 Taste workspace combinations passed on the final 72px cap. The complete handover records this source-only refinement; pending documentation was preserved on its own topic throughout.

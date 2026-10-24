@@ -37,3 +37,42 @@ Final screenshot artifacts are retained for the visual review described above. B
 Source hygiene: no application route handlers/production API implementation, private-key patterns, service-role use or dangerouslySetInnerHTML were found in the scoped source scan. This is a proportionate source check, not a penetration test.
 
 Test synchronization correction dbf0e8c waits for Next navigation before reading an order URL. The previous failed artifact requested /print/job/pos from an old URL; application order/receipt assertions had already passed. All 24 tests subsequently passed without weakening financial or access assertions.
+
+## Premium frontend final production verification · 2026-10-24
+
+Baseline was develop `c73980c` with 58 unit/component and 24 browser tests. The earlier records above remain historical. Current app source is integrated through `f228a49`, followed by the PREM-010 test-only synchronization repair; handover/audit documentation follows on its own topic.
+
+| Command / method                                  | Actual outcome                                                                                                                                                      |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm ci`                                          | Passed clean: 544 installed, 545 audited, zero known vulnerabilities at execution                                                                                   |
+| `npm run typecheck` / `lint` / `format:check`     | Passed after formatter-only correction; final docs formatted/rechecked separately                                                                                   |
+| `npm run test`                                    | 58 tests across 14 files passed                                                                                                                                     |
+| `npm run build`                                   | Passed complete production Next 16.4.3 frontend                                                                                                                     |
+| Explicit `npm run start`, then `npm run test:e2e` | 33/33 production Chromium tests passed, one worker, no skips or configured retry                                                                                    |
+| `node scripts/check-design.mjs`                   | All 22 actual token pairs pass unrounded thresholds (text ≥4.5, controls/charts ≥3)                                                                                 |
+| `node scripts/bundle-report.mjs`                  | 30 JS assets: 1,131,249 bytes / 361,372 gzip; CSS: 48,779 / 10,196 gzip; font 164,700 bytes separately                                                              |
+| `node scripts/measure-ui.mjs`                     | Six account-primed local production navigations: LCP 1028–1460 ms; CLS 0.000548633; 1–3 long tasks per navigation; no external runtime requests                     |
+| Final production gallery / PDFs                   | All captured routes/drawers reviewed; browser errors empty; both PDFs one A4 page                                                                                   |
+| Scoped source / dependency checks                 | Domain/data diff empty; no route handlers, production endpoint/secret or unsafe HTML pattern found; production audit zero known vulnerabilities, direct peers valid |
+
+Original aggregate baseline was JS 1,059,173 / 335,433 gzip and CSS 26,488 / 6,262 gzip. The additional component interactions, styling and font have a measurable cost. Aggregate route assets are not initial-page transfer. Lab uses Chromium, 4× CPU slowdown, 40 ms latency and 1,250,000 bytes/s download with HTTP cache disabled; core/font assets may be warm from demo entry. No cold startup, Lighthouse, field CWV/INP, real device or uptime claim.
+
+Coverage includes nine widths (320, 360, 390, 430, 768, 1024, 1280, 1440, 1920), 200% text, long unbroken/Sinhala/Tamil input, landscape, reduced motion, keyboard categories and mobile navigation, empty/remove/undo, post-drawer Edit focus and desktop review visibility before/after scroll. Selected WCAG A/AA axe scans cover login and all 11 workspace routes with no detected tagged violations. Existing payment/snapshot/production/branch/inventory/transfer/report/SMS/reset/recovery/print scenarios all reran.
+
+### Failed checkpoints and disposition
+
+1. A new filter test assumed button semantics; inspected current Radix source/DOM showed single ToggleGroup radio semantics. Corrected the test locator; app unchanged, focused checks passed.
+2. Stronger internal-width assertions found long text overflowing the 320px cart and then the review currency flex container. Repaired wrapping and protected monetary width; all long-content, Unicode, landscape and reduced-motion cases passed.
+3. Initial input-border contrast passed white but failed canvas (2.891:1). Changed canonical control edge to #7f8a77; canvas is now 3.392:1 and all 22 pairs pass.
+4. A full 32-test run had one 430px test fail before app assertions in Playwright rawEvaluateHandle source injection with SyntaxError. Preserved trace, three unchanged repeats passed, then complete unchanged 32-test run passed. Root cause unconfirmed; no retry/skip/assertion suppression. Final expanded 33-test production run passed.
+5. Final visual inspection revealed desktop Review below a 900px initial viewport. New regression reproduced bottom=1211px. Separate PREM-009 fix constrains the panel from actual top/height, scrolls specifications and preserves total/balance/review; seven focused checks and final full 33 passed.
+6. Final quality gate caught only callback wrapping in the added test; applied Prettier, committed separately, then reran typecheck/lint/format/58 tests/build and all 33 production tests successfully.
+7. The first expanded 33-test run passed 32 and exposed a test race: Space arrived before Radix's deferred ArrowRight focus move. Installed roving-focus source confirms setTimeout focus scheduling. Added explicit toBeFocused assertions after each arrow, preserving every original selection/count/navigation assertion and adding no sleep/retry. Five repeated focused production checks and the subsequent full 33-test suite passed. Trace/screenshot preserved locally.
+
+Taste was actively used: deterministic commerce draw, native entry inspection, source lint and reviewed signed-in measurement bridge. Entry findings were refined with documented brand-header/whitespace exceptions. Workspace measurement was clear across all 21 route/width combinations after the final footer/navigation repairs. Source lint returned 0 FAIL/28 contextual WARN (overlay/focus/no-shadow tokens, retained eyebrow hooks/print metadata, date/item padding and em-dash punctuation). These are recorded as advisories, not hidden passes. Installed/source skill text matched after CRLF/LF normalization.
+
+Standalone Chromium supplied browser evidence because the in-app connector found no browser. No participant, real screen-reader, physical device/printer, live backend/provider or deployment test was performed. Gallery and raw runtime evidence are retained under [visual-evidence](visual-evidence/README.md); ordinary E2E trace artifacts remain ignored and can be regenerated. Full WCAG, production security/reliability and unknown exact FR/NFR acceptance remain unverified.
+
+Final navigation craft PREM-011: widened the 66px label cap to 76px inside the existing rail after observing mid-word splitting. Measured Production as one 66.47px line, rebuilt production and reran all 33 tests successfully, including responsive/zoom/axe. Source a9e8fe7, integration 173ffec.
+
+Final inspector checkpoint: the 76px cap put active SMS reports text 15px from the edge (20 combinations clear, one edge-text FAIL). The 72px cap preserves the intact Production word and restores clearance. No rule suppressed. Final build/lint, all 33 production browser tests, and all 21 Taste route/width combinations passed. Source a8c4c27 / merge 2182df5. Final gallery, PDFs and runtime lab refreshed afterward.

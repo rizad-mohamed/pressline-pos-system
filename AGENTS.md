@@ -22,3 +22,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Premium frontend maintenance
+
+- Keep the locally hosted Manrope license and canonical paper/charcoal/lime roles. Review new control/text color pairs with `node scripts/check-design.mjs`.
+- Preserve one responsive current-order instance, named keyboard-focusable item/advance scrolling and visible totals/review footer. Test long content at 320px and desktop initial/scrolled viewport bounds when changing this layout.
+- Use the installed reviewed shadcn/Taste guidance within this frontend scope; retain existing modal/form contracts and manual order editing. Do not reinitialize components.json or add unsupported service prices.
