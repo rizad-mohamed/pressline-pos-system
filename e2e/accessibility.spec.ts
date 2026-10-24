@@ -86,8 +86,9 @@ test("200 percent text resizing retains the dashboard within the viewport", asyn
 });
 test("assembled routes have no detected WCAG A/AA axe violations or browser exceptions", async ({
   page,
-}) => {
+}, info) => {
   test.setTimeout(240000);
+  await page.setViewportSize({ width: 1440, height: 1000 });
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/login");
@@ -95,6 +96,11 @@ test("assembled routes have no detected WCAG A/AA axe violations or browser exce
     .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
     .analyze();
   expect(result.violations).toEqual([]);
+  await page.screenshot({
+    path: info.outputPath("login-1440.png"),
+    fullPage: true,
+    animations: "disabled",
+  });
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
   for (const route of [
     "dashboard",
@@ -115,6 +121,22 @@ test("assembled routes have no detected WCAG A/AA axe violations or browser exce
       .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
       .analyze();
     expect(result.violations, route).toEqual([]);
+    await page.screenshot({
+      path: info.outputPath(`${route}-1440.png`),
+      fullPage: true,
+      animations: "disabled",
+    });
+    await page.setViewportSize({ width: 390, height: 844 });
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+      `${route} mobile overflow`,
+    ).toBeLessThanOrEqual(391);
+    await page.screenshot({
+      path: info.outputPath(`${route}-390.png`),
+      fullPage: true,
+      animations: "disabled",
+    });
+    await page.setViewportSize({ width: 1440, height: 1000 });
   }
   expect(errors).toEqual([]);
 });

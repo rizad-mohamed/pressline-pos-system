@@ -19,7 +19,7 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-042    | Period reports, branch/all scopes / FR-021                            | P0       | feat/fr-042-financial-reports        | integrated; 236276f / merge a5bc9de | date/cohort tests                                  |
 | FR-047    | SMS config and unsent preview / FR-042                                | P0       | feat/fr-047-sms-preview              | integrated; bce92d2 / merge 6aeae5e | report consistency                                 |
 | FR-008    | Team/branch/app/profile demo settings / FR-001                        | P1       | feat/fr-008-demo-settings            | integrated; 245e733 / merge 9da908d | persistence/reset                                  |
-| TEST-001  | E2E, responsive, keyboard, accessibility review / all features        | P0       | test/test-001-workflow-validation    | planned                             | Playwright + RTL                                   |
+| TEST-001  | E2E, responsive, keyboard, accessibility review / all features        | P0       | test/test-001-workflow-validation    | in progress                         | Playwright + RTL                                   |
 | DOC-002   | Coverage, handover, audit / TEST-001                                  | P0       | docs/doc-002-delivery-evidence       | planned                             | history cross-check                                |
 | DOM-002   | Correct future-dated current-day fixtures / DOM-001                   | P0       | fix/dom-002-fixture-timestamps       | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09            |
 | DOM-003   | Align typed read/command adapter contract / all features              | P0       | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
@@ -28,4 +28,4 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | STYLE-001 | Consistent formatting / all source                                    | P1       | style/ui-003-source-formatting       | integrated; 500874a / merge 35beb00 | Prettier, typecheck and lint                       |
 | INIT-003  | Align tested Node prerequisites and clean unused tooling / INIT-002   | P0       | fix/init-003-supported-tooling       | integrated; 6842180 / merge 312e165 | Engine/peer metadata, install, typecheck and lint  |
 
-| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | integrated; awaiting hash | Typecheck, lint, order and input recovery E2E |
+| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | integrated; 093dab5 / merge a67330b | Typecheck, lint, order and input recovery E2E |

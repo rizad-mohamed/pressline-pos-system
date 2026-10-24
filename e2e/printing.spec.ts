@@ -22,6 +22,11 @@ test("customer receipt and separate production ticket render and print without n
     format: "A4",
     printBackground: true,
   });
+  await page.screenshot({
+    path: testInfo.outputPath("customer-receipt.png"),
+    fullPage: true,
+    animations: "disabled",
+  });
   await page.emulateMedia({ media: "screen" });
   await page.goto("/print/job/PL-1012");
   await expect(
@@ -36,6 +41,11 @@ test("customer receipt and separate production ticket render and print without n
     path: testInfo.outputPath("production-ticket.pdf"),
     format: "A4",
     printBackground: true,
+  });
+  await page.screenshot({
+    path: testInfo.outputPath("production-ticket.png"),
+    fullPage: true,
+    animations: "disabled",
   });
   await expect(page.locator(".sidebar")).toHaveCount(0);
 });
