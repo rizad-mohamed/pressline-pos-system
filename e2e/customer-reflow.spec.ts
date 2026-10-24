@@ -14,6 +14,12 @@ test("long saved customer names remain within profile and selected POS at zoom a
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await page.getByRole("link", { name, exact: true }).click();
   await page.waitForURL("**/customers/cust-*");
+  await expect(
+    page
+      .getByRole("navigation", { name: "Primary", exact: true })
+      .getByRole("link", { name: "Customers", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
+  await expect(page.locator(".topbar-context strong")).toHaveText("Customers");
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.evaluate(() => {
     document.documentElement.style.fontSize = "200%";

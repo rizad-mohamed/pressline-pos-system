@@ -36,7 +36,7 @@ export function JobMaterials({ order }: { order: Order }) {
     >
       <div className="row between">
         <div>
-          <p className="eyebrow">PRODUCTION / MATERIALS</p>
+          <p className="eyebrow">Production / materials</p>
           <h3 id={`materials-${order.id}`}>Materials for this job</h3>
         </div>
         <Badge variant={recorded ? "success" : "neutral"}>
