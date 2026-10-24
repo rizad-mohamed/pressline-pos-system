@@ -875,3 +875,212 @@ Limit: no backend, database, provider operation, main change, push or deployment
 ```
 
 The source-only navigation clearance commit a8c4c27 is linked to its complete PREM-011 lifecycle in the primary handover. Final 33/33 browser tests, 21 clear Taste workspace combinations, 22 contrast pairs, screenshots/PDFs and raw lab correspond to that final application source. Formatting/link/coverage checks are rerun for this audit. No application changes are included in this commit.
+
+## Connected follow-up Git audit · 2026-10-25
+
+Started clean from develop `60ef6695c34cc6d0e8d3caea8d74f1fc33c1ddfa`; main `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604` remains unchanged. Snapshot develop before handover commits: `c264ab05611860a18772fa6966b5c7fac9ecc6f9`. No remote, push, history rewrite, topic deletion or deployment. Local-only Git identity was retained; global configuration untouched. QA checkpoints with observed failures stayed unmerged until repairs and all 44 production tests passed. Separate no-ff synchronization merges preserved QA and fix histories; two append-only audit conflicts preserved both sections.
+
+| Retained topic                           | Actual topic tip                           | Local develop no-ff merge                  |
+| ---------------------------------------- | ------------------------------------------ | ------------------------------------------ |
+| `docs/fup-000-scope`                     | `efb5d33684f3904c13d2e234f6c3ede6e0504146` | `158310d04234747a604b47a24980acff1ef01f58` |
+| `feat/cust-005-storage-evolution`        | `ca86eedd41465284d43fd10f515bec79c1c43db2` | `ac05745f6b39ede2c25efbf5561cd400c9292f82` |
+| `feat/cust-001-directory`                | `5b95e020ad05ecd9eee59ac96945f34463de6985` | `b774da9246791cf08966c917c5e5255f93088639` |
+| `feat/svc-001-managed-catalogue`         | `4b2e4242336f09a40012da6dc01cb8a5ef502f46` | `32c72c2f40ae5b8a759d666f984fb2c52aa60a38` |
+| `feat/svc-004-pos-integration`           | `5f4aca3ec0e14f810ac6fe16b8d2a5ed843a3a5f` | `bd31788c020b017daad7a43bb4b47e06f1640022` |
+| `feat/mat-003-confirmed-usage`           | `0542428f485d6e9d83ad9c28947451d4a78e7213` | `6e4459a17d4e66cc9232b0052fd4b291a344162b` |
+| `fix/fup-002-drawer-notifications`       | `89e26090f175a603472349a54f764b404d1bf932` | `950b70a11b71b6dd3419ce61e09f21f300f51755` |
+| `fix/cust-006-long-name-reflow`          | `57f2c3845c16faf7b36bc3c6e24669565e1bec60` | `f0752d9dacaa75bd7553d0cf03f8d3c50ea837e5` |
+| `fix/mat-004-service-evidence`           | `49f6b887ea1ee9e9cb5ed95825ea0a80e32f106d` | `bb8adef5ab6b1cc26e2888ede7f5dc176239e049` |
+| `fix/svc-004-print-specification-labels` | `01d91aff38f33afdd13a3849db0e7ba1a5c4909f` | `fd94e9d0ae2cf018f7b22c0e637f4f9d6c286e45` |
+| `fix/fup-006-workflow-orientation`       | `ea7e7e6ab135052ad4119919778b5097eb01508b` | `3378930eca50f4f07bb8824d02737d2ae7bfefef` |
+| `test/fup-001-connected-workflows`       | `6622a967274c563690644138dc30bade7ccf6996` | `c264ab05611860a18772fa6966b5c7fac9ecc6f9` |
+
+`docs/fup-001-handover` is the active handover topic. Its primary source/merge will be backfilled by the next audit; no commit can embed its own final hash. Exact post-audit tip/clean status are reported in the final response.
+
+Actual follow-up commit messages at this snapshot:
+
+```text
+efb5d33684f3904c13d2e234f6c3ede6e0504146
+docs(followup): register connected customer service and material scope
+Why: protect the existing frontend and trace the explicitly approved evolution.
+Requirement: CUST-001–006, SVC-001–006, MAT-001–008.
+Behavior: record baseline, all 20 feature IDs, migration and usage conventions before source changes.
+Validation: Clean Git baseline, actual source/role/storage/calculation review; installed Next guides and existing design skills consulted; baseline tests running, not yet claimed passed.
+Limit: browser-local frontend demonstration; no backend operation.
+
+158310d04234747a604b47a24980acff1ef01f58
+chore(integration): merge docs/fup-000-scope
+Requirement: CUST-001–006, SVC-001–006, MAT-001–008. Validation: Clean Git baseline, actual source/role/storage/calculation review; installed Next guides and existing design skills consulted; baseline tests running, not yet claimed passed. Retain verified topic history; main unchanged.
+
+ca86eedd41465284d43fd10f515bec79c1c43db2
+feat(storage): migrate legacy demo records into the connected v2 model
+Why: preserve existing browser records while adding shared customer service and material entities.
+Requirement: CUST-005; SVC-002; MAT-001 data foundations.
+Behavior: pure v1 upgrade, v2 validation and deterministic additive fixtures; no automatic customer matching or stock consumption.
+Validation: Typecheck and lint passed; 61/61 tests across 15 files passed after preserving fixture order and updating unsupported-version boundary; 10 focused migration/repository tests passed.
+Limit: browser-local frontend demonstration; no backend operation.
+
+ac05745f6b39ede2c25efbf5561cd400c9292f82
+chore(integration): merge feat/cust-005-storage-evolution
+Requirement: CUST-005; SVC-002; MAT-001 data foundations. Validation: Typecheck and lint passed; 61/61 tests across 15 files passed after preserving fixture order and updating unsupported-version boundary; 10 focused migration/repository tests passed. Retain verified topic history; main unchanged.
+
+5b95e020ad05ecd9eee59ac96945f34463de6985
+feat(customers): add saved profiles and branch-scoped account history
+Why: give returning individuals and companies a persistent identity and truthful permitted receivables.
+Requirement: CUST-001, CUST-003, CUST-004, CUST-006; CUST-005 explicit linking domain.
+Behavior: customer management, duplicate warnings, archive-safe history, derived branch balances and readable directory/profile routes.
+Validation: Typecheck and scoped ESLint passed; 8 focused customer/migration tests and 2 customer browser journeys passed; desktop/mobile visuals inspected with no page errors; final production suite pending.
+Limit: browser-local frontend demonstration; no backend operation.
+
+b774da9246791cf08966c917c5e5255f93088639
+chore(integration): merge feat/cust-001-directory
+Requirement: CUST-001, CUST-003, CUST-004, CUST-006; CUST-005 explicit linking domain. Validation: Typecheck and scoped ESLint passed; 8 focused customer/migration tests and 2 customer browser journeys passed; desktop/mobile visuals inspected with no page errors; final production suite pending. Retain verified topic history; main unchanged.
+
+4b2e4242336f09a40012da6dc01cb8a5ef502f46
+feat(services): manage versioned catalogue categories prices and material recipes
+Why: allow administrators to define usable print services without source edits.
+Requirement: SVC-001, SVC-002, SVC-003, SVC-005, SVC-006 foundations; MAT-001.
+Behavior: managed categories/service availability, supported print choices or unit pricing, immutable quote snapshots and whole-unit material templates.
+Validation: Typecheck and scoped ESLint passed; 29 focused service/original pricing/domain tests and 2 service/pricing browser journeys passed; desktop/mobile service editor inspected; dynamic POS integration is next.
+Limit: browser-local frontend demonstration; no backend operation.
+
+32c72c2f40ae5b8a759d666f984fb2c52aa60a38
+chore(integration): merge feat/svc-001-managed-catalogue
+Requirement: SVC-001, SVC-002, SVC-003, SVC-005, SVC-006 foundations; MAT-001. Validation: Typecheck and scoped ESLint passed; 29 focused service/original pricing/domain tests and 2 service/pricing browser journeys passed; desktop/mobile service editor inspected; dynamic POS integration is next. Retain verified topic history; main unchanged.
+
+5f4aca3ec0e14f810ac6fe16b8d2a5ed843a3a5f
+feat(pos): connect saved customers and managed service snapshots
+Why: make administrator catalogue records and returning customers usable in the existing checkout.
+Requirement: CUST-002, CUST-003, CUST-005, CUST-006; SVC-004, SVC-006.
+Behavior: dynamic service cards and unit-aware configuration/printing, customer lookup/quick-add/walk-in/profile handoff, explicit legacy linking and isolated drawer form submission.
+Validation: Typecheck/scoped ESLint passed; 15 focused component/form/service/customer tests and all 6 connected/original premium POS browser scenarios passed after portal fix; full production integration gate remains.
+Limit: browser-local frontend demonstration; no backend operation.
+
+bd31788c020b017daad7a43bb4b47e06f1640022
+chore(integration): merge feat/svc-004-pos-integration
+Requirement: CUST-002, CUST-003, CUST-005, CUST-006; SVC-004, SVC-006. Validation: Typecheck/scoped ESLint passed; 15 focused component/form/service/customer tests and all 6 connected/original premium POS browser scenarios passed after portal fix; full production integration gate remains. Retain verified topic history; main unchanged.
+
+0542428f485d6e9d83ad9c28947451d4a78e7213
+feat(inventory): record confirmed job materials once with compensating corrections
+Why: actual job material use must update the correct branch without duplicated debits or altered customer debt.
+Requirement: MAT-002, MAT-003, MAT-004, MAT-005, MAT-006, MAT-007, MAT-008.
+Behavior: editable snapshot plans, explicit aggregated no-negative confirmation, immutable movement evidence, stable event guards, separate additional use and administrator corrections.
+Validation: 83 tests passed at full checkpoint; final 10 material tests and scoped formatting passed; typecheck and lint passed; complete banner browser workflow passed; three-width visual inspection identified toast overlay fix for next topic; final production gate pending.
+Limit: browser-local frontend demonstration; no backend operation.
+
+6e4459a17d4e66cc9232b0052fd4b291a344162b
+chore(integration): merge feat/mat-003-confirmed-usage
+Requirement: MAT-002, MAT-003, MAT-004, MAT-005, MAT-006, MAT-007, MAT-008. Validation: 83 tests passed at full checkpoint; final 10 material tests and scoped formatting passed; typecheck and lint passed; complete banner browser workflow passed; three-width visual inspection identified toast overlay fix for next topic; final production gate pending. Retain verified topic history; main unchanged.
+
+89e26090f175a603472349a54f764b404d1bf932
+fix(ui): keep success notifications below modal confirmation actions
+Why: rapid plan-save then confirmation exposed a toast over the mobile drawer footer.
+Requirement: CUST-006, MAT-003; FUP-002.
+Behavior: canonical notification layer stays above navigation and below modal overlays; all existing success feedback remains.
+Validation: strengthened browser regression failed at toast layer 80 versus sheet 51 before correction, passed afterward at 390/320/768 with geometric hit testing and actual confirm; all 22 contrast pairs and scoped formatting passed.
+Limit: browser-local frontend demonstration; no backend operation.
+
+950b70a11b71b6dd3419ce61e09f21f300f51755
+chore(integration): merge fix/fup-002-drawer-notifications
+Requirement: CUST-006, MAT-003; FUP-002. Validation: strengthened browser regression failed at toast layer 80 versus sheet 51 before correction, passed afterward at 390/320/768 with geometric hit testing and actual confirm; all 22 contrast pairs and scoped formatting passed. Retain verified topic history; main unchanged.
+
+0d0d15089a7d6aaf391e7e5afbd4db55b680c3ac
+test(workflows): extend connected customer catalogue and material verification
+Requirement: CUST-001..006, SVC-001..006, MAT-001..008. Why: exercise new entities across production, responsive, accessibility and visual workflows. Validation: typecheck/lint/83 tests/build and corrected format gate passed; new desktop/mobile modal axe scans passed; dev nine-width checkpoint timed out at ninth width and long-name 200-percent test found 3076px overflow. Preserve this checkpoint unmerged; repair reflow and rerun unchanged assertions before integration. Frontend mock only.
+
+57f2c3845c16faf7b36bc3c6e24669565e1bec60
+fix(customers): reflow long saved names in headings and POS selection
+Why: a 90-character unbroken saved name expanded the profile beyond the viewport at 200 percent text.
+Requirement: CUST-006; FUP-003.
+Behavior: constrain flex children and wrap long names within available profile and checkout widths.
+Validation: focused browser test failed at 3076px before correction, then passed 200 percent text at 1440 and profile/selected POS at 320; scoped formatting passed; expanded production gate remains pending.
+Limit: browser-local frontend demonstration; no backend operation.
+
+f0752d9dacaa75bd7553d0cf03f8d3c50ea837e5
+chore(integration): merge fix/cust-006-long-name-reflow
+Requirement: CUST-006; FUP-003. Validation: focused browser test failed at 3076px before correction, then passed 200 percent text at 1440 and profile/selected POS at 320; scoped formatting passed; expanded production gate remains pending. Retain verified topic history; main unchanged.
+
+b914240b37f802fb20c37aad21e7c61c10f277af
+chore(verification): include verified customer reflow repair
+Requirement: CUST-006, FUP-003. Preserve the QA checkpoint and verified fix histories; complete production verification remains required before merging this topic into develop.
+
+# Conflicts:
+#	docs/change-log.md
+#	docs/followup-implementation.md
+
+49f6b887ea1ee9e9cb5ed95825ea0a80e32f106d
+fix(materials): retain accepted service identity in movement evidence
+Why: a cashier job description can differ from the accepted catalogue service name.
+Requirement: MAT-004, MAT-005; FUP-004.
+Behavior: record the immutable accepted service name with a manual-job fallback and preserve correction snapshots.
+Validation: new custom-description/catalogue-rename test failed before correction, all 11 material domain tests passed afterward; full production gate remains pending.
+Limit: browser-local frontend demonstration; no backend operation.
+
+bb8adef5ab6b1cc26e2888ede7f5dc176239e049
+chore(integration): merge fix/mat-004-service-evidence
+Requirement: MAT-004, MAT-005; FUP-004. Validation: new custom-description/catalogue-rename test failed before correction, all 11 material domain tests passed afterward; full production gate remains pending. Retain verified topic history; main unchanged.
+
+6d1de2ef45a1252d220d4d3e3e11e87ae241990d
+chore(verification): include accepted service evidence correction
+Requirement: MAT-004, MAT-005. Focused material tests pass; full production verification remains pending on this topic.
+
+176ee85290427b224f2ae1765232b3d414585c2b
+test(printing): capture print media and preserve complete-suite checkpoint
+Requirement: SVC-004, MAT-004. Validation: application gates and 84 tests pass; complete production suite 43/44, explicit print specification label assertion failed. Capture real print CSS; preserve the assertion and repair the UI before integration. Frontend only.
+
+01d91aff38f33afdd13a3849db0e7ba1a5c4909f
+fix(printing): preserve explicit print specification labels for job tickets
+Why: the existing operational Binding and Finishing labels remain useful when unit services share print documents.
+Requirement: SVC-004, SVC-006, MAT-004; FUP-005.
+Behavior: restore labeled print options for print-model/legacy lines and retain unit-service summaries without irrelevant paper controls.
+Validation: original printing assertion failed in 43-of-44 production checkpoint; after correction all three focused printing/connected browser scenarios passed on dev; unchanged production suite awaits rebuilt verification.
+Limit: browser-local frontend demonstration; no backend operation.
+
+fd94e9d0ae2cf018f7b22c0e637f4f9d6c286e45
+chore(integration): merge fix/svc-004-print-specification-labels
+Requirement: SVC-004, SVC-006, MAT-004; FUP-005. Validation: original printing assertion failed in 43-of-44 production checkpoint; after correction all three focused printing/connected browser scenarios passed on dev; unchanged production suite awaits rebuilt verification. Retain verified topic history; main unchanged.
+
+ee44a84e42f94679c1ade6a100d38f8154bda380
+chore(verification): include restored printing specification labels
+Requirement: SVC-004 and MAT-004. Original focused print assertion passes unchanged. Preserve full checkpoint history and require complete rebuilt production verification.
+
+# Conflicts:
+#	docs/change-log.md
+#	docs/followup-implementation.md
+
+ff4531df0669872aa9f890df0435dc055e0014ba
+test(visual): retain connected production captures and orientation finding
+Requirement: CUST-006, MAT-002, MAT-008. Validation: full gates, 84 unit tests and 44 production checks pass; 26 real captures, one-page PDFs, no page/console/external requests; Taste 18 combinations, no FAIL and 5 contextual warnings. Manual review identified incorrect customer breadcrumb and inactive Customers navigation; keep QA unmerged until focused repair and refreshed verification. Frontend only.
+
+ea7e7e6ab135052ad4119919778b5097eb01508b
+fix(navigation): preserve customer context across profile routes
+Why: customer profiles incorrectly inherited Profile breadcrumb and lacked an active Customers link.
+Requirement: CUST-006, MAT-002; FUP-006.
+Behavior: share segment-aware parent-route classification for active navigation and breadcrumbs, and use sentence case for material context.
+Validation: strengthened customer navigation/reflow test failed before correction and passed afterward with original zoom/mobile/POS assertions; prior full 44-test pass remains a pre-orientation checkpoint; refresh final gates/evidence.
+Limit: browser-local frontend demonstration; no backend operation.
+
+3378930eca50f4f07bb8824d02737d2ae7bfefef
+chore(integration): merge fix/fup-006-workflow-orientation
+Requirement: CUST-006, MAT-002; FUP-006. Validation: strengthened customer navigation/reflow test failed before correction and passed afterward with original zoom/mobile/POS assertions; prior full 44-test pass remains a pre-orientation checkpoint; refresh final gates/evidence. Retain verified topic history; main unchanged.
+
+3b73e8c97ca31fca176ba830c132abb8f5de39a7
+chore(verification): include corrected customer workflow orientation
+Requirement: CUST-006, MAT-002. Strengthened navigation/reflow regression passes. Preserve both verified feature and QA checkpoint histories; refresh final production evidence.
+
+# Conflicts:
+#	docs/change-log.md
+#	docs/followup-implementation.md
+
+6622a967274c563690644138dc30bade7ccf6996
+test(workflows): verify complete connected frontend and refresh production evidence
+Why: handover needs a clean complete production pass after all observed functional and visual corrections.
+Requirement: CUST-001 through CUST-006; SVC-001 through SVC-006; MAT-001 through MAT-008; FUP-002 through FUP-006.
+Behavior: retain final screenshots/PDFs, raw ledger/error/Taste evidence and stable modal capture timing; preserve all original financial and access assertions.
+Validation: typecheck/lint/format/build and 84 tests passed; all 44 production Chromium tests passed with one worker and no retry/skip; 26 refreshed captures and two one-page PDFs, no browser/external errors; 22 contrast pairs; Taste 18 combinations 0 FAIL/5 contextual WARN and source 0 FAIL/29 WARN.
+Limit: browser-local frontend demonstration; no backend operation.
+
+c264ab05611860a18772fa6966b5c7fac9ecc6f9
+chore(integration): merge test/fup-001-connected-workflows
+Requirement: CUST-001 through CUST-006; SVC-001 through SVC-006; MAT-001 through MAT-008; FUP-002 through FUP-006. Validation: typecheck/lint/format/build and 84 tests passed; all 44 production Chromium tests passed with one worker and no retry/skip; 26 refreshed captures and two one-page PDFs, no browser/external errors; 22 contrast pairs; Taste 18 combinations 0 FAIL/5 contextual WARN and source 0 FAIL/29 WARN. Retain verified topic history; main unchanged.
+```

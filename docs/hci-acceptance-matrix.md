@@ -291,3 +291,20 @@ The complete 238-entry catalogue above remains unchanged. This update strengthen
 | 09.15 / 10.21                         | Removed route entrances, restrained control/sheet motion                                       | Reduced-motion/browser preference checks; no decorative loops                                    |
 | 11.09 / 11.11 / 11.12                 | Local fonts/no runtime external assets, truthful skeleton, measured bundle/lab                 | Raw lab and aggregate asset report; no field CWV/INP claim                                       |
 | 17.03 / 17.04 / 17.08 / 17.13 / 17.14 | Structural/craft/final visual reviews, captured failures, focused fixes and full rerun         | validation-log.md, gallery, Git audit; no participant study                                      |
+
+## Follow-up application evidence · 2026-10-25
+
+The original 25-page/238-practice inventory is retained. This adds relevant applications, not 238 new implementation or certification claims.
+
+| Existing practice families                                          | Applied follow-up behavior                                                                                                  | Actual evidence                                                          |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| 03.02/03.04/03.05, 05.08, 08.08                                     | Visible Planned / Not deducted, aggregate branch-impact preview, explicit confirmation and reasoned compensating correction | materials.spec.ts; 11 material domain/repository checks                  |
+| 06.01/06.03/06.12/06.13, 06.08/06.14                                | Shared customer lookup with scoped money; stable customer links; service category/status/search/sort                        | customers/connected-workflows/services browser checks                    |
+| 07.09/07.10/08.02, 08.01/08.05/08.14                                | Optional contacts, located validation, duplicate acknowledgement, preserved input and walk-in                               | customer/domain tests; followup-accessibility.spec.ts                    |
+| 08.09/08.13, 13.01/13.04/13.07/13.08                                | Accepted price/name snapshots, derived balances, same movement in job/inventory, honest browser scope                       | connected-workflows/materials/integrated/printing checks                 |
+| 09.01/09.05/09.10, 09.04/09.13                                      | Existing paper/ink tokens and tabular figures; plain-unit stock impact and textual status                                   | production gallery; 22 contrast pairs; Taste signed-in measurement       |
+| 10.02/10.05/10.06/10.08/10.09/10.16/10.17                           | Modal focus/Escape/dirty guards, error associations, success layer below modal controls, tagged axe scans                   | Sheet tests; drawer-notifications/customer-reflow/followup-accessibility |
+| 10.12/11.01/11.02/11.03, 09.15/10.21                                | Nine widths, keyboard-scroll tables, 200% text/long names, reduced motion                                                   | final 44-test production suite                                           |
+| 11.13/07.14, 12.01/12.03/12.07/12.08, 17.03/17.04/17.08/17.13/17.14 | Validated migration, explicit legacy association, no profile notes on receipts, preserved failures and separate corrections | migration/repository tests; source review; validation and Git audits     |
+
+No participant, real screen reader, physical device/printer, legal/security assessment or full WCAG conformity evaluation was conducted.
