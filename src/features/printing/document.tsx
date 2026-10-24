@@ -164,7 +164,18 @@ function DocumentBody({
                     <strong>
                       {index + 1}. {line.description}
                     </strong>
-                    <p className="small muted">{lineSummary(line)}</p>
+                    {line.serviceSnapshot?.model === "unit" ? (
+                      <p className="small muted">{lineSummary(line)}</p>
+                    ) : (
+                      <>
+                        <p className="small muted">
+                          {line.size} · {line.color} · {line.sides}
+                        </p>
+                        <p className="small muted">
+                          Binding: {line.binding} · Finishing: {line.finishing}
+                        </p>
+                      </>
+                    )}
                     {line.notes && (
                       <p
                         className="small"
