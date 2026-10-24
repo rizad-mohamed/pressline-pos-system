@@ -7,12 +7,17 @@ import { useDemo, useCommand, requestId } from "@/data/provider";
 import { blankLine, quoteOrder } from "@/domain/pricing";
 import { money } from "@/domain/money";
 import type { BranchId, LineInput } from "@/domain/model";
-import { orderFormSchema, orderFormBase, type OrderFormValues } from "./schema";
+import {
+  orderFormSchema,
+  orderDraftSchema,
+  type OrderFormValues,
+} from "./schema";
 import { LineEditor } from "./line-editor";
 import { Button } from "@/components/ui/button";
 import { Badge, Field, PageHeader } from "@/components/shared/presentation";
 import { OrderReview } from "./order-review";
-import { OrderSummary } from "./order-summary";
+import { ResponsiveSummary } from "./responsive-summary";
+import { ServiceCatalogue } from "./service-catalogue";
 import { OrderConfirmation } from "./order-confirmation";
 const draftKey = "pressline.draft.v1";
 export function Composer() {
@@ -40,7 +45,7 @@ export function Composer() {
       const raw = window.sessionStorage.getItem(draftKey);
       if (raw) {
         const saved = JSON.parse(raw);
-        const parsed = orderFormBase.safeParse(saved.values);
+        const parsed = orderDraftSchema.safeParse(saved.values);
         if (
           saved.ownerId === user.id &&
           parsed.success &&
@@ -57,7 +62,7 @@ export function Composer() {
     mode: "onBlur",
     reValidateMode: "onChange",
   });
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, update } = useFieldArray({
     control: form.control,
     name: "lines",
   });
@@ -78,7 +83,7 @@ export function Composer() {
       form.subscribe({
         formState: { values: true },
         callback: ({ values }) => {
-          const parsed = orderFormBase.safeParse(values);
+          const parsed = orderDraftSchema.safeParse(values);
           if (parsed.success)
             try {
               window.sessionStorage.setItem(
@@ -141,13 +146,34 @@ export function Composer() {
         onNewOrder={() => setCompleted(null)}
       />
     );
+  function removeLine(index: number) {
+    setRemoved(form.getValues(`lines.${index}`));
+    remove(index);
+  }
+  function editLine(index: number) {
+    const field = document.getElementById(`item-${index}-description`);
+    field?.scrollIntoView({ block: "center", behavior: "auto" });
+    field?.focus({ preventScroll: true });
+  }
+  function configure(line: LineInput) {
+    if (fields.length >= 30) return;
+    const first = form.getValues("lines.0");
+    const untouched =
+      fields.length === 1 &&
+      JSON.stringify(first) === JSON.stringify(blankLine()) &&
+      !form.formState.dirtyFields.lines?.[0];
+    const index = untouched ? 0 : fields.length;
+    if (untouched) update(0, line);
+    else append(line, { shouldFocus: false });
+    window.requestAnimationFrame(() => editLine(index));
+  }
   const errors = form.formState.errors;
   return (
     <>
       <PageHeader
         eyebrow="POINT OF SALE"
         title="Create a print order"
-        description="Configure the work. Review the price. Keep every detail together."
+        description="A considered start. A precise finish. Build your next print order."
       />
       <form
         id="pos-form"
@@ -157,10 +183,16 @@ export function Composer() {
           command.setError("");
         })}
         noValidate
+        className="pos-workspace"
       >
         <div className="pos-grid">
-          <div className="stack">
-            <section className="card">
+          <div className="stack pos-main">
+            <ServiceCatalogue
+              pricing={data.pricing}
+              disabled={fields.length >= 30}
+              onConfigure={configure}
+            />
+            <section className="card order-context">
               <div className="card-header">
                 <h2>Order details</h2>
                 <Badge tone="primary">New order</Badge>
@@ -238,7 +270,7 @@ export function Composer() {
                 </p>
               </div>
             </section>
-            <section className="card">
+            <section className="card print-items" id="print-items">
               <div className="card-header">
                 <div>
                   <h2>Print items</h2>
@@ -251,17 +283,23 @@ export function Composer() {
                 </Badge>
               </div>
               <div className="card-body">
+                {!fields.length && (
+                  <div className="empty-order">
+                    <h3>Your next impression starts here.</h3>
+                    <p className="muted">
+                      Choose a service above or add a print item. No order has
+                      been saved.
+                    </p>
+                  </div>
+                )}
                 {fields.map((field, index) => (
                   <LineEditor
                     key={field.id}
                     index={index}
                     form={form}
                     total={quote?.lines[index]?.totalCents}
-                    canRemove={fields.length > 1}
-                    remove={() => {
-                      setRemoved(form.getValues(`lines.${index}`));
-                      remove(index);
-                    }}
+                    canRemove
+                    remove={() => removeLine(index)}
                   />
                 ))}
                 <div className="row" style={{ marginTop: "var(--space-4)" }}>
@@ -304,7 +342,11 @@ export function Composer() {
               </Field>
             </section>
           </div>
-          <OrderSummary
+          <ResponsiveSummary
+            reviewOpen={!!review}
+            count={fields.length}
+            onEdit={editLine}
+            onRemove={removeLine}
             form={form}
             quote={quote}
             advance={advance}

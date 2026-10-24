@@ -14,6 +14,10 @@ export const orderFormBase = z.object({
   notes: z.string().trim().max(1000),
   advance: z.string(),
 });
+// An empty tab draft is valid UI state; saving still requires at least one item.
+export const orderDraftSchema = orderFormBase.extend({
+  lines: z.array(lineInputSchema).max(30),
+});
 export type OrderFormValues = z.infer<typeof orderFormBase>;
 export function orderFormSchema(pricing: Pricing) {
   return orderFormBase.superRefine((values, ctx) => {
