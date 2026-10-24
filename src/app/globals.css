@@ -2153,6 +2153,32 @@ button.text-link {
     min-height: 44px;
   }
 }
+/* User-provided names and specifications must reflow within fixed-width drawers. */
+.order-detail,
+.sheet-body,
+.cart-line,
+.line-card {
+  overflow-wrap: anywhere;
+}
+.total-row > *,
+.row > .grow {
+  min-width: 0;
+}
+.cart-line .total-row .grow {
+  overflow-wrap: anywhere;
+}
+.branch-control > span {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 680px) {
+  .branch-control > span {
+    max-width: 132px;
+  }
+}
+.total-row > .money,
+.total-row > strong:last-child {
+  flex-shrink: 0;
+}
 @media print {
   @page {
     margin: 15mm;
