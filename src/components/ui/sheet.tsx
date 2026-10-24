@@ -3,6 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useRef } from "react";
 import { X } from "lucide-react";
 import { Button } from "./button";
+export const SheetClose = Dialog.Close;
 export function Sheet({ open, onOpenChange, title, description, children, footer, dirty = false, trigger }: {
   open: boolean; onOpenChange: (open: boolean) => void; title: string; description: string;
   children: React.ReactNode; footer?: React.ReactNode; dirty?: boolean; trigger?: React.ReactNode;
