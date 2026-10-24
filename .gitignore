@@ -11,3 +11,7 @@ test-results/
 next-env.d.ts
 *.log
 .local/
+
+# Reviewed agent tools are installed locally; provenance is pinned in skills-lock.json.
+.agents/skills/
+.taste-skill/
