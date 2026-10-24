@@ -1,6 +1,6 @@
 # Pressline · printing shop POS frontend
 
-A complete local frontend demonstration for two fictional Sri Lankan printing branches. Cashier and Administrator accounts share one validated browser-local dataset. **No real authentication, financial settlement, SMS delivery, cloud synchronization, or printer bridge is implemented.** Use fictional data only.
+A polished local frontend demonstration for two fictional Sri Lankan printing branches. Cashier and Administrator accounts share one validated browser-local dataset. **No real authentication, financial settlement, SMS delivery, cloud synchronization, or printer bridge is implemented.** Use fictional data only.
 
 ## Run locally
 
@@ -22,8 +22,8 @@ npm.cmd run start
 
 ## Review the workflows
 
-1. Enter a cashier account. Create a New order with several items: paper size, black & white/color, sides, binding, finishing, printed-sheet quantity and instructions. Customer details are optional and must be fictional. Valid drafts survive navigation/reload in the same tab for the current demo account.
-2. Review the itemized price and optional simulated advance, then save. The order appears in dashboard/history/jobs; no paper or toner is consumed automatically.
+1. Enter a cashier account. Search/filter the six service presets or use the manual editor. Configure a New order with several items: paper size, black & white/color, sides, binding, finishing, printed-sheet quantity and instructions. Customer details are optional and must be fictional. Valid drafts survive navigation/reload in the same tab for the current demo account.
+2. Use the current-order panel (or View order sheet on mobile) to edit/remove items; Undo restores a removed item. Empty tab drafts are allowed, while saving an order requires a valid item. Review the itemized price and optional simulated advance, then save. The order appears in dashboard/history/jobs; no paper or toner is consumed automatically.
 3. Open an order directly or through its contextual drawer. Search/filter/sort history, edit permitted customer/notes fields, record later simulated payments, and advance `New → In Progress → Ready → Completed`. Production and payment states are independent. Completed order metadata is read-only; collection remains available. Cancellation/refunds are visibly unavailable pending policy approval.
 4. Open **Customer receipt** and **Production ticket** separately. Use their Print action and the native browser dialog. Receipt prices are saved snapshots; the internal ticket contains print instructions without customer financial totals. Choose paper and printer yourself. Physical printing is not confirmed by this app; tax/fiscal/thermal hardware requirements are not assumed.
 5. Enter Administrator for material creation/edit/deactivation/reactivation, branch quantities/thresholds, reasoned adjustments and movement history. Transfers validate both branches, preserve combined stock, and write two movements together. Instant acceptance is a demo assumption.
@@ -47,6 +47,7 @@ npm.cmd run format:check
 npm.cmd run test
 npx.cmd playwright install chromium
 npm.cmd run test:e2e
+node scripts/check-design.mjs
 node scripts/bundle-report.mjs
 node scripts/verify-git.mjs
 ```
@@ -59,7 +60,13 @@ Only fictional/non-sensitive demo content belongs in storage. `pressline.demo.v1
 
 Real prices, tax/legal requirements, refunds/cancellations, stock consumption, transfer acceptance, financial recognition, payment channels, SMS recipient/schedule/metrics/provider and printer format/hardware remain open business decisions. Supabase Auth/PostgreSQL/RLS, trusted server transactions/idempotency, Realtime reconciliation, secure scheduler/SMS, production audits, backup/restore, monitoring and launch operations are future work.
 
-The available HCI handbook was read in full; no participant research, real screen-reader/device/printer testing, or full accessibility/legal/production certification is claimed. The original source prompt, full-stack handbook, separately approved FR/NFR baseline and IDE Pasted text attachment were unavailable. ESLint 9.39.5 is peer-compatible with the selected Next plugin stack but upstream EOL; maintain/update lint tooling when those plugins support ESLint 10.
+The available HCI handbook was read in full; no participant research, real screen-reader/device/printer testing, or full accessibility/legal/production certification is claimed. The final master prompt, supplied engineering handbook and all three screenshots were reviewed for this enhancement. The original exact per-ID FR/NFR baseline, supplemental 18-gate source and IDE Pasted text attachment remain unavailable; no unavailable text is claimed as verified. ESLint 9.39.5 is peer-compatible with the selected Next plugin stack but upstream EOL; maintain/update lint tooling when those plugins support ESLint 10.
+
+## Visual system and evidence
+
+The paper/charcoal/lime interface uses canonical tokens, locally hosted OFL Manrope and owned shadcn/Radix components. No runtime font or image CDN is needed. [Design system](docs/visual-design-system.md) records responsive behavior, tool use and accessibility decisions; the [production gallery](docs/visual-evidence/README.md) shows actual screens and PDFs.
+
+For the optional six-sample local runtime lab, keep the production server running and execute `node scripts/measure-ui.mjs`. It requires installed Playwright Chromium, writes ignored `.local/premium-performance/production-pos-lab.json`, and measures account-primed navigation with simulated throttling. It is not cold startup or field performance.
 
 ## Engineering records
 

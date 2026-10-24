@@ -275,3 +275,19 @@ Entries below identify applicability, not 238 individual implementation claims. 
 | 17.14 | Regression coverage                     | Applicable guidance: translate through matrix above; evidence is workflow-specific, not a blanket pass               |
 
 Extracted unique catalogue IDs: 238. All 25 pages were read. Any applicability is contextual; ISO/WCAG conformity requires its own complete assessment.
+
+## Premium enhancement evidence update · 2026-10-24
+
+The complete 238-entry catalogue above remains unchanged. This update strengthens representative evidence rather than marking every practice passed.
+
+| Existing practice IDs                 | Applied refinement                                                                             | Actual evidence / limit                                                                          |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 09.01 / 09.05 / 09.10                 | Canonical warm-paper/lime/charcoal hierarchy, local Manrope and tabular amounts                | Final production gallery and token contract; provisional brand                                   |
+| 09.04 / 09.13                         | Quiet metrics, distinct text statuses, zero-based visible chart scales and exact table         | Dashboard/reports inspection; shared cohort engine unchanged                                     |
+| 08.09 / 08.13                         | Existing-capability service quotes, visible total/advance/balance and separate print documents | Premium POS, footer and original financial/printing regressions; no approved tax/hardware policy |
+| 10.02 / 10.05 / 10.06 / 10.08         | Accessible category radio group, mobile navigation, modal return and mobile Edit focus         | Keyboard, drawer and focus regression tests; real AT unperformed                                 |
+| 10.09 / 10.16 / 10.17                 | Named controls, stronger control edges and status/error messages                               | 22 contrast pairs pass; selected axe scans detect no violations, not full conformity             |
+| 10.12 / 11.01 / 11.02 / 11.03         | Nine widths, internal table/sheet scrolling, long Unicode text, sticky review footer           | 320–1920px, 200% text, landscape and populated desktop scroll tests; viewport emulation only     |
+| 09.15 / 10.21                         | Removed route entrances, restrained control/sheet motion                                       | Reduced-motion/browser preference checks; no decorative loops                                    |
+| 11.09 / 11.11 / 11.12                 | Local fonts/no runtime external assets, truthful skeleton, measured bundle/lab                 | Raw lab and aggregate asset report; no field CWV/INP claim                                       |
+| 17.03 / 17.04 / 17.08 / 17.13 / 17.14 | Structural/craft/final visual reviews, captured failures, focused fixes and full rerun         | validation-log.md, gallery, Git audit; no participant study                                      |

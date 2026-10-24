@@ -81,3 +81,58 @@ The authoritative per-ID definitions are unavailable, so no fabricated one-to-on
 | Realtime reconciliation, legal compliance, uptime, monitoring, recovery/backup, scheduler/provider, hosting/launch | Documented responsibilities and open decisions                                | Future operations/backend/approval; not certified                             |
 
 No deferred frontend screen is hidden from this ledger. All requested route interfaces are represented; production-bound features show their demo representation and explicit unavailable integration state.
+
+## Premium enhancement trace and NFR reference accounting
+
+The 54 rows above preserve the first prompt's reproduced group meanings. The new prompt's broader illustrative grouping (001–009 access; 010–030 ordering/payment/print; 031–039 stock; 040–045 reporting; 046–050 SMS; 051–054 shared concerns) is compatible at workflow level but does not provide individual normative definitions. Do not reinterpret a numbered row as an approved requirement statement. Existing functional evidence was rerun in the 33-test production suite.
+
+| Enhancement                                 | Module / route                                                               | Requirement context                                           | Evidence                                                 | Status                                        |
+| ------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------- | -------------------------------------------------------- | --------------------------------------------- |
+| Branding, tokens, typography and navigation | brand.css, shared primitives, shell, login                                   | Access/shared UI groups; HCI hierarchy, consistency, keyboard | Visual gallery, axe, 22 contrast pairs, responsive suite | Implemented and tested frontend               |
+| Service presets and adaptive order summary  | features/pos, /pos                                                           | Ordering/payment groups                                       | premium-pos, long-content, summary-visibility E2E        | Implemented using existing price capabilities |
+| Operational surfaces, drawers and charts    | dashboard/orders/jobs/inventory/transfers/reports/SMS/settings/profile/print | Existing full workflow groups                                 | Original E2E plus final gallery and PDFs                 | Preserved/refined and tested frontend         |
+| Domain/repository integrity                 | src/domain, src/data                                                         | Shared financial/stock/report groups                          | No redesign Git diff, 58 tests and integrated E2E        | Preserved; real backend future                |
+
+The exact NFR-001–035 source definitions are unavailable. Each ID below is explicitly **partial/unverified against its exact definition**, rather than assigned an invented quality attribute. Cross-cutting evidence follows the table. Production security, reliability, scale, legal and operations obligations remain future backend/business validation.
+
+| Reference | Definition authority                  | Applicable evidence                                               | Disposition                           |
+| --------- | ------------------------------------- | ----------------------------------------------------------------- | ------------------------------------- |
+| NFR-001   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-002   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-003   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-004   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-005   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-006   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-007   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-008   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-009   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-010   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-011   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-012   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-013   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-014   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-015   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-016   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-017   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-018   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-019   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-020   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-021   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-022   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-023   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-024   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-025   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-026   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-027   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-028   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-029   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-030   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-031   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-032   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-033   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-034   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+| NFR-035   | Exact approved definition unavailable | Shared quality evidence below; no ID-specific acceptance inferred | Partial / exact compliance unverified |
+
+Shared quality evidence: strict TypeScript/lint/format/build; 58 unit/component and 33 production E2E tests; nine responsive widths, zoom and long content; selected A/AA axe, keyboard/focus and 22 contrast pairs; clean lockfile install and source hygiene; account-primed lab and aggregate asset measurements; retained Git/lifecycle documentation. These demonstrate the stated frontend qualities only. They cannot establish an unknown NFR's threshold or production authentication, database, transaction, availability, security, device, legal or operational compliance.
+
+Shared NFR trace: all frontend routes, src/styles/brand.css and src/components/ui; typecheck/lint/build, domain/component tests and e2e/*.spec.ts; test/prem-006-visual-regression source a7fbe66, test/prem-010-keyboard-synchronization cdca073 and style/prem-011-navigation-labels a9e8fe7. The shared trace applies to the partial/unverified rows above without assigning unknown definitions to particular screens.

@@ -1,0 +1,2493 @@
+# The Complete Production-Grade Full-Stack Engineering Handbook
+
+End-to-end software engineering lifecycle | Architecture • Development • Security • DevOps • SRE • Scalability • Maintenance
+
+This is a comprehensive engineering checklist for planning, designing, building, deploying, operating, and maintaining real-world, publicly accessible, production-grade full-stack applications.
+
+It combines established practices from large-scale engineering organizations, including Google-style Site Reliability Engineering (SRE), software architecture principles, DevSecOps, quality engineering, cloud-native development, and internationally recognized standards.
+
+The goal is not simply to create an application that works. It is to engineer a system that:
+
+- Solves the correct problem and delivers measurable value.
+- Works correctly under expected and unexpected conditions.
+- Protects users, data, infrastructure, and business operations.
+- Performs efficiently across devices, locations, and network conditions.
+- Remains available and recoverable when components fail.
+- Scales economically as users, workloads, and data increase.
+- Can be deployed and updated safely without disrupting users.
+- Can be observed, diagnosed, and supported in production.
+- Remains maintainable by engineers who did not originally build it.
+- Can evolve or eventually be retired safely, without compromising users or the business.
+
+One important principle: production-grade does not necessarily mean enterprise-scale infrastructure. A small, carefully designed modular monolith can be more production-ready than a complicated Kubernetes-based microservices system.
+
+Every engineering decision should be proportional to the application's business criticality, data sensitivity, expected workload, failure consequences, organizational capabilities, and budget.
+
+## Part I — Engineering foundations and project definition
+
+### 1. Fundamental engineering principles and standards
+
+Before implementation, establish the engineering principles that guide every technical decision.
+
+Foundational principles
+
+- Correctness first: The system must implement the intended business rules accurately, including uncommon cases and invalid inputs.
+- Security by design: Treat security as an architectural property, not a feature added before deployment.
+- Privacy by design: Minimize unnecessary personal data collection, processing, storage, and disclosure.
+- Reliability by design: Assume networks, dependencies, databases, workers, cloud services, and human processes will eventually fail.
+- Design for change: Business requirements will evolve; architecture must support modifications without widespread regressions.
+- Simplicity over unnecessary abstraction: Prefer the simplest design that meets verified requirements.
+- Separation of concerns: Keep presentation, business logic, data access, infrastructure, and integrations appropriately separated.
+- Single responsibility: Components should have clear, cohesive purposes.
+- High cohesion and low coupling: Related functionality should belong together, while unrelated components should have minimal dependencies.
+- DRY: Avoid duplicating important business knowledge and rules, rather than indiscriminately eliminating all code repetition.
+- KISS: Avoid complicated approaches when simpler implementations are equally effective.
+- YAGNI: Do not engineer hypothetical capabilities without credible requirements.
+- SOLID principles: Apply object-oriented design principles where relevant rather than forcing them into every programming paradigm.
+- Composition over inheritance: Prefer composable behavior when it reduces coupling and improves testability.
+- Explicit over implicit: Make important behavior, constraints, dependencies, permissions, and assumptions visible.
+- Fail safely: Invalid requests and unexpected errors must never bypass security or corrupt data.
+- Defense in depth: A single failed security mechanism should not automatically compromise the entire system.
+- Least privilege: Grant users, services, processes, and infrastructure only the permissions required.
+- Automation over repetitive manual work: Automate reliable, repeatable processes and retain human review where warranted.
+- Measurement over assumptions: Base optimization and reliability decisions on representative evidence.
+- Observability from the beginning: An application should be diagnosable as soon as it runs.
+- Documentation as an engineering artifact: Preserve enough system knowledge for future teams to understand and operate the application.
+- Continuous improvement: Treat production feedback, incidents, support requests, and performance data as inputs into ongoing engineering.
+
+Standards and frameworks worth adopting
+
+| Framework or standard            | Primary purpose                              |
+| -------------------------------- | -------------------------------------------- |
+| ISO/IEC 25010:2023               | Software product quality model               |
+| ISO/IEC/IEEE 12207               | Software lifecycle processes                 |
+| NIST SSDF SP 800-218             | Secure software development                  |
+| OWASP ASVS 5.0                   | Verifiable application security requirements |
+| OWASP Top 10:2025                | Awareness of major web application risks     |
+| OWASP API Security Top 10        | API-specific security risks                  |
+| NIST Cybersecurity Framework 2.0 | Cybersecurity governance and risk management |
+| ISO/IEC 27001:2022               | Information security management              |
+| WCAG 2.2                         | Web accessibility                            |
+| Google SRE principles            | Production reliability and operations        |
+| DORA metrics                     | Software delivery performance                |
+| OpenTelemetry                    | Vendor-neutral observability instrumentation |
+| SLSA 1.2                         | Software supply-chain integrity              |
+
+These are different kinds of references. Some are formal standards, some are engineering frameworks, and others are operational guidance. Following a checklist does not automatically establish certification or regulatory compliance.
+
+The verified OWASP ASVS stable release is 5.0.0, and OWASP Top 10:2025 is the current published web-risk list. ISO/IEC 25010:2023 identifies nine software quality characteristics: functional suitability, performance efficiency, compatibility, interaction capability, reliability, security, maintainability, flexibility, and safety.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://asvs.owasp.org\&sz=32)
+
+OWASP Application Security Verification Standard
+
++3
+
+
+
+### 2. Business discovery and problem validation
+
+A reliable engineering process starts by understanding the business, not choosing a framework.
+
+- Problem definition: Identify the real problem, its root causes, frequency, severity, and consequences.
+- Business objectives: Specify the outcomes the application is expected to produce.
+- Target users: Identify user segments, roles, technical knowledge, access needs, and environments.
+- Stakeholder mapping: Identify customers, users, administrators, business owners, developers, operators, regulators, and external partners.
+- Current-state analysis: Understand how the problem is currently solved, including existing systems and manual workflows.
+- Competitor and alternative analysis: Identify existing solutions and where they succeed or fail.
+- Market and technical feasibility: Validate whether the proposed solution is viable.
+- Business model: Determine how the application generates revenue, reduces costs, or creates measurable value.
+- Return on investment: Compare expected benefits with development, infrastructure, support, and long-term ownership costs.
+- Success criteria: Define measurable outcomes before building.
+- Product scope: Distinguish essential capabilities from optional enhancements.
+- MVP definition: Establish the smallest useful product capable of validating assumptions.
+- User research: Conduct interviews, surveys, contextual observation, and usability research.
+- Workflow discovery: Document how users currently complete relevant tasks.
+- User journey mapping: Identify steps, decisions, barriers, and expected outcomes.
+- Risk assessment: Identify commercial, security, technical, operational, legal, and delivery risks.
+- Dependency assessment: Identify third-party systems, approvals, integrations, and external dependencies.
+- Budget: Establish development and recurring operational budgets.
+- Schedule: Set realistic delivery milestones, including contingencies.
+- Ownership: Identify who will maintain and financially support the application after release.
+- Exit criteria: Define when the product should be continued, redesigned, or discontinued.
+
+Deliverables: Product vision, problem statement, stakeholder map, feasibility assessment, initial risk register, business success metrics, and approved high-level scope.
+
+### 3. Requirements engineering
+
+Requirements should be specific enough to implement, test, review, and accept.
+
+Functional requirements
+
+- Authentication, registration, account recovery, and logout.
+- User roles, permissions, and access restrictions.
+- Core business entities and CRUD operations where appropriate.
+- Business workflows, state transitions, approvals, and validations.
+- Search, filtering, sorting, pagination, and export.
+- Notifications, communications, and scheduling.
+- File handling, uploads, downloads, and media management.
+- Reporting, dashboards, and analytical capabilities.
+- Administration, moderation, and configuration.
+- Integrations with internal and external systems.
+- Audit trails and operational history.
+- Billing, subscriptions, payments, and refunds when applicable.
+- Data import, migration, retention, and deletion.
+- Exceptional workflows, cancellations, retries, disputes, and recovery.
+- User settings, preferences, accessibility, and localization.
+- Real-time interactions and offline functionality where required.
+
+Non-functional requirements
+
+- Availability: Required service availability over defined measurement windows.
+- Latency: Acceptable response times for individual user journeys and APIs.
+- Throughput: Expected transactions or requests per second.
+- Concurrency: Expected active users and concurrent operations.
+- Scalability: Anticipated workload growth and acceptable scaling cost.
+- Security: Authentication, authorization, encryption, logging, and threat controls.
+- Privacy: Data minimization, consent, retention, and user rights.
+- Reliability: Failure tolerance, recovery behavior, and data integrity.
+- Maintainability: Ease of modification, debugging, testing, and upgrading.
+- Portability: Deployment and migration requirements.
+- Compatibility: Supported browsers, devices, operating systems, and integrations.
+- Accessibility: Applicable accessibility standards and testing requirements.
+- Usability: Learnability, efficiency, error prevention, and user satisfaction.
+- Observability: Metrics, logs, traces, alerts, and audit evidence.
+- Disaster recovery: Maximum acceptable data loss and restoration time.
+- Compliance: Applicable legal, contractual, and industry obligations.
+- Cost efficiency: Financial limits for workloads, storage, traffic, and supporting services.
+- Data quality: Accuracy, completeness, validity, consistency, and timeliness.
+
+Requirements management practices
+
+- Write clear Software Requirements Specifications (SRS) where project complexity warrants them.
+- Use user stories, use cases, and business-process diagrams.
+- Define acceptance criteria using observable behavior.
+- Document preconditions, postconditions, invariants, and failure conditions.
+- Define business rules separately from UI implementation details.
+- Track requirements back to tests and acceptance evidence.
+- Prioritize using MoSCoW, value-versus-effort, or another consistent method.
+- Record assumptions and unresolved decisions explicitly.
+- Establish a change-control process for new requirements.
+- Ensure each important requirement has an accountable owner.
+- Validate requirements with domain experts and representative users.
+- Prevent ambiguous language such as "fast", "secure", or "user-friendly" without measurable definitions.
+- Include negative and abuse scenarios alongside normal workflows.
+
+Example of a measurable requirement
+
+Instead of "the dashboard should load quickly," specify:
+
+- The dashboard must render its essential content within an agreed latency target for a defined percentage of users under a documented workload.
+- Specify whether that target includes network transfer, authentication, API processing, database retrieval, and browser rendering.
+- Test with realistic data volume, production-like infrastructure, and representative network conditions.
+
+### 4. Project governance and delivery planning
+
+- Choose an appropriate development process: iterative, Agile, Scrum, Kanban, or a regulated stage-gate approach.
+- Identify decision makers, technical owners, reviewers, and escalation paths.
+- Define responsibilities using a RACI matrix when coordination complexity justifies it.
+- Divide work into epics, features, stories, engineering tasks, and operational tasks.
+- Maintain a prioritized product backlog.
+- Establish a Definition of Ready for work entering implementation.
+- Establish a Definition of Done that includes testing, security, documentation, and operational readiness.
+- Define sprint or iteration objectives and release milestones.
+- Estimate work with uncertainty rather than presenting guesses as guarantees.
+- Identify the critical path and external dependencies.
+- Maintain a project risk and issue register.
+- Reserve capacity for bugs, dependency upgrades, security work, and technical debt.
+- Establish architecture reviews for consequential changes.
+- Use Architecture Decision Records (ADRs) to capture major choices and tradeoffs.
+- Define code review and quality-approval policies.
+- Establish stakeholder communication and reporting schedules.
+- Track scope changes and their effects on cost and delivery.
+- Define acceptance testing and sign-off responsibilities.
+- Identify support ownership and maintenance agreements before launch.
+- Review progress using delivered outcomes, not merely the number of completed tickets.
+
+Deliverables: Delivery roadmap, prioritized backlog, responsibility matrix, risk register, milestone plan, Definition of Done, and architecture decision log.
+
+## Part II — System architecture and technical design
+
+### 5. Architectural planning and system design
+
+Architecture determines how the system behaves when requirements grow, traffic increases, engineers change, and failures occur.
+
+Architecture selection
+
+- Evaluate monolithic, modular monolithic, microservices, serverless, and event-driven approaches.
+- Prefer a modular monolith as a strong default for many small and medium-sized products.
+- Choose microservices only when independent scaling, deployment, ownership, or isolation provides sufficient benefits to justify distributed-system complexity.
+- Select a deployment topology aligned with current needs and credible growth.
+- Define architecture boundaries before organizing repositories and services.
+- Evaluate hosting models: managed cloud, dedicated servers, containers, PaaS, or hybrid solutions.
+- Consider team expertise, operational burden, vendor dependence, cost, and recoverability.
+- Avoid committing to a platform simply because it is popular.
+
+System decomposition
+
+- Define frontend, application backend, data storage, object storage, caching, workers, and external integrations.
+- Establish domain boundaries using Domain-Driven Design where appropriate.
+- Identify aggregates, entities, value objects, and domain services.
+- Separate domain logic from transport, UI, and database-specific implementations.
+- Use layered, hexagonal, or clean architecture where these reduce complexity.
+- Define which component owns each data entity and business capability.
+- Minimize circular dependencies.
+- Establish dependency direction and module interfaces.
+- Identify synchronous and asynchronous interactions.
+- Define trust boundaries and security zones.
+- Identify single points of failure.
+- Design for independent testing of business rules.
+
+Distributed-systems decisions
+
+- Identify where strong consistency is essential and eventual consistency is acceptable.
+- Evaluate ACID transactions and distributed transaction alternatives.
+- Understand CAP-related tradeoffs under network partitions.
+- Define failure handling for unreliable networks and external services.
+- Plan retry behavior, deduplication, idempotency, and ordering.
+- Design around clock skew, duplicate messages, and partial failure.
+- Avoid distributed transactions when a simpler local transaction is sufficient.
+- Use sagas or compensating operations when multi-service workflows require them.
+- Define consistency expectations visible to end users.
+- Establish a strategy for distributed tracing and correlation IDs.
+
+Architecture validation
+
+- Create context, container, component, and critical-flow diagrams using the C4 model where useful.
+- Document the critical request path from user interaction to persistent state.
+- Document dependencies and trust boundaries.
+- Review operational and security failure scenarios.
+- Evaluate build-versus-buy decisions.
+- Identify technology lifecycle and vendor lock-in risks.
+- Test risky architectural assumptions using short proofs of concept.
+- Review performance and operational cost implications before approving major design choices.
+
+A useful rule: design for today's verified requirements while preserving reasonable options for tomorrow. Do not pay the full complexity cost of hypothetical future scale.
+
+### 6. Technology stack selection
+
+Technology selection is an engineering decision, not a branding exercise.
+
+- Language: Evaluate type safety, concurrency, ecosystem maturity, runtime characteristics, tooling, and available expertise.
+- Frontend framework: Consider rendering requirements, accessibility, ecosystem support, maintainability, and bundle size.
+- Backend framework: Evaluate validation, security support, observability, testing, scalability, and long-term maintenance.
+- Database: Choose based on data relationships, transactions, consistency, query patterns, and operational requirements.
+- ORM/query layer: Assess generated query behavior, migration support, type safety, transaction handling, and escape hatches.
+- Cache: Determine whether caching is actually necessary and which data benefits from it.
+- Queue: Introduce message brokers when asynchronous processing or decoupling has genuine value.
+- Search engine: Assess whether ordinary database indexing and full-text search satisfy requirements before adding a dedicated search platform.
+- Cloud provider: Compare cost, operational simplicity, managed services, geographical regions, security, and migration options.
+- Runtime support: Use maintained releases with acceptable support lifecycles.
+- Licensing: Verify all framework, library, font, asset, and package licenses.
+- Vendor reliability: Evaluate service availability, data export, rate limits, pricing models, and support.
+- Interoperability: Prefer standard protocols and documented interfaces.
+- Technology sprawl: Minimize unnecessary languages, databases, and infrastructure platforms.
+- Upgrade strategy: Understand the cost of maintaining each technology over several years.
+- Engineering capability: Prefer technologies the team can confidently secure, debug, and operate.
+
+Example of a reasonable general-purpose stack
+
+| Layer                 | Example                                                                  |
+| --------------------- | ------------------------------------------------------------------------ |
+| Frontend              | React / Next.js with TypeScript                                          |
+| Backend               | Node.js / NestJS or another mature backend framework                     |
+| Database              | PostgreSQL                                                               |
+| Data access           | Prisma, Drizzle, or a suitable query layer                               |
+| Caching               | Redis, only when justified                                               |
+| Background processing | A durable queue and worker                                               |
+| Authentication        | Established identity provider or well-maintained authentication solution |
+| File storage          | S3-compatible object storage                                             |
+| API specification     | OpenAPI                                                                  |
+| Testing               | Unit, integration, browser E2E, and load-testing tools                   |
+| CI/CD                 | GitHub Actions or equivalent                                             |
+| Deployment            | Managed application hosting or container-based infrastructure            |
+| Observability         | OpenTelemetry-compatible instrumentation and monitoring                  |
+| Infrastructure        | Terraform, OpenTofu, or provider-native IaC where appropriate            |
+
+This is an example, not a universal recommendation. A Java/Spring, .NET, Go, Python, PHP/Laravel, or other mature stack can be equally production-ready.
+
+### 7. Database architecture and data modeling
+
+The data model is one of the most expensive parts of a system to redesign after production adoption.
+
+Schema and domain design
+
+- Identify all major entities and relationships.
+- Define primary keys and foreign keys.
+- Choose stable identifier strategies.
+- Use appropriate data types for each field.
+- Establish required and optional fields.
+- Apply database constraints instead of relying exclusively on application validation.
+- Define uniqueness rules and composite keys.
+- Normalize relational data to avoid unnecessary duplication.
+- Denormalize deliberately when measurement proves it beneficial.
+- Identify immutable data and audit-sensitive records.
+- Define ownership and lifecycle of each entity.
+- Model business state transitions explicitly.
+- Use suitable representations for dates, timestamps, time zones, money, quantities, and units.
+- Use decimal or integer minor-unit representations for money, according to domain requirements; avoid binary floating-point for exact financial calculations.
+- Choose UUIDs, sequences, or other identifiers based on actual distribution, storage, and operational needs.
+- Define deletion behavior, including cascade, restrict, archive, and soft-delete policies.
+- Design retention and archival rules before data volume grows.
+
+Data integrity
+
+- Enforce referential integrity.
+- Use transactions for operations requiring atomicity.
+- Define transaction isolation requirements.
+- Handle concurrent writes and lost updates.
+- Use optimistic or pessimistic locking where appropriate.
+- Prevent duplicate transactions and records.
+- Make critical operations idempotent.
+- Enforce business invariants in trusted backend code and, where feasible, database constraints.
+- Define how partial failures affect persisted data.
+- Provide safe recovery and reconciliation mechanisms.
+- Preserve historical accuracy where legally or operationally necessary.
+
+Query performance
+
+- Design indexes around actual query patterns.
+- Avoid unnecessary or redundant indexes.
+- Investigate N+1 query problems.
+- Analyze execution plans.
+- Avoid unbounded table scans on large datasets.
+- Use server-side pagination.
+- Choose offset, cursor, or keyset pagination based on data size and consistency requirements.
+- Define query timeouts.
+- Manage connection pooling and connection limits.
+- Avoid long-running transactions.
+- Separate heavy reporting workloads when appropriate.
+- Measure lock contention and slow queries.
+
+Migration and evolution
+
+- Version every database schema change.
+- Automate controlled migrations.
+- Test migrations against production-like data sizes.
+- Preserve backward compatibility during rolling deployments.
+- Prefer expand–migrate–contract changes for breaking schema modifications.
+- Prepare rollback or forward-recovery strategies.
+- Ensure migrations are safe to retry or have reliable failure handling.
+- Establish a backup and recovery plan before irreversible migrations.
+- Document database ownership and schema conventions.
+
+### 8. API design and service contracts
+
+APIs are contracts between systems and should be designed as carefully as public user interfaces.
+
+- Choose REST, GraphQL, gRPC, event-based APIs, or another interface based on consumer and operational needs.
+- Use consistent naming and resource conventions.
+- Define request and response schemas.
+- Use OpenAPI or equivalent machine-readable specifications.
+- Document authentication and authorization requirements.
+- Apply authorization checks at every relevant resource and action boundary.
+- Validate request payloads, parameters, headers, and content types.
+- Define response structures and error codes consistently.
+- Use HTTP methods and status codes according to their semantics.
+- Distinguish validation errors, authentication failures, authorization failures, conflicts, rate limits, and internal failures.
+- Prevent internal exception details from leaking to clients.
+- Design stable identifiers and predictable pagination.
+- Implement filtering and sorting with allowlisted fields.
+- Enforce request-size and result-size limits.
+- Design idempotency for retried state-changing operations.
+- Define rate limits and abuse controls.
+- Set explicit timeouts for external calls.
+- Establish sensible retry and backoff policies.
+- Prevent uncontrolled retry amplification.
+- Define API versioning and deprecation policies.
+- Preserve backward compatibility where promised.
+- Consider concurrency controls such as ETags and conditional requests.
+- Implement safe CORS policies based on actual browser consumers.
+- Document webhooks, signature verification, and delivery retries.
+- Generate client SDKs when that improves consistency.
+- Create consumer-driven contract tests where useful.
+- Maintain an accurate inventory of externally accessible endpoints.
+- Monitor API latency, error rates, volume, and consumer usage.
+
+Important API security risks
+
+- Broken object-level authorization (BOLA).
+- Broken object-property authorization.
+- Mass assignment and excessive exposure of sensitive fields.
+- Broken function-level authorization.
+- Unrestricted resource consumption.
+- Server-side request forgery.
+- Unsafe consumption of external APIs.
+- Unrestricted access to sensitive business workflows.
+
+These risks are explicitly addressed in the OWASP API Security Top 10 framework.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://api-security.owasp.org\&sz=32)
+
+OWASP API Security Top 10
+
+
+
+### 9. Backend engineering
+
+Code organization
+
+- Maintain clear controller, service, domain, data-access, and infrastructure responsibilities.
+- Keep transport handlers thin.
+- Centralize business rules in testable components.
+- Use dependency injection when it materially improves substitutability and testing.
+- Define shared error-handling conventions.
+- Centralize input validation and authorization patterns.
+- Avoid giant service classes and excessively coupled modules.
+- Prevent business rules from being duplicated across endpoints.
+- Use typed data contracts where supported.
+- Separate application configuration from implementation.
+- Avoid depending on process memory for durable state.
+- Design graceful startup and shutdown behavior.
+
+Business logic
+
+- Validate business invariants before state changes.
+- Enforce authorization independently of the frontend.
+- Define transaction boundaries carefully.
+- Prevent race conditions in critical workflows.
+- Model approvals, cancellations, refunds, and other state transitions explicitly.
+- Handle duplicate requests safely.
+- Implement reconciliation for externally coordinated operations.
+- Avoid assuming every external operation succeeds immediately.
+- Design safe behavior for unavailable dependencies.
+- Keep time-sensitive logic consistent across time zones and daylight-saving changes.
+- Use established libraries for sensitive functionality such as authentication and cryptography.
+
+Runtime and operational behavior
+
+- Configure connection pools appropriately.
+- Set deadlines for database and network operations.
+- Enforce resource limits for CPU, memory, and concurrency.
+- Guard against memory leaks and uncontrolled queues.
+- Prevent unhandled errors from leaving transactions or processes in unsafe states.
+- Use structured logging.
+- Propagate trace and correlation context.
+- Provide health, readiness, and relevant dependency checks.
+- Support graceful termination and connection draining.
+- Separate interactive requests from long-running workloads.
+- Enforce input, output, upload, and computational limits.
+- Define circuit breakers or bulkheads for failure-prone dependencies when justified.
+- Maintain secure defaults across all environments.
+
+### 10. Frontend engineering
+
+Application structure
+
+- Define reusable UI components and design tokens.
+- Establish consistent layout, typography, colors, spacing, and motion.
+- Choose server-side rendering, static generation, client-side rendering, or hybrid rendering based on the product.
+- Distinguish local UI state from server-derived state.
+- Avoid unnecessary global state.
+- Use typed component properties and domain models.
+- Implement predictable routing and navigation.
+- Handle loading, empty, error, partial-success, and unauthorized states.
+- Provide clear form validation and recovery paths.
+- Preserve user input when recoverable errors occur.
+- Design cancellation and cleanup of in-flight requests.
+- Prevent duplicate submissions where harmful.
+- Handle slow networks and intermittent connectivity.
+- Avoid exposing secrets or trusted business logic in browser bundles.
+- Design user-friendly session expiration behavior.
+- Implement appropriate cache invalidation for server-derived data.
+- Avoid unnecessary rendering, hydration, and JavaScript execution.
+
+Responsive engineering
+
+- Use mobile-first layout principles when suitable.
+- Support realistic mobile, tablet, laptop, and desktop viewport sizes.
+- Support touch, mouse, keyboard, and assistive technology.
+- Test browser zoom and text enlargement.
+- Handle responsive tables, charts, dashboards, and complex forms.
+- Account for notches, safe areas, virtual keyboards, and changing viewport heights.
+- Avoid hover-only interactions.
+- Optimize media loading on constrained networks.
+- Respect reduced-motion preferences.
+- Test device orientation and dynamic content resizing.
+
+Browser compatibility
+
+- Define supported browsers and versions.
+- Test on actual browser engines, not just viewport emulation.
+- Use progressive enhancement for essential workflows.
+- Feature-detect capabilities where appropriate.
+- Review browser security restrictions and storage behavior.
+- Verify authentication, cookies, redirects, file downloads, and payment flows across supported browsers.
+
+### 11. UI/UX, accessibility, and internationalization
+
+User experience
+
+- Create information architecture before detailed visual design.
+- Design around users' primary tasks.
+- Establish intuitive navigation and terminology.
+- Reduce unnecessary steps and cognitive load.
+- Maintain consistent interaction patterns.
+- Provide actionable error messages.
+- Clearly communicate processing, success, and failure states.
+- Use confirmation flows for irreversible actions.
+- Support undo where feasible.
+- Prevent accidental destructive operations.
+- Design helpful empty states and onboarding.
+- Make important actions discoverable.
+- Provide clear feedback during long-running operations.
+- Test realistic workflows with representative users.
+- Track usability problems after release.
+
+Accessibility
+
+- Target WCAG 2.2 Level AA where appropriate for the product and applicable obligations.
+- Use semantic HTML.
+- Implement logical heading hierarchies.
+- Ensure interactive elements are keyboard accessible.
+- Maintain visible keyboard focus.
+- Provide meaningful accessible names and labels.
+- Support screen-reader interactions.
+- Provide text alternatives for informative images.
+- Ensure sufficient color contrast.
+- Do not communicate meaning exclusively through color.
+- Provide accessible validation errors.
+- Support text resizing, reflow, and zoom.
+- Make dialogs, dropdowns, tabs, and navigation controls accessible.
+- Respect motion and animation preferences.
+- Provide captions and accessible media alternatives where necessary.
+- Test with automated tools and actual assistive technologies.
+- Include accessibility criteria in component acceptance tests.
+
+W3C's WCAG 2.2 is the relevant published recommendation and provides detailed success criteria and implementation guidance.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.w3.org\&sz=32)
+
+W3C
+
+
+
+Internationalization and localization
+
+- Externalize user-facing text.
+- Design for variable text lengths and bidirectional layouts where relevant.
+- Use correct locale-aware formatting for currencies, dates, numbers, and addresses.
+- Store timestamps consistently and display them according to user context.
+- Account for daylight-saving transitions and regional calendars.
+- Support Unicode and international character sets correctly.
+- Avoid assumptions about names, phone numbers, postal codes, or identity formats.
+- Design for multilingual content and translation workflows.
+- Review legal and cultural requirements by target market.
+
+SEO and discoverability, where relevant
+
+- Use descriptive titles, metadata, and semantic structure.
+- Implement canonical URLs and appropriate redirects.
+- Maintain XML sitemaps and robots directives.
+- Use structured data where valid and beneficial.
+- Prevent accidental indexing of private or staging environments.
+- Handle deleted, moved, or consolidated content appropriately.
+- Optimize indexable content and rendering strategy.
+- Monitor crawl errors and search performance.
+
+## Part III — Security, privacy, and compliance
+
+### 12. Application security engineering
+
+Security must be enforced across the entire system, not delegated to one middleware layer.
+
+Security architecture and threat modeling
+
+- Perform a security risk assessment before implementation.
+- Identify sensitive assets, entry points, data flows, and trust boundaries.
+- Build a threat model using STRIDE or another suitable approach.
+- Evaluate threat likelihood and business impact.
+- Document security assumptions and control ownership.
+- Identify privilege escalation and lateral-movement risks.
+- Review how compromised accounts, dependencies, and infrastructure could affect the system.
+- Establish secure defaults.
+- Apply least privilege and defense in depth.
+- Reassess threats when architecture or functionality changes.
+
+Authentication
+
+- Use established authentication protocols and well-maintained identity solutions.
+- Prefer phishing-resistant MFA, especially for privileged accounts.
+- Support secure account recovery and credential reset.
+- Hash passwords using suitable adaptive password-hashing algorithms such as Argon2id.
+- Never store plaintext passwords or reversible password equivalents.
+- Protect login endpoints from credential stuffing and brute-force attacks.
+- Apply risk-based throttling and abuse protections.
+- Validate authentication tokens correctly.
+- Use OAuth 2.0 and OpenID Connect correctly where applicable.
+- Verify token issuer, audience, signature, expiration, and relevant claims.
+- Avoid insecure or unnecessary custom authentication protocols.
+- Define account suspension, termination, and recovery procedures.
+
+Authorization
+
+- Enforce authorization on the backend.
+- Apply deny-by-default access policies.
+- Use RBAC, ABAC, or policy-based authorization as appropriate.
+- Validate ownership and tenant membership for every protected object.
+- Prevent horizontal and vertical privilege escalation.
+- Protect sensitive operations with additional controls where warranted.
+- Test authorization for every role and business action.
+- Make administrative and service-account permissions narrowly scoped.
+- Audit changes to privileged permissions.
+- Revalidate permissions when sensitive data or actions are accessed.
+
+Session and token security
+
+- Use HTTPS exclusively for sensitive communications.
+- Protect browser sessions using appropriate `HttpOnly`, `Secure`, and `SameSite` cookie attributes.
+- Implement CSRF protection when the authentication and request model requires it.
+- Prevent session fixation.
+- Rotate sessions or tokens after sensitive security transitions when appropriate.
+- Limit token lifetimes and scope.
+- Design revocation, logout, and device-session management.
+- Store refresh tokens securely.
+- Avoid exposing sensitive tokens to URLs, browser logs, or third-party scripts.
+- Evaluate XSS risk before deciding where browser-side tokens are stored.
+
+Input and output security
+
+- Validate inputs against explicit schemas.
+- Use parameterized database queries.
+- Prevent SQL, NoSQL, command, template, and other injection vulnerabilities.
+- Apply context-aware output encoding.
+- Sanitize user-generated HTML when HTML input is supported.
+- Use a carefully designed Content Security Policy.
+- Prevent unsafe deserialization.
+- Avoid unsafe dynamic code execution.
+- Validate redirects to prevent open-redirect abuse.
+- Mitigate SSRF by constraining outbound destinations and network access.
+- Protect against path traversal and arbitrary file access.
+- Use safe error handling without revealing internal implementation details.
+
+File security
+
+- Restrict allowed file formats.
+- Verify file type using content inspection as appropriate, not filename extensions alone.
+- Limit upload size and decompression expansion.
+- Rename uploaded files safely.
+- Store untrusted files outside executable application directories.
+- Scan uploads for malware when the risk warrants it.
+- Prevent malicious archive extraction.
+- Enforce file ownership and authorization.
+- Use time-limited signed URLs for protected downloads when appropriate.
+- Avoid serving dangerous active content under trusted application origins without appropriate isolation.
+
+Cryptography and secrets
+
+- Use proven cryptographic libraries.
+- Enforce modern TLS configurations.
+- Encrypt sensitive data at rest when required by risk or regulation.
+- Manage encryption keys using dedicated key-management systems where appropriate.
+- Plan key rotation and recovery.
+- Store secrets in secret-management systems, not source code.
+- Avoid secrets in logs, client bundles, or container images.
+- Rotate exposed credentials immediately.
+- Never invent proprietary cryptographic algorithms.
+- Use cryptographically secure randomness for security-sensitive values.
+- Ensure key destruction and data deletion processes meet actual retention requirements.
+
+Administrative and operational security
+
+- Protect administrative routes with strong authentication and authorization.
+- Separate production and nonproduction privileges.
+- Maintain security-relevant audit trails.
+- Alert on suspicious administrative activity.
+- Restrict production data access.
+- Use break-glass procedures for emergencies.
+- Review privileged access periodically.
+- Establish a vulnerability disclosure and response process.
+- Perform security assessments before major releases.
+- Conduct penetration testing when application risk warrants it.
+
+The OWASP Top 10:2025 includes broken access control, security misconfiguration, software supply-chain failures, cryptographic failures, injection, insecure design, authentication failures, software/data integrity failures, inadequate logging and alerting, and mishandling exceptional conditions. OWASP ASVS 5.0 provides substantially more detailed verification requirements than the Top 10 awareness list.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://top10.owasp.org\&sz=32)
+
+OWASP Top 10:2025
+
++1
+
+
+
+### 13. Privacy engineering and legal compliance
+
+Privacy requirements
+
+- Identify applicable privacy laws based on users, business activities, jurisdictions, and data-processing arrangements.
+- Inventory all personal and sensitive data collected.
+- Document purposes and lawful grounds for processing where legally required.
+- Collect only information genuinely needed.
+- Establish retention periods and deletion criteria.
+- Define access restrictions for sensitive records.
+- Avoid storing unnecessary information in analytics and application logs.
+- Design data export and correction mechanisms.
+- Support applicable deletion, access, and objection rights.
+- Implement appropriate consent and preference management.
+- Respect user communication preferences.
+- Establish procedures for handling privacy requests.
+- Assess international data transfers and residency obligations.
+- Define controller, processor, and subcontractor responsibilities where applicable.
+- Review third-party data-processing agreements.
+- Maintain privacy and security notices.
+- Conduct privacy impact assessments for qualifying high-risk activities.
+- Establish breach notification procedures and relevant deadlines.
+- Review privacy implications of new integrations and features.
+
+Legal and contractual controls
+
+- Terms of service.
+- Privacy policy.
+- Cookie and tracking disclosures.
+- Acceptable-use policies.
+- Intellectual property ownership.
+- Software and content licensing.
+- Service-level agreements.
+- Data-processing agreements.
+- Vendor and subcontractor agreements.
+- Data breach and incident notification clauses.
+- Contractual warranties and liability limitations.
+- Support and maintenance obligations.
+- Data return and deletion on termination.
+- Jurisdiction-specific consumer protection requirements.
+- Accessibility obligations.
+- Sector-specific recordkeeping and audit requirements.
+
+Compliance frameworks to consider
+
+- ISO/IEC 27001 for organizational information security management.
+- SOC 2 for assurance over relevant trust-services criteria when demanded by customers.
+- GDPR where EU personal-data processing falls within its scope.
+- Sri Lanka's Personal Data Protection Act and associated rules where applicable.
+- PCI DSS when cardholder-data activities bring systems into scope.
+- HIPAA for qualifying US healthcare entities and relationships.
+- Industry-specific financial, educational, telecommunications, or government requirements.
+- ISO/IEC 42001 where AI management and governance are relevant.
+
+Do not assume that every framework applies to every application. Compliance must be determined from the actual business activity, deployment model, jurisdiction, contractual commitments, and data flows.
+
+NIST CSF 2.0 structures cybersecurity risk management around six functions: Govern, Identify, Protect, Detect, Respond, and Recover. ISO/IEC 27001:2022 provides requirements for an organizational information security management system.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.nist.gov\&sz=32)
+
+NIST
+
++1
+
+
+
+### 14. Software supply-chain and dependency security
+
+- Maintain an inventory of direct and transitive dependencies.
+- Pin dependencies using lockfiles and controlled versioning.
+- Evaluate dependency maintenance status and security history.
+- Review licenses and redistribution obligations.
+- Use trusted package sources.
+- Check for dependency confusion and typosquatting risks.
+- Continuously scan dependencies for known vulnerabilities.
+- Monitor unsupported runtimes and end-of-life libraries.
+- Establish risk-based remediation timelines.
+- Generate a Software Bill of Materials (SBOM) when appropriate.
+- Protect source repositories against unauthorized access.
+- Require protected branches and relevant review checks.
+- Protect CI/CD workflows from untrusted code execution and credential exposure.
+- Use short-lived credentials and workload identity federation where possible.
+- Limit build-system permissions.
+- Review third-party CI actions and plugins.
+- Produce reproducible or verifiable build artifacts where practical.
+- Sign release artifacts when the threat model warrants it.
+- Retain artifact provenance and deployment traceability.
+- Use software supply-chain guidance such as SLSA.
+- Scan container images and deployment manifests.
+- Maintain a process for emergency dependency replacement.
+- Audit third-party SDKs that access personal data or sensitive application capabilities.
+
+SLSA 1.2 defines practices for improving software supply-chain integrity, including provenance that helps establish how software artifacts were produced.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://slsa.dev\&sz=32)
+
+SLSA specification
+
+
+
+## Part IV — Infrastructure, platform engineering, and development workflows
+
+### 15. Cloud infrastructure and deployment architecture
+
+Environment design
+
+- Maintain clearly separated development, testing, staging, and production environments as appropriate.
+- Define infrastructure ownership and responsibilities.
+- Choose cloud regions based on latency, cost, residency, and disaster-recovery needs.
+- Define cloud accounts, projects, subscriptions, and organizational boundaries.
+- Separate critical production resources from development workloads.
+- Design appropriate network segmentation.
+- Protect infrastructure management interfaces.
+- Decide which services require public internet exposure.
+- Keep databases and internal services private wherever practical.
+- Use managed cloud services when they reduce operational burden without introducing unacceptable dependence or cost.
+- Establish production access approval and auditing.
+- Enforce least-privilege access across infrastructure.
+
+Infrastructure as Code (IaC)
+
+- Define infrastructure declaratively where practical.
+- Version-control infrastructure configurations.
+- Review infrastructure changes before applying them.
+- Track state securely and protect it against corruption or unauthorized modification.
+- Separate environment-specific configuration from reusable infrastructure modules.
+- Detect and remediate configuration drift.
+- Scan infrastructure configurations for insecure settings.
+- Apply policy-as-code controls where warranted.
+- Document how infrastructure can be recreated.
+- Test infrastructure recovery and rebuild procedures.
+- Avoid unmanaged manual changes to critical production resources.
+
+Runtime architecture
+
+- Select virtual machines, managed application services, serverless functions, or containers according to workload characteristics.
+- Define resource requests, limits, and scaling behavior.
+- Implement readiness and liveness checks with appropriate semantics.
+- Define startup and shutdown timeouts.
+- Support graceful termination.
+- Design for instance replacement and ephemeral compute.
+- Keep persistent data outside disposable application instances.
+- Use redundant instances when required by availability targets.
+- Understand failure domains: instance, node, zone, region, and provider.
+- Avoid unnecessary multi-region deployments when their complexity exceeds the benefit.
+- Plan operating-system, runtime, container, and base-image patching.
+- Document ownership and renewal of domains, certificates, and infrastructure subscriptions.
+
+Container engineering, if applicable
+
+- Use minimal, maintained base images.
+- Prefer multi-stage builds when appropriate.
+- Run processes without root privileges where possible.
+- Remove unnecessary system packages and build tools.
+- Never bake production secrets into images.
+- Scan images for vulnerabilities.
+- Control image provenance and registries.
+- Pin immutable image digests for repeatable deployments where warranted.
+- Configure resource and filesystem restrictions.
+- Handle process signals correctly.
+- Keep application logs accessible through the platform's logging system.
+
+Kubernetes, if justified
+
+- Understand workload controllers, services, ingress, networking, and storage.
+- Configure resource requests, limits, and autoscaling.
+- Use readiness, startup, and liveness probes correctly.
+- Establish disruption budgets where needed.
+- Apply network policies and workload isolation.
+- Protect cluster administration and service accounts.
+- Manage RBAC and secrets securely.
+- Define safe rollout and rollback strategies.
+- Plan cluster and node upgrades.
+- Monitor cluster capacity, scheduling, and control-plane health.
+- Account for the additional security, networking, operational, and debugging complexity.
+
+The Google Cloud Well-Architected Framework organizes production architecture around operational excellence, security and privacy, reliability, performance, cost optimization, and sustainability.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://docs.cloud.google.com\&sz=32)
+
+Google Cloud Documentation
+
+
+
+### 16. Networking, DNS, CDN, and edge security
+
+- Design network topology and traffic flow.
+- Define DNS records, ownership, and management procedures.
+- Use suitable DNS TTL values for operational flexibility.
+- Automate TLS certificate issuance and renewal.
+- Redirect appropriate HTTP traffic to HTTPS.
+- Configure secure TLS versions and cipher suites.
+- Use HSTS only with an understood deployment and subdomain strategy.
+- Review application exposure through load balancers and reverse proxies.
+- Design load-balancer health checks and backend failure behavior.
+- Configure CDN caching for suitable public or protected content.
+- Prevent accidental caching of sensitive personalized responses.
+- Apply appropriate cache-control headers.
+- Use a Web Application Firewall where risk justifies it.
+- Apply DDoS protections suitable for expected threats.
+- Define network ingress and egress restrictions.
+- Account for IPv4 and IPv6 where relevant.
+- Configure connection, read, and write timeouts.
+- Consider geographic latency and edge distribution.
+- Protect origin servers from unintended direct exposure.
+- Define expected behavior during DNS, CDN, proxy, and certificate failures.
+- Monitor certificate expiration and domain-renewal dates.
+- Document external dependency failures and alternative traffic paths.
+
+### 17. Asynchronous processing, background jobs, and event-driven systems
+
+- Identify workflows that should not block user-facing HTTP requests.
+- Choose suitable background-job and messaging infrastructure.
+- Define whether delivery is best-effort, at-most-once, at-least-once, or requires stronger business guarantees.
+- Assume duplicate deliveries are possible unless the architecture proves otherwise.
+- Implement idempotent job processing.
+- Use durable queues for critical asynchronous work.
+- Define retry limits, delays, and exponential backoff.
+- Add jitter where retries could synchronize.
+- Prevent retry storms and cascading overload.
+- Use dead-letter queues for repeatedly failing jobs where appropriate.
+- Define message validation and schema versioning.
+- Avoid relying on message ordering unless explicitly supported.
+- Track job state and execution outcomes.
+- Define job cancellation and timeout behavior.
+- Handle partial completion and compensating actions.
+- Apply backpressure when workers cannot keep up.
+- Monitor queue depth, oldest-message age, failures, and processing latency.
+- Plan how jobs recover after a worker crashes.
+- Use the transactional outbox pattern when reliable coordination between database state and message publication is required.
+- Use schedulers that prevent unintended duplicate execution of critical recurring tasks.
+- Build reconciliation processes for eventual-consistency failures.
+- Define how users are notified when asynchronous work succeeds or fails.
+
+### 18. Development environments and developer experience
+
+- Create a reproducible local development setup.
+- Document required runtimes, package managers, and system dependencies.
+- Pin language and tool versions.
+- Provide standardized environment configuration templates without real secrets.
+- Use containers or reproducible development environments when beneficial.
+- Provide representative synthetic seed data.
+- Establish a local database setup and migration process.
+- Keep production data out of developer machines unless explicitly authorized and protected.
+- Provide reliable local API mocking where useful.
+- Automate code formatting and linting.
+- Configure static type checking.
+- Standardize naming and project conventions.
+- Provide useful scripts for common development tasks.
+- Make tests easy to run locally.
+- Minimize unnecessary development-environment complexity.
+- Document common troubleshooting procedures.
+- Use consistent editor and tooling configuration where it improves collaboration.
+- Define how developers safely access nonproduction external services.
+- Track onboarding friction and remove repeated manual setup steps.
+
+### 19. Git, version control, and collaborative engineering
+
+Repository management
+
+- Choose monorepo or multirepo structure based on ownership and dependency requirements.
+- Define a consistent directory structure.
+- Maintain a useful `README.md`.
+- Protect the primary production branch.
+- Require pull requests or equivalent controlled change processes.
+- Prevent unauthorized force-pushes and branch deletion.
+- Establish appropriate review requirements.
+- Require automated checks before merging.
+- Scan for accidentally committed secrets.
+- Restrict repository and CI administration privileges.
+- Maintain CODEOWNERS where appropriate.
+- Use meaningful commit messages.
+- Define branching and release conventions.
+- Prefer smaller, reviewable changes.
+- Use release tags and traceable deployment versions.
+- Establish processes for emergency hotfixes.
+- Preserve auditability of consequential changes.
+
+Code reviews
+
+- Check correctness against requirements.
+- Review business logic and edge cases.
+- Review security-sensitive changes explicitly.
+- Check authorization and data access.
+- Evaluate readability and maintainability.
+- Look for unnecessary complexity.
+- Check performance implications.
+- Review database schema and migration safety.
+- Verify error handling and observability.
+- Evaluate test coverage of changed behavior.
+- Review accessibility impacts for UI changes.
+- Confirm documentation updates.
+- Review operational consequences and rollback options.
+- Avoid reviews that focus exclusively on code formatting.
+
+Code quality
+
+- Apply consistent formatting.
+- Enforce suitable linting rules.
+- Use static analysis and type checking.
+- Identify duplicate business logic.
+- Detect excessive complexity and coupling.
+- Avoid premature abstractions.
+- Prefer descriptive names.
+- Document difficult assumptions and nonobvious algorithms.
+- Minimize global mutable state.
+- Avoid silent exception swallowing.
+- Use trusted library functions rather than custom implementations of sensitive primitives.
+- Preserve compatibility during refactoring.
+- Treat warnings and deprecations as maintenance work rather than permanent noise.
+
+### 20. Continuous integration and continuous delivery
+
+A production CI/CD pipeline should make good changes easy to release and unsafe changes difficult to introduce.
+
+Continuous integration
+
+- Trigger checks on pull requests and relevant branch updates.
+- Install dependencies using controlled versions.
+- Validate code formatting.
+- Run linting and static analysis.
+- Run type checks.
+- Execute unit tests.
+- Execute integration tests.
+- Run API contract tests where relevant.
+- Execute frontend build checks.
+- Check for vulnerabilities in dependencies.
+- Perform secret scanning.
+- Scan infrastructure and container configurations.
+- Produce test and quality reports.
+- Fail the pipeline when mandatory quality gates fail.
+- Avoid unstable tests that are routinely ignored.
+- Keep CI sufficiently fast for regular developer feedback.
+
+Build engineering
+
+- Create repeatable, traceable builds.
+- Associate artifacts with source commits.
+- Record build metadata.
+- Separate building from production deployment.
+- Avoid rebuilding the same release differently for each environment.
+- Store artifacts in an appropriately protected registry.
+- Retain release artifacts according to recovery and audit requirements.
+- Generate SBOMs or provenance attestations when applicable.
+- Restrict who and what can publish production artifacts.
+
+Continuous delivery/deployment
+
+- Automate staging deployment.
+- Separate staging and production credentials.
+- Promote validated artifacts between environments.
+- Apply required approval gates based on risk.
+- Use short-lived deployment credentials where practical.
+- Automate predeployment validation.
+- Coordinate application and database changes safely.
+- Run postdeployment smoke tests.
+- Verify monitoring before increasing production traffic.
+- Support controlled rollback or forward fixes.
+- Preserve deployment audit trails.
+- Measure deployment failures and recovery time.
+
+Release strategies
+
+- Rolling deployment.
+- Blue-green deployment.
+- Canary deployment.
+- Feature-flag rollout.
+- Progressive traffic shifting.
+- Shadow testing where safe and appropriate.
+
+Select the strategy based on application criticality, statefulness, traffic volume, operational capability, and cost. Simple applications do not automatically require sophisticated release infrastructure.
+
+## Part V — Quality engineering and testing
+
+### 21. Complete testing strategy
+
+Testing must validate behavior, security, performance, recovery, and operational assumptions.
+
+Unit testing
+
+- Test individual business rules and calculations.
+- Test normal, boundary, and invalid values.
+- Test error-handling branches.
+- Test business invariants and state transitions.
+- Use parameterized tests for varied input combinations.
+- Mock external dependencies only when appropriate.
+- Avoid coupling tests unnecessarily to implementation details.
+- Maintain deterministic test execution.
+
+Integration testing
+
+- Test application interactions with real or realistic databases.
+- Verify transaction behavior.
+- Test repository and service-layer integration.
+- Test queue producers and consumers.
+- Test external-service adapters.
+- Verify authentication and authorization integration.
+- Test database constraints and migrations.
+- Validate timeouts and failure handling.
+
+API and contract testing
+
+- Verify schemas and status codes.
+- Verify required fields and data types.
+- Test malformed requests.
+- Test unauthorized and forbidden access.
+- Test resource-ownership restrictions.
+- Test rate limiting.
+- Verify pagination and filtering.
+- Test version compatibility.
+- Test idempotency and duplicate operations.
+- Validate consumer expectations.
+
+End-to-end testing
+
+- Test complete user journeys in a realistic environment.
+- Verify registration and login.
+- Verify account recovery.
+- Test essential CRUD and workflow transitions.
+- Verify role-based interfaces and backend permissions.
+- Test critical checkout or payment flows.
+- Verify uploads and downloads.
+- Test notifications and asynchronous job completion.
+- Check session expiration and recovery.
+- Test cross-browser behavior.
+- Avoid making every small implementation detail dependent on expensive E2E tests.
+
+Security testing
+
+- Static Application Security Testing (SAST).
+- Dynamic Application Security Testing (DAST).
+- Software Composition Analysis (SCA).
+- Secret scanning.
+- Container and infrastructure scanning.
+- Authentication and session testing.
+- Authorization matrix testing.
+- Injection and input-handling tests.
+- File-upload abuse testing.
+- SSRF and unsafe redirect testing.
+- Rate-limit and resource-exhaustion testing.
+- API abuse and business-logic testing.
+- Dependency and supply-chain assessments.
+- Manual security review and penetration testing where appropriate.
+
+Performance testing
+
+- Load testing for anticipated traffic.
+- Stress testing beyond expected capacity.
+- Spike testing for sudden changes in traffic.
+- Soak testing for long-running stability.
+- Concurrency testing for conflicting updates.
+- Database performance testing.
+- Queue throughput testing.
+- Testing with realistic data volume.
+- Testing under constrained network conditions.
+- Capacity benchmarking across infrastructure sizes.
+
+Additional test categories
+
+- Accessibility testing.
+- Cross-browser and cross-device testing.
+- Regression testing.
+- Visual regression testing.
+- Usability testing.
+- Localization testing.
+- Data migration testing.
+- Backup restoration testing.
+- Failover and recovery testing.
+- Chaos/fault-injection testing where justified.
+- Disaster recovery exercises.
+- User Acceptance Testing (UAT).
+- Smoke and sanity testing after deployment.
+
+Test management practices
+
+- Maintain a risk-based test plan.
+- Link critical requirements to verification evidence.
+- Build representative synthetic datasets.
+- Avoid exposing real sensitive data in tests.
+- Control test-environment configuration.
+- Reduce flaky tests.
+- Investigate recurring test failures.
+- Measure defect escape into production.
+- Use code coverage as diagnostic evidence, not proof of correctness.
+- Prioritize important behavior over arbitrary coverage percentages.
+- Require manual exploration of high-impact user journeys.
+- Include regression tests for every consequential production defect.
+
+Deliverables: Test strategy, executable test suites, coverage and quality reports, UAT evidence, risk-based security assessment, and release validation record.
+
+## Part VI — Performance, scalability, and resilience
+
+### 22. Performance engineering
+
+Performance engineering should begin with user expectations and measurable service objectives.
+
+Performance budgets
+
+- Define latency budgets for important user journeys.
+- Define frontend rendering budgets.
+- Define API response-time targets.
+- Establish acceptable database query latency.
+- Track p50, p95, and p99 latency where useful.
+- Distinguish median performance from slow-tail performance.
+- Specify expected workload and data volumes.
+- Define thresholds for background-job execution.
+- Measure cold-start effects where applicable.
+- Establish memory, CPU, and bandwidth budgets.
+- Define when performance regressions should block a release.
+
+Frontend performance
+
+- Reduce unnecessary JavaScript.
+- Apply code splitting where beneficial.
+- Lazy-load suitable noncritical resources.
+- Optimize fonts, images, and video.
+- Use responsive image sizes and modern supported formats.
+- Preload only genuinely critical resources.
+- Avoid render-blocking assets where possible.
+- Reduce unnecessary hydration and rerenders.
+- Virtualize very large lists.
+- Cache appropriate static resources.
+- Reduce third-party script overhead.
+- Profile main-thread blocking.
+- Test actual devices and realistic mobile network conditions.
+- Measure performance through Real User Monitoring (RUM), not laboratory tests alone.
+
+Google Core Web Vitals reference targets
+
+LCP
+
+# ≤ 2.5s
+
+Loading
+
+INP
+
+# ≤ 200ms
+
+Responsiveness
+
+CLS
+
+# ≤ 0.1
+
+Visual stability
+
+Recommended "good" thresholds evaluated at the 75th percentile of real user page views, segmented by mobile and desktop.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://web.dev\&sz=32)
+
+web.dev
+
+Backend performance
+
+- Profile real application bottlenecks.
+- Eliminate unnecessary database calls.
+- Use efficient algorithms and data structures.
+- Measure CPU and memory use.
+- Optimize serialization where it is material.
+- Avoid excessive synchronous blocking.
+- Manage concurrency limits.
+- Reduce dependency fan-out and chained network calls.
+- Use appropriate connection pooling.
+- Batch independent operations when beneficial.
+- Move long-running tasks out of latency-sensitive requests.
+- Avoid excessive payload sizes.
+- Stream large responses where appropriate.
+- Establish defensive timeouts.
+- Test under realistic resource constraints.
+
+Database performance
+
+- Analyze slow queries.
+- Validate indexing strategies.
+- Monitor database connections.
+- Identify locking bottlenecks.
+- Tune query structure.
+- Control transaction duration.
+- Optimize reporting queries separately.
+- Avoid unnecessary large object loading.
+- Monitor replication delay where replicas exist.
+- Plan storage capacity and index growth.
+
+Caching
+
+- Identify what can safely be cached.
+- Decide where caching belongs: browser, CDN, application, or database layer.
+- Define cache keys and isolation boundaries.
+- Define expiration and invalidation policies.
+- Prevent sensitive cross-user cache leakage.
+- Define consistency tolerances.
+- Avoid cache stampedes.
+- Handle cache outages gracefully when feasible.
+- Monitor cache hit rates and eviction behavior.
+- Avoid using cache as the authoritative store for data that requires durable persistence unless specifically designed for it.
+
+Important engineering principle: Optimize after profiling, but establish performance targets before implementation.
+
+### 23. Scalability and capacity planning
+
+Scalability is the ability to handle increasing workloads while maintaining acceptable performance, reliability, and cost.
+
+Capacity modeling
+
+- Estimate initial daily, monthly, and concurrent active users.
+- Model requests per user and peak traffic patterns.
+- Estimate read-to-write ratios.
+- Calculate expected database and object-storage growth.
+- Account for seasonal and campaign-driven traffic.
+- Estimate network bandwidth requirements.
+- Identify computationally expensive operations.
+- Establish initial capacity assumptions.
+- Model peak rather than average demand where relevant.
+- Maintain sufficient capacity headroom for unexpected growth and failures.
+- Monitor when infrastructure approaches operational limits.
+- Plan capacity increases before critical resources become exhausted.
+
+Application scaling
+
+- Design stateless application instances where appropriate.
+- Use horizontal scaling for independently replicable workloads.
+- Use vertical scaling when it is simpler and economically justified.
+- Ensure sessions and shared state do not unnecessarily prevent scaling.
+- Implement load balancing.
+- Define autoscaling thresholds and limits.
+- Account for autoscaling delays and cold starts.
+- Prevent unbounded concurrency.
+- Use bulkheads to isolate critical workloads.
+- Apply admission control, rate limiting, and backpressure.
+- Design graceful degradation under overload.
+- Define which functions may be temporarily disabled during capacity shortages.
+- Maintain capacity for administrative recovery operations.
+
+Database scaling
+
+- Optimize queries before scaling infrastructure blindly.
+- Evaluate database connection pooling.
+- Use read replicas when read workloads justify them.
+- Account for replication lag and read-after-write consistency.
+- Partition large datasets when justified.
+- Evaluate sharding only when simpler approaches become insufficient.
+- Define how distributed identifiers and queries work if sharding is introduced.
+- Understand cross-shard transaction limitations.
+- Test migration and rebalancing strategies.
+- Consider specialized search, analytical, or time-series storage when workloads require them.
+- Protect databases from excessive application concurrency.
+
+Advanced scaling considerations
+
+- Queueing theory and Little's Law for understanding concurrency, throughput, and latency.
+- Amdahl's Law for evaluating limits to parallel execution.
+- Tail-latency amplification in multi-service request paths.
+- Hot partitions and uneven key distribution.
+- Cache locality and invalidation overhead.
+- Network bandwidth and connection exhaustion.
+- Noisy-neighbor effects in shared infrastructure.
+- Regional placement and data locality.
+- Distributed-system coordination costs.
+- Throughput versus latency tradeoffs.
+- Horizontal scaling versus operational complexity.
+
+Key principle: More servers do not automatically fix slow queries, database contention, inefficient algorithms, or poor workload isolation.
+
+### 24. Reliability engineering and Site Reliability Engineering (SRE)
+
+Reliability must be defined in terms of actual user experience.
+
+Service reliability objectives
+
+- Identify critical user journeys.
+- Define Service Level Indicators (SLIs), such as successful request ratio and user-visible latency.
+- Define Service Level Objectives (SLOs) for those indicators.
+- Define contractual Service Level Agreements (SLAs) separately where required.
+- Distinguish internal objectives from legally enforceable commitments.
+- Establish appropriate measurement windows.
+- Calculate error budgets.
+- Monitor error-budget consumption and burn rates.
+- Define operational responses when reliability deteriorates.
+- Balance release velocity against reliability requirements.
+- Prioritize the reliability of critical workflows rather than treating every endpoint equally.
+
+Example SLOs
+
+| Area                  | Illustrative objective                                                          |
+| --------------------- | ------------------------------------------------------------------------------- |
+| API availability      | 99.9% successful eligible requests over 30 days                                 |
+| API latency           | 95% of eligible requests complete within 500 ms                                 |
+| Critical operations   | No known unresolved defects that can silently corrupt critical business records |
+| Background processing | 99% of eligible jobs complete within the agreed workflow deadline               |
+| Recovery              | Meet documented RTO and RPO objectives                                          |
+
+These are examples, not universally recommended targets. Real objectives must be based on user needs, system criticality, cost, and an exact definition of what counts as success.
+
+Fault-tolerant design
+
+- Identify single points of failure.
+- Evaluate infrastructure redundancy.
+- Use multiple availability zones when justified.
+- Design appropriate failover behavior.
+- Set timeouts on network dependencies.
+- Implement bounded retries.
+- Apply exponential backoff and jitter.
+- Use circuit breakers where they prevent cascading failure.
+- Use bulkheads to isolate failures.
+- Provide fallback behavior when feasible.
+- Prevent overloading recovering dependencies.
+- Avoid retrying irreversible operations without idempotency protections.
+- Preserve data correctness during partial failures.
+- Design reliable shutdown and restart behavior.
+- Use appropriate leader-election or coordination mechanisms when needed.
+- Test what happens when caches, databases, queues, or third-party providers become unavailable.
+
+Resilience engineering
+
+- Test component crashes.
+- Simulate database unavailability.
+- Simulate network latency and packet loss.
+- Simulate dependency timeouts.
+- Test queue overload and delayed processing.
+- Test failover and restoration.
+- Verify degraded-mode behavior.
+- Conduct controlled fault-injection exercises for suitably mature systems.
+- Verify redundancy rather than assuming it works.
+- Monitor capacity during failover, since surviving components must handle increased load.
+- Review resilience after significant infrastructure changes.
+
+Operational readiness
+
+- Every critical service should have a clear owner.
+- Every critical alert should have a response process.
+- Every major operational dependency should be documented.
+- Every important failure scenario should have a recovery strategy.
+- Engineers should be able to distinguish an application bug from infrastructure or dependency failure.
+- Deployment, debugging, and recovery must not depend on undocumented knowledge held by one person.
+
+Google's SRE approach emphasizes measurable SLOs and error budgets to balance development velocity and service reliability. Its reliability guidance also recommends fault tolerance, recovery testing, and postmortems.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://sre.google\&sz=32)
+
+Embracing risk and reliability engineering book
+
++1
+
+
+
+### 25. Backup, disaster recovery, and business continuity
+
+Backups are not equivalent to disaster recovery. A backup is useful only if its contents are correct, accessible, and recoverable within the required time.
+
+Recovery planning
+
+- Define which business processes must survive a serious incident.
+- Identify critical data, services, and dependencies.
+- Define Recovery Point Objective (RPO): maximum acceptable data loss.
+- Define Recovery Time Objective (RTO): maximum acceptable restoration time.
+- Document disaster scenarios and their business impact.
+- Establish recovery order across dependent services.
+- Identify alternate providers, locations, and communication methods where necessary.
+- Define emergency decision-making authority.
+- Ensure recovery procedures can be performed without access to the failed primary environment.
+
+Backup engineering
+
+- Establish automated backup schedules.
+- Define appropriate backup frequency.
+- Use full, incremental, or point-in-time recovery capabilities as required.
+- Encrypt backup data.
+- Restrict backup access.
+- Maintain retention and expiration policies.
+- Keep independent or immutable backups where ransomware risk warrants them.
+- Protect backup deletion and modification privileges.
+- Monitor backup completion and integrity.
+- Include databases, object storage, application configurations, and essential deployment metadata as needed.
+- Account for encryption keys and secrets needed to restore data.
+- Avoid assuming a database replica is a backup.
+- Document backup locations and recovery credentials.
+
+Recovery testing
+
+- Periodically restore backups into an isolated environment.
+- Measure actual restoration time.
+- Validate data integrity after restoration.
+- Test point-in-time recovery.
+- Test recovery after accidental deletion or corruption.
+- Test restoration of application dependencies.
+- Rehearse disaster recovery procedures.
+- Review whether recovered systems meet business and security requirements.
+- Update recovery documentation after exercises and real incidents.
+
+Business continuity
+
+- Establish customer communication processes.
+- Define temporary manual workflows where realistic.
+- Identify critical vendor dependencies.
+- Maintain emergency contact information.
+- Plan for loss of cloud access, domain control, identity systems, or key personnel.
+- Address legal and contractual notification obligations.
+- Conduct periodic business-continuity reviews.
+
+### 26. Observability, logging, monitoring, and alerting
+
+A production system must provide enough information to understand what it is doing and why it is failing.
+
+Logging
+
+- Use structured, machine-readable logs.
+- Use consistent severity levels.
+- Include timestamps, service identity, environment, and release version.
+- Correlate related operations using trace or request identifiers.
+- Record meaningful business and operational events.
+- Never log passwords, authentication tokens, or unnecessary sensitive information.
+- Redact or restrict sensitive fields.
+- Set retention policies.
+- Protect logs from unauthorized access.
+- Ensure logging does not materially degrade application performance.
+- Distinguish ordinary diagnostic logs from tamper-resistant security audit records.
+
+Metrics
+
+- Request rate.
+- Request success and failure rates.
+- Response-time distributions.
+- CPU and memory utilization.
+- Database query latency.
+- Database connections and contention.
+- Queue length and processing delay.
+- Background-job failures.
+- Cache hit rate.
+- Storage consumption.
+- Network errors.
+- Authentication failures and abuse events.
+- Deployment health.
+- Business transaction success rates.
+
+Distributed tracing
+
+- Instrument incoming requests and internal operations.
+- Trace database calls and external-service requests where supported.
+- Propagate trace context across asynchronous boundaries.
+- Identify slow dependencies and unnecessary fan-out.
+- Correlate traces with logs and deployment versions.
+- Control sampling and telemetry cost.
+- Avoid collecting sensitive data in trace attributes.
+
+OpenTelemetry standardizes instrumentation around telemetry signals such as metrics, traces, and logs.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://opentelemetry.io\&sz=32)
+
+OpenTelemetry
+
+
+
+Monitoring
+
+- Monitor user-facing availability.
+- Use synthetic tests for important external journeys.
+- Use RUM for frontend performance.
+- Maintain infrastructure and application dashboards.
+- Compare current behavior with established baselines.
+- Detect unusual traffic and error patterns.
+- Monitor dependency health and resource saturation.
+- Track failed or stalled background processing.
+- Detect certificate, domain, and credential expiration risks.
+- Monitor business-level anomalies that technical health checks may miss.
+
+Alerting
+
+- Alert on actionable conditions.
+- Prioritize user-visible symptoms and SLO violations.
+- Avoid paging engineers for harmless transient events.
+- Define warning and critical thresholds.
+- Use multi-window burn-rate alerts where appropriate.
+- Prevent duplicate and cascading notifications.
+- Route alerts to responsible teams.
+- Define escalation procedures.
+- Link important alerts to runbooks.
+- Review alert usefulness periodically.
+- Reduce alert fatigue through continuous tuning.
+
+The four golden signals from SRE practice
+
+- Latency: How long requests or operations take.
+- Traffic: How much demand the system receives.
+- Errors: How often operations fail.
+- Saturation: How close resources are to capacity limits.
+
+A system can have healthy CPU usage while users experience serious failures. Monitor both technical infrastructure and real user outcomes.
+
+## Part VII — Deployment, release, and production operations
+
+### 27. Preproduction readiness
+
+Before releasing an application publicly, complete a formal production-readiness review proportional to its risk.
+
+Technical readiness
+
+- Confirm the approved release scope.
+- Verify critical requirements and acceptance criteria.
+- Complete required testing.
+- Confirm security findings are resolved or formally risk-accepted by authorized owners.
+- Verify production configuration.
+- Review authentication and authorization.
+- Verify production secrets are configured safely.
+- Confirm TLS and domain configuration.
+- Confirm database migrations have been tested.
+- Verify backup automation and actual restore capability.
+- Check resource capacity and deployment quotas.
+- Validate third-party integrations.
+- Verify appropriate logging and monitoring.
+- Configure health checks.
+- Confirm error reporting.
+- Confirm operational ownership.
+
+Operational readiness
+
+- Establish on-call and support responsibilities.
+- Complete runbooks.
+- Establish incident severity levels.
+- Verify alert routing.
+- Document rollback or forward-recovery procedures.
+- Confirm deployment permissions.
+- Verify production support access.
+- Document customer communication procedures.
+- Define the immediate post-launch monitoring period.
+- Identify known limitations and accepted risks.
+
+Business readiness
+
+- Complete UAT and applicable approval processes.
+- Publish required legal documents.
+- Confirm billing and payment configuration where applicable.
+- Prepare user onboarding and support materials.
+- Confirm stakeholder communication.
+- Ensure product analytics are configured with appropriate privacy controls.
+- Validate disaster-recovery and support arrangements.
+
+### 28. Deployment execution and release management
+
+Before deployment
+
+- Select and record the exact release version.
+- Verify the artifact being deployed.
+- Review the change summary.
+- Confirm the deployment window when coordination is required.
+- Check current production health.
+- Review database and integration impacts.
+- Confirm recovery procedures.
+- Ensure responsible engineers are available.
+- Define the conditions that will trigger rollback.
+
+During deployment
+
+- Apply safe schema changes.
+- Deploy the verified application artifact.
+- Use rolling, canary, or blue-green release mechanisms where appropriate.
+- Keep deployments compatible with in-flight traffic and concurrent application versions.
+- Monitor error rates and latency.
+- Monitor database and queue health.
+- Execute smoke tests.
+- Validate critical workflows.
+- Check background processing and integrations.
+- Increase user exposure progressively when using controlled rollouts.
+- Stop or reverse the rollout if predefined failure criteria are met.
+
+After deployment
+
+- Confirm deployment health.
+- Validate critical real-user flows.
+- Monitor logs, metrics, and traces.
+- Compare performance against the previous release.
+- Watch business-critical transaction outcomes.
+- Document any issues.
+- Preserve deployment records.
+- Communicate release completion to relevant stakeholders.
+- Update the release notes and operational documentation.
+
+Rollback considerations
+
+- Define whether application rollback is compatible with schema changes.
+- Understand that database migrations may not be trivially reversible.
+- Prepare roll-forward recovery where rollback could cause data loss.
+- Avoid destructive migrations that leave no safe recovery strategy.
+- Rehearse release recovery for critical services.
+- Preserve immutable deployment artifacts for controlled restoration.
+
+### 29. Incident management and production troubleshooting
+
+Production incidents should be handled through a repeatable process, not improvised under pressure.
+
+Incident preparation
+
+- Define severity levels.
+- Establish incident ownership and escalation routes.
+- Assign on-call responsibilities according to operational needs.
+- Prepare incident-response playbooks.
+- Define communication channels and contact lists.
+- Establish criteria for declaring major incidents.
+- Practice incident response.
+
+Incident response
+
+- Detect and acknowledge the incident.
+- Establish user impact and severity.
+- Appoint an incident commander when warranted.
+- Stabilize the situation before making risky changes.
+- Contain security incidents appropriately.
+- Identify recent deployments and infrastructure changes.
+- Use metrics, traces, logs, and audit evidence.
+- Mitigate impact through rollback, traffic control, disabling features, or other safe measures.
+- Preserve evidence for security incidents.
+- Document key decisions and actions.
+- Communicate verified facts without unnecessary speculation.
+- Escalate when internal expertise or resources are insufficient.
+- Validate restoration from the user's perspective.
+- Maintain follow-up ownership for unresolved issues.
+
+Post-incident analysis
+
+- Establish a factual timeline.
+- Distinguish immediate triggers from contributing causes.
+- Assess why detection or prevention controls were insufficient.
+- Identify organizational and process weaknesses.
+- Conduct blameless postmortems focused on system improvement.
+- Assign corrective actions with owners and deadlines.
+- Add relevant regression or resilience tests.
+- Update alerts and runbooks.
+- Assess reliability and financial impact.
+- Verify that corrective actions are actually completed.
+
+Security-specific incident considerations
+
+- Credential compromise.
+- Unauthorized access or data disclosure.
+- Malware or ransomware.
+- Abuse of administrative access.
+- Supply-chain compromise.
+- Privilege escalation.
+- DDoS and application-layer abuse.
+- Fraudulent transactions.
+- Accidental public exposure of private resources.
+- Lost or compromised encryption keys.
+
+Security incident handling may require forensic preservation, legal review, coordinated disclosures, and regulator or customer notifications.
+
+### 30. Continuous production maintenance
+
+Daily or continuous operations
+
+- Monitor availability and critical workflows.
+- Review actionable incidents and alerts.
+- Detect failed jobs or stalled processing.
+- Verify backup status.
+- Monitor resource exhaustion.
+- Investigate suspicious security events.
+- Respond to critical vulnerabilities.
+- Monitor operational spending anomalies.
+
+Weekly maintenance
+
+- Review recurring application errors.
+- Triage bugs and support requests.
+- Review slow queries and performance regressions.
+- Examine failed jobs and retries.
+- Review recent deployment performance.
+- Assess dependency updates.
+- Confirm operational documentation remains useful.
+- Check whether known risks require reprioritization.
+
+Monthly maintenance
+
+- Review service reliability and error-budget usage.
+- Analyze cloud spending and capacity.
+- Review security updates and dependency health.
+- Reassess privileged access.
+- Review storage and database growth.
+- Investigate recurring incidents.
+- Review technical debt.
+- Check external integrations and provider changes.
+- Evaluate user feedback and feature adoption.
+- Review incident corrective actions.
+
+Quarterly or periodic reviews
+
+- Test restoration and recovery procedures.
+- Conduct architecture and security reviews.
+- Review SLO appropriateness.
+- Reassess infrastructure capacity.
+- Validate major vendor contracts and dependencies.
+- Review legal and regulatory changes.
+- Test selected failure scenarios.
+- Review developer experience and delivery efficiency.
+- Update technology roadmaps.
+- Check whether the system still satisfies business objectives.
+
+The actual cadence should be determined by system risk and operational needs. Critical security alerts, for example, must not be held until a scheduled monthly review.
+
+## Part VIII — Data governance, product measurement, and commercial sustainability
+
+### 31. Data governance and data lifecycle management
+
+- Establish data ownership and stewardship responsibilities.
+- Classify data by sensitivity, confidentiality, and business value.
+- Maintain an inventory of important datasets.
+- Define authoritative sources of truth.
+- Establish data quality requirements.
+- Prevent inconsistent representations of critical business entities.
+- Define retention, archival, and deletion rules.
+- Provide data export and portability where required.
+- Track the provenance of imported and externally sourced data.
+- Document data transformations.
+- Validate inbound data before persistence.
+- Detect duplicate, incomplete, or inconsistent records.
+- Maintain appropriate audit and change histories.
+- Define policies for analytical and operational data access.
+- Restrict production data in development and testing.
+- Use de-identification or synthetic data when appropriate.
+- Maintain data dictionaries for complex business domains.
+- Define lifecycle processes for dormant accounts and obsolete records.
+- Prevent permanent retention of unnecessary data.
+- Establish reconciliation and repair workflows.
+- Consider legal holds and record-preservation obligations.
+- Define safe procedures for data migrations between providers.
+- Ensure deletion processes cover applicable backups and downstream systems according to legal and technical requirements.
+
+### 32. Product analytics and business observability
+
+A technically healthy application may still be unsuccessful if users cannot achieve the intended business outcomes.
+
+User and business metrics
+
+- Active users and adoption.
+- User acquisition and onboarding completion.
+- Activation and time to first value.
+- User retention and churn.
+- Feature usage and engagement.
+- Task completion and abandonment.
+- Conversion rates.
+- Revenue and transaction success.
+- Failed or disputed transactions.
+- User support requests.
+- Customer satisfaction and usability.
+- Accessibility-related friction.
+- Customer lifetime value where relevant.
+- Cost per transaction or active customer.
+
+Analytics engineering
+
+- Establish an event taxonomy.
+- Define consistent event names and properties.
+- Define reliable user and session identifiers within privacy constraints.
+- Avoid collecting unnecessary personal information.
+- Establish consent-aware tracking where required.
+- Validate analytics events.
+- Avoid duplicate event counting.
+- Distinguish frontend events from trusted backend outcomes.
+- Version event schemas when required.
+- Document metric definitions.
+- Build dashboards around business questions.
+- Monitor data quality and reporting delays.
+- Use cohorts for retention analysis.
+- Design experiments with appropriate statistical and ethical safeguards.
+- Avoid vanity metrics that do not inform decisions.
+- Review analytics instrumentation whenever critical workflows change.
+
+### 33. Engineering productivity and delivery metrics
+
+Measure how effectively the team delivers changes without sacrificing stability or developer well-being.
+
+DORA's five current software delivery performance metrics
+
+1. Change lead time: Time between committing a change and deploying it successfully.
+2. Deployment frequency: How often changes are released to production.
+3. Failed deployment recovery time: Time required to recover from a failed deployment.
+4. Change fail rate: Proportion of deployments that require immediate intervention.
+5. Deployment rework rate: Proportion of deployments representing unplanned corrective work.
+
+The current five-metric model replaces older summaries commonly referred to as the "four DORA metrics."&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://dora.dev\&sz=32)
+
+DORA’s software delivery performance metrics
+
+
+
+Additional engineering indicators
+
+- Pull-request review turnaround.
+- CI pipeline duration and success rate.
+- Flaky-test frequency.
+- Escaped defects.
+- Reopened defects.
+- Mean time to detect incidents.
+- Mean time to acknowledge incidents.
+- Mean time to restore service.
+- Vulnerability remediation time.
+- Dependency freshness.
+- Developer onboarding time.
+- Operational toil.
+- Documentation quality and discoverability.
+- Build and deployment reproducibility.
+- Technical debt affecting delivery.
+- Customer-impacting incident frequency.
+
+Use these measurements to identify bottlenecks and guide improvements. Avoid reducing complex engineering performance to individual developer output counts or using metrics as punitive targets.
+
+### 34. Cost optimization and FinOps
+
+Production infrastructure must remain financially viable as the product grows.
+
+Cost planning
+
+- Estimate monthly infrastructure cost before launch.
+- Consider compute, databases, storage, networking, backups, observability, and third-party services.
+- Model cost under realistic growth scenarios.
+- Understand fixed and variable spending.
+- Account for development, staging, and disaster-recovery environments.
+- Include engineering maintenance and operational labor.
+- Plan for provider support subscriptions and licensing.
+- Establish a spending ceiling or escalation process.
+- Identify costly operations and their business value.
+
+Continuous optimization
+
+- Monitor cost per service, environment, and workload.
+- Right-size compute resources.
+- Remove idle infrastructure.
+- Review storage classes and retention periods.
+- Manage network egress charges.
+- Optimize unnecessarily expensive queries.
+- Avoid excessive telemetry collection.
+- Review managed-service pricing.
+- Use autoscaling where beneficial.
+- Evaluate reserved or committed capacity for predictable workloads.
+- Establish usage budgets and anomaly alerts.
+- Understand cost consequences of retries, polling, background jobs, and data transfers.
+- Evaluate long-term vendor lock-in and migration cost.
+
+Economic scaling
+
+- Track infrastructure cost per active user.
+- Track cost per transaction.
+- Measure margin per transaction where applicable.
+- Evaluate whether additional infrastructure improves user experience or business value.
+- Design resource-intensive features with quotas or pricing controls.
+- Avoid architectural complexity whose maintenance costs exceed its benefit.
+
+### 35. Organizational engineering and team collaboration
+
+Even excellent architecture fails when ownership, communication, and maintenance responsibilities are unclear.
+
+- Define accountable technical and business owners.
+- Establish clear service ownership.
+- Assign responsibility for code, infrastructure, security, and production support.
+- Prevent critical knowledge from residing with only one engineer.
+- Establish onboarding and offboarding procedures.
+- Use formal access revocation when team members leave.
+- Conduct architecture and code reviews.
+- Maintain technical mentoring and knowledge sharing.
+- Establish engineering standards and review them periodically.
+- Encourage constructive discussion of tradeoffs.
+- Record important decisions and rejected alternatives.
+- Provide security and operational training.
+- Establish ownership handoff procedures.
+- Include QA, design, security, operations, and business stakeholders in relevant planning.
+- Maintain a realistic balance between features and reliability work.
+- Reduce repetitive operational work through automation.
+- Review team workload and on-call sustainability.
+- Ensure critical functions have backup owners.
+- Use incident reviews to improve systems rather than assign personal blame.
+- Budget time for refactoring, maintenance, and dependency upgrades.
+
+## Part IX — Long-term maintainability and system evolution
+
+### 36. Technical debt and refactoring
+
+- Identify deliberate versus accidental technical debt.
+- Record why major shortcuts were accepted.
+- Define the risks associated with known debt.
+- Track debt in the engineering backlog.
+- Prioritize debt according to business impact.
+- Avoid refactoring solely for stylistic preferences.
+- Add tests before changing poorly understood critical code.
+- Remove obsolete functionality.
+- Eliminate unnecessary dependencies.
+- Replace unsupported libraries and runtimes.
+- Decompose excessively large modules where beneficial.
+- Review data-model evolution.
+- Improve interfaces and boundaries without unnecessary rewrites.
+- Maintain documentation during architecture changes.
+- Avoid major rewrites unless there is a compelling business or technical case.
+- Continuously improve operational tooling.
+
+### 37. Documentation and knowledge management
+
+A production application should have sufficient documentation to be developed, deployed, debugged, supported, and transferred to another team.
+
+Product and requirements documentation
+
+- Product vision and scope.
+- Stakeholders and responsibilities.
+- Functional requirements.
+- Non-functional requirements.
+- User roles and permissions.
+- Business workflows.
+- Acceptance criteria.
+- Project roadmap.
+- Risk register.
+- Change history.
+
+Architecture documentation
+
+- System context diagram.
+- Container and component diagrams.
+- Data-flow diagrams.
+- Database schema and ER diagrams.
+- Network and deployment topology.
+- API specifications.
+- Authentication and authorization architecture.
+- Critical transaction flows.
+- Threat model.
+- ADRs and important technical tradeoffs.
+
+Development documentation
+
+- README.
+- Local environment setup.
+- Environment variable reference.
+- Dependency management.
+- Project structure.
+- Code conventions.
+- Testing commands.
+- Build procedures.
+- Contribution guidelines.
+- Debugging instructions.
+
+Operations documentation
+
+- Deployment procedures.
+- Rollback and recovery procedures.
+- Monitoring dashboards.
+- SLO definitions.
+- Incident response runbooks.
+- Backup and restoration procedures.
+- Disaster recovery plan.
+- Database migration procedures.
+- Production access processes.
+- External integration dependencies.
+- Vendor ownership and support contacts.
+- Known issues and operational limitations.
+
+Security documentation
+
+- Data classification.
+- Access-control model.
+- Vulnerability management policy.
+- Secret and key management.
+- Security incident procedures.
+- Privacy and retention policies.
+- Third-party dependency inventory.
+- Relevant compliance evidence.
+
+User-facing documentation
+
+- Help center or user manual.
+- Administrator guide.
+- Onboarding instructions.
+- Common troubleshooting steps.
+- Release notes.
+- Support and escalation channels.
+- Relevant legal notices.
+
+Documentation standards
+
+- Assign owners to important documents.
+- Version documentation with code where appropriate.
+- Review documentation after significant changes.
+- Remove obsolete instructions.
+- Avoid duplicating information unnecessarily.
+- Ensure documentation is accessible to the engineers responsible for the system.
+- Test critical recovery instructions instead of assuming written procedures are correct.
+
+### 38. Sustainability and responsible engineering
+
+- Reduce unnecessary compute and storage consumption.
+- Design efficient algorithms and queries.
+- Avoid retaining unused data indefinitely.
+- Use appropriate resource autoscaling.
+- Select suitable hosting locations based on latency, availability, emissions, cost, and applicable residency requirements.
+- Optimize asset sizes and network transfers.
+- Reduce inefficient polling.
+- Avoid excessive logging and telemetry.
+- Retire unused environments.
+- Minimize dependence on difficult-to-maintain technologies.
+- Prefer clear architecture that enables continued maintenance by future teams.
+- Consider environmental, financial, and organizational sustainability together.
+- Avoid scaling infrastructure merely to compensate for inefficient implementation.
+
+## Part X — Special application scenarios
+
+### 39. Additional considerations for particular product categories
+
+Not every application needs these capabilities. Include the relevant controls when the product's business model or domain requires them.
+
+Multi-tenant SaaS applications
+
+- Tenant identification and isolation.
+- Tenant-scoped authorization.
+- Protection against cross-tenant data leakage.
+- Tenant-aware caching and search.
+- Tenant-specific rate limits and quotas.
+- Per-tenant usage and billing.
+- Tenant provisioning and offboarding.
+- Data portability and deletion.
+- Tenant-specific configuration.
+- Isolation testing across APIs, background jobs, and analytics.
+
+E-commerce and marketplaces
+
+- Inventory reservation and concurrency control.
+- Price calculation and currency precision.
+- Tax and shipping rules.
+- Order state machines.
+- Payment authorization and settlement.
+- Refunds and chargebacks.
+- Coupon and discount abuse prevention.
+- Fraud and suspicious transaction detection.
+- Payment-webhook verification.
+- Duplicate order prevention.
+- Seller or vendor permissions.
+- Commission calculations.
+- Transaction reconciliation.
+- Financial reporting and auditability.
+- Customer communication during failed or delayed orders.
+
+Financial or payment applications
+
+- Appropriate PCI DSS scope assessment.
+- Use of established payment providers and tokenization.
+- Financial transaction integrity.
+- Strong authorization for sensitive operations.
+- Reconciliation and immutable accounting histories.
+- Fraud prevention and detection.
+- Segregation of duties where applicable.
+- High-assurance audit trails.
+- Recovery and settlement processes.
+- Regulatory and contractual controls.
+
+Healthcare and other sensitive-data applications
+
+- Appropriate classification of sensitive information.
+- Strong access-control and audit requirements.
+- Purpose-limited data access.
+- Appropriate consent or other lawful processing mechanisms.
+- Record retention and correction procedures.
+- Data-sharing restrictions.
+- Domain-specific safety testing.
+- Legal and regulatory review.
+- Incident procedures reflecting the severity of information exposure.
+
+Real-time applications
+
+- WebSocket or streaming authentication.
+- Connection lifecycle management.
+- Reconnection behavior.
+- Event ordering.
+- Presence and session consistency.
+- Backpressure.
+- Duplicate-event handling.
+- Scale-out coordination.
+- Message persistence where required.
+- Offline synchronization and conflict resolution.
+
+AI-powered applications
+
+- AI model and provider evaluation.
+- Data classification before sending content to models.
+- Prompt-injection defense and trust-boundary enforcement.
+- Restrictions on model-accessible tools and data.
+- Explicit authorization for agent actions.
+- Human approval for consequential or irreversible actions.
+- Evaluation datasets and reproducible quality benchmarks.
+- Output validation and safety testing.
+- Hallucination and factuality risk management.
+- Model drift and regression monitoring.
+- AI-generated code review and security verification.
+- Cost, token, latency, and rate-limit controls.
+- AI provider outages and fallback behavior.
+- Logging with appropriate privacy safeguards.
+- Version control of prompts, models, and evaluations.
+- Governance suitable for applicable AI obligations.
+
+ISO/IEC 42001:2023 provides a framework for organizational management of AI-related risks and processes.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.iso.org\&sz=32)
+
+AI management systems
+
+
+
+Public platforms and user-generated content
+
+- Abuse reporting and moderation.
+- Spam and bot prevention.
+- Harassment and prohibited-content controls.
+- User blocking and appeals.
+- Trust and reputation systems.
+- Fraud and impersonation detection.
+- Rate limits and resource quotas.
+- Account suspension and reinstatement.
+- Evidence retention and privacy safeguards.
+- Relevant platform and consumer-protection obligations.
+
+Mobile applications and PWAs
+
+- Secure device storage.
+- Device permissions.
+- Offline data management.
+- Synchronization conflicts.
+- Push notification delivery.
+- App lifecycle interruptions.
+- Background execution limitations.
+- Deep links.
+- App signing and release distribution.
+- Platform-specific accessibility.
+- Device compatibility and upgrade support.
+- App store policies where relevant.
+
+### 40. Legacy modernization, migration, and product retirement
+
+Long-term engineering includes safely changing and eventually discontinuing systems.
+
+Modernization
+
+- Inventory legacy dependencies and data.
+- Identify unsupported technologies.
+- Map undocumented business rules.
+- Establish tests around critical existing behavior.
+- Plan incremental migration where practical.
+- Use the strangler pattern when it reduces migration risk.
+- Validate behavior and data equivalence.
+- Define coexistence and cutover procedures.
+- Prepare rollback or recovery plans.
+- Retire replaced functionality only after successful verification.
+
+Product retirement
+
+- Establish a formal retirement decision.
+- Notify affected users and stakeholders appropriately.
+- Preserve contractual and legal obligations.
+- Provide data export where required.
+- Define data retention and deletion procedures.
+- Terminate integrations.
+- Revoke credentials and service accounts.
+- Retire cloud resources and scheduled jobs.
+- Archive required documentation and audit evidence.
+- Review backups and retention requirements.
+- Remove obsolete DNS, certificates, and externally exposed endpoints.
+- Ensure billing and subscriptions terminate correctly.
+- Confirm that personal data is not unnecessarily retained by vendors.
+- Document final ownership and system closure.
+
+## Part XI — Production engineering execution framework
+
+The following turns the preceding engineering practices into a practical project-delivery process.
+
+### 41. Recommended lifecycle and required deliverables
+
+| Stage                     | Core outputs                                             | Completion gate                          |
+| ------------------------- | -------------------------------------------------------- | ---------------------------------------- |
+| 01. Discovery             | Problem definition, users, objectives, feasibility       | Problem and value proposition validated  |
+| 02. Requirements          | Functional/NFR specification, risks, acceptance criteria | Requirements understood and prioritized  |
+| 03. Architecture          | Diagrams, ADRs, stack, data model, threat model          | Major technical risks evaluated          |
+| 04. UX/UI                 | User flows, wireframes, design system, prototypes        | Critical journeys validated              |
+| 05. Engineering setup     | Repository, environments, CI, standards                  | Reproducible development foundation      |
+| 06. Implementation        | Frontend, backend, database, integrations                | Features meet agreed acceptance criteria |
+| 07. Verification          | Automated tests, security and load testing, UAT          | Critical quality gates passed            |
+| 08. Operational readiness | Monitoring, runbooks, backups, recovery plan             | System can be safely operated            |
+| 09. Release               | Verified artifact, migration, rollout, smoke tests       | Production behavior validated            |
+| 10. Stabilization         | Monitoring, incident triage, early feedback              | Release meets initial objectives         |
+| 11. Operations            | Patching, support, SLOs, security, maintenance           | Ongoing risk and quality controlled      |
+| 12. Evolution             | Optimization, new functionality, migrations              | Product remains valuable and sustainable |
+| 13. Retirement            | Data disposition, system shutdown, closure               | All lifecycle obligations fulfilled      |
+
+Security, testing, documentation, and operational design should run throughout these stages, not be deferred into isolated activities at the end.
+
+### 42. Master production go-live checklist
+
+This is the minimum practical release gate I would use as a starting point for a typical public-facing business application. Higher-risk applications need additional requirements and independent verification.
+
+## Production Readiness Audit
+
+Interactive self-assessment • 30 verification points
+
+# 0%
+
+0/30 complete
+
+Product and requirements
+
+0/4
+
+Critical workflows meet acceptance criteria
+
+Business rules and edge cases validated
+
+Product owner approves release scope
+
+Known issues and limitations documented
+
+Architecture and data
+
+0/4
+
+Architecture and critical dependencies documented
+
+Database migrations tested
+
+Data integrity and tenant isolation verified
+
+Recovery implications of schema changes assessed
+
+Security and privacy
+
+0/5
+
+Authentication and authorization tested
+
+No unresolved unacceptable security risks
+
+Secrets and production access securely managed
+
+Applicable legal and privacy obligations addressed
+
+Dependency and configuration scans reviewed
+
+Quality and performance
+
+0/4
+
+Critical unit and integration tests pass
+
+Critical end-to-end journeys pass
+
+Load and performance targets evaluated
+
+Accessibility and browser support tested
+
+Infrastructure and delivery
+
+0/4
+
+Production configuration and TLS verified
+
+CI/CD and release artifact validated
+
+Deployment and rollback plans documented
+
+Capacity and cost limits reviewed
+
+Reliability and operations
+
+0/5
+
+Backups configured and restoration verified
+
+SLIs/SLOs and monitoring configured
+
+Actionable alerts reach responsible operators
+
+Runbooks and incident ownership established
+
+Critical dependency failure behavior verified
+
+Business handover
+
+0/4
+
+User/admin documentation available
+
+Support and escalation arrangements confirmed
+
+Release and post-launch verification completed
+
+Ongoing maintenance ownership established
+
+Reset audit Copy checklist
+
+Completing every item provides evidence of readiness but does not certify security, compliance, or guaranteed production safety.
+
+### 43. How to prioritize all these practices
+
+Not every project should implement every advanced technique on day one. Prioritize controls according to the consequences of failure.
+
+| Priority               | Meaning                                                                   | Typical examples                                                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| P0 — Foundational      | Needed for a safe, credible production release                            | Correct business logic, server-side authorization, protected secrets, data integrity, essential tests, backup restoration, monitoring |
+| P1 — Strong baseline   | Needed for consistent production operations                               | CI/CD, structured logs, security scanning, performance targets, runbooks, access reviews, reliable recovery procedures                |
+| P2 — Workload-driven   | Implement when product or traffic characteristics justify them            | Redis caching, read replicas, background queues, additional infrastructure redundancy, sophisticated release strategies               |
+| P3 — Advanced maturity | Introduce when operational scale, risk, or organizational needs demand it | Multi-region failover, sophisticated chaos engineering, extensive platform automation, specialized distributed architectures          |
+
+These priorities are illustrative. For a payment service, healthcare platform, or other high-consequence system, some controls listed as workload-driven or advanced may be mandatory from the beginning.
+
+### 44. Core questions every production engineer should be able to answer
+
+Before launch, the engineering team should have evidence-backed answers to these questions:
+
+- Correctness: What prevents invalid inputs or concurrency from corrupting important data?
+- Security: Can a user access records belonging to another user or tenant?
+- Authentication: What happens when a user's credentials or session token are compromised?
+- Privacy: What personal information is collected, why, and when is it deleted?
+- Performance: What is the actual user experience at peak workload?
+- Scalability: Which component reaches capacity first, and what happens when it does?
+- Reliability: What happens when the primary database or an essential dependency becomes unavailable?
+- Recovery: When was the last successful restoration of a production-representative backup?
+- Deployment: Can a defective release be stopped or recovered from without corrupting existing data?
+- Observability: How will engineers know that a critical user workflow is failing?
+- Operations: Who receives an alert when the application fails outside business hours?
+- Maintainability: Can a new engineer understand, run, test, and safely modify the application?
+- Cost: Can the business afford to operate the system at its expected growth level?
+- Longevity: What happens when a framework, API provider, or key team member is no longer available?
+
+If any critical question cannot be answered, that represents an engineering risk requiring an explicit decision.
+
+## Part XII — Authoritative engineering references
+
+These are particularly valuable primary sources for implementing and auditing the practices described above.
+
+| Reference                                                                                                              | Recommended application                                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [OWASP ASVS 5.0](https://asvs.owasp.org/?utm_source=chatgpt.com)                                                       | Define and verify detailed web-application security requirements                                          |
+| [OWASP Top 10](https://top10.owasp.org/?utm_source=chatgpt.com)                                                        | Understand major web application security risks                                                           |
+| [OWASP API Security](https://api-security.owasp.org/?utm_source=chatgpt.com)                                           | Review API security and authorization threats                                                             |
+| [NIST Secure Software Development Framework](https://csrc.nist.gov/pubs/sp/800/218/final?utm_source=chatgpt.com)       | Integrate security throughout software development                                                        |
+| [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework?utm_source=chatgpt.com)                             | Establish security governance and operational risk management                                             |
+| [OWASP SAMM](https://owaspsamm.org/model/?utm_source=chatgpt.com)                                                      | Assess and improve software security maturity                                                             |
+| [Google Site Reliability Engineering](https://sre.google/?utm_source=chatgpt.com)                                      | Reliability, SLOs, incidents, and service operations                                                      |
+| [DORA](https://dora.dev/guides/dora-metrics/?utm_source=chatgpt.com)                                                   | Measure delivery throughput and instability                                                               |
+| [OpenTelemetry](https://opentelemetry.io/docs/?utm_source=chatgpt.com)                                                 | Instrument logs, metrics, and traces                                                                      |
+| [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/?utm_source=chatgpt.com)                                                   | Implement web accessibility requirements                                                                  |
+| [Google Web Vitals](https://web.dev/articles/vitals?utm_source=chatgpt.com)                                            | Measure real-world frontend performance                                                                   |
+| [Google Cloud Well-Architected Framework](https://docs.cloud.google.com/architecture/framework?utm_source=chatgpt.com) | Review cloud architecture across operations, security, reliability, performance, cost, and sustainability |
+| [SLSA 1.2](https://slsa.dev/spec/v1.2/?utm_source=chatgpt.com)                                                         | Improve software artifact provenance and build security                                                   |
+| [ISO/IEC 27001](https://www.iso.org/standard/27001?utm_source=chatgpt.com)                                             | Organizational information security management                                                            |
+| [ISO/IEC 42001](https://www.iso.org/standard/42001?utm_source=chatgpt.com)                                             | AI management and governance                                                                              |
+
+## Final engineering perspective
+
+A production-ready full-stack application is not simply:
+
+`Frontend + Backend + Database + Hosting`
+
+It is an engineered combination of:
+
+Business correctness
+
+System architecture
+
+Security and privacy
+
+Data integrity
+
+Performance and scale
+
+Reliability and recovery
+
+Testing and verification
+
+Safe delivery
+
+Observability
+
+Documentation
+
+Operational ownership
+
+Continuous improvement
+
+The strongest engineering discipline is to make important requirements measurable, risks explicit, changes reversible where possible, failures recoverable, and operational ownership unambiguous.
+
+That is the fundamental difference between an application that merely runs and a system that can be trusted in real-world production.

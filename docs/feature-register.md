@@ -30,22 +30,20 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 | UI-004    | Split POS presentation from orchestration / FR-015                    | P1       | refactor/ui-004-pos-composition      | integrated; 093dab5 / merge a67330b                   | Typecheck, lint, order and input recovery E2E      |
 | UI-005    | Contain mobile table labels and keyboard scrolling / UI-001           | P0       | fix/ui-005-mobile-table-reflow       | integrated; 958ad70 / merge eb90b82                   | Document-width and ArrowRight scrolling regression |
 
-| PREM-001 | Redesign discovery and preservation audit | updated | docs/prem-001-redesign-audit | integrated; eb20d7e / merge f57771a | Baseline c73980c; clean tree; inspect prompt/references/tooling before source edits |
+## Premium enhancement lifecycle
 
-| PREM-002 | Reviewed shadcn and Taste installation / component reuse | created | chore/prem-002-design-tooling | integrated; b559192 / merge 8d7920a | Existing config retained; official components and app-screen design guidance actively used |
+All units are P0 for this authorized enhancement; lifecycle describes actual source events, not the original priority column. Completed topics are retained and integrated; the handover source/merge hash is backfilled by the next audit commit.
 
-| PREM-003 | Premium tokens, local typography, responsive rail and entry | updated | feat/prem-003-premium-shell | integrated; cf858b8 / merge a00dd86 | Brand tokens, labeled charcoal navigation, accessible tooltip/focus, preserved routes and controls |
-
-| PREM-004 | Existing-capability service presets and adaptive current order | created / updated | feat/prem-004-service-workspace | integrated; a4bbb44 / merge aefd582 | Search/category/configure, preserved manual editor, empty recovery, single desktop/mobile summary and save review |
-
-| PREM-005 | Operational surface, metric, chart, drawer and print craft | updated | style/prem-005-operational-screens | integrated; f80e521 / merge e802124 | Consistent administrative tables and numeric alignment; truthful scales; responsive summaries; preserved business behavior |
-
-| PREM-008 | Long content and mobile focus/contrast hardening | fixed | fix/prem-008-long-content-reflow | integrated; 3603fbc / merge c925c05 | Unbroken and Sinhala/Tamil content fits review/cart; visible landscape save; reduced motion and legible control boundaries |
-
-| PREM-006 | Complete premium frontend production regression evidence | updated | test/prem-006-visual-regression | integrated; a7fbe66 / merge 7ce0aa5 | Nine widths, 200% text, keyboard categories/mobile nav, contrast tokens and all preserved workflows on production build |
-
-| PREM-009 | Persistent desktop totals and visible order-review action | fixed | fix/prem-009-summary-visibility | integrated; 53bb11c / merge f228a49 | Measure actual panel top, scroll specifications, retain totals/review footer; verify initial and scrolled desktop bounds |
-
-| PREM-010 | Wait for asynchronous category focus before activation | fixed | test/prem-010-keyboard-synchronization | integrated; awaiting hash | Radix roving focus schedules movement; preserve keyboard selection assertions |
-
-| PREM-011 | Prevent awkward word splitting in active rail labels | updated | style/prem-011-navigation-labels | integrated; awaiting hash | Available label width fits Production at normal size; text zoom still wraps |
+| ID       | Change                                        | Lifecycle                         | Branch                                 | Source commits   | No-ff merges          | Evidence                                                                                    |
+| -------- | --------------------------------------------- | --------------------------------- | -------------------------------------- | ---------------- | --------------------- | ------------------------------------------------------------------------------------------- |
+| PREM-001 | Discovery and preservation audit              | created                           | docs/prem-001-redesign-audit           | eb20d7e          | f57771a               | Baseline/ref/tool inspection                                                                |
+| PREM-002 | Reviewed skills and shadcn primitives         | created / updated                 | chore/prem-002-design-tooling          | b559192          | 8d7920a               | Config reused; source/license and CLI review                                                |
+| PREM-003 | Premium tokens, type, entry and shell         | created / updated                 | feat/prem-003-premium-shell            | cf858b8          | a00dd86               | Responsive/keyboard and visual review                                                       |
+| PREM-004 | Service workspace and responsive summary      | created / updated                 | feat/prem-004-service-workspace        | a4bbb44          | aefd582               | Existing rules, search/filter/edit/empty recovery                                           |
+| PREM-005 | Operational and print craft                   | updated / deleted obsolete chrome | style/prem-005-operational-screens     | f80e521          | e802124               | Tables/chart/drawers, preserved workflows                                                   |
+| PREM-008 | Long-content, focus and contrast repairs      | fixed                             | fix/prem-008-long-content-reflow       | 3603fbc          | c925c05               | Unicode/320px/landscape/reduced motion                                                      |
+| PREM-006 | Premium production regression evidence        | created / updated                 | test/prem-006-visual-regression        | a7fbe66          | 7ce0aa5               | Responsive/keyboard/contrast/lab; full suite                                                |
+| PREM-009 | Persistent desktop review footer              | fixed                             | fix/prem-009-summary-visibility        | 8808589, 53bb11c | 232c67d, f228a49      | New viewport regression, formatter-only correction                                          |
+| PREM-010 | Keyboard-test focus synchronization           | fixed                             | test/prem-010-keyboard-synchronization | cdca073          | 5bbdef5               | Wait for Radix deferred focus; five repeated checks and full suite                          |
+| PREM-011 | Natural active rail labels and edge clearance | updated                           | style/prem-011-navigation-labels       | a9e8fe7, a8c4c27 | 173ffec, 2182df5      | Complete words, adequate clearance, 33 production E2E and 21 final Taste combinations clear |
+| PREM-007 | Final design/evidence/coverage handover       | created / updated                 | docs/prem-007-redesign-handover        | awaiting hash    | after verified commit | 33 browser / 58 unit; gallery / Git audit                                                   |

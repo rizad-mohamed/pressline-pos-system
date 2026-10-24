@@ -46,3 +46,7 @@ Browser preview/print is independent of database commits and SMS delivery. Do no
 ## Open decisions
 
 Actual selling prices and catalogue options; tax/statutory fields; discounts; refund/cancellation and reversal permissions; financial recognition/cohorts; payment channels; customer-data/retention requirements; printer hardware/formats; automatic stock consumption timing/mapping; negative-stock/adjustment policies; transfer dispatch/acceptance; owner SMS recipient/schedule/metrics/provider; offline support; availability, performance, recovery and hosting targets. Seed rates, units, current flow, instant transfers and Monday-start weeks remain explicitly provisional demonstration conventions.
+
+## Premium frontend phase boundary
+
+The 2026-10-24 redesign changes presentation, shadcn primitives and validated tab-draft behavior only. No domain/data diff, API route, SQL/RLS, Supabase operation, deployment or live provider adapter was added. Existing interfaces remain design contracts, not implemented server security. New service presets use existing quote rules; inventory consumption and all production integration gates remain as documented above.

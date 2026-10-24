@@ -96,6 +96,18 @@ Final format gate caught callback wrapping in the new summary-visibility test. A
 
 The expanded production run passed 32/33. The keyboard test sent Space before the second deferred Radix roving-focus move completed, leaving Binding unselected. Installed react-roving-focus source schedules focusFirst with setTimeout. Added explicit toBeFocused assertions after both ArrowRight actions, preserving selection/count/navigation/focus-return assertions and adding no sleep or retry. Five repeated focused production checks passed. Full production suite is rerun before handover. Preserved the failed trace and screenshot locally.
 
+## Final delivery outcome
+
+All seven planned units plus focused PREM-008 long-content, PREM-009 desktop-footer and PREM-010 keyboard-test synchronization repairs are complete. Clean install, typecheck, lint, formatting, 58 unit/component tests, full production build and 33/33 production browser tests passed. Canonical contrast checker passes all 22 pairs. Final production gallery has no browser errors; receipt/ticket PDFs are each one page. Account-primed lab: LCP 1028–1460 ms; CLS 0.000548633; 1–3 long tasks per navigation; detailed scope and limits in validation-log.md.
+
+The final [design system](visual-design-system.md), [actual gallery](visual-evidence/README.md), coverage/HCI records, lifecycle ledgers and Git audit provide reviewable handover. No domain/data diff, backend operation, API/database change, deployment, push or main modification. Exact approved per-ID FR/NFR and supplemental 18-gate source remain unavailable; no invented compliance claim. All supplied reference-file hashes remain unchanged.
+
 ## PREM-011 final navigation craft
 
 Final production review found the active Production jobs label split Production across lines inside a 66px text cap. Widened the cap to 76px within the existing 104px rail; kept overflow wrapping for text zoom. Browser Range measurement confirms Production occupies one 66.47px line; visual label now reads Production / jobs. Production rebuild and all 33 E2E checks passed, including nine widths, text zoom and axe. No logic or typography-size change.
+
+### Navigation final inspector refinement
+
+Taste workspace rerun on the 76px label cap flagged one edge-text FAIL: the active SMS reports label became a single line 15px from the viewport edge. The other 20 combinations were clear. Tightened the cap to 72px, retaining the intact 66.47px Production word while allowing SMS reports to wrap with adequate side clearance. No rule allowance or suppression used; final measurements and production checks rerun before commit.
+
+Final inspector refinement verified: production build/lint, 33/33 browser tests and all 21 Taste workspace combinations pass with no allowances. Source a8c4c27 / integration 2182df5; actual gallery/PDF/lab refreshed.
