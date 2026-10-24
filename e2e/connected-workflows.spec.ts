@@ -21,9 +21,7 @@ test("a managed banner service and saved company stay connected through payments
   await page
     .getByRole("button", { name: "Record payment", exact: true })
     .click();
-  await page
-    .getByLabel("Payment amount (LKR)", { exact: true })
-    .fill("500.00");
+  await page.getByLabel("Payment amount (LKR)", { exact: true }).fill("500.00");
   await page
     .getByRole("button", { name: "Record simulated payment", exact: true })
     .click();

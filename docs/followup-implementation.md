@@ -56,6 +56,12 @@ The full browser banner workflow passed: stock 20→15 at Branch 1, Branch 2 unc
 
 FUP-002 sets the canonical toast layer to 40, above navigation (30) and below modal overlays/sheets (50/51). A first center-point-only browser assertion passed despite the captured overlap; strengthened the regression to inspect the live layer order as well as bounds/hit testing. It failed before correction (80 above 51), then passed at 390/320/768 with the real confirmation action. Failed trace retained locally. All 22 token contrast checks and scoped formatting passed. Modal success feedback now appears after the closing drawer rather than covering the next drawer's action.
 
+## Expanded verification checkpoint
+
+Added a validated local test-port override so production tests can run at 3001 while the owner's development server remains at 3000. Next's installed documentation confirms `.next/dev` is separate from production build output. The expanded nine-width test timed out while entering its ninth width during concurrent local build/dev work; the trace contains no preceding overflow assertion failure. Do not count this as a pass or weaken its 180-second limit; rerun sequentially against production.
+
+The new tagged axe scans passed for customer directory/editor/account, service recipe editor, POS customer selection, material history/plan/confirmation/correction at desktop/mobile. The multilingual/200% test found actual long-name page overflow (3076px on a 1440px viewport); preserve the trace and correct on `fix/cust-006-long-name-reflow` before integration. The full checkpoint independently passed typecheck, lint, 83 tests/18 files and production build. Formatting first found one callback in connected-workflows.spec.ts; formatted it and reran the full format check successfully. No claim that the complete production E2E gate has passed yet.
+
 ## Long customer-name correction
 
 FUP-003 reproduced 3076px document width at a 1440px viewport/200% text in a focused browser test. The shared heading's flex child retained an unbroken name's intrinsic width. Constrain the child and selected-customer block to the available width and permit emergency word wrapping, preserving normal word boundaries. The same test then passed 200% profile text, 320px profile and selected POS customer; scoped formatting passed. Trace before correction is retained locally. The expanded QA topic remains unmerged until its unchanged assertions and complete production suite pass.
@@ -64,10 +70,28 @@ FUP-003 reproduced 3076px document width at a 1440px viewport/200% text in a foc
 
 FUP-004 adds a domain regression for a custom job description followed by a catalogue rename. Before correction, 10 material tests passed and the new test failed: the event incorrectly labeled the service with the custom job description. Prefer the accepted service snapshot name, retaining manual-job descriptions as the fallback. All 11 material tests passed after correction; historical accepted catalogue identity, custom job text and current catalogue name remain distinct. The final gate sequence was interrupted before build to apply this correction; earlier completed typecheck/lint/format passed, and no completion is claimed for the interrupted unit run.
 
+## First complete production run · 2026-10-25
+
+All 44 production Chromium tests ran with one worker, no retries/skips: 43 passed, one printing check failed. Unified lineSummary retained Spiral/None values but removed the prior explicit Binding: / Finishing: labels. Restore those useful print-job labels (without adding paper fields to unit services) on `fix/svc-004-print-specification-labels`; preserve the existing assertion and failed trace. All new customer/service/material/axe/reflow scenarios passed in this run. The final application gates before this run passed typecheck/lint/format, 84 tests/18 files and production build. Four expanded production reflow/accessibility/focus tests also passed in an earlier focused run. The gallery script now captures actual print media before writing PDFs; no application source changed for that script update.
+
 ## Print specification label correction · 2026-10-25
 
 FUP-005 restores explicit Binding: / Finishing: labels for print-model and legacy lines, alongside size/color/sides and the existing quantity/unit column. Unit-model jobs retain their accepted service summary and do not receive irrelevant print options. All three focused browser scenarios passed on the development server: the original unchanged receipt/ticket test and both connected customer/catalogue tests. No price, financial-privacy or print-media assertion was weakened. The complete 43/44 production failure trace remains retained; rebuild and rerun all 44 tests before final integration.
 
+## Production visual checkpoint · 2026-10-25
+
+All 44 production tests passed (one worker, no retry/skip) after restoring printing labels; final typecheck/lint/format, 84 tests and production build passed. Captured 26 actual production images and two PDFs; each PDF contains one Page object and a /Count 1 page tree. Browser errors and external runtime requests are empty. Signed-in Taste measured 18 combinations: no FAIL, two desktop table whitespace advisories and three uppercase operational-label advisories. Source lint remains 0 FAIL/29 contextual WARN.
+
+Manual review found a genuine orientation omission: customer detail inherited the fallback Profile breadcrumb and no active Customers navigation state. Keep the current QA topic unmerged; correct this on `fix/fup-006-workflow-orientation`, preserve a navigation assertion, and use sentence case for the material context label. The financial/stock/image evidence remains a truthful pre-orientation checkpoint and will be refreshed after correction.
+
 ## Customer workflow orientation correction · 2026-10-25
 
 FUP-006 reproduces missing aria-current on a customer profile with the existing customer reflow test strengthened to inspect navigation and breadcrumb. Use one segment-aware route predicate for parent navigation and breadcrumb classification, preserving Orders and correctly identifying Customers for its profiles. Use sentence case for the material context label, matching existing PageHeader treatment. The strengthened test failed before correction and passed afterward, including its unchanged 200%/320px/selected-POS assertions. Trace retained locally; final production evidence will be refreshed.
+
+## Final production gate and refreshed visual review · 2026-10-25
+
+After the orientation correction, typecheck/lint/full formatting, 84 unit/component tests across 18 files and production build passed. Explicit local production start at port 3001 then all 44 Chromium tests passed in 7.2 minutes, one worker, no retry/skip. Application checkpoint 3b73e8c includes the strengthened customer navigation/reflow assertion. No application source changed afterward.
+
+Refreshed all 26 production captures and two PDFs; both PDF page dictionaries/page trees show one page. Manually inspected customer account/context, customer selection, service editor, configured unit-service POS, job material history, confirmation/correction drawers, inventory and print media across selected desktop/tablet/mobile views. Gallery capture now waits for a stable modal and focuses its close control after viewport changes to avoid a transient animation/caret pan in screenshots. Diagnostic bounds confirmed the stable mobile header and close control are within the viewport; this was capture synchronization, not an application change.
+
+Raw gallery ledger: one five-roll event, Branch 1=15 / Branch 2=12, accepted total 350000 cents, paid 150000 cents; page/console errors and external runtime requests empty. Taste signed-in measurements: 18 combinations, 0 FAIL and five contextual WARN (two desktop table-spacing findings, material context typography at three widths). Source lint: 0 FAIL/29 contextual WARN; none suppressed. All 22 contrast pairs passed. No full WCAG, physical-device/AT/printer or production readiness certification. Failed checkpoints remain preserved in history and local traces.
