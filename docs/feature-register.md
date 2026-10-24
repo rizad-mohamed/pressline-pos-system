@@ -17,8 +17,11 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-035 | Atomic mock transfers / FR-033 | P0 | feat/fr-035-stock-transfers | integrated; 29f4eef / merge cec4b70 | transfer invariants |
 | FR-013 | Price configuration / DOM-001 | P0 | feat/fr-013-price-settings | integrated; 4dd4c30 / merge 9d76688 | historical snapshots |
 | FR-042 | Period reports, branch/all scopes / FR-021 | P0 | feat/fr-042-financial-reports | integrated; 236276f / merge a5bc9de | date/cohort tests |
-| FR-047 | SMS config and unsent preview / FR-042 | P0 | feat/fr-047-sms-preview | integrated; awaiting hash | report consistency |
-| FR-008 | Team/branch/app/profile demo settings / FR-001 | P1 | feat/fr-008-demo-settings | planned | persistence/reset |
+| FR-047 | SMS config and unsent preview / FR-042 | P0 | feat/fr-047-sms-preview | integrated; bce92d2 / merge 6aeae5e | report consistency |
+| FR-008 | Team/branch/app/profile demo settings / FR-001 | P1 | feat/fr-008-demo-settings | integrated; awaiting hash | persistence/reset |
 | TEST-001 | E2E, responsive, keyboard, accessibility review / all features | P0 | test/test-001-workflow-validation | planned | Playwright + RTL |
 | DOC-002 | Coverage, handover, audit / TEST-001 | P0 | docs/doc-002-delivery-evidence | planned | history cross-check |
 | DOM-002 | Correct future-dated current-day fixtures / DOM-001 | P0 | fix/dom-002-fixture-timestamps | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09 |
+| DOM-003 | Align adapter contract and local revision recovery / all features | P0 | refactor/dom-003-repository-contract | planned | Typed adapter parity and stale-tab tests |
+| UI-002 | Form recovery, focus and responsive refinement / all features | P0 | fix/ui-002-accessible-recovery | planned | Keyboard, invalid quantity, zoom and layout checks |
+| STYLE-001 | Consistent formatting / all source | P1 | style/ui-003-source-formatting | planned | Prettier, typecheck and lint |

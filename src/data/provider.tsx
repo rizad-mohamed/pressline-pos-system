@@ -16,6 +16,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
   const snapshot = useSyncExternalStore(repository.subscribe,repository.getSnapshot,repository.getServerSnapshot);
   const [scope,setScope] = useState<Scope>("all"); const [toast,setToast]=useState(""); const timer=useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(()=>{repository.hydrate();return()=>{if(timer.current)clearTimeout(timer.current);};},[]);
+  useEffect(()=>{document.documentElement.classList.toggle("reduce-motion",snapshot.data?.preferences.reduceMotion??false);},[snapshot.data?.preferences.reduceMotion]);
   const notify=useCallback((message:string)=>{setToast(message);if(timer.current)clearTimeout(timer.current);timer.current=setTimeout(()=>setToast(""),6500);},[]);
   const execute=useCallback(async(command:Command,message:string)=>{const result=await repository.execute(command);if(result.ok)notify(message);return result;},[notify]);
   const user=snapshot.data?.users.find(u=>u.id===snapshot.data!.sessionId&&u.active)??null;

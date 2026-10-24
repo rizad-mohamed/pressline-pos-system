@@ -1,0 +1,7 @@
+import { expect,test } from "vitest";
+import { seedData } from "@/data/seed";
+import { validateData } from "@/data/validation";
+import { applySettings } from "./settings";
+const now="2026-10-24T10:00:00.000Z";
+test("demo settings update labels and active state without changing roles or branch references",()=>{const d=seedData();const values={shopName:"Demo Print Co",receiptNote:"Fictional receipt",branches:d.branches.map(b=>({...b,name:b.id==="b1"?"North Desk":b.name})),users:d.users.map(u=>({id:u.id,name:u.name,active:u.id!=="cashier-b2"}))};const c={type:"application-settings" as const,requestId:"settings",values};const s=applySettings(d,d.users[2],c,now);expect(s.settings.shopName).toBe("Demo Print Co");expect(s.users.find(u=>u.id==="cashier-b2")!.active).toBe(false);expect(s.users.map(u=>[u.id,u.role,u.branchId])).toEqual(d.users.map(u=>[u.id,u.role,u.branchId]));expect(validateData(s)).toEqual(s);expect(()=>applySettings(d,d.users[0],c,now)).toThrow();expect(()=>applySettings(d,d.users[2],{...c,values:{...values,users:values.users.map(u=>({...u,active:false}))}},now)).toThrow(/Administrator/);});
+test("browser preferences are available to cashier and remain schema-validated",()=>{const d=seedData();const s=applySettings(d,d.users[0],{type:"preferences",requestId:"prefs",values:{compact:true,reduceMotion:true}},now);expect(s.preferences).toEqual({compact:true,reduceMotion:true});expect(validateData(s)).toEqual(s);});

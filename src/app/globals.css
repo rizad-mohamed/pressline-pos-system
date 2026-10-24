@@ -216,6 +216,8 @@ tbody tr:hover { background: var(--background); }
 }
 @media (max-width: 390px) { .form-grid, .form-grid.three { grid-template-columns: minmax(0,1fr); } .progress-states { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+.reduce-motion *, .reduce-motion *::before, .reduce-motion *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+@media screen { .density-compact td { padding-block: var(--space-2); } .density-compact th { padding-block: var(--space-2); } }
 @media print {
   @page { margin: 15mm; }
   body { background: var(--surface); font-size: 11pt; }
