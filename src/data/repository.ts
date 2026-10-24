@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { DomainError, type Command, type DemoData, type Result } from "@/domain/model";
-import { applyOrderCommand } from "@/domain/orders";
+import { executeCommand } from "@/domain/commands";
 import { seedData } from "./seed";
 import { validateData } from "./validation";
 export const STORAGE_KEY = "pressline.demo.v1";
@@ -38,7 +38,7 @@ export function createDemoRepository(storage: () => StoragePort, now = () => new
       if(busy) return {ok:false,error:{code:"duplicate",message:"An action is already being saved."}};
       busy=true;
       try { if(!snapshot.data) throw new DomainError("storage","Wait for the demo to finish loading."); const user=snapshot.data.users.find(u=>u.id===snapshot.data!.sessionId&&u.active); if(!user) throw new DomainError("permission","Choose a demo account first.");
-        return persist(applyOrderCommand(snapshot.data,user,command,now()));
+        return persist(executeCommand(snapshot.data,user,command,now()));
       } catch(error) { return {ok:false,error:friendlyError(error)}; } finally {busy=false;}
     },
     enter(userId: string | null): Result<DemoData> { if(!snapshot.data) return {ok:false,error:{code:"storage",message:"Wait for the demo to load."}}; if(userId && !snapshot.data.users.some(u=>u.id===userId&&u.active)) return {ok:false,error:{code:"permission",message:"This demo account is inactive."}}; return persist({...snapshot.data,sessionId:userId,revision:snapshot.data.revision+1}); },
