@@ -113,7 +113,26 @@ export function applyOrderCommand(
   if (command.type === "create-order") {
     branchIdSchema.parse(command.branchId);
     assertBranch(user, command.branchId);
-    const customer = customerSchema.parse(command.customer);
+    const linked = command.customerId
+      ? data.customers.find((c) => c.id === command.customerId && c.active)
+      : null;
+    if (command.customerId && !linked)
+      throw new DomainError(
+        "validation",
+        "The selected customer is unavailable or archived. Choose an active customer or walk-in.",
+      );
+    if (
+      linked &&
+      (linked.name !== command.customer.name ||
+        linked.phone !== command.customer.phone)
+    )
+      throw new DomainError(
+        "conflict",
+        "Customer details changed. Select the customer again before saving.",
+      );
+    const customer = customerSchema.parse(
+      linked ? { name: linked.name, phone: linked.phone } : command.customer,
+    );
     z.string().max(1000).parse(command.notes);
     z.array(lineInputSchema).min(1).max(30).parse(command.lines);
     const quote = quoteOrder(command.lines, data.pricing);
@@ -141,6 +160,7 @@ export function applyOrderCommand(
           id,
           branchId: command.branchId,
           customer,
+          customerId: linked?.id ?? null,
           ...quote,
           production: "New",
           notes: command.notes,

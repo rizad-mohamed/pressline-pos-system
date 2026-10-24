@@ -41,6 +41,7 @@ const groups = [
       { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
       { href: "/pos", label: "New order", icon: ShoppingBag },
       { href: "/orders", label: "Orders", icon: ClipboardList },
+      { href: "/customers", label: "Customers", icon: UserRound },
       { href: "/jobs", label: "Production jobs", icon: Printer },
     ],
   },
