@@ -91,3 +91,7 @@ PREM-009 regression reproduced the review button bottom at 1211px in a 900px vie
 PREM-009 focused verification passed: typecheck/lint and all seven POS/keyboard/long-content/footer browser checks. Manually inspected populated desktop and mobile renders: totals and Review are visible; the named, keyboard-focusable specifications/advance region scrolls. A 200%/short-window fallback preserves full page-scroll access. Final production build/suite must be repeated because application layout changed.
 
 Final format gate caught callback wrapping in the new summary-visibility test. Applied Prettier without changing assertions; the gated run stopped before unit/build and is rerun. Reviewed skill text matches installed text after normalizing Git CRLF/LF endings; raw-byte differences are line endings, not source changes.
+
+## PREM-010 keyboard synchronization checkpoint
+
+The expanded production run passed 32/33. The keyboard test sent Space before the second deferred Radix roving-focus move completed, leaving Binding unselected. Installed react-roving-focus source schedules focusFirst with setTimeout. Added explicit toBeFocused assertions after both ArrowRight actions, preserving selection/count/navigation/focus-return assertions and adding no sleep or retry. Five repeated focused production checks passed. Full production suite is rerun before handover. Preserved the failed trace and screenshot locally.
