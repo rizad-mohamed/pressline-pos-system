@@ -79,6 +79,12 @@ export function validateData(value: unknown): DemoData {
       )
         fail("Service material reference or unit is inconsistent.");
   }
+  for (const customer of data.customers)
+    if (
+      !data.users.some((u) => u.id === customer.actorId) ||
+      customer.updatedAt < customer.createdAt
+    )
+      fail("Customer author or update metadata is inconsistent.");
   for (const payment of data.payments) {
     const order = data.orders.find((o) => o.id === payment.orderId);
     if (

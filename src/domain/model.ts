@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { CustomerCommand } from "./customers";
 export const branchIdSchema = z.enum(["b1", "b2"]);
 export type BranchId = z.infer<typeof branchIdSchema>;
 export type Scope = BranchId | "all";
@@ -467,6 +468,7 @@ export type SettingsCommand =
   | { type: "application-settings"; requestId: string; values: SettingsValues }
   | { type: "preferences"; requestId: string; values: DemoData["preferences"] };
 export type Command =
+  | CustomerCommand
   | OrderCommand
   | InventoryCommand
   | TransferCommand
