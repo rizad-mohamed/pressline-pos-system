@@ -2179,6 +2179,60 @@ button.text-link {
 .total-row > strong:last-child {
   flex-shrink: 0;
 }
+
+/* Current order owns a measured viewport budget; its totals/actions never join the scroller. */
+.pos-summary {
+  display: flex;
+  flex-direction: column;
+  max-height: var(--summary-height, calc(100dvh - 17rem));
+  overflow: hidden;
+}
+.pos-summary .card-header {
+  position: static;
+  flex-shrink: 0;
+}
+.summary-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scroll-padding-block: var(--space-3);
+}
+.summary-footer {
+  flex-shrink: 0;
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  gap: var(--space-3);
+}
+.summary-footer .grand-total {
+  border-top: 0;
+  margin: 0;
+  padding: 0;
+}
+.summary-footer .total-row {
+  flex-wrap: wrap;
+  padding-block: 0;
+}
+.summary-footer .money {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.summary-footer p {
+  line-height: 1.5;
+}
+.sheet .summary-body {
+  overflow: visible;
+  flex: initial;
+}
+.sheet .summary-footer {
+  padding: 0;
+  border: 0;
+  margin-top: var(--space-4);
+}
+
 @media print {
   @page {
     margin: 15mm;
