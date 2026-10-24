@@ -1,5 +1,6 @@
 import { demoDataSchema, type DemoData, DomainError } from "@/domain/model";
 import { migrateDemoData } from "./migration";
+import { validateMaterials } from "./material-validation";
 export function validateData(value: unknown): DemoData {
   const data = demoDataSchema.parse(migrateDemoData(value));
   const fail = (message: string): never => {
@@ -138,5 +139,6 @@ export function validateData(value: unknown): DemoData {
     )
       fail("Transfer is not balanced across both branches.");
   }
+  validateMaterials(data);
   return data;
 }

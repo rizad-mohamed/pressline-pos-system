@@ -53,7 +53,8 @@ export function OrderReview({
         <div className="stack">
           <Notice tone="warning">
             Demonstration prices and simulated payment only. No charge or stock
-            consumption will occur.
+            consumption will occur on save. Confirm actual material usage
+            separately in job details.
           </Notice>
           <div className="row between">
             <strong>

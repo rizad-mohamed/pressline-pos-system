@@ -156,8 +156,8 @@ export function ItemDrawer({
           </fieldset>
         ))}
         <Notice>
-          Opening balances and adjustments are mock movements. Automatic order
-          consumption is awaiting an approved mapping.
+          Opening balances and adjustments are mock movements. Actual job usage
+          is recorded explicitly from order details, against this stock unit.
         </Notice>
         {command.error && <Notice tone="error">{command.error}</Notice>}
       </form>

@@ -260,6 +260,42 @@ function DocumentBody({
           </>
         ) : (
           <section style={{ marginTop: "var(--space-8)" }}>
+            <h2>Materials for this job</h2>
+            <p className="small muted">
+              {order.materialPlan &&
+              data.usages.some(
+                (u) =>
+                  u.planId === order.materialPlan!.id &&
+                  u.kind === "consumption",
+              )
+                ? "Current plan recorded. See immutable events below."
+                : "Planned / Not deducted. Confirm actual usage in job details."}
+            </p>
+            {order.materialPlan?.lines.map((l) => (
+              <p className="small" key={`${l.lineId}-${l.itemId}`}>
+                {l.quantity} {l.unit} ·{" "}
+                {data.items.find((i) => i.id === l.itemId)?.name} · {l.lineId}
+              </p>
+            ))}
+            {data.usages
+              .filter((u) => u.orderId === order.id)
+              .map((u) => (
+                <div key={u.id} style={{ marginTop: "var(--space-2)" }}>
+                  <strong className="small">
+                    {u.kind === "correction"
+                      ? "Compensating correction"
+                      : "Recorded usage"}{" "}
+                    · {dateTime(u.createdAt)}
+                  </strong>
+                  {u.lines.map((l) => (
+                    <p className="small record-ref" key={l.movementId}>
+                      {u.kind === "correction" ? "+" : "−"}
+                      {l.quantity} {l.unit} · {l.materialName} · {l.before} →{" "}
+                      {l.after} · {l.movementId}
+                    </p>
+                  ))}
+                </div>
+              ))}
             <h2>Production handover</h2>
             <p className="muted" style={{ marginTop: "var(--space-2)" }}>
               Verify paper size, color, sides, binding, finishing and page
@@ -284,7 +320,7 @@ function DocumentBody({
           <p>
             {receipt
               ? data.settings.receiptNote
-              : "No automatic material consumption or printer automation is configured."}
+              : "Material use requires explicit confirmation in job details. No printer automation is configured."}
           </p>
           <p style={{ marginTop: "var(--space-2)" }}>
             Preview generated {dateTime(new Date().toISOString())} ·

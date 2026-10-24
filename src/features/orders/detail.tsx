@@ -33,6 +33,7 @@ import { PaymentDrawer } from "@/features/payments/payment-drawer";
 import { EditOrderDrawer } from "./edit-drawer";
 import { LinkOrderCustomer } from "@/features/customers/link-order";
 import { lineSummary } from "@/domain/pricing";
+import { JobMaterials } from "@/features/materials/job-materials";
 export function OrderDetail({ orderId }: { orderId: string }) {
   const { data, user } = useDemo(),
     command = useCommand();
@@ -160,6 +161,7 @@ export function OrderDetail({ orderId }: { orderId: string }) {
           </div>
         ))}
       </section>
+      <JobMaterials order={order} />
       <section className="stack" style={{ gap: "var(--space-3)" }}>
         <h3>Production</h3>
         <div className="progress-states">

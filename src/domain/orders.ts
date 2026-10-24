@@ -13,6 +13,7 @@ import {
 } from "./model";
 import { quoteOrder } from "./pricing";
 import { sumCents } from "./money";
+import { initialMaterialPlan } from "./materials";
 export function paidFor(
   data: DemoData,
   orderId: string,
@@ -162,6 +163,7 @@ export function applyOrderCommand(
           customer,
           customerId: linked?.id ?? null,
           ...quote,
+          materialPlan: initialMaterialPlan(id, quote.lines),
           production: "New",
           notes: command.notes,
           createdAt: now,

@@ -7,6 +7,7 @@ import { applySmsConfig } from "./sms";
 import { applySettings } from "./settings";
 import { applyCustomerCommand } from "./customers";
 import { applyServiceCommand } from "./services";
+import { applyMaterialCommand } from "./materials";
 export function executeCommand(
   data: DemoData,
   user: DemoUser,
@@ -14,6 +15,10 @@ export function executeCommand(
   now: string,
 ): DemoData {
   switch (command.type) {
+    case "material-plan":
+    case "material-confirm":
+    case "material-correct":
+      return applyMaterialCommand(data, user, command, now);
     case "service-save":
     case "category-save":
     case "category-active":
