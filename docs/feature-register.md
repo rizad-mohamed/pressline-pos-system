@@ -21,3 +21,4 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-008 | Team/branch/app/profile demo settings / FR-001 | P1 | feat/fr-008-demo-settings | planned | persistence/reset |
 | TEST-001 | E2E, responsive, keyboard, accessibility review / all features | P0 | test/test-001-workflow-validation | planned | Playwright + RTL |
 | DOC-002 | Coverage, handover, audit / TEST-001 | P0 | docs/doc-002-delivery-evidence | planned | history cross-check |
+| DOM-002 | Correct future-dated current-day fixtures / DOM-001 | P0 | fix/dom-002-fixture-timestamps | integrated; awaiting hash | Early-day payment regression; HCI 03.09 |
