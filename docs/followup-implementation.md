@@ -55,3 +55,7 @@ The full browser banner workflow passed: stock 20→15 at Branch 1, Branch 2 unc
 ## Drawer notification correction
 
 FUP-002 sets the canonical toast layer to 40, above navigation (30) and below modal overlays/sheets (50/51). A first center-point-only browser assertion passed despite the captured overlap; strengthened the regression to inspect the live layer order as well as bounds/hit testing. It failed before correction (80 above 51), then passed at 390/320/768 with the real confirmation action. Failed trace retained locally. All 22 token contrast checks and scoped formatting passed. Modal success feedback now appears after the closing drawer rather than covering the next drawer's action.
+
+## Long customer-name correction
+
+FUP-003 reproduced 3076px document width at a 1440px viewport/200% text in a focused browser test. The shared heading's flex child retained an unbroken name's intrinsic width. Constrain the child and selected-customer block to the available width and permit emergency word wrapping, preserving normal word boundaries. The same test then passed 200% profile text, 320px profile and selected POS customer; scoped formatting passed. Trace before correction is retained locally. The expanded QA topic remains unmerged until its unchanged assertions and complete production suite pass.
