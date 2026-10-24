@@ -162,6 +162,7 @@ try {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(`/print/${kind}/${orderId}`);
     await expect(page.locator(".print-paper")).toBeVisible();
+    await page.emulateMedia({ media: "print" });
     await shot(`${kind}-1440`);
     await page.pdf({
       path: `${dir}/${kind}.pdf`,
@@ -169,6 +170,7 @@ try {
       printBackground: true,
       preferCSSPageSize: true,
     });
+    await page.emulateMedia({ media: "screen" });
   }
   for (const route of [
     "customers",
