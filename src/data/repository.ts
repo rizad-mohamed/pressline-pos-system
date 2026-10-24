@@ -14,12 +14,12 @@ export function friendlyError(error: unknown): { code: "validation" | "permissio
   return {code:"storage",message:error instanceof Error?error.message:"The local demo operation failed. Retry or reset the fixtures."};
 }
 export function createDemoRepository(storage: () => StoragePort, now = () => new Date().toISOString()): DemoRepository {
-  let snapshot = serverSnapshot; let hydrated = false; let busy = false;
+  let snapshot = serverSnapshot; let hydrated = false; let busy = false; let baselineRaw: string | null = null;
   const listeners = new Set<() => void>();
   const emit = () => listeners.forEach(fn=>fn());
   function hydrate() {
     if(hydrated) return; hydrated = true;
-    try { const raw=storage().getItem(STORAGE_KEY); snapshot={data:raw?validateData(JSON.parse(raw)):seedData(),issue:null,recoveryRequired:false}; }
+    try { const raw=storage().getItem(STORAGE_KEY); snapshot={data:raw?validateData(JSON.parse(raw)):seedData(),issue:null,recoveryRequired:false}; baselineRaw=raw; }
     catch { snapshot={data:seedData(),issue:"Saved demo data could not be validated. Fixtures are shown read-only until you reset the demo. Existing saved data has not been overwritten.",recoveryRequired:true}; }
     emit();
   }
@@ -27,8 +27,8 @@ export function createDemoRepository(storage: () => StoragePort, now = () => new
     try {
       if(snapshot.recoveryRequired && !allowRecovery) throw new DomainError("storage","Reset invalid saved demo data before recording changes.");
       const checked=validateData(next); const raw=storage().getItem(STORAGE_KEY);
-      if(!allowRecovery && raw) { const current=validateData(JSON.parse(raw)); if(snapshot.data && current.revision!==snapshot.data.revision) throw new DomainError("conflict","Another tab changed this demo. Reload to review those changes before saving."); }
-      storage().setItem(STORAGE_KEY,JSON.stringify(checked));
+      if(!allowRecovery && raw!==baselineRaw) throw new DomainError("conflict","Another tab changed or removed this demo. Reload to review the current data before saving.");
+      const serialized=JSON.stringify(checked);storage().setItem(STORAGE_KEY,serialized);baselineRaw=serialized;
       snapshot={data:checked,issue:null,recoveryRequired:false}; emit(); return {ok:true,data:checked};
     } catch(error) { const e=friendlyError(error); return {ok:false,error:{...e,message:e.code==="storage"?"Local save failed. Your previous saved data and entered form are preserved. Check browser storage and retry.":e.message}}; }
   }
@@ -44,6 +44,6 @@ export function createDemoRepository(storage: () => StoragePort, now = () => new
       } catch(error) { return {ok:false,error:friendlyError(error)}; } finally {busy=false;}
     },
     enter(userId: string | null): Result<DemoData> { if(!snapshot.data) return {ok:false,error:{code:"storage",message:"Wait for the demo to load."}}; if(userId && !snapshot.data.users.some(u=>u.id===userId&&u.active)) return {ok:false,error:{code:"permission",message:"This demo account is inactive."}}; return persist({...snapshot.data,sessionId:userId,revision:snapshot.data.revision+1}); },
-    reset(): Result<DemoData> { const fresh=seedData(); fresh.sessionId=snapshot.data?.sessionId??null; return persist(fresh,true); },
+    reset(): Result<DemoData> { const fresh=seedData(); fresh.sessionId=snapshot.data?.sessionId??null;fresh.revision=(snapshot.data?.revision??0)+1; return persist(fresh,true); },
   };
 }
