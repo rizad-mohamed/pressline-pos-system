@@ -1,8 +1,8 @@
 "use client";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, SearchX } from "lucide-react";
-import { blankLine, quoteLine } from "@/domain/pricing";
-import type { LineInput, Pricing } from "@/domain/model";
+import { quoteLine } from "@/domain/pricing";
+import type { LineInput } from "@/domain/model";
 import { Money } from "@/components/shared/domain-display";
 import { SearchField } from "@/components/shared/presentation";
 import { Button } from "@/components/ui/button";
@@ -14,66 +14,19 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { useDemo } from "@/data/provider";
+import { availableServices, serviceInput } from "@/domain/services";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-// UI presets only: all prices/options continue through the existing pure quote engine.
-const services = [
-  {
-    id: "document",
-    name: "Document printing",
-    note: "Crisp, everyday essentials",
-    category: "printing",
-    label: "A4",
-    options: {},
-  },
-  {
-    id: "color",
-    name: "Color printing",
-    note: "Give your work more presence",
-    category: "printing",
-    label: "COLOR",
-    options: { color: "Color" },
-  },
-  {
-    id: "large",
-    name: "A3 documents",
-    note: "More room for the details",
-    category: "printing",
-    label: "A3",
-    options: { size: "A3" },
-  },
-  {
-    id: "duplex",
-    name: "Double-sided prints",
-    note: "Two sides. One neat finish.",
-    category: "printing",
-    label: "1 / 2",
-    options: { sides: "Duplex" },
-  },
-  {
-    id: "binding",
-    name: "Bound documents",
-    note: "Bring the pages together",
-    category: "finishing",
-    label: "BOUND",
-    options: { binding: "Spiral" },
-  },
-  {
-    id: "lamination",
-    name: "Laminated prints",
-    note: "A considered finishing touch",
-    category: "finishing",
-    label: "FINISH",
-    options: { finishing: "Lamination" },
-  },
-] satisfies {
-  id: string;
-  name: string;
-  note: string;
-  category: string;
-  label: string;
-  options: Partial<LineInput>;
-}[];
+const specimenLabels = {
+  document: "A4",
+  color: "COLOR",
+  large: "A3",
+  duplex: "1 / 2",
+  binding: "BOUND",
+  lamination: "FINISH",
+  custom: "PRINT",
+};
 
 function PaperSpecimen({ kind, label }: { kind: string; label: string }) {
   return (
@@ -151,26 +104,30 @@ function PaperSpecimen({ kind, label }: { kind: string; label: string }) {
 }
 
 export function ServiceCatalogue({
-  pricing,
   disabled,
   onConfigure,
 }: {
-  pricing: Pricing;
   disabled: boolean;
   onConfigure: (line: LineInput) => void;
 }) {
+  const { data } = useDemo();
+  const services = useMemo(() => availableServices(data), [data]);
+  const categories = useMemo(
+    () => data.categories.filter((c) => c.active),
+    [data],
+  );
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const filtered = useMemo(
     () =>
       services.filter(
         (s) =>
-          (category === "all" || s.category === category) &&
-          `${s.name} ${s.note} ${s.label}`
+          (category === "all" || s.categoryId === category) &&
+          `${s.name} ${s.description} ${s.code}`
             .toLowerCase()
             .includes(query.toLowerCase().trim()),
       ),
-    [query, category],
+    [query, category, services],
   );
   return (
     <section className="service-catalogue" aria-labelledby="services-title">
@@ -206,35 +163,40 @@ export function ServiceCatalogue({
           aria-label="Service category"
         >
           <ToggleGroupItem value="all">All services</ToggleGroupItem>
-          <ToggleGroupItem value="printing">Printing</ToggleGroupItem>
-          <ToggleGroupItem value="finishing">
-            Binding & finishing
-          </ToggleGroupItem>
+          {categories.map((c) => (
+            <ToggleGroupItem key={c.id} value={c.id}>
+              {c.name}
+            </ToggleGroupItem>
+          ))}
         </ToggleGroup>
       </div>
       <div className="service-grid">
         {filtered.map((service) => {
-          const line = {
-            ...blankLine(),
-            ...service.options,
-            description: service.name,
-          };
-          const price = quoteLine(line, pricing);
+          const line = serviceInput(service);
+          const price = quoteLine(line, data.pricing, "preview", data);
           return (
             <Card key={service.id} variant="service">
               <CardContent>
-                <PaperSpecimen kind={service.id} label={service.label} />
+                <PaperSpecimen
+                  kind={service.illustration}
+                  label={specimenLabels[service.illustration]}
+                />
               </CardContent>
               <CardHeader>
                 <CardTitle>{service.name}</CardTitle>
-                <CardDescription>{service.note}</CardDescription>
+                <CardDescription>
+                  {service.description || service.code}
+                </CardDescription>
               </CardHeader>
               <CardFooter>
                 <div>
                   <strong>
                     <Money value={price.totalCents} />
                   </strong>
-                  <span className="small muted">1 sheet · sample</span>
+                  <span className="small muted">
+                    1 {service.model === "print" ? "sheet" : service.unitLabel}{" "}
+                    · sample
+                  </span>
                 </div>
                 <Button
                   variant="outline"

@@ -31,11 +31,14 @@ import {
 } from "@/components/shared/domain-display";
 import { PaymentDrawer } from "@/features/payments/payment-drawer";
 import { EditOrderDrawer } from "./edit-drawer";
+import { LinkOrderCustomer } from "@/features/customers/link-order";
+import { lineSummary } from "@/domain/pricing";
 export function OrderDetail({ orderId }: { orderId: string }) {
   const { data, user } = useDemo(),
     command = useCommand();
   const [paymentOpen, setPaymentOpen] = useState(false),
     [editOpen, setEditOpen] = useState(false);
+  const [linkOpen, setLinkOpen] = useState(false);
   const order = data.orders.find(
     (o) => o.id === orderId && canReadBranch(user, o.branchId),
   );
@@ -76,6 +79,23 @@ export function OrderDetail({ orderId }: { orderId: string }) {
           </span>
           <PaymentBadge value={state} />
         </div>
+      </div>
+      <div className="row">
+        {order.customerId ? (
+          <Link className="table-title" href={`/customers/${order.customerId}`}>
+            Saved customer account ·{" "}
+            {data.customers.find((c) => c.id === order.customerId)?.name}
+          </Link>
+        ) : (
+          <>
+            <span className="small muted">
+              Unlinked customer · original text retained
+            </span>
+            <Button variant="ghost" size="sm" onClick={() => setLinkOpen(true)}>
+              Link saved customer
+            </Button>
+          </>
+        )}
       </div>
       <div className="summary-grid">
         <div className="card card-body">
@@ -126,17 +146,13 @@ export function OrderDetail({ orderId }: { orderId: string }) {
               </strong>
               <Money value={line.totalCents} />
             </div>
-            <p className="small muted">
-              {line.size} · {line.color} · {line.sides} · {line.quantity}{" "}
-              printed sheets
-            </p>
-            <p className="small muted">
-              Binding: {line.binding} · Finishing: {line.finishing}
-            </p>
+            <p className="small muted">{lineSummary(line)}</p>
             <p className="small muted">
               {line.quantity} × <Money value={line.unitCents} /> +{" "}
               <Money value={line.setupCents} /> setup · Price version{" "}
               {line.ruleVersion}
+              {line.serviceSnapshot &&
+                ` · Service ${line.serviceSnapshot.code} v${line.serviceSnapshot.version}`}
             </p>
             {line.notes && (
               <p style={{ marginTop: "var(--space-2)" }}>{line.notes}</p>
@@ -252,6 +268,12 @@ export function OrderDetail({ orderId }: { orderId: string }) {
       )}
       {editOpen && (
         <EditOrderDrawer order={order} onClose={() => setEditOpen(false)} />
+      )}
+      {linkOpen && (
+        <LinkOrderCustomer
+          orderId={order.id}
+          onClose={() => setLinkOpen(false)}
+        />
       )}
     </div>
   );

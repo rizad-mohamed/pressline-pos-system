@@ -17,10 +17,15 @@ import { Button } from "@/components/ui/button";
 import { Badge, Field, PageHeader } from "@/components/shared/presentation";
 import { OrderReview } from "./order-review";
 import { ResponsiveSummary } from "./responsive-summary";
+import { CustomerSelector } from "@/features/customers/selector";
 import { ServiceCatalogue } from "./service-catalogue";
 import { OrderConfirmation } from "./order-confirmation";
 const draftKey = "pressline.draft.v1";
-export function Composer() {
+export function Composer({
+  initialCustomerId,
+}: {
+  initialCustomerId?: string;
+}) {
   const { data, user, scope } = useDemo(),
     command = useCommand();
   const [review, setReview] = useState<OrderFormValues | null>(null),
@@ -28,7 +33,7 @@ export function Composer() {
     [removed, setRemoved] = useState<LineInput | null>(null),
     [draftIssue, setDraftIssue] = useState("");
   const [submission, setSubmission] = useState("");
-  const schema = useMemo(() => orderFormSchema(data.pricing), [data.pricing]);
+  const schema = useMemo(() => orderFormSchema(data.pricing, data), [data]);
   function defaults(): OrderFormValues {
     const fallback = {
       branchId: (user.role === "cashier"
@@ -37,6 +42,7 @@ export function Composer() {
           ? scope
           : undefined) as BranchId,
       customer: { name: "", phone: "" },
+      customerId: null,
       lines: [blankLine()],
       notes: "",
       advance: "0.00",
@@ -51,10 +57,22 @@ export function Composer() {
           parsed.success &&
           (user.role === "admin" || parsed.data.branchId === user.branchId)
         )
-          return parsed.data;
+          return withSelectedCustomer(parsed.data);
       }
     } catch {}
-    return fallback;
+    return withSelectedCustomer(fallback);
+  }
+  function withSelectedCustomer(values: OrderFormValues): OrderFormValues {
+    const customer = initialCustomerId
+      ? data.customers.find((c) => c.id === initialCustomerId && c.active)
+      : null;
+    return customer
+      ? {
+          ...values,
+          customerId: customer.id,
+          customer: { name: customer.name, phone: customer.phone },
+        }
+      : values;
   }
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(schema),
@@ -69,11 +87,15 @@ export function Composer() {
   const values = useWatch({ control: form.control });
   const quote = useMemo(() => {
     try {
-      return quoteOrder((values.lines ?? []) as LineInput[], data.pricing);
+      return quoteOrder(
+        (values.lines ?? []) as LineInput[],
+        data.pricing,
+        data,
+      );
     } catch {
       return null;
     }
-  }, [values.lines, data.pricing]);
+  }, [values.lines, data]);
   let advance = 0;
   try {
     advance = money(values.advance ?? "0");
@@ -116,6 +138,7 @@ export function Composer() {
         requestId: submission,
         branchId: review.branchId,
         customer: review.customer,
+        customerId: review.customerId ?? null,
         lines: review.lines,
         notes: review.notes,
         advanceCents: money(review.advance),
@@ -128,6 +151,7 @@ export function Composer() {
       form.reset({
         branchId: review.branchId,
         customer: { name: "", phone: "" },
+        customerId: null,
         lines: [blankLine()],
         notes: "",
         advance: "0.00",
@@ -188,7 +212,6 @@ export function Composer() {
         <div className="pos-grid">
           <div className="stack pos-main">
             <ServiceCatalogue
-              pricing={data.pricing}
               disabled={fields.length >= 30}
               onConfigure={configure}
             />
@@ -228,6 +251,22 @@ export function Composer() {
                     ))}
                   </select>
                 </Field>
+                <CustomerSelector
+                  customerId={values.customerId}
+                  onSelect={(customer) => {
+                    form.setValue("customerId", customer?.id ?? null, {
+                      shouldDirty: true,
+                    });
+                    form.setValue(
+                      "customer",
+                      {
+                        name: customer?.name ?? "",
+                        phone: customer?.phone ?? "",
+                      },
+                      { shouldDirty: true, shouldValidate: true },
+                    );
+                  }}
+                />
                 <div className="form-grid">
                   <Field
                     label="Customer name (optional)"
@@ -238,6 +277,7 @@ export function Composer() {
                       className="input"
                       id="customer-name"
                       {...form.register("customer.name")}
+                      readOnly={!!values.customerId}
                       placeholder="Leave blank for walk-in"
                       autoComplete="off"
                       maxLength={100}
@@ -253,6 +293,7 @@ export function Composer() {
                       id="customer-phone"
                       type="tel"
                       {...form.register("customer.phone")}
+                      readOnly={!!values.customerId}
                       placeholder="Fictional number only"
                       autoComplete="off"
                       aria-invalid={!!errors.customer?.phone}
@@ -275,7 +316,8 @@ export function Composer() {
                 <div>
                   <h2>Print items</h2>
                   <p className="small muted">
-                    Quantity means printed sheets, not documents.
+                    Printing quantities are sheets; unit-priced services show
+                    their own sales unit.
                   </p>
                 </div>
                 <Badge>
@@ -359,6 +401,7 @@ export function Composer() {
         review={review}
         branches={data.branches}
         pricing={data.pricing}
+        catalogue={data}
         pending={command.pending}
         error={command.error}
         onClose={() => setReview(null)}

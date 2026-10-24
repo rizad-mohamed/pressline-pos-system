@@ -1,7 +1,7 @@
 "use client";
 import type { Branch, Pricing } from "@/domain/model";
 import type { OrderFormValues } from "./schema";
-import { quoteOrder } from "@/domain/pricing";
+import { quoteOrder, lineSummary, type Catalogue } from "@/domain/pricing";
 import { money } from "@/domain/money";
 import { Sheet } from "@/components/ui/sheet";
 import { Notice } from "@/components/shared/presentation";
@@ -11,6 +11,7 @@ export function OrderReview({
   review,
   branches,
   pricing,
+  catalogue,
   pending,
   error,
   onClose,
@@ -19,6 +20,7 @@ export function OrderReview({
   review: OrderFormValues | null;
   branches: Branch[];
   pricing: Pricing;
+  catalogue?: Catalogue;
   pending: boolean;
   error: string;
   onClose: () => void;
@@ -61,16 +63,13 @@ export function OrderReview({
               {review.customer.name || "Walk-in customer"}
             </span>
           </div>
-          {quoteOrder(review.lines, pricing).lines.map((line) => (
+          {quoteOrder(review.lines, pricing, catalogue).lines.map((line) => (
             <div className="line-card" key={line.id}>
               <div className="total-row">
                 <strong>{line.description}</strong>
                 <Money value={line.totalCents} />
               </div>
-              <p className="small muted">
-                {line.size} · {line.color} · {line.sides} · {line.quantity}{" "}
-                sheets · {line.binding} binding · {line.finishing}
-              </p>
+              <p className="small muted">{lineSummary(line)}</p>
               {line.notes && <p className="small">{line.notes}</p>}
             </div>
           ))}
@@ -78,7 +77,11 @@ export function OrderReview({
             <div className="total-row">
               <span>Order total</span>
               <strong>
-                <Money value={quoteOrder(review.lines, pricing).totalCents} />
+                <Money
+                  value={
+                    quoteOrder(review.lines, pricing, catalogue).totalCents
+                  }
+                />
               </strong>
             </div>
             <div className="total-row">
@@ -89,7 +92,7 @@ export function OrderReview({
               <span>Balance due</span>
               <Money
                 value={
-                  quoteOrder(review.lines, pricing).totalCents -
+                  quoteOrder(review.lines, pricing, catalogue).totalCents -
                   money(review.advance)
                 }
               />

@@ -77,8 +77,15 @@ export function OrderSummary({
                 )}
               </div>
               <p className="small muted">
-                {line.size} · {line.color === "B&W" ? "Black & white" : "Color"}{" "}
-                · {line.sides === "Duplex" ? "Double-sided" : "Single-sided"}
+                {quote?.lines[index]?.serviceSnapshot?.model === "unit" ? (
+                  `${line.quantity} ${quote.lines[index].serviceSnapshot!.unitLabel}`
+                ) : (
+                  <>
+                    {line.size} ·{" "}
+                    {line.color === "B&W" ? "Black & white" : "Color"} ·{" "}
+                    {line.sides === "Duplex" ? "Double-sided" : "Single-sided"}
+                  </>
+                )}
               </p>
               <p className="small muted">
                 {quote?.lines[index] && (
@@ -86,7 +93,9 @@ export function OrderSummary({
                     {line.quantity} ×{" "}
                     <Money value={quote.lines[index].unitCents} /> +{" "}
                     <Money value={quote.lines[index].setupCents} />{" "}
-                    binding/finishing
+                    {quote.lines[index].serviceSnapshot?.model === "unit"
+                      ? "setup"
+                      : "binding/finishing"}
                   </>
                 )}
               </p>
@@ -165,7 +174,8 @@ export function OrderSummary({
           )}
           {!quote && count > 0 && (
             <p className="muted">
-              Complete valid print quantities to calculate your total.
+              Check quantities and service availability. Refresh changed service
+              configurations in the item editor or remove unavailable items.
             </p>
           )}
         </div>

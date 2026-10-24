@@ -10,6 +10,11 @@ import {
 } from "./model";
 import { sumCents } from "./money";
 export type Catalogue = Pick<DemoData, "services" | "categories">;
+export function lineSummary(line: OrderLine): string {
+  if (line.serviceSnapshot?.model === "unit")
+    return `${line.quantity} ${line.serviceSnapshot.unitLabel} · ${line.serviceSnapshot.name}`;
+  return `${line.size} · ${line.color} · ${line.sides} · ${line.quantity} printed sheets · ${line.binding} binding · ${line.finishing} finishing`;
+}
 export function quoteLine(
   input: LineInput,
   pricing: Pricing,
