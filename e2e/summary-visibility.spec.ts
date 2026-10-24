@@ -29,12 +29,10 @@ test("desktop current order keeps totals and review visible while specifications
     .toBeLessThanOrEqual(880);
   await expect(summary.getByTestId("order-total")).toBeVisible();
   await expect(summary.getByTestId("preview-balance")).toBeVisible();
-  const scroll = await summary
-    .locator(".summary-body")
-    .evaluate((el) => ({
-      content: el.scrollHeight,
-      viewport: el.clientHeight,
-    }));
+  const scroll = await summary.locator(".summary-body").evaluate((el) => ({
+    content: el.scrollHeight,
+    viewport: el.clientHeight,
+  }));
   expect(scroll.content).toBeGreaterThan(scroll.viewport);
   await page.evaluate(() => window.scrollTo(0, 600));
   await expect
