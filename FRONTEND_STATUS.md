@@ -13,7 +13,7 @@ All workflows use the same typed/validated local store. There is no automatic st
 ## Actual verification
 
 - `npm ci`: passed with committed lockfile (Node 24.14.1, npm 11.11.0).
-- `npm run typecheck`, `npm run lint`, `npm run format:check`: passed; final delivery-doc formatting/audit recheck follows their commit.
+- `npm run typecheck`, `npm run lint`, `npm run format:check`: passed, including the delivery documents.
 - `npm run test`: 58 passed across 14 files.
 - `npm run build`: full Next.js 16.4.3 / React 19.3.1 production build passed.
 - `npm run test:e2e`: all 24 Chromium tests passed against the production server. Includes one shared order through advances/receipt/jobs/branch isolation/reports/SMS/settlement/reset, repeated activation, corrupted data, failed writes, keyboard/dirty drawers, delayed script skeleton, all screens and print PDFs.
@@ -46,3 +46,5 @@ The supplied master Markdown and all 25 pages/238 practices of the available HCI
 Browser connector returned no available browser; standalone Playwright Chromium supplied the evidence. No real participant, screen-reader, physical-device, printer, cloud, settlement, scheduler or SMS test was performed. Local Git metadata/dependency execution needed the sandbox's native permission override, with no global Git settings changed. ESLint 9.39.5 is peer-compatible but upstream EOL; update lint tooling when the bundled Next plugins support ESLint 10.
 
 The exact delivered develop tip, retained branch count and clean working-tree state are reported at handoff and reproducible from Git. Evidence-document commits necessarily follow their own hash snapshots; no self-referential hash is fabricated. Main remains the baseline until explicit owner approval for integration.
+
+Delivery documentation gate: all required files, 54 FR references, 238 actual HCI catalogue IDs and local Markdown links verified. Primary handover documents integrated in b0e97df (source b5a55b0). All 24 topic references are retained; main remains e0b62dc. A final audit-only commit follows this snapshot; the handoff reports its exact develop tip and clean-tree result.

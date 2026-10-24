@@ -4,11 +4,11 @@ A complete local frontend demonstration for two fictional Sri Lankan printing br
 
 ## Run locally
 
-Tested on Windows with **Node 24.14.1** and **npm 11.11.0**. JavaScript and browser storage are required. `.node-version` records the tested runtime. Use npm and the committed lockfile; no environment variables, account passwords, Supabase keys, or other credentials are needed.
+Tested on Windows with **Node 24.14.1** and **npm 11.11.0**. JavaScript and browser storage are required. `.node-version` records the tested runtime. The Windows PowerShell examples use npm.cmd/npx.cmd; other platforms use npm/npx. Use npm and the committed lockfile; no environment variables, account passwords, Supabase keys, or other credentials are needed.
 
 ```powershell
-npm ci
-npm run dev
+npm.cmd ci
+npm.cmd run dev
 ```
 
 Open [http://127.0.0.1:3000](http://127.0.0.1:3000). Choose **Branch 1 cashier**, **Branch 2 cashier**, or **Demo Administrator**. IDs are `cashier-b1`, `cashier-b2`, and `admin`; there is no independent Owner role. Branch 1/Colombo and Branch 2/Kandy are fictional, editable demonstration labels.
@@ -16,8 +16,8 @@ Open [http://127.0.0.1:3000](http://127.0.0.1:3000). Choose **Branch 1 cashier**
 For the production build of this frontend:
 
 ```powershell
-npm run build
-npm run start
+npm.cmd run build
+npm.cmd run start
 ```
 
 ## Review the workflows
@@ -41,12 +41,12 @@ npm run start
 ## Checks
 
 ```powershell
-npm run typecheck
-npm run lint
-npm run format:check
-npm run test
-npx playwright install chromium
-npm run test:e2e
+npm.cmd run typecheck
+npm.cmd run lint
+npm.cmd run format:check
+npm.cmd run test
+npx.cmd playwright install chromium
+npm.cmd run test:e2e
 node scripts/bundle-report.mjs
 node scripts/verify-git.mjs
 ```
