@@ -13,8 +13,8 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-015 | Multi-item POS and review / FR-001 | P0 | feat/fr-015-order-composer | integrated; 5d194a9 / merge 170515b | pricing/order tests |
 | FR-021 | History, details, payments, production states / FR-015 | P0 | feat/fr-021-order-operations | integrated; b8fc128 / merge f2c643f | payments/status isolation |
 | FR-024 | Receipt and separate job ticket / FR-021 | P0 | feat/fr-024-print-documents | integrated; c179434 / merge 26cfa80 | print/E2E checks |
-| FR-033 | Inventory CRUD, adjustments, low stock / FR-001 | P0 | feat/fr-033-branch-inventory | integrated; awaiting hash | validation/movements |
-| FR-035 | Atomic mock transfers / FR-033 | P0 | feat/fr-035-stock-transfers | planned | transfer invariants |
+| FR-033 | Inventory CRUD, adjustments, low stock / FR-001 | P0 | feat/fr-033-branch-inventory | integrated; a48906d / merge 61d10a4 | validation/movements |
+| FR-035 | Atomic mock transfers / FR-033 | P0 | feat/fr-035-stock-transfers | integrated; awaiting hash | transfer invariants |
 | FR-013 | Price configuration / DOM-001 | P0 | feat/fr-013-price-settings | planned | historical snapshots |
 | FR-042 | Period reports, branch/all scopes / FR-021 | P0 | feat/fr-042-financial-reports | planned | date/cohort tests |
 | FR-047 | SMS config and unsent preview / FR-042 | P0 | feat/fr-047-sms-preview | planned | report consistency |
