@@ -10,6 +10,7 @@ import {
   paymentState,
 } from "@/domain/orders";
 import { dateTime } from "@/domain/dates";
+import { lineSummary } from "@/domain/pricing";
 import { BrandMark } from "@/components/shared/brand";
 import { Button } from "@/components/ui/button";
 import { Badge, EmptyState, Notice } from "@/components/shared/presentation";
@@ -146,7 +147,7 @@ function DocumentBody({
             <thead>
               <tr>
                 <th>Print item & specifications</th>
-                <th className="right">Sheets</th>
+                <th className="right">Quantity / unit</th>
                 {receipt && (
                   <>
                     <th className="right">Unit rate</th>
@@ -163,12 +164,7 @@ function DocumentBody({
                     <strong>
                       {index + 1}. {line.description}
                     </strong>
-                    <p className="small muted">
-                      {line.size} · {line.color} · {line.sides}
-                    </p>
-                    <p className="small muted">
-                      Binding: {line.binding} · Finishing: {line.finishing}
-                    </p>
+                    <p className="small muted">{lineSummary(line)}</p>
                     {line.notes && (
                       <p
                         className="small"
@@ -182,11 +178,20 @@ function DocumentBody({
                     )}
                     {receipt && (
                       <p className="small muted">
-                        Saved price version {line.ruleVersion}
+                        {line.serviceSnapshot?.model === "unit"
+                          ? `Saved service ${line.serviceSnapshot.code} · version ${line.serviceSnapshot.version}`
+                          : `Saved price version ${line.ruleVersion}`}
                       </p>
                     )}
                   </td>
-                  <td className="right money">{line.quantity}</td>
+                  <td className="right money">
+                    {line.quantity}
+                    <p className="small muted">
+                      {line.serviceSnapshot?.model === "unit"
+                        ? line.serviceSnapshot.unitLabel
+                        : "sheets"}
+                    </p>
+                  </td>
                   {receipt && (
                     <>
                       <td className="right">

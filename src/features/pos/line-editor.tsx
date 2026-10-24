@@ -1,9 +1,11 @@
 "use client";
-import type { UseFormReturn } from "react-hook-form";
+import { useWatch, type UseFormReturn } from "react-hook-form";
+import { useDemo } from "@/data/provider";
+import { availableServices, serviceInput } from "@/domain/services";
 import { Trash2 } from "lucide-react";
 import type { OrderFormValues } from "./schema";
 import { Button } from "@/components/ui/button";
-import { Field } from "@/components/shared/presentation";
+import { Field, Notice } from "@/components/shared/presentation";
 import { Money } from "@/components/shared/domain-display";
 export function LineEditor({
   index,
@@ -23,6 +25,14 @@ export function LineEditor({
     formState: { errors },
   } = form;
   const e = errors.lines?.[index];
+  const { data } = useDemo();
+  const line = useWatch({ control: form.control, name: `lines.${index}` });
+  const service = data.services.find((s) => s.id === line.serviceId);
+  const unitPriced = service?.model === "unit";
+  const current =
+    service && availableServices(data).some((s) => s.id === service.id);
+  const changed =
+    service && (line.serviceVersion !== service.version || !current);
   const prefix = `item-${index}`;
   const selects = [
     { key: "size", label: "Paper size", options: ["A4", "A3"] },
@@ -58,6 +68,39 @@ export function LineEditor({
         </div>
       </div>
       <div className="stack">
+        {changed && (
+          <Notice tone="warning">
+            This service changed or became unavailable.{" "}
+            {current ? (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  form.setValue(
+                    `lines.${index}`,
+                    {
+                      ...serviceInput(service),
+                      quantity: line.quantity,
+                      notes: line.notes,
+                    },
+                    { shouldDirty: true, shouldValidate: true },
+                  )
+                }
+              >
+                Use latest service configuration
+              </Button>
+            ) : (
+              "Remove this item and select an active service."
+            )}
+          </Notice>
+        )}
+        {unitPriced && (
+          <p className="small muted">
+            Unit-priced service · {service.code}. Sales quantity is in{" "}
+            {service.unitLabel}; material usage is recorded separately after
+            saving.
+          </p>
+        )}
         <Field
           label="Item description"
           id={`${prefix}-description`}
@@ -74,34 +117,47 @@ export function LineEditor({
           />
         </Field>
         <div className="form-grid three">
-          {selects.map((s) => (
-            <Field
-              key={s.key}
-              label={s.label}
-              id={`${prefix}-${s.key}`}
-              error={e?.[s.key]?.message}
-            >
-              <select
-                className="select"
+          {!unitPriced &&
+            selects.map((s) => (
+              <Field
+                key={s.key}
+                label={s.label}
                 id={`${prefix}-${s.key}`}
-                {...register(`lines.${index}.${s.key}`)}
+                error={e?.[s.key]?.message}
               >
-                {s.options.map((option) => (
-                  <option key={option} value={option}>
-                    {option === "Simplex"
-                      ? "Single-sided"
-                      : option === "Duplex"
-                        ? "Double-sided"
-                        : option === "B&W"
-                          ? "Black & white"
-                          : option}
-                  </option>
-                ))}
-              </select>
-            </Field>
-          ))}
+                <select
+                  className="select"
+                  id={`${prefix}-${s.key}`}
+                  {...register(`lines.${index}.${s.key}`)}
+                >
+                  {s.options
+                    .filter(
+                      (option) =>
+                        !service?.choices ||
+                        (service.choices[s.key] as readonly string[]).includes(
+                          option,
+                        ),
+                    )
+                    .map((option) => (
+                      <option key={option} value={option}>
+                        {option === "Simplex"
+                          ? "Single-sided"
+                          : option === "Duplex"
+                            ? "Double-sided"
+                            : option === "B&W"
+                              ? "Black & white"
+                              : option}
+                      </option>
+                    ))}
+                </select>
+              </Field>
+            ))}
           <Field
-            label="Quantity (printed sheets)"
+            label={
+              unitPriced
+                ? `Quantity (${service.unitLabel})`
+                : "Quantity (printed sheets)"
+            }
             id={`${prefix}-quantity`}
             error={e?.quantity?.message}
           >

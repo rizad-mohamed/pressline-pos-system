@@ -44,6 +44,8 @@ export function Sheet({
         <Dialog.Overlay className="overlay" />
         <Dialog.Content
           className="sheet"
+          // Portal events still bubble through React parents, including a POS form.
+          onSubmit={(event) => event.stopPropagation()}
           onOpenAutoFocus={() => {
             returnFocus.current =
               document.activeElement instanceof HTMLElement

@@ -169,7 +169,11 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
                       <div className="table-sub">
                         {o.lines.length}{" "}
                         {o.lines.length === 1 ? "item" : "items"} ·{" "}
-                        {o.lines.reduce((n, l) => n + l.quantity, 0)} sheets
+                        {o.lines.some(
+                          (l) => l.serviceSnapshot?.model === "unit",
+                        )
+                          ? `${o.lines.length} order items`
+                          : `${o.lines.reduce((n, l) => n + l.quantity, 0)} sheets`}
                       </div>
                     </td>
                     <td className="small muted">
