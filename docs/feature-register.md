@@ -47,3 +47,5 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 | PREM-009 | Persistent desktop totals and visible order-review action | fixed | fix/prem-009-summary-visibility | integrated; 53bb11c / merge f228a49 | Measure actual panel top, scroll specifications, retain totals/review footer; verify initial and scrolled desktop bounds |
 
 | PREM-010 | Wait for asynchronous category focus before activation | fixed | test/prem-010-keyboard-synchronization | integrated; awaiting hash | Radix roving focus schedules movement; preserve keyboard selection assertions |
+
+| PREM-011 | Prevent awkward word splitting in active rail labels | updated | style/prem-011-navigation-labels | integrated; awaiting hash | Available label width fits Production at normal size; text zoom still wraps |
