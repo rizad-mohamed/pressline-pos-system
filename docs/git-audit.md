@@ -856,3 +856,22 @@ Limit: frontend presentation only. Lifecycle and source hash recorded in the fol
 ```
 
 Final navigation source a8c4c27 is integrated by 2182df5. All 33 production browser tests and all 21 Taste workspace combinations passed on the final 72px cap. The complete handover records this source-only refinement; pending documentation was preserved on its own topic throughout.
+
+## Final handover audit snapshot
+
+Primary documentation source `965665ff029ef7474d8445f9c6383e79f8149cfa`, integrated by `4ead4f2293ba4de595172851a25a220e19f368b2`. Before this audit-only update, `node scripts/verify-git.mjs` passed: 37 retained local branches (35 topics, including 11 premium topics), every topic registered and integrated, main unchanged, working tree clean. `git rev-list --count --branches` returned 83. Final audit source/integration commits follow, so the final report obtains their exact tip/count directly rather than predicting a self-referential hash.
+
+Reviewed `git status --porcelain`, `git branch`, decorated/graph history, the complete premium author/message log and name-status diffs. All premium commits use repository-local Codex Automation <codex@local.invalid>. Stable main remains `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604`. No remotes, push, hosted PR, deployment or main merge. The only temporary documentation stash was restored, committed and removed; no user work discarded. Domain/data diff against c73980c remains empty. Staged owner handbook/screenshot SHA256 values also match their original input hashes, including normalized text storage.
+
+```text
+965665f Codex Automation <codex@local.invalid>
+docs(frontend): deliver premium design and verified production evidence
+
+Why: hand over the complete premium interface with reproducible evidence and honest frontend boundaries.
+Requirement: PREM-007; master prompt documentation, FR/NFR coverage, HCI and Git provenance.
+Behavior: document the canonical design, preserved workflows, reviewed tools, complete lifecycle history, unchanged owner references and actual screenshot/PDF/runtime artifacts.
+Validation: clean npm ci, typecheck, lint, format, 58 unit tests, production build and 33 browser tests passed; 22 contrast pairs, 21 final Taste combinations, 54 FR/35 NFR references, 238 HCI IDs, local links and reference hashes checked.
+Limit: no backend, database, provider operation, main change, push or deployment; unknown exact requirements, real AT/devices/printers and production readiness remain unverified.
+```
+
+The source-only navigation clearance commit a8c4c27 is linked to its complete PREM-011 lifecycle in the primary handover. Final 33/33 browser tests, 21 clear Taste workspace combinations, 22 contrast pairs, screenshots/PDFs and raw lab correspond to that final application source. Formatting/link/coverage checks are rerun for this audit. No application changes are included in this commit.
