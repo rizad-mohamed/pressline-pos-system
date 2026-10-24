@@ -19,3 +19,9 @@ Stock remains whole units for every existing material, including meters: no frac
 Reuse installed shadcn/Taste and canonical Pressline paper/ink tokens, local Manrope, labeled rail, flat tables, scoped figures and accessible dirty-guarded Radix sheets. Customers answer who owes what in the permitted scope; service setup answers what staff can sell and how it is quoted; job material review answers exactly what branch stock changes on confirmation. No new dashboard decoration.
 
 Baseline tests are running; record their actual completion separately. Extend meaningful domain/migration/repository and production browser checks for the complete ABC Company / Banner Printing / five-roll scenario, later payment, snapshot survival, archive, invalid units/aggregate stock, correction, duplicates/reload, branch isolation and existing workflows. Inspect desktop/mobile and nine widths, 200% text, keyboard/dirty drawers, axe, print and reduced motion. No real AT/device/printer or production-conformity claim.
+
+## Storage foundation checkpoint
+
+Baseline completed: 58/58 tests. Added v2 entity/snapshot schemas, six seeded service records, fictional customer records and banner-roll stock, plus a pure validated v1 upgrade that keeps legacy orders unlinked and never writes during hydration. Existing storage key, financial records and stale-write protection remain. Three new migration/recovery tests passed with the seven repository tests. Typecheck and lint passed.
+
+First full 61-test checkpoint had four failures: three assumed A4 remained the first fixture material, and one used now-supported version 2 as its unsupported-version case. Preserved A4 ordering by appending banner rolls; changed the unsupported-version boundary to 99 without weakening corrupt financial/ledger checks. Complete rerun: 61/61 across 15 files passed. Material posting and its cross-record invariants remain a later acceptance unit; no consumption action exists yet.
