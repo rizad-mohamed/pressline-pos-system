@@ -77,3 +77,11 @@ The first wrapping repair fixed cart overflow but the review still exposed 328px
 Latest Taste workspace measurement: all 21 combinations (7 routes ? 1440/768/390) clear of findings. Reference files retain their original SHA-256 values. Full final production verification follows the scoped repair.
 
 PREM-008 verified: typecheck/lint passed; four focused browser checks passed, including the stronger internal scroll-body assertion, Unicode/long names, fixed landscape save, reduced motion, service/cart pricing, empty reload and mobile focus/review. Failed intermediate assertions remain documented above.
+
+## Final production gate checkpoint
+
+Clean npm ci passed (544 installed / 545 audited, zero known vulnerabilities). Typecheck, lint, format, 58 unit/component tests and optimized production build passed. All 22 contrast pairs passed. Combined 32-test Chromium run initially passed 31; the 430px test stopped during a login locator with SyntaxError in Playwright CRExecutionContext.rawEvaluateHandle before layout assertions. Trace preserved locally. Three unchanged isolated repeats passed; full unchanged suite rerun pending. No assertion was relaxed, no app exception was observed in the all-route accessibility check, and root cause is not claimed proven. Source scan rerun with argument-vector rg found no app backend/network/private-key/unsafe HTML patterns; Git confirms src/domain and src/data unchanged.
+
+Final unchanged production rerun: all 32 tests passed. The prior isolated Playwright injection error did not reproduce in three 430px repeats or the complete rerun. Retain it as an execution-tool limitation with unproven root cause, not an application defect claimed fixed. No retries, skipped assertions or weakened acceptance criteria were added.
+
+Production screenshot review found an additional PREM-009 usability defect after the 32-test gate: with multiple desktop lines, the sticky summary was sized against the full viewport rather than its actual starting position, allowing Review order below the first viewport. Global handoff remains pending that focused repair and a new footer-visibility regression. Automated passes do not supersede manual visual evidence.

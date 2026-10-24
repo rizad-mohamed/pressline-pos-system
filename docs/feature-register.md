@@ -41,3 +41,5 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 | PREM-005 | Operational surface, metric, chart, drawer and print craft | updated | style/prem-005-operational-screens | integrated; f80e521 / merge e802124 | Consistent administrative tables and numeric alignment; truthful scales; responsive summaries; preserved business behavior |
 
 | PREM-008 | Long content and mobile focus/contrast hardening | fixed | fix/prem-008-long-content-reflow | integrated; awaiting hash | Unbroken and Sinhala/Tamil content fits review/cart; visible landscape save; reduced motion and legible control boundaries |
+
+| PREM-006 | Complete premium frontend production regression evidence | updated | test/prem-006-visual-regression | integrated; awaiting hash | Nine widths, 200% text, keyboard categories/mobile nav, contrast tokens and all preserved workflows on production build |
