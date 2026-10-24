@@ -73,4 +73,6 @@ export type InventoryCommand =
 export type TransferCommand = {type:"transfer";requestId:string;itemId:string;source:BranchId;target:BranchId;quantity:number;note:string};
 export type PriceCommand = {type:"pricing";requestId:string;expectedVersion:number;values:Omit<Pricing,"version">};
 export type SmsCommand = {type:"sms-config";requestId:string;values:SmsConfig};
-export type Command = OrderCommand | InventoryCommand | TransferCommand | PriceCommand | SmsCommand;
+export type SettingsValues = {shopName:string;receiptNote:string;branches:Branch[];users:Pick<DemoUser,"id"|"name"|"active">[]};
+export type SettingsCommand = {type:"application-settings";requestId:string;values:SettingsValues}|{type:"preferences";requestId:string;values:DemoData["preferences"]};
+export type Command = OrderCommand | InventoryCommand | TransferCommand | PriceCommand | SmsCommand | SettingsCommand;
