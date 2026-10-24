@@ -1,2 +1,4 @@
 import { Composer } from "@/features/pos/composer";
-export default function Page(){return <Composer/>;}
+export default function Page() {
+  return <Composer />;
+}

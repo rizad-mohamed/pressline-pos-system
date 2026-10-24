@@ -2,28 +2,30 @@
 
 Date: 2026-10-24. Requirements below use only the group meanings reproduced in the supplied prompt; a separately approved FR/NFR baseline is not available. HCI references are subject to reading the available handbook.
 
-| ID | Scope / dependencies | Priority | Branch | State | Checks / references |
-|---|---|---|---|---|---|
-| INIT-001 | Empty repository baseline | P0 | main | integrated e0b62dc | inspected empty workspace |
-| DOC-001 | Governance and reference inventory / INIT-001 | P0 | docs/doc-001-governance | in progress | staged diff review |
-| INIT-002 | Next.js, strict TS, Tailwind, test/build tooling / DOC-001 | P0 | chore/init-002-nextjs-foundation | integrated; 1db8851 / merge bbf89eb | typecheck, lint, build |
-| UI-001 | Brand tokens and accessible primitives / INIT-002 | P0 | feat/ui-001-design-system | integrated; ca8225c / merge 3450f1f | component tests, responsive QA |
-| DOM-001 | Pricing, payments, stock, reporting, fixtures, persistence / INIT-002 | P0 | feat/dom-001-demo-domain | integrated; 5222108 / merge 8a16d16 | Vitest domain invariants |
-| FR-001 | Demo accounts, role shell, dashboard / UI-001, DOM-001 | P0 | feat/fr-001-demo-access | integrated; 09a63ef / merge 3496cb1 | role and route checks |
-| FR-015 | Multi-item POS and review / FR-001 | P0 | feat/fr-015-order-composer | integrated; 5d194a9 / merge 170515b | pricing/order tests |
-| FR-021 | History, details, payments, production states / FR-015 | P0 | feat/fr-021-order-operations | integrated; b8fc128 / merge f2c643f | payments/status isolation |
-| FR-024 | Receipt and separate job ticket / FR-021 | P0 | feat/fr-024-print-documents | integrated; c179434 / merge 26cfa80 | print/E2E checks |
-| FR-033 | Inventory CRUD, adjustments, low stock / FR-001 | P0 | feat/fr-033-branch-inventory | integrated; a48906d / merge 61d10a4 | validation/movements |
-| FR-035 | Atomic mock transfers / FR-033 | P0 | feat/fr-035-stock-transfers | integrated; 29f4eef / merge cec4b70 | transfer invariants |
-| FR-013 | Price configuration / DOM-001 | P0 | feat/fr-013-price-settings | integrated; 4dd4c30 / merge 9d76688 | historical snapshots |
-| FR-042 | Period reports, branch/all scopes / FR-021 | P0 | feat/fr-042-financial-reports | integrated; 236276f / merge a5bc9de | date/cohort tests |
-| FR-047 | SMS config and unsent preview / FR-042 | P0 | feat/fr-047-sms-preview | integrated; bce92d2 / merge 6aeae5e | report consistency |
-| FR-008 | Team/branch/app/profile demo settings / FR-001 | P1 | feat/fr-008-demo-settings | integrated; 245e733 / merge 9da908d | persistence/reset |
-| TEST-001 | E2E, responsive, keyboard, accessibility review / all features | P0 | test/test-001-workflow-validation | planned | Playwright + RTL |
-| DOC-002 | Coverage, handover, audit / TEST-001 | P0 | docs/doc-002-delivery-evidence | planned | history cross-check |
-| DOM-002 | Correct future-dated current-day fixtures / DOM-001 | P0 | fix/dom-002-fixture-timestamps | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09 |
-| DOM-003 | Align typed read/command adapter contract / all features | P0 | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
-| DOM-004 | Guard saved-data changes across reset/removal / DOM-003 | P0 | fix/dom-004-reset-conflicts | integrated; f93b732 / merge 5e0cdc5 | Stale-tab reset/deletion regressions |
-| UI-002 | Form recovery, focus and responsive refinement / all features | P0 | fix/ui-002-accessible-recovery | integrated; afbdec8 / merge 4e17416 | Keyboard, invalid quantity, zoom and layout checks |
-| STYLE-001 | Consistent formatting / all source | P1 | style/ui-003-source-formatting | planned | Prettier, typecheck and lint |
-| INIT-003 | Align tested Node prerequisites and clean unused tooling / INIT-002 | P0 | fix/init-003-supported-tooling | integrated; awaiting hash | Engine/peer metadata, install, typecheck and lint |
+| ID        | Scope / dependencies                                                  | Priority | Branch                               | State                               | Checks / references                                |
+| --------- | --------------------------------------------------------------------- | -------- | ------------------------------------ | ----------------------------------- | -------------------------------------------------- |
+| INIT-001  | Empty repository baseline                                             | P0       | main                                 | integrated e0b62dc                  | inspected empty workspace                          |
+| DOC-001   | Governance and reference inventory / INIT-001                         | P0       | docs/doc-001-governance              | in progress                         | staged diff review                                 |
+| INIT-002  | Next.js, strict TS, Tailwind, test/build tooling / DOC-001            | P0       | chore/init-002-nextjs-foundation     | integrated; 1db8851 / merge bbf89eb | typecheck, lint, build                             |
+| UI-001    | Brand tokens and accessible primitives / INIT-002                     | P0       | feat/ui-001-design-system            | integrated; ca8225c / merge 3450f1f | component tests, responsive QA                     |
+| DOM-001   | Pricing, payments, stock, reporting, fixtures, persistence / INIT-002 | P0       | feat/dom-001-demo-domain             | integrated; 5222108 / merge 8a16d16 | Vitest domain invariants                           |
+| FR-001    | Demo accounts, role shell, dashboard / UI-001, DOM-001                | P0       | feat/fr-001-demo-access              | integrated; 09a63ef / merge 3496cb1 | role and route checks                              |
+| FR-015    | Multi-item POS and review / FR-001                                    | P0       | feat/fr-015-order-composer           | integrated; 5d194a9 / merge 170515b | pricing/order tests                                |
+| FR-021    | History, details, payments, production states / FR-015                | P0       | feat/fr-021-order-operations         | integrated; b8fc128 / merge f2c643f | payments/status isolation                          |
+| FR-024    | Receipt and separate job ticket / FR-021                              | P0       | feat/fr-024-print-documents          | integrated; c179434 / merge 26cfa80 | print/E2E checks                                   |
+| FR-033    | Inventory CRUD, adjustments, low stock / FR-001                       | P0       | feat/fr-033-branch-inventory         | integrated; a48906d / merge 61d10a4 | validation/movements                               |
+| FR-035    | Atomic mock transfers / FR-033                                        | P0       | feat/fr-035-stock-transfers          | integrated; 29f4eef / merge cec4b70 | transfer invariants                                |
+| FR-013    | Price configuration / DOM-001                                         | P0       | feat/fr-013-price-settings           | integrated; 4dd4c30 / merge 9d76688 | historical snapshots                               |
+| FR-042    | Period reports, branch/all scopes / FR-021                            | P0       | feat/fr-042-financial-reports        | integrated; 236276f / merge a5bc9de | date/cohort tests                                  |
+| FR-047    | SMS config and unsent preview / FR-042                                | P0       | feat/fr-047-sms-preview              | integrated; bce92d2 / merge 6aeae5e | report consistency                                 |
+| FR-008    | Team/branch/app/profile demo settings / FR-001                        | P1       | feat/fr-008-demo-settings            | integrated; 245e733 / merge 9da908d | persistence/reset                                  |
+| TEST-001  | E2E, responsive, keyboard, accessibility review / all features        | P0       | test/test-001-workflow-validation    | planned                             | Playwright + RTL                                   |
+| DOC-002   | Coverage, handover, audit / TEST-001                                  | P0       | docs/doc-002-delivery-evidence       | planned                             | history cross-check                                |
+| DOM-002   | Correct future-dated current-day fixtures / DOM-001                   | P0       | fix/dom-002-fixture-timestamps       | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09            |
+| DOM-003   | Align typed read/command adapter contract / all features              | P0       | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
+| DOM-004   | Guard saved-data changes across reset/removal / DOM-003               | P0       | fix/dom-004-reset-conflicts          | integrated; f93b732 / merge 5e0cdc5 | Stale-tab reset/deletion regressions               |
+| UI-002    | Form recovery, focus and responsive refinement / all features         | P0       | fix/ui-002-accessible-recovery       | integrated; afbdec8 / merge 4e17416 | Keyboard, invalid quantity, zoom and layout checks |
+| STYLE-001 | Consistent formatting / all source                                    | P1       | style/ui-003-source-formatting       | integrated; awaiting hash           | Prettier, typecheck and lint                       |
+| INIT-003  | Align tested Node prerequisites and clean unused tooling / INIT-002   | P0       | fix/init-003-supported-tooling       | integrated; 6842180 / merge 312e165 | Engine/peer metadata, install, typecheck and lint  |
+
+| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | planned | Typecheck, lint, order and input recovery E2E |

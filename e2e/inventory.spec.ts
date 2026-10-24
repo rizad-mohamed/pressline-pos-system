@@ -1,10 +1,62 @@
-import { test,expect } from "@playwright/test";
-test("administrator creates, edits, adjusts and deactivates a material with retained history",async({page})=>{
-  await page.goto("/login");await page.getByRole("button",{name:/Demo Administrator/}).click();await page.goto("/inventory");
-  await page.getByRole("button",{name:"Add material",exact:true}).click();await page.getByLabel("Material name",{exact:true}).fill("Demo Test Paper");await page.getByLabel("Material code / SKU").fill("DEMO-TEST");await page.getByLabel("Branch 1 opening quantity").fill("100");await page.getByLabel("Branch 2 opening quantity").fill("20");await page.getByRole("button",{name:"Save material",exact:true}).click();
-  await expect(page.getByRole("button",{name:"Demo Test Paper",exact:true})).toBeVisible();await page.getByRole("button",{name:"Demo Test Paper",exact:true}).click();await page.getByLabel("Material name",{exact:true}).fill("Demo Proof Paper");await page.getByRole("button",{name:"Save material",exact:true}).click();
-  await page.getByRole("button",{name:"Adjust Demo Proof Paper",exact:true}).click();await page.getByLabel("Adjustment branch").selectOption("b1");await page.getByLabel("Quantity (sheets)").fill("5");await page.getByLabel("Reason for adjustment").fill("Demonstration stock count");await page.getByRole("button",{name:"Record stock adjustment",exact:true}).click();
-  const row=page.getByRole("row").filter({has:page.getByRole("button",{name:"Demo Proof Paper",exact:true})});await expect(row).toContainText("105");await row.getByRole("button",{name:"Deactivate",exact:true}).click();await page.getByRole("button",{name:"Deactivate material",exact:true}).click();
-  await page.getByLabel("Material status").selectOption("inactive");await expect(page.getByRole("button",{name:"Demo Proof Paper",exact:true})).toBeVisible();await expect(page.getByText("Demonstration stock count",{exact:true})).toBeVisible();
-  await page.goto("/login");await page.getByRole("button",{name:/Branch 1 cashier/}).click();await page.goto("/inventory");await expect(page.getByRole("heading",{name:"Administrator access required"})).toBeVisible();
+import { test, expect } from "@playwright/test";
+test("administrator creates, edits, adjusts and deactivates a material with retained history", async ({
+  page,
+}) => {
+  await page.goto("/login");
+  await page.getByRole("button", { name: /Demo Administrator/ }).click();
+  await page.goto("/inventory");
+  await page.getByRole("button", { name: "Add material", exact: true }).click();
+  await page
+    .getByLabel("Material name", { exact: true })
+    .fill("Demo Test Paper");
+  await page.getByLabel("Material code / SKU").fill("DEMO-TEST");
+  await page.getByLabel("Branch 1 opening quantity").fill("100");
+  await page.getByLabel("Branch 2 opening quantity").fill("20");
+  await page
+    .getByRole("button", { name: "Save material", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Demo Test Paper", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Demo Test Paper", exact: true })
+    .click();
+  await page
+    .getByLabel("Material name", { exact: true })
+    .fill("Demo Proof Paper");
+  await page
+    .getByRole("button", { name: "Save material", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Adjust Demo Proof Paper", exact: true })
+    .click();
+  await page.getByLabel("Adjustment branch").selectOption("b1");
+  await page.getByLabel("Quantity (sheets)").fill("5");
+  await page
+    .getByLabel("Reason for adjustment")
+    .fill("Demonstration stock count");
+  await page
+    .getByRole("button", { name: "Record stock adjustment", exact: true })
+    .click();
+  const row = page.getByRole("row").filter({
+    has: page.getByRole("button", { name: "Demo Proof Paper", exact: true }),
+  });
+  await expect(row).toContainText("105");
+  await row.getByRole("button", { name: "Deactivate", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Deactivate material", exact: true })
+    .click();
+  await page.getByLabel("Material status").selectOption("inactive");
+  await expect(
+    page.getByRole("button", { name: "Demo Proof Paper", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Demonstration stock count", { exact: true }),
+  ).toBeVisible();
+  await page.goto("/login");
+  await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await page.goto("/inventory");
+  await expect(
+    page.getByRole("heading", { name: "Administrator access required" }),
+  ).toBeVisible();
 });

@@ -3,25 +3,253 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Pencil,Tags } from "lucide-react";
-import { useDemo,useCommand,requestId } from "@/data/provider";
-import { money,moneyInput } from "@/domain/money";
+import { Pencil, Tags } from "lucide-react";
+import { useDemo, useCommand, requestId } from "@/data/provider";
+import { money, moneyInput } from "@/domain/money";
 import { Button } from "@/components/ui/button";
-import { Sheet,SheetClose } from "@/components/ui/sheet";
-import { Badge,Field,Notice,PageHeader } from "@/components/shared/presentation";
+import { Sheet, SheetClose } from "@/components/ui/sheet";
+import {
+  Badge,
+  Field,
+  Notice,
+  PageHeader,
+} from "@/components/shared/presentation";
 import { Money } from "@/components/shared/domain-display";
-const fields=[{key:"a4Bw",label:"A4 black & white",unit:"per printed sheet"},{key:"a4Color",label:"A4 color",unit:"per printed sheet"},{key:"a3Bw",label:"A3 black & white",unit:"per printed sheet"},{key:"a3Color",label:"A3 color",unit:"per printed sheet"},{key:"spiral",label:"Spiral binding",unit:"per line"},{key:"comb",label:"Comb binding",unit:"per line"},{key:"lamination",label:"Lamination finishing",unit:"per line"},{key:"trimming",label:"Trimming finishing",unit:"per line"}] as const;
-type Key=typeof fields[number]["key"];
-const amount=z.string().superRefine((v,ctx)=>{try{money(v);}catch{ctx.addIssue({code:"custom",message:"Enter a non-negative LKR amount with at most two decimal places."});}});
-const positive=amount.refine(v=>{try{return money(v)>0&&money(v)<=10000000;}catch{return false;}},"Use a rate above 0 and no more than LKR 100,000.");
-const schema=z.object({a4Bw:positive,a4Color:positive,a3Bw:positive,a3Color:positive,spiral:amount,comb:amount,lamination:amount,trimming:amount,duplexMultiplier:z.string().refine(v=>{try{const n=money(v);return n>=100&&n<=300;}catch{return false;}},"Use a multiplier from 1.00 to 3.00 with at most two decimal places.")});
-type Values=z.infer<typeof schema>;
+const fields = [
+  { key: "a4Bw", label: "A4 black & white", unit: "per printed sheet" },
+  { key: "a4Color", label: "A4 color", unit: "per printed sheet" },
+  { key: "a3Bw", label: "A3 black & white", unit: "per printed sheet" },
+  { key: "a3Color", label: "A3 color", unit: "per printed sheet" },
+  { key: "spiral", label: "Spiral binding", unit: "per line" },
+  { key: "comb", label: "Comb binding", unit: "per line" },
+  { key: "lamination", label: "Lamination finishing", unit: "per line" },
+  { key: "trimming", label: "Trimming finishing", unit: "per line" },
+] as const;
+type Key = (typeof fields)[number]["key"];
+const amount = z.string().superRefine((v, ctx) => {
+  try {
+    money(v);
+  } catch {
+    ctx.addIssue({
+      code: "custom",
+      message:
+        "Enter a non-negative LKR amount with at most two decimal places.",
+    });
+  }
+});
+const positive = amount.refine((v) => {
+  try {
+    return money(v) > 0 && money(v) <= 10000000;
+  } catch {
+    return false;
+  }
+}, "Use a rate above 0 and no more than LKR 100,000.");
+const schema = z.object({
+  a4Bw: positive,
+  a4Color: positive,
+  a3Bw: positive,
+  a3Color: positive,
+  spiral: amount,
+  comb: amount,
+  lamination: amount,
+  trimming: amount,
+  duplexMultiplier: z.string().refine((v) => {
+    try {
+      const n = money(v);
+      return n >= 100 && n <= 300;
+    } catch {
+      return false;
+    }
+  }, "Use a multiplier from 1.00 to 3.00 with at most two decimal places."),
+});
+type Values = z.infer<typeof schema>;
 export function PricingPage() {
-  const {data}=useDemo();const [open,setOpen]=useState(false);
-  return <div className="stack"><PageHeader eyebrow="DEMONSTRATION CATALOGUE" title="Price catalogue" description="Consistent, transparent quotes for every print order." action={<Button onClick={()=>setOpen(true)}><Pencil size={16}/>Edit price catalogue</Button>}/><Notice tone="warning"><strong>DEMO PRICE — NOT APPROVED.</strong> These sample rates are editable for demonstration. Tax, discounts, refunds and actual selling prices are awaiting approval.</Notice><section className="card"><div className="card-header"><div className="row"><Tags size={18}/><h2>Printing, binding & finishing</h2></div><Badge tone="primary">Version {data.pricing.version}</Badge></div><div className="table-scroll"><table><caption className="sr-only">Current demonstration price rules in LKR</caption><thead><tr><th>Service</th><th>Calculation basis</th><th className="right">Demo rate</th></tr></thead><tbody>{fields.map(f=><tr key={f.key}><td className="table-title">{f.label}</td><td className="muted">{f.unit}</td><td className="right"><Money value={data.pricing[f.key]}/></td></tr>)}<tr><td className="table-title">Double-sided printing</td><td className="muted">Multiplier on the selected sheet rate</td><td className="right money">{(data.pricing.duplexBps/10000).toFixed(2)}×</td></tr><tr><td className="table-title">No binding / no finishing</td><td className="muted">No added setup charge</td><td className="right"><Money value={0}/></td></tr></tbody></table></div></section><section className="card card-body stack"><h2>How a quote is calculated</h2><p>Line total = printed sheets × effective sheet rate + one binding charge + one finishing charge.</p><p className="muted">The duplex sheet rate is multiplied first and rounded up to the nearest cent. All totals use integer cents. No tax or discount is inferred.</p><Notice>Saving a catalogue version affects future quotes only. Existing orders and reprinted receipts retain their saved unit rates, setup charges and totals.</Notice></section>{open&&<PricingDrawer onClose={()=>setOpen(false)}/>}</div>;
+  const { data } = useDemo();
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="stack">
+      <PageHeader
+        eyebrow="DEMONSTRATION CATALOGUE"
+        title="Price catalogue"
+        description="Consistent, transparent quotes for every print order."
+        action={
+          <Button onClick={() => setOpen(true)}>
+            <Pencil size={16} />
+            Edit price catalogue
+          </Button>
+        }
+      />
+      <Notice tone="warning">
+        <strong>DEMO PRICE — NOT APPROVED.</strong> These sample rates are
+        editable for demonstration. Tax, discounts, refunds and actual selling
+        prices are awaiting approval.
+      </Notice>
+      <section className="card">
+        <div className="card-header">
+          <div className="row">
+            <Tags size={18} />
+            <h2>Printing, binding & finishing</h2>
+          </div>
+          <Badge tone="primary">Version {data.pricing.version}</Badge>
+        </div>
+        <div className="table-scroll">
+          <table>
+            <caption className="sr-only">
+              Current demonstration price rules in LKR
+            </caption>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Calculation basis</th>
+                <th className="right">Demo rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fields.map((f) => (
+                <tr key={f.key}>
+                  <td className="table-title">{f.label}</td>
+                  <td className="muted">{f.unit}</td>
+                  <td className="right">
+                    <Money value={data.pricing[f.key]} />
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td className="table-title">Double-sided printing</td>
+                <td className="muted">Multiplier on the selected sheet rate</td>
+                <td className="right money">
+                  {(data.pricing.duplexBps / 10000).toFixed(2)}×
+                </td>
+              </tr>
+              <tr>
+                <td className="table-title">No binding / no finishing</td>
+                <td className="muted">No added setup charge</td>
+                <td className="right">
+                  <Money value={0} />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section className="card card-body stack">
+        <h2>How a quote is calculated</h2>
+        <p>
+          Line total = printed sheets × effective sheet rate + one binding
+          charge + one finishing charge.
+        </p>
+        <p className="muted">
+          The duplex sheet rate is multiplied first and rounded up to the
+          nearest cent. All totals use integer cents. No tax or discount is
+          inferred.
+        </p>
+        <Notice>
+          Saving a catalogue version affects future quotes only. Existing orders
+          and reprinted receipts retain their saved unit rates, setup charges
+          and totals.
+        </Notice>
+      </section>
+      {open && <PricingDrawer onClose={() => setOpen(false)} />}
+    </div>
+  );
 }
-function PricingDrawer({onClose}:{onClose:()=>void}) {
-  const {data}=useDemo(),command=useCommand();const [id]=useState(requestId),[version]=useState(data.pricing.version);const defaults=Object.fromEntries(fields.map(f=>[f.key,moneyInput(data.pricing[f.key])])) as Record<Key,string>;
-  const form=useForm<Values>({resolver:zodResolver(schema),defaultValues:{...defaults,duplexMultiplier:(data.pricing.duplexBps/10000).toFixed(2)}});
-  return <Sheet open onOpenChange={open=>{if(!open)onClose();}} title="Edit demonstration prices" description="LKR values apply to new orders after saving a new catalogue version." dirty={form.formState.isDirty} footer={<><SheetClose asChild><Button variant="outline">Cancel</Button></SheetClose><Button type="submit" form="pricing-form" disabled={command.pending}>Save new price version</Button></>}><form id="pricing-form" className="stack" noValidate onSubmit={form.handleSubmit(async v=>{const rates=Object.fromEntries(fields.map(f=>[f.key,money(v[f.key])])) as Record<Key,number>;const r=await command.run({type:"pricing",requestId:id,expectedVersion:version,values:{...rates,duplexBps:money(v.duplexMultiplier)*100}},"Demonstration catalogue updated. Historical order prices are unchanged.");if(r.ok)onClose();})}><Notice tone="warning">Sample prices only. Existing order totals and simulated payment history will stay as saved.</Notice><div className="form-grid">{fields.map(f=><Field key={f.key} label={`${f.label} (LKR)`} id={`price-${f.key}`} error={form.formState.errors[f.key]?.message} hint={f.unit}><input id={`price-${f.key}`} className="input money" inputMode="decimal" {...form.register(f.key)} aria-invalid={!!form.formState.errors[f.key]} aria-describedby={form.formState.errors[f.key]?`price-${f.key}-error`:`price-${f.key}-hint`}/></Field>)}</div><Field label="Duplex multiplier (1–3×)" id="price-duplex" error={form.formState.errors.duplexMultiplier?.message}><input id="price-duplex" className="input" inputMode="decimal" {...form.register("duplexMultiplier")}/></Field>{command.error&&<Notice tone="error">{command.error}</Notice>}</form></Sheet>;
+function PricingDrawer({ onClose }: { onClose: () => void }) {
+  const { data } = useDemo(),
+    command = useCommand();
+  const [id] = useState(requestId),
+    [version] = useState(data.pricing.version);
+  const defaults = Object.fromEntries(
+    fields.map((f) => [f.key, moneyInput(data.pricing[f.key])]),
+  ) as Record<Key, string>;
+  const form = useForm<Values>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      ...defaults,
+      duplexMultiplier: (data.pricing.duplexBps / 10000).toFixed(2),
+    },
+  });
+  return (
+    <Sheet
+      open
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
+      title="Edit demonstration prices"
+      description="LKR values apply to new orders after saving a new catalogue version."
+      dirty={form.formState.isDirty}
+      footer={
+        <>
+          <SheetClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </SheetClose>
+          <Button type="submit" form="pricing-form" disabled={command.pending}>
+            Save new price version
+          </Button>
+        </>
+      }
+    >
+      <form
+        id="pricing-form"
+        className="stack"
+        noValidate
+        onSubmit={form.handleSubmit(async (v) => {
+          const rates = Object.fromEntries(
+            fields.map((f) => [f.key, money(v[f.key])]),
+          ) as Record<Key, number>;
+          const r = await command.run(
+            {
+              type: "pricing",
+              requestId: id,
+              expectedVersion: version,
+              values: { ...rates, duplexBps: money(v.duplexMultiplier) * 100 },
+            },
+            "Demonstration catalogue updated. Historical order prices are unchanged.",
+          );
+          if (r.ok) onClose();
+        })}
+      >
+        <Notice tone="warning">
+          Sample prices only. Existing order totals and simulated payment
+          history will stay as saved.
+        </Notice>
+        <div className="form-grid">
+          {fields.map((f) => (
+            <Field
+              key={f.key}
+              label={`${f.label} (LKR)`}
+              id={`price-${f.key}`}
+              error={form.formState.errors[f.key]?.message}
+              hint={f.unit}
+            >
+              <input
+                id={`price-${f.key}`}
+                className="input money"
+                inputMode="decimal"
+                {...form.register(f.key)}
+                aria-invalid={!!form.formState.errors[f.key]}
+                aria-describedby={
+                  form.formState.errors[f.key]
+                    ? `price-${f.key}-error`
+                    : `price-${f.key}-hint`
+                }
+              />
+            </Field>
+          ))}
+        </div>
+        <Field
+          label="Duplex multiplier (1–3×)"
+          id="price-duplex"
+          error={form.formState.errors.duplexMultiplier?.message}
+        >
+          <input
+            id="price-duplex"
+            className="input"
+            inputMode="decimal"
+            {...form.register("duplexMultiplier")}
+          />
+        </Field>
+        {command.error && <Notice tone="error">{command.error}</Notice>}
+      </form>
+    </Sheet>
+  );
 }

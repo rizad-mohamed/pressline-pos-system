@@ -1,2 +1,4 @@
 import { SmsPage } from "@/features/sms/sms";
-export default function Page(){return <SmsPage/>;}
+export default function Page() {
+  return <SmsPage />;
+}

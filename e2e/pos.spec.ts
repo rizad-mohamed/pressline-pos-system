@@ -1,21 +1,42 @@
-import { test,expect } from "@playwright/test";
-test("cashier creates a customized multi-item order with an advance",async({page})=>{
-  await page.goto("/login");await page.getByRole("button",{name:/Branch 1 cashier/}).click();
-  await page.getByRole("link",{name:"New order",exact:true}).first().click();
-  await expect(page.getByRole("heading",{name:"Create a print order"})).toBeVisible();
+import { test, expect } from "@playwright/test";
+test("cashier creates a customized multi-item order with an advance", async ({
+  page,
+}) => {
+  await page.goto("/login");
+  await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await page
+    .getByRole("link", { name: "New order", exact: true })
+    .first()
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Create a print order" }),
+  ).toBeVisible();
   await page.getByLabel("Quantity (printed sheets)").fill("10");
   await page.getByLabel("Printed sides").selectOption("Duplex");
-  await page.getByLabel("Binding",{exact:true}).selectOption("Spiral");
-  await page.getByRole("button",{name:"Add print item",exact:true}).click();
+  await page.getByLabel("Binding", { exact: true }).selectOption("Spiral");
+  await page
+    .getByRole("button", { name: "Add print item", exact: true })
+    .click();
   await page.getByLabel("Print type").nth(1).selectOption("Color");
   await page.getByLabel("Quantity (printed sheets)").nth(1).fill("2");
   await expect(page.getByTestId("order-total")).toContainText("540.00");
   await page.getByLabel("Simulated advance (LKR)").fill("100.00");
-  await page.getByRole("button",{name:"Review order",exact:true}).click();
-  await expect(page.getByRole("dialog",{name:"Review your print order"})).toBeVisible();
-  await page.getByRole("button",{name:"Save demo order",exact:true}).click();
-  await expect(page.getByRole("heading",{name:"Order created successfully"})).toBeVisible();
-  await page.reload();await expect(page.getByRole("heading",{name:"Create a print order"})).toBeVisible();
-  await page.getByRole("link",{name:"Overview",exact:true}).click();
-  await expect(page.getByRole("link",{name:"PL-1013",exact:true})).toBeVisible();
+  await page.getByRole("button", { name: "Review order", exact: true }).click();
+  await expect(
+    page.getByRole("dialog", { name: "Review your print order" }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Save demo order", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Order created successfully" }),
+  ).toBeVisible();
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { name: "Create a print order" }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Overview", exact: true }).click();
+  await expect(
+    page.getByRole("link", { name: "PL-1013", exact: true }),
+  ).toBeVisible();
 });
