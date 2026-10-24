@@ -17,7 +17,7 @@ export function Sheet({ open, onOpenChange, title, description, children, footer
     {trigger && <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>}
     <Dialog.Portal>
       <Dialog.Overlay className="overlay" />
-      <Dialog.Content className="sheet" onOpenAutoFocus={() => { returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null; }} onCloseAutoFocus={(event) => { event.preventDefault(); returnFocus.current?.focus(); }}>
+      <Dialog.Content className="sheet" onOpenAutoFocus={() => { returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null; }} onCloseAutoFocus={(event) => { event.preventDefault(); const target=returnFocus.current?.isConnected?returnFocus.current:document.getElementById("main-content");target?.focus(); }}>
         <div className="sheet-header"><div className="row between"><Dialog.Title className="sheet-title">{title}</Dialog.Title><Dialog.Close asChild><Button variant="ghost" size="icon" aria-label="Close drawer"><X size={20} /></Button></Dialog.Close></div><Dialog.Description className="sheet-description">{description}</Dialog.Description></div>
         <div className="sheet-body">{children}</div>
         {footer && <div className="sheet-footer">{footer}</div>}
