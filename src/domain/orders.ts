@@ -33,6 +33,7 @@ export function applyOrderCommand(data: DemoData, user: DemoUser, command: Order
   }
   const order = findOrder(data,user,command.orderId);
   if (command.type === "payment") {
+    if (now < order.createdAt) throw new DomainError("validation", "This sample order is dated after the current time. Reset demo fixtures or choose an earlier order.");
     centsSchema.refine(n => n > 0, "Enter a payment greater than zero.").parse(command.amountCents);
     z.string().max(200).parse(command.note);
     if (command.amountCents > balanceFor(data,order)) throw new DomainError("validation", "Payment exceeds the balance due. Enter the balance or a smaller amount.");

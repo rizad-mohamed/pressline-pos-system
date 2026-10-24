@@ -10,7 +10,7 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | UI-001 | Brand tokens and accessible primitives / INIT-002 | P0 | feat/ui-001-design-system | integrated; ca8225c / merge 3450f1f | component tests, responsive QA |
 | DOM-001 | Pricing, payments, stock, reporting, fixtures, persistence / INIT-002 | P0 | feat/dom-001-demo-domain | integrated; 5222108 / merge 8a16d16 | Vitest domain invariants |
 | FR-001 | Demo accounts, role shell, dashboard / UI-001, DOM-001 | P0 | feat/fr-001-demo-access | integrated; 09a63ef / merge 3496cb1 | role and route checks |
-| FR-015 | Multi-item POS and review / FR-001 | P0 | feat/fr-015-order-composer | integrated; awaiting hash | pricing/order tests |
+| FR-015 | Multi-item POS and review / FR-001 | P0 | feat/fr-015-order-composer | integrated; 5d194a9 / merge 170515b | pricing/order tests |
 | FR-021 | History, details, payments, production states / FR-015 | P0 | feat/fr-021-order-operations | planned | payments/status isolation |
 | FR-024 | Receipt and separate job ticket / FR-021 | P0 | feat/fr-024-print-documents | planned | print/E2E checks |
 | FR-033 | Inventory CRUD, adjustments, low stock / FR-001 | P0 | feat/fr-033-branch-inventory | planned | validation/movements |
@@ -21,3 +21,4 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-008 | Team/branch/app/profile demo settings / FR-001 | P1 | feat/fr-008-demo-settings | planned | persistence/reset |
 | TEST-001 | E2E, responsive, keyboard, accessibility review / all features | P0 | test/test-001-workflow-validation | planned | Playwright + RTL |
 | DOC-002 | Coverage, handover, audit / TEST-001 | P0 | docs/doc-002-delivery-evidence | planned | history cross-check |
+| DOM-002 | Correct future-dated current-day fixtures / DOM-001 | P0 | fix/dom-002-fixture-timestamps | integrated; awaiting hash | Early-day payment regression; HCI 03.09 |
