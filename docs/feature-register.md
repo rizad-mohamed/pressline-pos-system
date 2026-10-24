@@ -82,3 +82,5 @@ FUP-002 · `fix/fup-002-drawer-notifications`: reproduce and correct success-toa
 FUP-003 · `fix/cust-006-long-name-reflow`: repair the observed long customer-name overflow at 200% text; preserve the failing assertion and verify mobile and focus recovery.
 
 FUP-004 · `fix/mat-004-service-evidence`: preserve the accepted catalogue service name in material evidence even if staff customize the job description or the catalogue is later renamed.
+
+FUP-005 · `fix/svc-004-print-specification-labels`: restore explicit Binding / Finishing print-job labels while preserving unit-service specifications; original printing assertion must pass unchanged.

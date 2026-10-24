@@ -63,3 +63,7 @@ FUP-003 reproduced 3076px document width at a 1440px viewport/200% text in a foc
 ## Accepted service evidence correction · 2026-10-25
 
 FUP-004 adds a domain regression for a custom job description followed by a catalogue rename. Before correction, 10 material tests passed and the new test failed: the event incorrectly labeled the service with the custom job description. Prefer the accepted service snapshot name, retaining manual-job descriptions as the fallback. All 11 material tests passed after correction; historical accepted catalogue identity, custom job text and current catalogue name remain distinct. The final gate sequence was interrupted before build to apply this correction; earlier completed typecheck/lint/format passed, and no completion is claimed for the interrupted unit run.
+
+## Print specification label correction · 2026-10-25
+
+FUP-005 restores explicit Binding: / Finishing: labels for print-model and legacy lines, alongside size/color/sides and the existing quantity/unit column. Unit-model jobs retain their accepted service summary and do not receive irrelevant print options. All three focused browser scenarios passed on the development server: the original unchanged receipt/ticket test and both connected customer/catalogue tests. No price, financial-privacy or print-media assertion was weakened. The complete 43/44 production failure trace remains retained; rebuild and rerun all 44 tests before final integration.
