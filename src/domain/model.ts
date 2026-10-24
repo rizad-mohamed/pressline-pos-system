@@ -71,4 +71,5 @@ export type InventoryCommand =
   | {type:"stock-active";requestId:string;itemId:string;active:boolean}
   | {type:"stock-adjust";requestId:string;itemId:string;branchId:BranchId;delta:number;reason:string};
 export type TransferCommand = {type:"transfer";requestId:string;itemId:string;source:BranchId;target:BranchId;quantity:number;note:string};
-export type Command = OrderCommand | InventoryCommand | TransferCommand;
+export type PriceCommand = {type:"pricing";requestId:string;expectedVersion:number;values:Omit<Pricing,"version">};
+export type Command = OrderCommand | InventoryCommand | TransferCommand | PriceCommand;
