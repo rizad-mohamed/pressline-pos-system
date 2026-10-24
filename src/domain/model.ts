@@ -72,4 +72,5 @@ export type InventoryCommand =
   | {type:"stock-adjust";requestId:string;itemId:string;branchId:BranchId;delta:number;reason:string};
 export type TransferCommand = {type:"transfer";requestId:string;itemId:string;source:BranchId;target:BranchId;quantity:number;note:string};
 export type PriceCommand = {type:"pricing";requestId:string;expectedVersion:number;values:Omit<Pricing,"version">};
-export type Command = OrderCommand | InventoryCommand | TransferCommand | PriceCommand;
+export type SmsCommand = {type:"sms-config";requestId:string;values:SmsConfig};
+export type Command = OrderCommand | InventoryCommand | TransferCommand | PriceCommand | SmsCommand;
