@@ -1,0 +1,358 @@
+{
+  "capturedAt": "2026-10-24T19:02:29.710Z",
+  "baseURL": "http://127.0.0.1:3001",
+  "captures": [
+    {
+      "name": "service-setup-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/pricing"
+    },
+    {
+      "name": "service-setup-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/pricing"
+    },
+    {
+      "name": "service-setup-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/pricing"
+    },
+    {
+      "name": "customer-selection-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/pos"
+    },
+    {
+      "name": "customer-selection-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/pos"
+    },
+    {
+      "name": "customer-selection-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/pos"
+    },
+    {
+      "name": "material-confirmation-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "material-confirmation-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "material-confirmation-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "material-history-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "material-history-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "material-history-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "customer-account-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd"
+    },
+    {
+      "name": "customer-account-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd"
+    },
+    {
+      "name": "customer-account-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd"
+    },
+    {
+      "name": "pos-managed-banner-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/pos"
+    },
+    {
+      "name": "pos-managed-banner-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/pos"
+    },
+    {
+      "name": "pos-managed-banner-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/pos"
+    },
+    {
+      "name": "inventory-movements-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/inventory"
+    },
+    {
+      "name": "inventory-movements-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/inventory"
+    },
+    {
+      "name": "inventory-movements-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/inventory"
+    },
+    {
+      "name": "correction-review-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "correction-review-768",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "correction-review-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "path": "/orders/PL-1013"
+    },
+    {
+      "name": "receipt-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/print/receipt/PL-1013"
+    },
+    {
+      "name": "job-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "path": "/print/job/PL-1013"
+    }
+  ],
+  "ledger": {
+    "bannerStock": {
+      "b1": 15,
+      "b2": 12
+    },
+    "usageCount": 1,
+    "orderTotalCents": 350000,
+    "paidCents": 150000,
+    "movementIds": ["move-usage-plan-PL-1013-initial-1"]
+  },
+  "errors": [],
+  "externalRuntime": [],
+  "taste": [
+    {
+      "route": "customers",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 43px in \"3 customers\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        }
+      ]
+    },
+    {
+      "route": "customers",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "customers",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "pricing",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 57px in \"Service catalogue\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        }
+      ]
+    },
+    {
+      "route": "pricing",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "pricing",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "pos",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "pos",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "pos",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "orders/PL-1013",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "micro-label",
+          "width": 1440,
+          "message": "1 tiny uppercase letter-spaced label(s): \"PRODUCTION / MATERIALS\"",
+          "fix": "Prefer sentence case at body size."
+        }
+      ]
+    },
+    {
+      "route": "orders/PL-1013",
+      "width": 768,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "micro-label",
+          "width": 768,
+          "message": "1 tiny uppercase letter-spaced label(s): \"PRODUCTION / MATERIALS\"",
+          "fix": "Prefer sentence case at body size."
+        }
+      ]
+    },
+    {
+      "route": "orders/PL-1013",
+      "width": 390,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "micro-label",
+          "width": 390,
+          "message": "1 tiny uppercase letter-spaced label(s): \"PRODUCTION / MATERIALS\"",
+          "fix": "Prefer sentence case at body size."
+        }
+      ]
+    },
+    {
+      "route": "inventory",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 390,
+      "findings": []
+    }
+  ]
+}

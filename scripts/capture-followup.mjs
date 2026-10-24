@@ -128,7 +128,9 @@ try {
     .getByRole("button", { name: "Configure Banner Printing", exact: true })
     .click();
   await widths("pos-managed-banner", false, () =>
-    page.evaluate(() => scrollTo(0, 0)),
+    page
+      .getByLabel("Quantity (jobs)", { exact: true })
+      .scrollIntoViewIfNeeded(),
   );
   await enterDemo(page, /Demo Administrator/);
   await page.goto("/inventory");

@@ -77,3 +77,9 @@ All 44 production Chromium tests ran with one worker, no retries/skips: 43 passe
 ## Print specification label correction · 2026-10-25
 
 FUP-005 restores explicit Binding: / Finishing: labels for print-model and legacy lines, alongside size/color/sides and the existing quantity/unit column. Unit-model jobs retain their accepted service summary and do not receive irrelevant print options. All three focused browser scenarios passed on the development server: the original unchanged receipt/ticket test and both connected customer/catalogue tests. No price, financial-privacy or print-media assertion was weakened. The complete 43/44 production failure trace remains retained; rebuild and rerun all 44 tests before final integration.
+
+## Production visual checkpoint · 2026-10-25
+
+All 44 production tests passed (one worker, no retry/skip) after restoring printing labels; final typecheck/lint/format, 84 tests and production build passed. Captured 26 actual production images and two PDFs; each PDF contains one Page object and a /Count 1 page tree. Browser errors and external runtime requests are empty. Signed-in Taste measured 18 combinations: no FAIL, two desktop table whitespace advisories and three uppercase operational-label advisories. Source lint remains 0 FAIL/29 contextual WARN.
+
+Manual review found a genuine orientation omission: customer detail inherited the fallback Profile breadcrumb and no active Customers navigation state. Keep the current QA topic unmerged; correct this on `fix/fup-006-workflow-orientation`, preserve a navigation assertion, and use sentence case for the material context label. The financial/stock/image evidence remains a truthful pre-orientation checkpoint and will be refreshed after correction.
