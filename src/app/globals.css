@@ -392,6 +392,7 @@ label.field-label {
   padding-left: 38px;
 }
 .table-scroll {
+  position: relative;
   overflow-x: auto;
   width: 100%;
   border-radius: inherit;

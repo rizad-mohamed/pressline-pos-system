@@ -150,7 +150,11 @@ export function Dashboard() {
                 date. Outstanding is cumulative as of period end; it is not
                 period cash flow.
               </p>
-              <div className="table-scroll">
+              <div
+                className="table-scroll"
+                tabIndex={0}
+                aria-label="Scrollable data table"
+              >
                 <table>
                   <caption className="sr-only">
                     Seven-day order and collection values in LKR
@@ -239,7 +243,11 @@ export function Dashboard() {
         {!orders.length ? (
           <EmptyState description="Create a printing order to start this branch's history." />
         ) : (
-          <div className="table-scroll">
+          <div
+            className="table-scroll"
+            tabIndex={0}
+            aria-label="Scrollable data table"
+          >
             <table>
               <caption className="sr-only">Recent branch-scoped orders</caption>
               <thead>
