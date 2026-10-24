@@ -268,7 +268,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </Button>
         </div>
       </header>
-      <main className="workspace" id="main-content" tabIndex={-1}>
+      <main
+        className="workspace"
+        data-screen={pathname.split("/")[1]}
+        id="main-content"
+        tabIndex={-1}
+      >
         {(issue || error) && (
           <div style={{ marginBottom: "var(--space-5)" }}>
             <Notice tone="error">

@@ -60,9 +60,8 @@ export function SmsPage() {
         }
       />
       <Notice tone="warning">
-        <strong>NOT SENT.</strong> No SMS provider, secure scheduler or delivery
-        tracking is connected. The owner uses authorized administrator
-        reporting; there is no separate Owner role.
+        <strong>NOT SENT.</strong> This message is a local preview. Sending and
+        scheduling are unavailable.
       </Notice>
       <div className="summary-grid">
         <section className="card">
@@ -125,12 +124,8 @@ export function SmsPage() {
               </p>
             </div>
             <div className="row between">
-              <span>Live delivery</span>
+              <span>Live delivery / daily scheduling</span>
               <Badge>Unavailable</Badge>
-            </div>
-            <div className="row between">
-              <span>Daily scheduling</span>
-              <Badge>Not configured</Badge>
             </div>
             <Button
               disabled
@@ -140,9 +135,7 @@ export function SmsPage() {
               Send SMS
             </Button>
             <p className="small muted">
-              Future integration requires Notify.lk or Text.lk validation,
-              protected server credentials, approved schedule/metrics and secure
-              delivery auditing. Nothing is sent or scheduled by this frontend.
+              The preview stays in this browser. No message will be sent.
             </p>
           </div>
         </section>
@@ -206,10 +199,10 @@ export function SmsPage() {
             <thead>
               <tr>
                 <th>Branch</th>
-                <th>Orders</th>
-                <th>Order value</th>
-                <th>Simulated collections</th>
-                <th>Outstanding</th>
+                <th className="right">Orders</th>
+                <th className="right">Order value</th>
+                <th className="right">Simulated collections</th>
+                <th className="right">Outstanding</th>
               </tr>
             </thead>
             <tbody>
@@ -218,14 +211,14 @@ export function SmsPage() {
                   <td>
                     {data.branches.find((b) => b.id === row.branchId)!.name}
                   </td>
-                  <td>{row.count}</td>
-                  <td>
+                  <td className="right money">{row.count}</td>
+                  <td className="right">
                     <Money value={row.orderValue} />
                   </td>
-                  <td>
+                  <td className="right">
                     <Money value={row.collected} />
                   </td>
-                  <td>
+                  <td className="right">
                     <Money value={row.outstanding} />
                   </td>
                 </tr>

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ArrowRight, Building2, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useDemoState } from "@/data/provider";
 import { Badge, Notice, SkeletonPage } from "@/components/shared/presentation";
 import { Button } from "@/components/ui/button";
@@ -56,7 +56,7 @@ export function Login() {
         <div className="login-panel stack">
           <div>
             <div className="eyebrow" style={{ marginBottom: "var(--space-2)" }}>
-              WELCOME TO PRESSLINE
+              Welcome to Pressline
             </div>
             <h2 style={{ fontSize: "var(--text-2xl)" }}>
               Choose your workspace
@@ -85,11 +85,11 @@ export function Login() {
                   }}
                 >
                   <div className="avatar">
-                    {account.role === "admin" ? (
-                      <ShieldCheck size={20} />
-                    ) : (
-                      <Building2 size={20} />
-                    )}
+                    {account.role === "admin"
+                      ? "AD"
+                      : account.branchId === "b1"
+                        ? "B1"
+                        : "B2"}
                   </div>
                   <div className="grow">
                     <strong>{account.name}</strong>

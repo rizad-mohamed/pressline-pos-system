@@ -5,6 +5,7 @@ import { useDemo } from "@/data/provider";
 import { report, reportQuerySchema } from "@/domain/reports";
 import { businessDate, periodRange, shiftDate } from "@/domain/dates";
 import { productionStates } from "@/domain/model";
+import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import {
   Badge,
@@ -186,7 +187,7 @@ export function Reports() {
           Inclusive calendar dates · Asia/Colombo · LKR
         </span>
       </div>
-      <div className="metrics">
+      <div className="metrics metrics-strip">
         {metrics.map((metric) => (
           <section className="card metric" key={metric.label}>
             <h2 className="metric-label" style={{ fontWeight: 400 }}>
@@ -333,7 +334,7 @@ export function Reports() {
                 Compared with {previousRange.from} to {previousRange.to}
               </p>
             </div>
-            <hr className="divider" />
+            <Separator />
             <h3>Current production of this order cohort</h3>
             {statuses.map((s) => (
               <div className="row between" key={s.status}>

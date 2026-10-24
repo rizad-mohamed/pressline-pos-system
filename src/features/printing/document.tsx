@@ -10,6 +10,7 @@ import {
   paymentState,
 } from "@/domain/orders";
 import { dateTime } from "@/domain/dates";
+import { BrandMark } from "@/components/shared/brand";
 import { Button } from "@/components/ui/button";
 import { Badge, EmptyState, Notice } from "@/components/shared/presentation";
 import {
@@ -88,9 +89,7 @@ function DocumentBody({
         <header>
           <div className="row between">
             <div className="brand">
-              <span className="brand-mark">
-                <Printer />
-              </span>
+              <BrandMark />
               {data.settings.shopName}
             </div>
             <Badge tone="warning">DEMONSTRATION</Badge>

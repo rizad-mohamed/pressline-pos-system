@@ -12,7 +12,7 @@ export function SettingsPage() {
     [confirm, setConfirm] = useState(false),
     [error, setError] = useState("");
   return (
-    <div className="stack">
+    <div className="stack settings-page">
       <PageHeader
         eyebrow="DEMONSTRATION CONFIGURATION"
         title="Settings"
@@ -34,7 +34,7 @@ export function SettingsPage() {
         </div>
         <div className="card-body stack">
           <div>
-            <p className="eyebrow">RECEIPT / SMS SHOP NAME</p>
+            <p className="eyebrow">Receipt and SMS shop name</p>
             <h2>{data.settings.shopName}</h2>
           </div>
           <div className="summary-grid">

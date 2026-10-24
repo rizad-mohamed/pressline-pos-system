@@ -36,4 +36,6 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 
 | PREM-003 | Premium tokens, local typography, responsive rail and entry | updated | feat/prem-003-premium-shell | integrated; cf858b8 / merge a00dd86 | Brand tokens, labeled charcoal navigation, accessible tooltip/focus, preserved routes and controls |
 
-| PREM-004 | Existing-capability service presets and adaptive current order | created / updated | feat/prem-004-service-workspace | integrated; awaiting hash | Search/category/configure, preserved manual editor, empty recovery, single desktop/mobile summary and save review |
+| PREM-004 | Existing-capability service presets and adaptive current order | created / updated | feat/prem-004-service-workspace | integrated; a4bbb44 / merge aefd582 | Search/category/configure, preserved manual editor, empty recovery, single desktop/mobile summary and save review |
+
+| PREM-005 | Operational surface, metric, chart, drawer and print craft | updated | style/prem-005-operational-screens | integrated; awaiting hash | Consistent administrative tables and numeric alignment; truthful scales; responsive summaries; preserved business behavior |

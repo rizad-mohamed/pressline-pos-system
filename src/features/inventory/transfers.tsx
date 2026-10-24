@@ -73,7 +73,7 @@ export function Transfers() {
                   <th>Reference / material</th>
                   <th>Source</th>
                   <th>Destination</th>
-                  <th>Quantity</th>
+                  <th className="right">Quantity</th>
                   <th>Date</th>
                   <th>Review</th>
                 </tr>
@@ -95,7 +95,7 @@ export function Transfers() {
                     <td>
                       {data.branches.find((b) => b.id === t.target)!.name}
                     </td>
-                    <td className="money">
+                    <td className="money right">
                       {t.quantity}{" "}
                       {data.items.find((i) => i.id === t.itemId)?.unit}
                     </td>

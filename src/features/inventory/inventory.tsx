@@ -55,7 +55,7 @@ export function Inventory() {
           </Button>
         }
       />
-      <div className="summary-grid">
+      <div className="summary-grid inventory-metrics">
         <section className="card metric">
           <div className="metric-label">
             <h2 style={{ fontSize: "var(--text-sm)" }}>Active materials</h2>
@@ -141,7 +141,9 @@ export function Inventory() {
                   <tr>
                     <th>Material</th>
                     {branches.map((b) => (
-                      <th key={b.id}>{b.name} balance</th>
+                      <th key={b.id} className="right">
+                        {b.name} balance
+                      </th>
                     ))}
                     <th>Status</th>
                     <th>Actions</th>
@@ -162,7 +164,7 @@ export function Inventory() {
                         </p>
                       </td>
                       {branches.map((b) => (
-                        <td key={b.id}>
+                        <td key={b.id} className="right money">
                           <strong>
                             {item.quantities[b.id].toLocaleString("en-LK")}
                           </strong>
@@ -262,7 +264,7 @@ export function Inventory() {
               <tr>
                 <th>Material / reason</th>
                 <th>Branch</th>
-                <th>Change</th>
+                <th className="right">Change</th>
                 <th>Recorded by</th>
                 <th>Date</th>
               </tr>
@@ -282,7 +284,7 @@ export function Inventory() {
                   <td>
                     {data.branches.find((b) => b.id === m.branchId)!.name}
                   </td>
-                  <td className="money">
+                  <td className="money right">
                     {m.delta > 0 ? "+" : ""}
                     {m.delta} {data.items.find((i) => i.id === m.itemId)?.unit}
                   </td>
