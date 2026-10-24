@@ -47,3 +47,32 @@ All units are P0 for this authorized enhancement; lifecycle describes actual sou
 | PREM-010 | Keyboard-test focus synchronization           | fixed                             | test/prem-010-keyboard-synchronization | cdca073          | 5bbdef5          | Wait for Radix deferred focus; five repeated checks and full suite                          |
 | PREM-011 | Natural active rail labels and edge clearance | updated                           | style/prem-011-navigation-labels       | a9e8fe7, a8c4c27 | 173ffec, 2182df5 | Complete words, adequate clearance, 33 production E2E and 21 final Taste combinations clear |
 | PREM-007 | Final design/evidence/coverage handover       | created / updated                 | docs/prem-007-redesign-handover        | 965665f          | 4ead4f2          | 33 browser / 58 unit; gallery / Git audit                                                   |
+
+## Connected frontend follow-up lifecycle
+
+Requirements below come from the owner-approved follow-up; original FR/NFR references remain. Each requirement is registered before implementation. Exact source/merge references and final evidence are backfilled in the handover audit.
+
+| ID       | Acceptance                                                                         | Topic                           | State / evidence                                 |
+| -------- | ---------------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------ |
+| CUST-001 | Customer records and archive                                                       | feat/cust-001-directory         | planned; domain/UI and integrated tests required |
+| CUST-002 | Fast POS selection and walk-in                                                     | feat/svc-004-pos-integration    | planned; domain/UI and integrated tests required |
+| CUST-003 | Derived scoped customer history/balances                                           | feat/cust-001-directory         | planned; domain/UI and integrated tests required |
+| CUST-004 | Derived scoped customer history/balances                                           | feat/cust-001-directory         | planned; domain/UI and integrated tests required |
+| CUST-005 | Versioned migration and legacy preservation                                        | feat/cust-005-storage-evolution | planned; domain/UI and integrated tests required |
+| CUST-006 | Accessible customer recovery and privacy                                           | feat/cust-001-directory         | planned; domain/UI and integrated tests required |
+| SVC-001  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | planned; domain/UI and integrated tests required |
+| SVC-002  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | planned; domain/UI and integrated tests required |
+| SVC-003  | Managed catalogue, categories and safe rates                                       | feat/svc-001-managed-catalogue  | planned; domain/UI and integrated tests required |
+| SVC-004  | Data-driven POS and historical snapshots                                           | feat/svc-004-pos-integration    | planned; domain/UI and integrated tests required |
+| SVC-005  | Safe category changes and banner acceptance                                        | feat/svc-001-managed-catalogue  | planned; domain/UI and integrated tests required |
+| SVC-006  | Safe category changes and banner acceptance                                        | feat/svc-001-managed-catalogue  | planned; domain/UI and integrated tests required |
+| MAT-001  | Whole-unit service material recipes                                                | feat/svc-001-managed-catalogue  | planned; domain/UI and integrated tests required |
+| MAT-002  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | planned; domain/UI and integrated tests required |
+| MAT-003  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | planned; domain/UI and integrated tests required |
+| MAT-004  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | planned; domain/UI and integrated tests required |
+| MAT-005  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | planned; domain/UI and integrated tests required |
+| MAT-006  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | planned; domain/UI and integrated tests required |
+| MAT-007  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | planned; domain/UI and integrated tests required |
+| MAT-008  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | planned; domain/UI and integrated tests required |
+
+Cross-feature verification: test/fup-001-connected-workflows. Final documentation: docs/fup-001-handover. Scope audit: docs/fup-000-scope.
