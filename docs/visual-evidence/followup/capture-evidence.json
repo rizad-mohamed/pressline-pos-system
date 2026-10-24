@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-24T19:02:29.710Z",
+  "capturedAt": "2026-10-24T19:29:19.387Z",
   "baseURL": "http://127.0.0.1:3001",
   "captures": [
     {
@@ -104,7 +104,7 @@
         "width": 1440,
         "height": 1000
       },
-      "path": "/customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd"
+      "path": "/customers/cust-5ce1fefb-a63e-44e2-8092-a45c1e2798c7"
     },
     {
       "name": "customer-account-768",
@@ -112,7 +112,7 @@
         "width": 768,
         "height": 1000
       },
-      "path": "/customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd"
+      "path": "/customers/cust-5ce1fefb-a63e-44e2-8092-a45c1e2798c7"
     },
     {
       "name": "customer-account-390",
@@ -120,7 +120,7 @@
         "width": 390,
         "height": 1000
       },
-      "path": "/customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd"
+      "path": "/customers/cust-5ce1fefb-a63e-44e2-8092-a45c1e2798c7"
     },
     {
       "name": "pos-managed-banner-1440",
@@ -248,17 +248,17 @@
       "findings": []
     },
     {
-      "route": "customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd",
+      "route": "customers/cust-5ce1fefb-a63e-44e2-8092-a45c1e2798c7",
       "width": 1440,
       "findings": []
     },
     {
-      "route": "customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd",
+      "route": "customers/cust-5ce1fefb-a63e-44e2-8092-a45c1e2798c7",
       "width": 768,
       "findings": []
     },
     {
-      "route": "customers/cust-cc082c91-9e3d-4a63-88e6-b0e94b6d55fd",
+      "route": "customers/cust-5ce1fefb-a63e-44e2-8092-a45c1e2798c7",
       "width": 390,
       "findings": []
     },
@@ -308,7 +308,7 @@
           "level": "WARN",
           "id": "micro-label",
           "width": 1440,
-          "message": "1 tiny uppercase letter-spaced label(s): \"PRODUCTION / MATERIALS\"",
+          "message": "1 tiny uppercase letter-spaced label(s): \"Production / materials\"",
           "fix": "Prefer sentence case at body size."
         }
       ]
@@ -321,7 +321,7 @@
           "level": "WARN",
           "id": "micro-label",
           "width": 768,
-          "message": "1 tiny uppercase letter-spaced label(s): \"PRODUCTION / MATERIALS\"",
+          "message": "1 tiny uppercase letter-spaced label(s): \"Production / materials\"",
           "fix": "Prefer sentence case at body size."
         }
       ]
@@ -334,7 +334,7 @@
           "level": "WARN",
           "id": "micro-label",
           "width": 390,
-          "message": "1 tiny uppercase letter-spaced label(s): \"PRODUCTION / MATERIALS\"",
+          "message": "1 tiny uppercase letter-spaced label(s): \"Production / materials\"",
           "fix": "Prefer sentence case at body size."
         }
       ]

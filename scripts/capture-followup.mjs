@@ -46,6 +46,15 @@ page.on("request", (r) => {
 });
 async function shot(name, fullPage = true) {
   await page.evaluate(() => document.fonts.ready);
+  if (await page.getByRole("dialog").count()) {
+    // Wait for the real modal's stable position after a viewport change.
+    await page
+      .getByRole("button", { name: "Close drawer", exact: true })
+      .focus();
+    await page
+      .getByRole("button", { name: "Close drawer", exact: true })
+      .scrollIntoViewIfNeeded();
+  }
   await page.screenshot({
     path: `${dir}/${name}.png`,
     fullPage,
