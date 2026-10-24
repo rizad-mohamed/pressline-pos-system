@@ -94,3 +94,62 @@ No participant, real screen-reader, physical phone/tablet/printer, live provider
 Handover audit checked all 20 exact follow-up IDs, retained all 54 FR / 35 NFR references and all 238 HCI catalogue IDs, resolved 78 local Markdown links, confirmed existing owner reference bytes and manifest/lock unchanged, and compared the follow-up transcription with the original after Markdown trailing-whitespace normalization. Both final PDFs have one Page object and a /Count 1 page tree. Main remains the exact starting root SHA. Final handover-document formatting passed separately; this adds no application behavior.
 
 Primary handover `06da62a` / merge `d1c3e90`: `node scripts/verify-git.mjs` passed with all 50 retained branches registered/integrated, main unchanged and working tree clean. The audit-only backfill follows with full format/Git checks; application source remains the verified checkpoint. Final delivered source/merge SHA and clean result are reported at handoff.
+
+## Clean-copy CI continuation · 2026-10-25
+
+Source continuation from develop 52e41f9; CI source `817327fa652bb30c49135a1b3f44fe1a6d1cd19a` / no-ff merge `41a97ef3b10f32cddf469983b9b94cead7320dd5`. An independently created temporary source copy began without node_modules, .next or next-env.d.ts. `npm ci` passed: 544 installed, 545 audited, zero known vulnerabilities. Node 24.14.1/npm 11.11.0 matched the workflow. The original workspace install and owner dev server were preserved.
+
+With CI=true, NEXT_TELEMETRY_DISABLED=1, PRESSLINE_TEST_PORT=3001 and TZ=Asia/Colombo: advisory audit, generated Next route types plus strict typecheck, lint, full formatting, 84/84 tests across 18 files, all 22 contrast pairs and locked Chromium installation passed. Playwright built/started its own production server, refused existing-server reuse, and all 44/44 browser tests passed in a single run with no retries/skips. Combined build/browser command duration: 347.63s. Final YAML parsed; immutable action references and explicit permissions/credential/cache policy checked from source. No actionlint or hosted CI pass is claimed.
+
+The local Python log harness stopped after a successful typecheck because Windows cp1252 could not print Next's checkmark. UTF-8 output fixed the harness, then remaining checks resumed; no app assertion failed or changed. The initial sandboxed npm advisory request could not reach the registry; the approved read-only network retry and fresh-copy advisory gate both passed with zero known vulnerabilities. Both security-skill validators remain blocked by Windows no-follow/nonblocking API protection, as recorded in the [security review](security-review.md); functional CI gates do not certify that separate audit.
+
+Fresh production aggregate asset report:
+
+```text
+{
+  "scope": "All generated route assets combined; not an initial-page transfer or runtime performance score",
+  "javascript": {
+    "files": 32,
+    "bytes": 1202301,
+    "gzipBytes": 382365
+  },
+  "css": {
+    "files": 1,
+    "bytes": 50151,
+    "gzipBytes": 10454
+  },
+  "largest": [
+    {
+      "path": ".next\\static\\chunks\\3wbm-994r45kr.js",
+      "bytes": 229820,
+      "gzipBytes": 71969
+    },
+    {
+      "path": ".next\\static\\chunks\\3i7bb4yv5vlj-.js",
+      "bytes": 164509,
+      "gzipBytes": 45447
+    },
+    {
+      "path": ".next\\static\\chunks\\2n28koan02vny.js",
+      "bytes": 157797,
+      "gzipBytes": 46224
+    },
+    {
+      "path": ".next\\static\\chunks\\0cz1d0mv5g_q7.js",
+      "bytes": 112594,
+      "gzipBytes": 39627
+    },
+    {
+      "path": ".next\\static\\chunks\\0d9g0jbjxx7td.css",
+      "bytes": 50151,
+      "gzipBytes": 10454
+    }
+  ]
+}
+```
+
+The continuation has no application-source or runtime-dependency changes. Existing premium layout, migration, snapshots and confirmed-use behavior remain. Hosted CI/branch protection, full security audit, production authentication, real devices/AT/printer and field performance remain unverified. No backend, push or deployment occurred.
+
+Workspace tooling correction: the final local format gate reproduced a one-byte corruption in installed Prettier (offset 87446, space replaced by backtick). node --check failed; restoring the exact fresh-lock-install module passed syntax and the full workspace format gate. The damaged copy is retained in ignored local evidence. Cause remains unconfirmed; no source/lock/version changed. The full fresh-copy CI gates had passed independently.
+
+Final installed-tool integrity check after repair: all 31,502 expected dependency files from the fresh locked installation matched the workspace bytes; no expected file was missing or different. The initial broad comparison checked 31,553 files and reported 51 differing generated Vitest transform/result caches. Installed Vitest source identifies .vitest-cache as the module-cache directory and results.json under its configured Vite cache directory (cli-api.De07GUeT.js:5574,5968); these project-specific generated files were classified separately, not copied as package code. The original result is retained. Machine-generated .bin shims and .package-lock metadata were also excluded. Pre-existing additional optional workspace packages were not pruned while the owner's development server was running; this comparison does not certify the absence or behavior of additional files. The original development server returned HTTP 200 at /login; the CI-owned production port had no listener after Playwright teardown. Git's unmerged index was empty. The only repaired expected-file discrepancy was the separately documented Prettier byte.
