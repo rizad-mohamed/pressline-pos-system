@@ -33,7 +33,7 @@ test("POS invalid quantity explains the correction and preserves editable lines"
     .click();
   await expect(page.getByLabel("Quantity (printed sheets)")).toHaveCount(2);
 });
-for (const width of [360, 390, 768, 1024, 1280, 1440])
+for (const width of [320, 360, 390, 430, 768, 1024, 1280, 1440, 1920])
   test(`workspace reflows at ${width} CSS pixels`, async ({ page }, info) => {
     test.setTimeout(120000);
     await page.setViewportSize({ width, height: 900 });
