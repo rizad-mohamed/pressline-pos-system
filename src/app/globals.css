@@ -139,6 +139,9 @@ tbody tr:hover { background: var(--background); }
 .chart-bar { width: 16px; background: var(--chart-1); border-radius: 3px 3px 0 0; min-height: 1px; }
 .chart-bar.secondary { background: var(--chart-2); }
 .chart-axis { border-top: 1px solid var(--border); margin-top: var(--space-2); padding-top: var(--space-2); font-size: var(--text-xs); color: var(--muted); }
+.bar-track { height: 10px; background: var(--surface-muted); border-radius: var(--radius-sm); overflow: hidden; }
+.bar-value { height: 100%; background: var(--chart-1); transition: width var(--motion-normal) var(--ease); }
+.bar-value.secondary { background: var(--chart-2); }
 .login-page { min-height: 100dvh; display: grid; grid-template-columns: 1.05fr 1fr; background: var(--surface); }
 .login-story { background: var(--background); padding: var(--space-12); display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--border); }
 .login-story h1 { font-size: clamp(2.5rem,4vw,4.5rem); line-height: 1.1; letter-spacing: -.055em; margin: var(--space-8) 0 var(--space-6); max-width: 11ch; }
