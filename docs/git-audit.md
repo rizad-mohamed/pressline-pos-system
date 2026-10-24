@@ -1090,3 +1090,25 @@ Requirement: CUST-001 through CUST-006; SVC-001 through SVC-006; MAT-001 through
 Primary handover source `06da62a0a8f7ca8fbe999ad1143e1b0c13e741b7` was integrated by no-ff merge `d1c3e900448c22fbc4990c5dbb4911f5e8633b5f`. At that executed snapshot: 50 retained branches registered/integrated, 118 reachable commits, working tree clean, main exactly `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604`, no remote. All 20 follow-up IDs, 54 FR/35 NFR references and 238 HCI catalogue IDs retained; 78 local links resolved; original reference bytes and manifest/lock unchanged. Frontend code is unchanged after the final 84-unit/44-production-browser gate and refreshed visual review.
 
 This audit-only commit records the hashes that could not exist inside the primary handover commit. Its own hash and subsequent develop merge are necessarily reported in the final response; no self-referential hash is fabricated. All topic refs remain. Final checks are full documentation formatting, exact main comparison, topic integration/registration, clean status and absence of remote/push/publication.
+
+## Verified CI integration and final source review · 2026-10-25
+
+`chore/ci-001-quality-gates` source `817327fa652bb30c49135a1b3f44fe1a6d1cd19a` / no-ff develop merge `41a97ef3b10f32cddf469983b9b94cead7320dd5`. Actual integration checkpoint: 51 retained branches registered/integrated, clean tree, main `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604` unchanged, no remote. Clean temporary install and workflow-equivalent strict gates, 84 unit/component and 44 production browser tests passed. Action SHAs were read from official upstream refs and inspected input definitions; hosted CI was not triggered.
+
+This audit-document topic `docs/aud-001-final-review` preserves the partial security report limitations, dependency advisory result and the actual CI provenance. It changes documentation only. Its own source/final merge and final retained-branch/clean result must be reported after commit, not fabricated here. No history rewrite, push, main modification or backend/deployment operation occurred.
+
+```text
+817327fa652bb30c49135a1b3f44fe1a6d1cd19a
+ci(frontend): verify locked production demo workflows
+
+Why: the complete frontend had passing local checks but no configured CI and clean typechecking depended on generated Next artifacts.
+Requirement: CI-001; existing CUST-001..006, SVC-001..006 and MAT-001..008 regression preservation.
+Behavior: pin read-only quality actions and runtime, install locked dependencies, audit all dependencies, generate route types, check source/style/tests/contrast, build and test production without server reuse; explicit Colombo browser timezone.
+Validation: Fresh temporary source copy: npm ci installed 544/audited 545, zero known vulnerabilities; advisory audit/typegen+typecheck/lint/format/84 tests/22 contrast pairs/browser install passed; CI=true production build and all 44 Chromium tests passed (347.63s), no configured retries; YAML parse/immutable action pins/read-only permissions verified. No hosted CI run claimed.
+Limit: browser-local frontend demonstration; no backend operation.
+
+41a97ef3b10f32cddf469983b9b94cead7320dd5
+chore(integration): merge chore/ci-001-quality-gates
+
+Requirement: CI-001; existing CUST-001..006, SVC-001..006 and MAT-001..008 regression preservation. Validation: Fresh temporary source copy: npm ci installed 544/audited 545, zero known vulnerabilities; advisory audit/typegen+typecheck/lint/format/84 tests/22 contrast pairs/browser install passed; CI=true production build and all 44 Chromium tests passed (347.63s), no configured retries; YAML parse/immutable action pins/read-only permissions verified. No hosted CI run claimed. Retain verified topic history; main unchanged.
+```

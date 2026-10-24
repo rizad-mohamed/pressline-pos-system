@@ -93,6 +93,7 @@ Follow-up handover provenance backfilled: `docs/fup-001-handover` primary source
 
 ## CI continuation · 2026-10-25
 
-| ID     | Scope                                                                          | Branch                     | State                                                     | Validation                                                                                    |
-| ------ | ------------------------------------------------------------------------------ | -------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| CI-001 | Repeatable locked frontend quality workflow and clean-checkout type generation | chore/ci-001-quality-gates | verified; clean-copy CI gates passed; integration follows | Fresh install, zero advisories, strict gates, 84 unit and 44 production Chromium tests passed |
+| ID      | Scope                                                                          | Branch                     | State                                             | Validation                                                                                    |
+| ------- | ------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| CI-001  | Repeatable locked frontend quality workflow and clean-checkout type generation | chore/ci-001-quality-gates | integrated; 817327f / merge 41a97ef               | Fresh install, zero advisories, strict gates, 84 unit and 44 production Chromium tests passed |
+| AUD-001 | Final CI provenance, source security review and honest limits                  | docs/aud-001-final-review  | verified documentation; final integration follows | Fresh CI evidence, Git audit and documentation checks                                         |
