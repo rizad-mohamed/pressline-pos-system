@@ -75,7 +75,7 @@
   --z-overlay: 50;
   --z-sheet: 51;
   --z-tooltip: 70;
-  --z-toast: 80;
+  --z-toast: 40;
 }
 
 @theme inline {
