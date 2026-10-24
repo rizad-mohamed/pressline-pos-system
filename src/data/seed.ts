@@ -5,7 +5,8 @@ export function seedData(today = businessDate()): DemoData {
   const pricing = { version:1, a4Bw:1500, a4Color:6000, a3Bw:3000, a3Color:12000, duplexBps:18000, spiral:15000, comb:10000, lamination:8000, trimming:5000 };
   const branches = [{id:"b1" as const,name:"Branch 1",location:"Colombo · fictional demo branch"},{id:"b2" as const,name:"Branch 2",location:"Kandy · fictional demo branch"}];
   const users = [{id:"cashier-b1",name:"Branch 1 cashier",role:"cashier" as const,branchId:"b1" as const,active:true},{id:"cashier-b2",name:"Branch 2 cashier",role:"cashier" as const,branchId:"b2" as const,active:true},{id:"admin",name:"Demo Administrator",role:"admin" as const,branchId:null,active:true}];
-  const instant = (days: number, hour = 9) => new Date(`${shiftDate(today,-days)}T${String(hour).padStart(2,"0")}:00:00+05:30`).toISOString();
+  // Today's fixtures start at Colombo midnight, so early-day demo payments never precede their orders.
+  const instant = (days: number, hour = 9) => new Date(`${shiftDate(today,-days)}T${String(days === 0 ? 0 : hour).padStart(2,"0")}:00:00+05:30`).toISOString();
   const names = ["Walk-in", "Demo Studio", "Campus project", "Walk-in", "Sample Designs", "Demo Learning", "Walk-in", "Demo Studio", "Campus project", "Walk-in", "Sample Designs", "Demo Learning"];
   const orders: Order[] = names.map((name,i) => {
     const day = i < 5 ? 0 : i < 8 ? 1 : i-6;
