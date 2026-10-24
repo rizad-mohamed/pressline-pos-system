@@ -9,6 +9,9 @@
 - Maintain docs/feature-register.md and docs/change-log.md for every lifecycle event. Commit references may be backfilled by the next audit commit (a commit cannot embed its own hash).
 - Run npm scripts for typecheck, lint, test, build, and E2E as applicable. Never report blocked checks as passing. Record limitations in FRONTEND_STATUS.md.
 - Use repository-local automated Git identity; do not change global configuration. Pass the workspace via Git's per-command safe.directory setting when sandbox ownership differs.
+- Tested runtime: Node 24.14.1 / npm 11.11.0. Use `npm ci`, `npm run dev`; gates are `typecheck`, `lint`, `format:check`, `test`, `build`, and `test:e2e`. Browser tests build/start production when no server exists; stop dev to reproduce production verification.
+- Keep table scroll containers positioned relatively and keyboard-focusable: absolutely positioned hidden labels must not escape and create whole-page overflow. Wait for navigation URLs before deriving order IDs in browser tests.
+- `next-env.d.ts` is generated/ignored; keep its tsconfig includes. Full delivery evidence is in FRONTEND_STATUS.md and docs/validation-log.md. Future production work requires a new explicit scope; do not mistake a mock adapter or interface for implemented server security.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

@@ -1,11 +1,11 @@
 # Feature register
 
-Date: 2026-10-24. Requirements below use only the group meanings reproduced in the supplied prompt; a separately approved FR/NFR baseline is not available. HCI references are subject to reading the available handbook.
+Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
 | ID        | Scope / dependencies                                                  | Priority | Branch                               | State                               | Checks / references                                |
 | --------- | --------------------------------------------------------------------- | -------- | ------------------------------------ | ----------------------------------- | -------------------------------------------------- |
 | INIT-001  | Empty repository baseline                                             | P0       | main                                 | integrated e0b62dc                  | inspected empty workspace                          |
-| DOC-001   | Governance and reference inventory / INIT-001                         | P0       | docs/doc-001-governance              | in progress                         | staged diff review                                 |
+| DOC-001   | Governance and reference inventory / INIT-001                         | P0       | docs/doc-001-governance              | integrated; e6fe30e / merge 7a24251 | staged diff review                                 |
 | INIT-002  | Next.js, strict TS, Tailwind, test/build tooling / DOC-001            | P0       | chore/init-002-nextjs-foundation     | integrated; 1db8851 / merge bbf89eb | typecheck, lint, build                             |
 | UI-001    | Brand tokens and accessible primitives / INIT-002                     | P0       | feat/ui-001-design-system            | integrated; ca8225c / merge 3450f1f | component tests, responsive QA                     |
 | DOM-001   | Pricing, payments, stock, reporting, fixtures, persistence / INIT-002 | P0       | feat/dom-001-demo-domain             | integrated; 5222108 / merge 8a16d16 | Vitest domain invariants                           |
@@ -19,15 +19,13 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-042    | Period reports, branch/all scopes / FR-021                            | P0       | feat/fr-042-financial-reports        | integrated; 236276f / merge a5bc9de | date/cohort tests                                  |
 | FR-047    | SMS config and unsent preview / FR-042                                | P0       | feat/fr-047-sms-preview              | integrated; bce92d2 / merge 6aeae5e | report consistency                                 |
 | FR-008    | Team/branch/app/profile demo settings / FR-001                        | P1       | feat/fr-008-demo-settings            | integrated; 245e733 / merge 9da908d | persistence/reset                                  |
-| TEST-001  | E2E, responsive, keyboard, accessibility review / all features        | P0       | test/test-001-workflow-validation    | integrated; awaiting hash           | Playwright + RTL                                   |
-| DOC-002   | Coverage, handover, audit / TEST-001                                  | P0       | docs/doc-002-delivery-evidence       | planned                             | history cross-check                                |
+| TEST-001  | E2E, responsive, keyboard, accessibility review / all features        | P0       | test/test-001-workflow-validation    | integrated; b2027e7 / merge a7ad68c | Playwright + RTL                                   |
+| DOC-002   | Coverage, handover, audit / TEST-001                                  | P0       | docs/doc-002-delivery-evidence       | integrated; awaiting hash           | history cross-check                                |
 | DOM-002   | Correct future-dated current-day fixtures / DOM-001                   | P0       | fix/dom-002-fixture-timestamps       | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09            |
 | DOM-003   | Align typed read/command adapter contract / all features              | P0       | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
 | DOM-004   | Guard saved-data changes across reset/removal / DOM-003               | P0       | fix/dom-004-reset-conflicts          | integrated; f93b732 / merge 5e0cdc5 | Stale-tab reset/deletion regressions               |
 | UI-002    | Form recovery, focus and responsive refinement / all features         | P0       | fix/ui-002-accessible-recovery       | integrated; afbdec8 / merge 4e17416 | Keyboard, invalid quantity, zoom and layout checks |
 | STYLE-001 | Consistent formatting / all source                                    | P1       | style/ui-003-source-formatting       | integrated; 500874a / merge 35beb00 | Prettier, typecheck and lint                       |
 | INIT-003  | Align tested Node prerequisites and clean unused tooling / INIT-002   | P0       | fix/init-003-supported-tooling       | integrated; 6842180 / merge 312e165 | Engine/peer metadata, install, typecheck and lint  |
-
-| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | integrated; 093dab5 / merge a67330b | Typecheck, lint, order and input recovery E2E |
-
-| UI-005 | Contain mobile table labels and keyboard scrolling / UI-001 | P0 | fix/ui-005-mobile-table-reflow | integrated; 958ad70 / merge eb90b82 | Document-width and ArrowRight scrolling regression |
+| UI-004    | Split POS presentation from orchestration / FR-015                    | P1       | refactor/ui-004-pos-composition      | integrated; 093dab5 / merge a67330b | Typecheck, lint, order and input recovery E2E      |
+| UI-005    | Contain mobile table labels and keyboard scrolling / UI-001           | P0       | fix/ui-005-mobile-table-reflow       | integrated; 958ad70 / merge eb90b82 | Document-width and ArrowRight scrolling regression |

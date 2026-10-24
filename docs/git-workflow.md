@@ -1,5 +1,7 @@
 # Local Git governance
 
+Delivery retains every topic reference and the full non-fast-forward graph. No main integration is authorized by frontend completion. Feature register and chronological change log map source units and verification; git-audit.md inventories branch/commit/merge evidence. Audit snapshots necessarily precede their own commits, so exact final tips come from Git and the final handoff rather than a fabricated self-referential hash.
+
 Initialized from an empty workspace on 2026-10-24. Stable `main` contains baseline `e0b62dc`; `develop` is the integration branch. No remotes or branch protections exist. Nothing is published.
 
 Use focused lowercase `chore/`, `feat/`, `fix/`, `test/`, `docs/` branches from current develop; retain every reference. Stage explicit paths, run `git diff --cached --check`, inspect the staged diff for unrelated content/secrets, run relevant checks, commit with why/requirements/behavior/validation, then merge `--no-ff`. Rerun integration checks. If a check is unavailable, preserve the branch without claiming verified frontend behavior.
