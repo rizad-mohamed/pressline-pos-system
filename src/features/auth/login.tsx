@@ -2,10 +2,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ArrowRight, Building2, Printer, ShieldCheck } from "lucide-react";
+import { ArrowRight, Building2, ShieldCheck } from "lucide-react";
 import { useDemoState } from "@/data/provider";
 import { Badge, Notice, SkeletonPage } from "@/components/shared/presentation";
 import { Button } from "@/components/ui/button";
+import { Brand } from "@/components/shared/brand";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 export function Login() {
   const { data, enter, reset, issue, user, recoveryRequired } = useDemoState();
@@ -15,20 +16,33 @@ export function Login() {
   return (
     <main className="login-page">
       <section className="login-story" aria-label="About Pressline">
-        <div className="brand">
-          <div className="brand-mark">
-            <Printer />
-          </div>
-          pressline<span style={{ color: "var(--primary)" }}>.</span>
-        </div>
+        <Brand />
         <div>
           <Badge tone="primary">THE PRINT SHOP WORKSPACE</Badge>
-          <h1>Good work starts with a clear workspace.</h1>
+          <h1>
+            Every detail.
+            <br />
+            Every impression.
+          </h1>
           <p>
             From the first print to the final handover. Keep orders, production,
             and both branches in view.
           </p>
-          <div className="row" style={{ marginTop: "var(--space-8)" }}>
+          <div className="print-specimen" aria-hidden="true">
+            <span className="specimen-fold" />
+            <span className="specimen-title">
+              Made to
+              <br />
+              make an impression.
+            </span>
+            <span className="specimen-rule" />
+            <span className="specimen-caption">PRESSLINE / PRINT & FINISH</span>
+            <span className="specimen-registration">+</span>
+          </div>
+          <div
+            className="row login-facts"
+            style={{ marginTop: "var(--space-8)" }}
+          >
             <Badge>2 branches</Badge>
             <Badge>LKR</Badge>
             <Badge>Asia/Colombo</Badge>

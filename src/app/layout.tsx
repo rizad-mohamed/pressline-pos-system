@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import localFont from "next/font/local";
+const manrope = localFont({
+  src: "./fonts/Manrope-Variable.ttf",
+  variable: "--font-pressline",
+  display: "swap",
+});
 import { DemoProvider } from "@/data/provider";
 export const metadata: Metadata = {
   title: "Pressline · Print shop workspace",
@@ -12,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={manrope.variable}>
       <body>
         <DemoProvider>{children}</DemoProvider>
       </body>

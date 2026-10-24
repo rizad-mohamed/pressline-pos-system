@@ -1,3 +1,6 @@
+import { Skeleton } from "@/components/ui/skeleton";
+import { Input } from "@/components/ui/input";
+import { Badge as UiBadge } from "@/components/ui/badge";
 import { Info, Search, Inbox } from "lucide-react";
 export function PageHeader({
   eyebrow,
@@ -28,7 +31,7 @@ export function Badge({
   children: React.ReactNode;
   tone?: "neutral" | "success" | "warning" | "info" | "primary" | "danger";
 }) {
-  return <span className={`badge badge-${tone}`}>{children}</span>;
+  return <UiBadge variant={tone}>{children}</UiBadge>;
 }
 export function Notice({
   children,
@@ -61,7 +64,7 @@ export function Field({
   children: React.ReactNode;
 }) {
   return (
-    <div className="field">
+    <div className="field" data-invalid={error ? true : undefined}>
       <label htmlFor={id}>{label}</label>
       {children}
       {hint && (
@@ -110,7 +113,7 @@ export function SearchField({
     <div className="field search-field">
       <label htmlFor="record-search">{label}</label>
       <Search size={16} />
-      <input
+      <Input
         id="record-search"
         type="search"
         className="input"
@@ -125,18 +128,21 @@ export function SkeletonPage() {
   return (
     <div className="stack" role="status" aria-label="Loading workspace">
       <span className="sr-only">Loading saved demonstration data…</span>
-      <div className="skeleton" style={{ height: 32, width: "40%" }} />
+      <Skeleton className="skeleton" style={{ height: 32, width: "40%" }} />
       <div className="metrics">
         {[1, 2, 3, 4].map((n) => (
           <div className="card card-body" key={n}>
-            <div className="skeleton skeleton-line" />
-            <div className="skeleton" style={{ height: 38, width: "70%" }} />
+            <Skeleton className="skeleton skeleton-line" />
+            <Skeleton
+              className="skeleton"
+              style={{ height: 38, width: "70%" }}
+            />
           </div>
         ))}
       </div>
       <div className="card card-body">
         {[1, 2, 3, 4, 5].map((n) => (
-          <div className="skeleton skeleton-line" key={n} />
+          <Skeleton className="skeleton skeleton-line" key={n} />
         ))}
       </div>
     </div>
