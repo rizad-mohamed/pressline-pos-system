@@ -65,6 +65,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const { data, user, scope, setScope, enter, issue, reset } = useDemoState();
   const pathname = usePathname(),
     router = useRouter();
+  const current = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
   const [menu, setMenu] = useState(false),
     [help, setHelp] = useState(false),
     [error, setError] = useState("");
@@ -104,13 +106,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                         className="nav-link"
                         href={item.href}
                         aria-label={item.label}
-                        aria-current={
-                          pathname === item.href ||
-                          (item.href === "/orders" &&
-                            pathname.startsWith("/orders/"))
-                            ? "page"
-                            : undefined
-                        }
+                        aria-current={current(item.href) ? "page" : undefined}
                         onClick={() => setMenu(false)}
                       >
                         <item.icon />
@@ -196,13 +192,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <span>Workspace</span>
           <span aria-hidden="true">/</span>
           <strong>
-            {groups
-              .flatMap((g) => g.items)
-              .find(
-                (i) =>
-                  pathname === i.href ||
-                  (i.href === "/orders" && pathname.startsWith("/orders/")),
-              )?.label ?? (pathname === "/settings" ? "Settings" : "Profile")}
+            {groups.flatMap((g) => g.items).find((i) => current(i.href))
+              ?.label ?? (pathname === "/settings" ? "Settings" : "Profile")}
           </strong>
         </div>
         <div className="row" style={{ flexWrap: "nowrap" }}>

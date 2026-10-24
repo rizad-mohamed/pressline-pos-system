@@ -67,3 +67,7 @@ FUP-004 adds a domain regression for a custom job description followed by a cata
 ## Print specification label correction · 2026-10-25
 
 FUP-005 restores explicit Binding: / Finishing: labels for print-model and legacy lines, alongside size/color/sides and the existing quantity/unit column. Unit-model jobs retain their accepted service summary and do not receive irrelevant print options. All three focused browser scenarios passed on the development server: the original unchanged receipt/ticket test and both connected customer/catalogue tests. No price, financial-privacy or print-media assertion was weakened. The complete 43/44 production failure trace remains retained; rebuild and rerun all 44 tests before final integration.
+
+## Customer workflow orientation correction · 2026-10-25
+
+FUP-006 reproduces missing aria-current on a customer profile with the existing customer reflow test strengthened to inspect navigation and breadcrumb. Use one segment-aware route predicate for parent navigation and breadcrumb classification, preserving Orders and correctly identifying Customers for its profiles. Use sentence case for the material context label, matching existing PageHeader treatment. The strengthened test failed before correction and passed afterward, including its unchanged 200%/320px/selected-POS assertions. Trace retained locally; final production evidence will be refreshed.
