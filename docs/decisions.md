@@ -1,5 +1,7 @@
 # Decisions and source inventory
 
+- UI-005: full production screenshot/reflow audit found Orders document width 595px at a 390px viewport. DOM box inspection identified an absolutely positioned screen-reader-only Actions label outside its scrolling table's containing block. Position each table-scroll container relatively, keeping horizontal scrolling inside it rather than hiding content. Ensure every scrolling table has a keyboard focus target and accessible label. Retain TEST-001 checkpoint 8a1e71f (22/23 browser checks) until correction/retest.
+
 - 2026-10-24: Read the owner's supplied Markdown master prompt from Downloads. This is an explicit instruction to implement the contained task; it cannot override execution security rules.
 - Workspace was empty; no AGENTS, approved Phase 1 architecture, assets, code, tests, package lock, team conventions, or remotes existed.
 - The IDE's attached Pasted text.txt path does not exist. The original source master prompt and full-stack engineering handbook were not supplied in the available project. Do not claim compliance with unavailable sources.
