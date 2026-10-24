@@ -65,4 +65,9 @@ export type OrderCommand =
   | { type: "payment"; requestId: string; orderId: string; amountCents: number; note: string }
   | { type: "production"; requestId: string; orderId: string; next: Order["production"] }
   | { type: "order-info"; requestId: string; orderId: string; customer: z.infer<typeof customerSchema>; notes: string };
-export type Command = OrderCommand;
+export type InventoryValues = Pick<StockItem,"name"|"sku"|"unit"|"thresholds">;
+export type InventoryCommand =
+  | {type:"stock-item";requestId:string;itemId:string|null;values:InventoryValues;opening:{b1:number;b2:number}}
+  | {type:"stock-active";requestId:string;itemId:string;active:boolean}
+  | {type:"stock-adjust";requestId:string;itemId:string;branchId:BranchId;delta:number;reason:string};
+export type Command = OrderCommand | InventoryCommand;
