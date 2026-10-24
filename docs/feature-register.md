@@ -25,7 +25,7 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | DOM-003   | Align typed read/command adapter contract / all features              | P0       | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
 | DOM-004   | Guard saved-data changes across reset/removal / DOM-003               | P0       | fix/dom-004-reset-conflicts          | integrated; f93b732 / merge 5e0cdc5 | Stale-tab reset/deletion regressions               |
 | UI-002    | Form recovery, focus and responsive refinement / all features         | P0       | fix/ui-002-accessible-recovery       | integrated; afbdec8 / merge 4e17416 | Keyboard, invalid quantity, zoom and layout checks |
-| STYLE-001 | Consistent formatting / all source                                    | P1       | style/ui-003-source-formatting       | integrated; awaiting hash           | Prettier, typecheck and lint                       |
+| STYLE-001 | Consistent formatting / all source                                    | P1       | style/ui-003-source-formatting       | integrated; 500874a / merge 35beb00 | Prettier, typecheck and lint                       |
 | INIT-003  | Align tested Node prerequisites and clean unused tooling / INIT-002   | P0       | fix/init-003-supported-tooling       | integrated; 6842180 / merge 312e165 | Engine/peer metadata, install, typecheck and lint  |
 
-| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | planned | Typecheck, lint, order and input recovery E2E |
+| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | integrated; awaiting hash | Typecheck, lint, order and input recovery E2E |
