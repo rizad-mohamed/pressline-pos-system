@@ -3,7 +3,7 @@ import { type DemoData, type Scope, type BranchId } from "./model";
 import { businessDate, dateSchema } from "./dates";
 import { sumCents, formatMoney } from "./money";
 import { balanceFor } from "./orders";
-export const reportQuerySchema = z.object({ from: dateSchema, to: dateSchema, scope: z.enum(["all","b1","b2"]), cutoff: z.string().datetime().optional() }).refine(q => q.from <= q.to, "Start date must be on or before end date.");
+export const reportQuerySchema = z.object({ from: dateSchema, to: dateSchema, scope: z.enum(["all","b1","b2"]), cutoff: z.string().datetime().optional() }).refine(q => q.from <= q.to, "Start date must be on or before end date.").refine(q=>!q.cutoff||businessDate(q.cutoff)===q.to,"Cutoff must fall on the report's final business date.");
 export type ReportQuery = z.infer<typeof reportQuerySchema>;
 export type ReportRow = { branchId: BranchId; count: number; orderValue: number; collected: number; outstanding: number; statuses: Record<string,number> };
 export type ReportResult = { query: ReportQuery; rows: ReportRow[]; count: number; orderValue: number; collected: number; outstanding: number };

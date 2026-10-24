@@ -15,8 +15,8 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-024 | Receipt and separate job ticket / FR-021 | P0 | feat/fr-024-print-documents | integrated; c179434 / merge 26cfa80 | print/E2E checks |
 | FR-033 | Inventory CRUD, adjustments, low stock / FR-001 | P0 | feat/fr-033-branch-inventory | integrated; a48906d / merge 61d10a4 | validation/movements |
 | FR-035 | Atomic mock transfers / FR-033 | P0 | feat/fr-035-stock-transfers | integrated; 29f4eef / merge cec4b70 | transfer invariants |
-| FR-013 | Price configuration / DOM-001 | P0 | feat/fr-013-price-settings | integrated; awaiting hash | historical snapshots |
-| FR-042 | Period reports, branch/all scopes / FR-021 | P0 | feat/fr-042-financial-reports | planned | date/cohort tests |
+| FR-013 | Price configuration / DOM-001 | P0 | feat/fr-013-price-settings | integrated; 4dd4c30 / merge 9d76688 | historical snapshots |
+| FR-042 | Period reports, branch/all scopes / FR-021 | P0 | feat/fr-042-financial-reports | integrated; awaiting hash | date/cohort tests |
 | FR-047 | SMS config and unsent preview / FR-042 | P0 | feat/fr-047-sms-preview | planned | report consistency |
 | FR-008 | Team/branch/app/profile demo settings / FR-001 | P1 | feat/fr-008-demo-settings | planned | persistence/reset |
 | TEST-001 | E2E, responsive, keyboard, accessibility review / all features | P0 | test/test-001-workflow-validation | planned | Playwright + RTL |
