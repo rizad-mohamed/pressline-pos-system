@@ -2072,7 +2072,7 @@ button.text-link {
 
 /* Review pass: balance operational panels without decorative filler. */
 .nav-link > span {
-  max-width: 76px;
+  max-width: 72px;
   overflow-wrap: anywhere;
 }
 .summary-grid > .line-card + .line-card {
