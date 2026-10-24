@@ -10,6 +10,7 @@ import {
   Plus,
   Trash2,
 } from "lucide-react";
+import { useSummaryHeight } from "./use-summary-height";
 import { Field, Notice } from "@/components/shared/presentation";
 import { Button } from "@/components/ui/button";
 import { Money } from "@/components/shared/domain-display";
@@ -35,8 +36,13 @@ export function OrderSummary({
   showReview?: boolean;
 }) {
   const errors = form.formState.errors;
+  const summaryRef = useSummaryHeight(showReview);
   return (
-    <aside className="card pos-summary" aria-label="Order summary">
+    <aside
+      ref={summaryRef}
+      className="card pos-summary"
+      aria-label="Order summary"
+    >
       <div className="card-header">
         <div>
           <p className="small muted">Draft · local demo</p>
@@ -46,7 +52,12 @@ export function OrderSummary({
         </div>
         <ShoppingBag size={18} className="muted" />
       </div>
-      <div className="card-body stack">
+      <div
+        className="card-body stack summary-body"
+        tabIndex={0}
+        role="region"
+        aria-label="Print items and simulated advance"
+      >
         <Notice tone="warning">
           <strong>DEMO PRICE — NOT APPROVED</strong>
           <br />
@@ -157,18 +168,6 @@ export function OrderSummary({
               Complete valid print quantities to calculate your total.
             </p>
           )}
-          <div className="total-row grand-total">
-            <span>Order total</span>
-            <span data-testid="order-total">
-              {quote ? (
-                <Money value={quote.totalCents} />
-              ) : count === 0 ? (
-                <Money value={0} />
-              ) : (
-                "—"
-              )}
-            </span>
-          </div>
         </div>
         <Field
           label="Simulated advance (LKR)"
@@ -187,6 +186,21 @@ export function OrderSummary({
             }
           />
         </Field>
+        {draftIssue && <Notice tone="error">{draftIssue}</Notice>}
+      </div>
+      <footer className="summary-footer stack">
+        <div className="total-row grand-total">
+          <span>Order total</span>
+          <span data-testid="order-total">
+            {quote ? (
+              <Money value={quote.totalCents} />
+            ) : count === 0 ? (
+              <Money value={0} />
+            ) : (
+              "—"
+            )}
+          </span>
+        </div>
         <div className="total-row">
           <span className="muted">Balance after advance</span>
           <strong data-testid="preview-balance">
@@ -212,8 +226,7 @@ export function OrderSummary({
           Valid drafts stay in this browser tab for this demo account. Review
           does not save an order.
         </p>
-        {draftIssue && <Notice tone="error">{draftIssue}</Notice>}
-      </div>
+      </footer>
     </aside>
   );
 }
