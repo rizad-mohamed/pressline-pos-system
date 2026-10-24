@@ -1,14 +1,6 @@
 "use client";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Plus,
-  ClipboardList,
-  Wallet,
-  CircleDollarSign,
-  Layers,
-  AlertTriangle,
-} from "lucide-react";
+import { ArrowRight, Plus, AlertTriangle } from "lucide-react";
 import { useDemo } from "@/data/provider";
 import { todayReport, report } from "@/domain/reports";
 import { businessDate, shiftDate, dateTime } from "@/domain/dates";
@@ -23,6 +15,8 @@ import {
   ProductionBadge,
   PaymentBadge,
 } from "@/components/shared/domain-display";
+import { ComparisonChart } from "@/components/shared/comparison-chart";
+import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 export function Dashboard() {
   const { data, user, scope } = useDemo();
@@ -49,25 +43,21 @@ export function Dashboard() {
       label: "Today's order value",
       value: <Money value={summary.orderValue} />,
       note: `${summary.count} orders created today`,
-      icon: CircleDollarSign,
     },
     {
       label: "Payments collected",
       value: <Money value={summary.collected} />,
       note: "Simulated receipts recorded today",
-      icon: Wallet,
     },
     {
       label: "Outstanding balance",
       value: <Money value={summary.outstanding} />,
       note: "All orders · as of end of today",
-      icon: ClipboardList,
     },
     {
       label: "Active print jobs",
       value: active.length,
       note: `${active.filter((o) => o.production === "Ready").length} ready for collection`,
-      icon: Layers,
     },
   ];
   return (
@@ -85,14 +75,13 @@ export function Dashboard() {
           </Button>
         }
       />
-      <div className="metrics">
+      <div className="metrics metrics-strip">
         {metrics.map((m) => (
           <section className="card metric" key={m.label}>
             <div className="metric-label">
               <h2 style={{ fontSize: "var(--text-sm)", fontWeight: 400 }}>
                 {m.label}
               </h2>
-              <m.icon size={17} />
             </div>
             <div className="metric-value">{m.value}</div>
             <p className="metric-note">{m.note}</p>
@@ -118,23 +107,7 @@ export function Dashboard() {
                 collections
               </span>
             </div>
-            <div className="chart" aria-hidden="true">
-              {days.map((d) => (
-                <div className="chart-column" key={d.date}>
-                  <div className="chart-pair">
-                    <div
-                      className="chart-bar"
-                      style={{ height: `${(d.orderValue / max) * 140}px` }}
-                    />
-                    <div
-                      className="chart-bar secondary"
-                      style={{ height: `${(d.collected / max) * 140}px` }}
-                    />
-                  </div>
-                  <span className="small muted">{d.date.slice(8)}</span>
-                </div>
-              ))}
-            </div>
+            <ComparisonChart rows={days} />
             <p className="chart-axis">
               Zero baseline · tallest bar <Money value={max} />
             </p>
@@ -200,7 +173,10 @@ export function Dashboard() {
                 (o) => o.production === status,
               ).length;
               return (
-                <div className="row between" key={status}>
+                <div
+                  className="row between production-summary-row"
+                  key={status}
+                >
                   <ProductionBadge
                     value={status as (typeof orders)[number]["production"]}
                   />
@@ -208,7 +184,7 @@ export function Dashboard() {
                 </div>
               );
             })}
-            <hr className="divider" />
+            <Separator />
             <div className="row">
               <AlertTriangle size={17} style={{ color: "var(--warning)" }} />
               <strong>{low.length} materials need attention</strong>

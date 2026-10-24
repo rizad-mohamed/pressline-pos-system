@@ -17,6 +17,7 @@ import {
 } from "@/domain/orders";
 import { productionStates, type Order } from "@/domain/model";
 import { dateTime } from "@/domain/dates";
+import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import {
   EmptyState,
@@ -57,7 +58,7 @@ export function OrderDetail({ orderId }: { orderId: string }) {
     next = productionStates[index + 1] as Order["production"] | undefined;
   const payments = data.payments.filter((p) => p.orderId === order.id);
   return (
-    <div className="stack">
+    <div className="stack order-detail">
       <div className="row between">
         <div>
           <h2>{order.customer.name || "Walk-in customer"}</h2>
@@ -90,7 +91,7 @@ export function OrderDetail({ orderId }: { orderId: string }) {
           </h2>
         </div>
       </div>
-      <div className="notice notice-warning row between">
+      <div className="notice notice-warning row between balance-callout">
         <strong>Balance due</strong>
         <strong data-testid="detail-balance">
           <Money value={due} />
@@ -218,7 +219,7 @@ export function OrderDetail({ orderId }: { orderId: string }) {
           <p className="muted">No simulated payment has been recorded.</p>
         )}
       </section>
-      <hr className="divider" />
+      <Separator />
       <div className="row">
         <Button variant="outline" asChild>
           <Link href={`/print/receipt/${order.id}`}>

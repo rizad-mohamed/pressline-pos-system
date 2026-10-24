@@ -16,7 +16,11 @@ export function PageHeader({
   return (
     <div className="page-heading">
       <div>
-        {eyebrow && <div className="eyebrow">{eyebrow}</div>}
+        {eyebrow && (
+          <div className="eyebrow">
+            {eyebrow.charAt(0) + eyebrow.slice(1).toLowerCase()}
+          </div>
+        )}
         <h1>{title}</h1>
         <p>{description}</p>
       </div>
