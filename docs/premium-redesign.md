@@ -95,3 +95,7 @@ Final format gate caught callback wrapping in the new summary-visibility test. A
 ## PREM-010 keyboard synchronization checkpoint
 
 The expanded production run passed 32/33. The keyboard test sent Space before the second deferred Radix roving-focus move completed, leaving Binding unselected. Installed react-roving-focus source schedules focusFirst with setTimeout. Added explicit toBeFocused assertions after both ArrowRight actions, preserving selection/count/navigation/focus-return assertions and adding no sleep or retry. Five repeated focused production checks passed. Full production suite is rerun before handover. Preserved the failed trace and screenshot locally.
+
+## PREM-011 final navigation craft
+
+Final production review found the active Production jobs label split Production across lines inside a 66px text cap. Widened the cap to 76px within the existing 104px rail; kept overflow wrapping for text zoom. Browser Range measurement confirms Production occupies one 66.47px line; visual label now reads Production / jobs. Production rebuild and all 33 E2E checks passed, including nine widths, text zoom and axe. No logic or typography-size change.
