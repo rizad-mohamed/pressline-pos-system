@@ -15,6 +15,7 @@ import {
   PageHeader,
 } from "@/components/shared/presentation";
 import { Money } from "@/components/shared/domain-display";
+import { ServiceManager } from "./services";
 const fields = [
   { key: "a4Bw", label: "A4 black & white", unit: "per printed sheet" },
   { key: "a4Color", label: "A4 color", unit: "per printed sheet" },
@@ -70,8 +71,8 @@ export function PricingPage() {
     <div className="stack">
       <PageHeader
         eyebrow="DEMONSTRATION CATALOGUE"
-        title="Price catalogue"
-        description="Consistent, transparent quotes for every print order."
+        title="Services & pricing"
+        description="Manage what the shop offers, how it is priced and the materials it may use."
         action={
           <Button onClick={() => setOpen(true)}>
             <Pencil size={16} />
@@ -84,6 +85,7 @@ export function PricingPage() {
         editable for demonstration. Tax, discounts, refunds and actual selling
         prices are awaiting approval.
       </Notice>
+      <ServiceManager />
       <section className="card">
         <div className="card-header">
           <div className="row">

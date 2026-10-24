@@ -50,7 +50,7 @@ const groups = [
     items: [
       { href: "/inventory", label: "Inventory", icon: Package },
       { href: "/transfers", label: "Stock transfers", icon: ArrowLeftRight },
-      { href: "/pricing", label: "Price catalogue", icon: Tags },
+      { href: "/pricing", label: "Services", icon: Tags },
     ],
   },
   {

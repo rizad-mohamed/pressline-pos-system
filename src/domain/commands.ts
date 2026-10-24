@@ -6,6 +6,7 @@ import { applyPriceSettings } from "./price-settings";
 import { applySmsConfig } from "./sms";
 import { applySettings } from "./settings";
 import { applyCustomerCommand } from "./customers";
+import { applyServiceCommand } from "./services";
 export function executeCommand(
   data: DemoData,
   user: DemoUser,
@@ -13,6 +14,10 @@ export function executeCommand(
   now: string,
 ): DemoData {
   switch (command.type) {
+    case "service-save":
+    case "category-save":
+    case "category-active":
+      return applyServiceCommand(data, user, command, now);
     case "customer-save":
     case "customer-active":
     case "link-customer":

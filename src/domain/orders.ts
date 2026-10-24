@@ -135,7 +135,7 @@ export function applyOrderCommand(
     );
     z.string().max(1000).parse(command.notes);
     z.array(lineInputSchema).min(1).max(30).parse(command.lines);
-    const quote = quoteOrder(command.lines, data.pricing);
+    const quote = quoteOrder(command.lines, data.pricing, data);
     centsSchema.parse(command.advanceCents);
     if (command.advanceCents > quote.totalCents)
       throw new DomainError(
