@@ -23,7 +23,7 @@ export function Composer() {
     try{const raw=window.sessionStorage.getItem(draftKey);if(raw){const saved=JSON.parse(raw);const parsed=orderFormBase.safeParse(saved.values);if(saved.ownerId===user.id&&parsed.success&&(user.role==="admin"||parsed.data.branchId===user.branchId))return parsed.data;}}catch{}
     return fallback;
   }
-  const form=useForm<OrderFormValues>({resolver:zodResolver(schema),defaultValues:defaults(),mode:"onSubmit",reValidateMode:"onChange"});
+  const form=useForm<OrderFormValues>({resolver:zodResolver(schema),defaultValues:defaults(),mode:"onBlur",reValidateMode:"onChange"});
   const {fields,append,remove}=useFieldArray({control:form.control,name:"lines"});const values=useWatch({control:form.control});
   const quote=useMemo(()=>{try{return quoteOrder((values.lines??[]) as LineInput[],data.pricing);}catch{return null;}},[values.lines,data.pricing]);
   let advance=0;try{advance=money(values.advance??"0");}catch{}
