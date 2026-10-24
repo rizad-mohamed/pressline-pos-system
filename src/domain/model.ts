@@ -70,4 +70,5 @@ export type InventoryCommand =
   | {type:"stock-item";requestId:string;itemId:string|null;values:InventoryValues;opening:{b1:number;b2:number}}
   | {type:"stock-active";requestId:string;itemId:string;active:boolean}
   | {type:"stock-adjust";requestId:string;itemId:string;branchId:BranchId;delta:number;reason:string};
-export type Command = OrderCommand | InventoryCommand;
+export type TransferCommand = {type:"transfer";requestId:string;itemId:string;source:BranchId;target:BranchId;quantity:number;note:string};
+export type Command = OrderCommand | InventoryCommand | TransferCommand;
