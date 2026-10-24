@@ -19,7 +19,7 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | FR-042    | Period reports, branch/all scopes / FR-021                            | P0       | feat/fr-042-financial-reports        | integrated; 236276f / merge a5bc9de | date/cohort tests                                  |
 | FR-047    | SMS config and unsent preview / FR-042                                | P0       | feat/fr-047-sms-preview              | integrated; bce92d2 / merge 6aeae5e | report consistency                                 |
 | FR-008    | Team/branch/app/profile demo settings / FR-001                        | P1       | feat/fr-008-demo-settings            | integrated; 245e733 / merge 9da908d | persistence/reset                                  |
-| TEST-001  | E2E, responsive, keyboard, accessibility review / all features        | P0       | test/test-001-workflow-validation    | planned                             | Playwright + RTL                                   |
+| TEST-001  | E2E, responsive, keyboard, accessibility review / all features        | P0       | test/test-001-workflow-validation    | integrated; awaiting hash           | Playwright + RTL                                   |
 | DOC-002   | Coverage, handover, audit / TEST-001                                  | P0       | docs/doc-002-delivery-evidence       | planned                             | history cross-check                                |
 | DOM-002   | Correct future-dated current-day fixtures / DOM-001                   | P0       | fix/dom-002-fixture-timestamps       | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09            |
 | DOM-003   | Align typed read/command adapter contract / all features              | P0       | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
@@ -30,4 +30,4 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 
 | UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | integrated; 093dab5 / merge a67330b | Typecheck, lint, order and input recovery E2E |
 
-| UI-005 | Contain mobile table labels and keyboard scrolling / UI-001 | P0 | fix/ui-005-mobile-table-reflow | integrated; awaiting hash | Document-width and ArrowRight scrolling regression |
+| UI-005 | Contain mobile table labels and keyboard scrolling / UI-001 | P0 | fix/ui-005-mobile-table-reflow | integrated; 958ad70 / merge eb90b82 | Document-width and ArrowRight scrolling regression |
