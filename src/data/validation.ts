@@ -79,6 +79,15 @@ export function validateData(value: unknown): DemoData {
       )
         fail("Service material reference or unit is inconsistent.");
   }
+  if (
+    new Set(data.services.map((s) => s.code.toLowerCase())).size !==
+      data.services.length ||
+    new Set(data.categories.map((c) => c.name.toLowerCase())).size !==
+      data.categories.length
+  )
+    fail(
+      "Service codes and category names must be unique, including archived records.",
+    );
   for (const customer of data.customers)
     if (
       !data.users.some((u) => u.id === customer.actorId) ||
