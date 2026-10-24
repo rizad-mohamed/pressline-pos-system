@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=24.14.1"
   },
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
@@ -28,8 +28,7 @@
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@vitejs/plugin-react": "6.1.2",
-    "eslint": "10.13.0",
+    "eslint": "9.39.5",
     "eslint-config-next": "16.4.3",
     "jsdom": "29.1.1",
     "prettier": "3.9.10",

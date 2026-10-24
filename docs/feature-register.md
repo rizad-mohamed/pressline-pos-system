@@ -24,6 +24,6 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | DOM-002 | Correct future-dated current-day fixtures / DOM-001 | P0 | fix/dom-002-fixture-timestamps | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09 |
 | DOM-003 | Align typed read/command adapter contract / all features | P0 | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
 | DOM-004 | Guard saved-data changes across reset/removal / DOM-003 | P0 | fix/dom-004-reset-conflicts | integrated; f93b732 / merge 5e0cdc5 | Stale-tab reset/deletion regressions |
-| UI-002 | Form recovery, focus and responsive refinement / all features | P0 | fix/ui-002-accessible-recovery | integrated; awaiting hash | Keyboard, invalid quantity, zoom and layout checks |
+| UI-002 | Form recovery, focus and responsive refinement / all features | P0 | fix/ui-002-accessible-recovery | integrated; afbdec8 / merge 4e17416 | Keyboard, invalid quantity, zoom and layout checks |
 | STYLE-001 | Consistent formatting / all source | P1 | style/ui-003-source-formatting | planned | Prettier, typecheck and lint |
-| INIT-003 | Align tested Node prerequisites and clean unused tooling / INIT-002 | P0 | fix/init-003-supported-tooling | planned | Engine/peer metadata, install, typecheck and lint |
+| INIT-003 | Align tested Node prerequisites and clean unused tooling / INIT-002 | P0 | fix/init-003-supported-tooling | integrated; awaiting hash | Engine/peer metadata, install, typecheck and lint |
