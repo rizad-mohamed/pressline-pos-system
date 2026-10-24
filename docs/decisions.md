@@ -32,3 +32,7 @@
 - Keep one adaptive summary. Measured desktop height protects total/balance/review; scrolling body is keyboard named/focusable. Mobile uses a Radix sheet, fixed footer and post-close Edit focus. Short windows use page scrolling.
 - Keep the observed Playwright source-injection SyntaxError as an unresolved environment/root-cause observation. Unchanged focused repeats and complete production reruns passed; no assertion weakened or test hidden.
 - The separately referenced 18-gate document is absent. The design-system record supplies an explicitly labeled frontend adaptation, not a claimed quotation or production certification. Existing handbook has a separate 30-point production checklist; backend/operations launch remains out of scope.
+
+## Connected follow-up authority
+
+The 2026-10-24 owner-approved follow-up now authorizes saved customers, managed services and explicit order-linked actual material consumption in the frontend mock store. Earlier no-consumption/no-new-services statements describe the prior phase. The planned implementation and reversible demo conventions are in followup-implementation.md; no live backend permission is granted.
