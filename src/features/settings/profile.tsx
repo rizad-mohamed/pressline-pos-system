@@ -1,11 +1,105 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDemo,useCommand,requestId } from "@/data/provider";
+import { useDemo, useCommand, requestId } from "@/data/provider";
 import type { DemoData } from "@/domain/model";
 import { Button } from "@/components/ui/button";
-import { Badge,Notice,PageHeader } from "@/components/shared/presentation";
+import { Badge, Notice, PageHeader } from "@/components/shared/presentation";
 export function Profile() {
-  const {data,user}=useDemo(),command=useCommand();const [id,setId]=useState(requestId);const form=useForm<DemoData["preferences"]>({defaultValues:data.preferences});
-  return <div className="stack"><PageHeader eyebrow="YOUR DEMO CONTEXT" title="Personal settings" description="Review your role and make this browser workspace comfortable."/><div className="summary-grid"><section className="card"><div className="card-header"><h2>Current demo account</h2><Badge tone="primary">DEMO</Badge></div><div className="card-body stack"><h2>{user.name}</h2><div className="total-row"><span className="muted">Role</span><strong>{user.role==="admin"?"Administrator":"Cashier"}</strong></div><div className="total-row"><span className="muted">Branch</span><strong>{user.branchId?data.branches.find(b=>b.id===user.branchId)!.name:"All branches"}</strong></div><div className="total-row"><span className="muted">Currency</span><strong>LKR</strong></div><div className="total-row"><span className="muted">Business timezone</span><strong>Asia/Colombo</strong></div><div className="total-row"><span className="muted">Formatting</span><strong>en-LK</strong></div><Notice>This is a local account selector. There is no real authenticated session, password or cloud profile to edit.</Notice></div></section><section className="card"><div className="card-header"><h2>Browser preferences</h2></div><form className="card-body stack" onSubmit={form.handleSubmit(async values=>{const r=await command.run({type:"preferences",requestId:id,values},"Browser preferences saved.");if(r.ok)setId(requestId());})}><label className="check"><input type="checkbox" {...form.register("compact")}/>Compact tables</label><p className="small muted">Reduce table row spacing for desktop work. Controls keep their keyboard and touch affordances.</p><label className="check"><input type="checkbox" {...form.register("reduceMotion")}/>Reduce animation</label><p className="small muted">Use minimal page and drawer motion. Your system&apos;s reduced-motion preference is also always respected.</p><Button type="submit" disabled={command.pending}>Save browser preferences</Button><p className="small muted">These non-sensitive display preferences apply across demo accounts in this browser and persist after reload.</p>{command.error&&<Notice tone="error">{command.error}</Notice>}</form></section></div></div>;
+  const { data, user } = useDemo(),
+    command = useCommand();
+  const [id, setId] = useState(requestId);
+  const form = useForm<DemoData["preferences"]>({
+    defaultValues: data.preferences,
+  });
+  return (
+    <div className="stack">
+      <PageHeader
+        eyebrow="YOUR DEMO CONTEXT"
+        title="Personal settings"
+        description="Review your role and make this browser workspace comfortable."
+      />
+      <div className="summary-grid">
+        <section className="card">
+          <div className="card-header">
+            <h2>Current demo account</h2>
+            <Badge tone="primary">DEMO</Badge>
+          </div>
+          <div className="card-body stack">
+            <h2>{user.name}</h2>
+            <div className="total-row">
+              <span className="muted">Role</span>
+              <strong>
+                {user.role === "admin" ? "Administrator" : "Cashier"}
+              </strong>
+            </div>
+            <div className="total-row">
+              <span className="muted">Branch</span>
+              <strong>
+                {user.branchId
+                  ? data.branches.find((b) => b.id === user.branchId)!.name
+                  : "All branches"}
+              </strong>
+            </div>
+            <div className="total-row">
+              <span className="muted">Currency</span>
+              <strong>LKR</strong>
+            </div>
+            <div className="total-row">
+              <span className="muted">Business timezone</span>
+              <strong>Asia/Colombo</strong>
+            </div>
+            <div className="total-row">
+              <span className="muted">Formatting</span>
+              <strong>en-LK</strong>
+            </div>
+            <Notice>
+              This is a local account selector. There is no real authenticated
+              session, password or cloud profile to edit.
+            </Notice>
+          </div>
+        </section>
+        <section className="card">
+          <div className="card-header">
+            <h2>Browser preferences</h2>
+          </div>
+          <form
+            className="card-body stack"
+            onSubmit={form.handleSubmit(async (values) => {
+              const r = await command.run(
+                { type: "preferences", requestId: id, values },
+                "Browser preferences saved.",
+              );
+              if (r.ok) setId(requestId());
+            })}
+          >
+            <label className="check">
+              <input type="checkbox" {...form.register("compact")} />
+              Compact tables
+            </label>
+            <p className="small muted">
+              Reduce table row spacing for desktop work. Controls keep their
+              keyboard and touch affordances.
+            </p>
+            <label className="check">
+              <input type="checkbox" {...form.register("reduceMotion")} />
+              Reduce animation
+            </label>
+            <p className="small muted">
+              Use minimal page and drawer motion. Your system&apos;s
+              reduced-motion preference is also always respected.
+            </p>
+            <Button type="submit" disabled={command.pending}>
+              Save browser preferences
+            </Button>
+            <p className="small muted">
+              These non-sensitive display preferences apply across demo accounts
+              in this browser and persist after reload.
+            </p>
+            {command.error && <Notice tone="error">{command.error}</Notice>}
+          </form>
+        </section>
+      </div>
+    </div>
+  );
 }

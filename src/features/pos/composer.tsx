@@ -3,7 +3,13 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus, ArrowRight, CheckCircle2, RotateCcw, ShoppingBag } from "lucide-react";
+import {
+  Plus,
+  ArrowRight,
+  CheckCircle2,
+  RotateCcw,
+  ShoppingBag,
+} from "lucide-react";
 import { useDemo, useCommand, requestId } from "@/data/provider";
 import { blankLine, quoteOrder } from "@/domain/pricing";
 import { money } from "@/domain/money";
@@ -12,26 +18,505 @@ import { orderFormSchema, orderFormBase, type OrderFormValues } from "./schema";
 import { LineEditor } from "./line-editor";
 import { Button } from "@/components/ui/button";
 import { Sheet } from "@/components/ui/sheet";
-import { Badge, Field, Notice, PageHeader } from "@/components/shared/presentation";
+import {
+  Badge,
+  Field,
+  Notice,
+  PageHeader,
+} from "@/components/shared/presentation";
 import { Money } from "@/components/shared/domain-display";
-const draftKey="pressline.draft.v1";
+const draftKey = "pressline.draft.v1";
 export function Composer() {
-  const {data,user,scope}=useDemo(),command=useCommand();const [review,setReview]=useState<OrderFormValues|null>(null),[completed,setCompleted]=useState<string|null>(null),[removed,setRemoved]=useState<LineInput|null>(null),[draftIssue,setDraftIssue]=useState("");const [submission,setSubmission]=useState("");
-  const schema=useMemo(()=>orderFormSchema(data.pricing),[data.pricing]);
-  function defaults():OrderFormValues {
-    const fallback={branchId:(user.role==="cashier"?user.branchId:scope!=="all"?scope:undefined) as BranchId,customer:{name:"",phone:""},lines:[blankLine()],notes:"",advance:"0.00"};
-    try{const raw=window.sessionStorage.getItem(draftKey);if(raw){const saved=JSON.parse(raw);const parsed=orderFormBase.safeParse(saved.values);if(saved.ownerId===user.id&&parsed.success&&(user.role==="admin"||parsed.data.branchId===user.branchId))return parsed.data;}}catch{}
+  const { data, user, scope } = useDemo(),
+    command = useCommand();
+  const [review, setReview] = useState<OrderFormValues | null>(null),
+    [completed, setCompleted] = useState<string | null>(null),
+    [removed, setRemoved] = useState<LineInput | null>(null),
+    [draftIssue, setDraftIssue] = useState("");
+  const [submission, setSubmission] = useState("");
+  const schema = useMemo(() => orderFormSchema(data.pricing), [data.pricing]);
+  function defaults(): OrderFormValues {
+    const fallback = {
+      branchId: (user.role === "cashier"
+        ? user.branchId
+        : scope !== "all"
+          ? scope
+          : undefined) as BranchId,
+      customer: { name: "", phone: "" },
+      lines: [blankLine()],
+      notes: "",
+      advance: "0.00",
+    };
+    try {
+      const raw = window.sessionStorage.getItem(draftKey);
+      if (raw) {
+        const saved = JSON.parse(raw);
+        const parsed = orderFormBase.safeParse(saved.values);
+        if (
+          saved.ownerId === user.id &&
+          parsed.success &&
+          (user.role === "admin" || parsed.data.branchId === user.branchId)
+        )
+          return parsed.data;
+      }
+    } catch {}
     return fallback;
   }
-  const form=useForm<OrderFormValues>({resolver:zodResolver(schema),defaultValues:defaults(),mode:"onBlur",reValidateMode:"onChange"});
-  const {fields,append,remove}=useFieldArray({control:form.control,name:"lines"});const values=useWatch({control:form.control});
-  const quote=useMemo(()=>{try{return quoteOrder((values.lines??[]) as LineInput[],data.pricing);}catch{return null;}},[values.lines,data.pricing]);
-  let advance=0;try{advance=money(values.advance??"0");}catch{}
-  useEffect(()=>form.subscribe({formState:{values:true},callback:({values})=>{const parsed=orderFormBase.safeParse(values);if(parsed.success)try{window.sessionStorage.setItem(draftKey,JSON.stringify({ownerId:user.id,values:parsed.data}));}catch{setDraftIssue("The tab draft could not be saved. Keep this view open until you finish or copy your instructions.");}}}),[form,user.id]);
-  useEffect(()=>{const warn=(e:BeforeUnloadEvent)=>{if(form.formState.isDirty){e.preventDefault();}};window.addEventListener("beforeunload",warn);return()=>window.removeEventListener("beforeunload",warn);},[form.formState.isDirty]);
-  async function save() {if(!review)return;const result=await command.run({type:"create-order",requestId:submission,branchId:review.branchId,customer:review.customer,lines:review.lines,notes:review.notes,advanceCents:money(review.advance)},"Demonstration order saved. No real payment was taken.");if(result.ok){setCompleted(result.data.orders[0].id);setReview(null);form.reset({branchId:review.branchId,customer:{name:"",phone:""},lines:[blankLine()],notes:"",advance:"0.00"});try{window.sessionStorage.removeItem(draftKey);}catch{}}}
-  const saved=completed?data.orders.find(o=>o.id===completed):null;
-  if(saved)return <div className="stack"><PageHeader eyebrow="ORDER SAVED LOCALLY" title={`${saved.id} is ready for production`} description="Your demonstration order is now available in history, jobs and reports."/><div className="card card-body stack"><CheckCircle2 size={36} style={{color:"var(--success)"}}/><h2>Order created successfully</h2><div className="summary-grid"><div><p className="muted">Order total</p><h2><Money value={saved.totalCents}/></h2></div><div><p className="muted">Branch</p><h2>{data.branches.find(b=>b.id===saved.branchId)!.name}</h2></div></div><Notice>Payment events are simulated. Stock was not consumed automatically.</Notice><div className="row"><Button asChild><Link href={`/orders/${saved.id}`}>Open order<ArrowRight size={16}/></Link></Button><Button variant="outline" onClick={()=>setCompleted(null)}><Plus size={16}/>Create another order</Button></div></div></div>;
-  const errors=form.formState.errors;
-  return <><PageHeader eyebrow="POINT OF SALE" title="Create a print order" description="Configure the work. Review the price. Keep every detail together."/><form id="pos-form" onSubmit={form.handleSubmit(value=>{setSubmission(requestId());setReview(value);command.setError("");})} noValidate><div className="pos-grid"><div className="stack"><section className="card"><div className="card-header"><h2>Order details</h2><Badge tone="primary">New order</Badge></div><div className="card-body stack"><Field id="order-branch" label="Order branch" error={errors.branchId?.message} hint={user.role==="admin"?"Choose one branch for this transaction, even when the workspace shows all branches.":"Assigned to your demo cashier account."}><select id="order-branch" className="select" {...form.register("branchId")} disabled={user.role==="cashier"} aria-invalid={!!errors.branchId} aria-describedby={errors.branchId?"order-branch-error":"order-branch-hint"}><option value="">Select one branch</option>{data.branches.map(b=><option value={b.id} key={b.id}>{b.name} · {b.location.split(" · ")[0]}</option>)}</select></Field><div className="form-grid"><Field label="Customer name (optional)" id="customer-name" error={errors.customer?.name?.message}><input className="input" id="customer-name" {...form.register("customer.name")} placeholder="Leave blank for walk-in" autoComplete="off" maxLength={100}/></Field><Field label="Contact number (optional)" id="customer-phone" error={errors.customer?.phone?.message}><input className="input" id="customer-phone" type="tel" {...form.register("customer.phone")} placeholder="Fictional number only" autoComplete="off" aria-invalid={!!errors.customer?.phone} aria-describedby={errors.customer?.phone?"customer-phone-error":undefined}/></Field></div><p className="small muted">Use fictional demonstration details only. Customer information is optional.</p></div></section><section className="card"><div className="card-header"><div><h2>Print items</h2><p className="small muted">Quantity means printed sheets, not documents.</p></div><Badge>{fields.length} {fields.length===1?"item":"items"}</Badge></div><div className="card-body">{fields.map((field,index)=><LineEditor key={field.id} index={index} form={form} total={quote?.lines[index]?.totalCents} canRemove={fields.length>1} remove={()=>{setRemoved(form.getValues(`lines.${index}`));remove(index);}}/>)}<div className="row" style={{marginTop:"var(--space-4)"}}><Button variant="outline" disabled={fields.length>=30} onClick={()=>append(blankLine())}><Plus size={16}/>Add print item</Button>{removed&&<Button variant="ghost" onClick={()=>{append(removed);setRemoved(null);}}><RotateCcw size={15}/>Undo item removal</Button>}</div></div></section><section className="card card-body"><Field label="Order instructions (optional)" id="order-notes" error={errors.notes?.message}><textarea className="textarea" id="order-notes" {...form.register("notes")} placeholder="Collection preferences or production handover notes…" maxLength={1000}/></Field></section></div><aside className="card pos-summary" aria-label="Order summary"><div className="card-header"><h2>Order summary</h2><ShoppingBag size={18} className="muted"/></div><div className="card-body stack"><Notice tone="warning"><strong>DEMO PRICE — NOT APPROVED</strong><br/>Sample rates. No tax or discount policy is configured.</Notice><div>{quote?.lines.map((line,index)=><div key={line.id} style={{paddingBlock:"var(--space-3)",borderBottom:"1px solid var(--border)"}}><div className="total-row"><strong className="grow">{index+1}. {line.description}</strong><Money value={line.totalCents}/></div><p className="small muted">{line.quantity} × <Money value={line.unitCents}/> + <Money value={line.setupCents}/> binding/finishing</p></div>)}{!quote&&<p className="muted">Complete valid print quantities to calculate your total.</p>}<div className="total-row grand-total"><span>Order total</span><span data-testid="order-total">{quote?<Money value={quote.totalCents}/>:"—"}</span></div></div><Field label="Simulated advance (LKR)" id="order-advance" error={errors.advance?.message} hint="Enter 0 for unpaid, or any amount up to the total."><input id="order-advance" className="input money" inputMode="decimal" {...form.register("advance")} aria-invalid={!!errors.advance} aria-describedby={errors.advance?"order-advance-error":"order-advance-hint"}/></Field><div className="total-row"><span className="muted">Balance after advance</span><strong data-testid="preview-balance">{quote&&advance<=quote.totalCents?<Money value={quote.totalCents-advance}/>:"—"}</strong></div><Button type="submit" className="full" disabled={!quote||command.pending}>Review order<ArrowRight size={16}/></Button><p className="small muted">Valid drafts stay in this browser tab for this demo account. Review does not save an order.</p>{draftIssue&&<Notice tone="error">{draftIssue}</Notice>}</div></aside></div></form><Sheet open={!!review} onOpenChange={open=>{if(!open)setReview(null);}} title="Review your print order" description="Check every item, branch and simulated advance before saving." footer={<><Button variant="outline" onClick={()=>setReview(null)} disabled={command.pending}>Back to editing</Button><Button onClick={save} disabled={command.pending}>{command.pending?"Saving locally…":"Save demo order"}</Button></>}>{review&&<div className="stack"><Notice tone="warning">Demonstration prices and simulated payment only. No charge or stock consumption will occur.</Notice><div className="row between"><strong>{data.branches.find(b=>b.id===review.branchId)!.name}</strong><span className="muted">{review.customer.name||"Walk-in customer"}</span></div>{quoteOrder(review.lines,data.pricing).lines.map(line=><div className="line-card" key={line.id}><div className="total-row"><strong>{line.description}</strong><Money value={line.totalCents}/></div><p className="small muted">{line.size} · {line.color} · {line.sides} · {line.quantity} sheets · {line.binding} binding · {line.finishing}</p>{line.notes&&<p className="small">{line.notes}</p>}</div>)}<div><div className="total-row"><span>Order total</span><strong><Money value={quoteOrder(review.lines,data.pricing).totalCents}/></strong></div><div className="total-row"><span>Simulated advance</span><Money value={money(review.advance)}/></div><div className="total-row grand-total"><span>Balance due</span><Money value={quoteOrder(review.lines,data.pricing).totalCents-money(review.advance)}/></div></div>{review.notes&&<p>{review.notes}</p>}{command.error&&<Notice tone="error">{command.error}</Notice>}</div>}</Sheet></>;
+  const form = useForm<OrderFormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: defaults(),
+    mode: "onBlur",
+    reValidateMode: "onChange",
+  });
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "lines",
+  });
+  const values = useWatch({ control: form.control });
+  const quote = useMemo(() => {
+    try {
+      return quoteOrder((values.lines ?? []) as LineInput[], data.pricing);
+    } catch {
+      return null;
+    }
+  }, [values.lines, data.pricing]);
+  let advance = 0;
+  try {
+    advance = money(values.advance ?? "0");
+  } catch {}
+  useEffect(
+    () =>
+      form.subscribe({
+        formState: { values: true },
+        callback: ({ values }) => {
+          const parsed = orderFormBase.safeParse(values);
+          if (parsed.success)
+            try {
+              window.sessionStorage.setItem(
+                draftKey,
+                JSON.stringify({ ownerId: user.id, values: parsed.data }),
+              );
+            } catch {
+              setDraftIssue(
+                "The tab draft could not be saved. Keep this view open until you finish or copy your instructions.",
+              );
+            }
+        },
+      }),
+    [form, user.id],
+  );
+  useEffect(() => {
+    const warn = (e: BeforeUnloadEvent) => {
+      if (form.formState.isDirty) {
+        e.preventDefault();
+      }
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [form.formState.isDirty]);
+  async function save() {
+    if (!review) return;
+    const result = await command.run(
+      {
+        type: "create-order",
+        requestId: submission,
+        branchId: review.branchId,
+        customer: review.customer,
+        lines: review.lines,
+        notes: review.notes,
+        advanceCents: money(review.advance),
+      },
+      "Demonstration order saved. No real payment was taken.",
+    );
+    if (result.ok) {
+      setCompleted(result.data.orders[0].id);
+      setReview(null);
+      form.reset({
+        branchId: review.branchId,
+        customer: { name: "", phone: "" },
+        lines: [blankLine()],
+        notes: "",
+        advance: "0.00",
+      });
+      try {
+        window.sessionStorage.removeItem(draftKey);
+      } catch {}
+    }
+  }
+  const saved = completed ? data.orders.find((o) => o.id === completed) : null;
+  if (saved)
+    return (
+      <div className="stack">
+        <PageHeader
+          eyebrow="ORDER SAVED LOCALLY"
+          title={`${saved.id} is ready for production`}
+          description="Your demonstration order is now available in history, jobs and reports."
+        />
+        <div className="card card-body stack">
+          <CheckCircle2 size={36} style={{ color: "var(--success)" }} />
+          <h2>Order created successfully</h2>
+          <div className="summary-grid">
+            <div>
+              <p className="muted">Order total</p>
+              <h2>
+                <Money value={saved.totalCents} />
+              </h2>
+            </div>
+            <div>
+              <p className="muted">Branch</p>
+              <h2>
+                {data.branches.find((b) => b.id === saved.branchId)!.name}
+              </h2>
+            </div>
+          </div>
+          <Notice>
+            Payment events are simulated. Stock was not consumed automatically.
+          </Notice>
+          <div className="row">
+            <Button asChild>
+              <Link href={`/orders/${saved.id}`}>
+                Open order
+                <ArrowRight size={16} />
+              </Link>
+            </Button>
+            <Button variant="outline" onClick={() => setCompleted(null)}>
+              <Plus size={16} />
+              Create another order
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  const errors = form.formState.errors;
+  return (
+    <>
+      <PageHeader
+        eyebrow="POINT OF SALE"
+        title="Create a print order"
+        description="Configure the work. Review the price. Keep every detail together."
+      />
+      <form
+        id="pos-form"
+        onSubmit={form.handleSubmit((value) => {
+          setSubmission(requestId());
+          setReview(value);
+          command.setError("");
+        })}
+        noValidate
+      >
+        <div className="pos-grid">
+          <div className="stack">
+            <section className="card">
+              <div className="card-header">
+                <h2>Order details</h2>
+                <Badge tone="primary">New order</Badge>
+              </div>
+              <div className="card-body stack">
+                <Field
+                  id="order-branch"
+                  label="Order branch"
+                  error={errors.branchId?.message}
+                  hint={
+                    user.role === "admin"
+                      ? "Choose one branch for this transaction, even when the workspace shows all branches."
+                      : "Assigned to your demo cashier account."
+                  }
+                >
+                  <select
+                    id="order-branch"
+                    className="select"
+                    {...form.register("branchId")}
+                    disabled={user.role === "cashier"}
+                    aria-invalid={!!errors.branchId}
+                    aria-describedby={
+                      errors.branchId
+                        ? "order-branch-error"
+                        : "order-branch-hint"
+                    }
+                  >
+                    <option value="">Select one branch</option>
+                    {data.branches.map((b) => (
+                      <option value={b.id} key={b.id}>
+                        {b.name} · {b.location.split(" · ")[0]}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <div className="form-grid">
+                  <Field
+                    label="Customer name (optional)"
+                    id="customer-name"
+                    error={errors.customer?.name?.message}
+                  >
+                    <input
+                      className="input"
+                      id="customer-name"
+                      {...form.register("customer.name")}
+                      placeholder="Leave blank for walk-in"
+                      autoComplete="off"
+                      maxLength={100}
+                    />
+                  </Field>
+                  <Field
+                    label="Contact number (optional)"
+                    id="customer-phone"
+                    error={errors.customer?.phone?.message}
+                  >
+                    <input
+                      className="input"
+                      id="customer-phone"
+                      type="tel"
+                      {...form.register("customer.phone")}
+                      placeholder="Fictional number only"
+                      autoComplete="off"
+                      aria-invalid={!!errors.customer?.phone}
+                      aria-describedby={
+                        errors.customer?.phone
+                          ? "customer-phone-error"
+                          : undefined
+                      }
+                    />
+                  </Field>
+                </div>
+                <p className="small muted">
+                  Use fictional demonstration details only. Customer information
+                  is optional.
+                </p>
+              </div>
+            </section>
+            <section className="card">
+              <div className="card-header">
+                <div>
+                  <h2>Print items</h2>
+                  <p className="small muted">
+                    Quantity means printed sheets, not documents.
+                  </p>
+                </div>
+                <Badge>
+                  {fields.length} {fields.length === 1 ? "item" : "items"}
+                </Badge>
+              </div>
+              <div className="card-body">
+                {fields.map((field, index) => (
+                  <LineEditor
+                    key={field.id}
+                    index={index}
+                    form={form}
+                    total={quote?.lines[index]?.totalCents}
+                    canRemove={fields.length > 1}
+                    remove={() => {
+                      setRemoved(form.getValues(`lines.${index}`));
+                      remove(index);
+                    }}
+                  />
+                ))}
+                <div className="row" style={{ marginTop: "var(--space-4)" }}>
+                  <Button
+                    variant="outline"
+                    disabled={fields.length >= 30}
+                    onClick={() => append(blankLine())}
+                  >
+                    <Plus size={16} />
+                    Add print item
+                  </Button>
+                  {removed && (
+                    <Button
+                      variant="ghost"
+                      onClick={() => {
+                        append(removed);
+                        setRemoved(null);
+                      }}
+                    >
+                      <RotateCcw size={15} />
+                      Undo item removal
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </section>
+            <section className="card card-body">
+              <Field
+                label="Order instructions (optional)"
+                id="order-notes"
+                error={errors.notes?.message}
+              >
+                <textarea
+                  className="textarea"
+                  id="order-notes"
+                  {...form.register("notes")}
+                  placeholder="Collection preferences or production handover notes…"
+                  maxLength={1000}
+                />
+              </Field>
+            </section>
+          </div>
+          <aside className="card pos-summary" aria-label="Order summary">
+            <div className="card-header">
+              <h2>Order summary</h2>
+              <ShoppingBag size={18} className="muted" />
+            </div>
+            <div className="card-body stack">
+              <Notice tone="warning">
+                <strong>DEMO PRICE — NOT APPROVED</strong>
+                <br />
+                Sample rates. No tax or discount policy is configured.
+              </Notice>
+              <div>
+                {quote?.lines.map((line, index) => (
+                  <div
+                    key={line.id}
+                    style={{
+                      paddingBlock: "var(--space-3)",
+                      borderBottom: "1px solid var(--border)",
+                    }}
+                  >
+                    <div className="total-row">
+                      <strong className="grow">
+                        {index + 1}. {line.description}
+                      </strong>
+                      <Money value={line.totalCents} />
+                    </div>
+                    <p className="small muted">
+                      {line.quantity} × <Money value={line.unitCents} /> +{" "}
+                      <Money value={line.setupCents} /> binding/finishing
+                    </p>
+                  </div>
+                ))}
+                {!quote && (
+                  <p className="muted">
+                    Complete valid print quantities to calculate your total.
+                  </p>
+                )}
+                <div className="total-row grand-total">
+                  <span>Order total</span>
+                  <span data-testid="order-total">
+                    {quote ? <Money value={quote.totalCents} /> : "—"}
+                  </span>
+                </div>
+              </div>
+              <Field
+                label="Simulated advance (LKR)"
+                id="order-advance"
+                error={errors.advance?.message}
+                hint="Enter 0 for unpaid, or any amount up to the total."
+              >
+                <input
+                  id="order-advance"
+                  className="input money"
+                  inputMode="decimal"
+                  {...form.register("advance")}
+                  aria-invalid={!!errors.advance}
+                  aria-describedby={
+                    errors.advance
+                      ? "order-advance-error"
+                      : "order-advance-hint"
+                  }
+                />
+              </Field>
+              <div className="total-row">
+                <span className="muted">Balance after advance</span>
+                <strong data-testid="preview-balance">
+                  {quote && advance <= quote.totalCents ? (
+                    <Money value={quote.totalCents - advance} />
+                  ) : (
+                    "—"
+                  )}
+                </strong>
+              </div>
+              <Button
+                type="submit"
+                className="full"
+                disabled={!quote || command.pending}
+              >
+                Review order
+                <ArrowRight size={16} />
+              </Button>
+              <p className="small muted">
+                Valid drafts stay in this browser tab for this demo account.
+                Review does not save an order.
+              </p>
+              {draftIssue && <Notice tone="error">{draftIssue}</Notice>}
+            </div>
+          </aside>
+        </div>
+      </form>
+      <Sheet
+        open={!!review}
+        onOpenChange={(open) => {
+          if (!open) setReview(null);
+        }}
+        title="Review your print order"
+        description="Check every item, branch and simulated advance before saving."
+        footer={
+          <>
+            <Button
+              variant="outline"
+              onClick={() => setReview(null)}
+              disabled={command.pending}
+            >
+              Back to editing
+            </Button>
+            <Button onClick={save} disabled={command.pending}>
+              {command.pending ? "Saving locally…" : "Save demo order"}
+            </Button>
+          </>
+        }
+      >
+        {review && (
+          <div className="stack">
+            <Notice tone="warning">
+              Demonstration prices and simulated payment only. No charge or
+              stock consumption will occur.
+            </Notice>
+            <div className="row between">
+              <strong>
+                {data.branches.find((b) => b.id === review.branchId)!.name}
+              </strong>
+              <span className="muted">
+                {review.customer.name || "Walk-in customer"}
+              </span>
+            </div>
+            {quoteOrder(review.lines, data.pricing).lines.map((line) => (
+              <div className="line-card" key={line.id}>
+                <div className="total-row">
+                  <strong>{line.description}</strong>
+                  <Money value={line.totalCents} />
+                </div>
+                <p className="small muted">
+                  {line.size} · {line.color} · {line.sides} · {line.quantity}{" "}
+                  sheets · {line.binding} binding · {line.finishing}
+                </p>
+                {line.notes && <p className="small">{line.notes}</p>}
+              </div>
+            ))}
+            <div>
+              <div className="total-row">
+                <span>Order total</span>
+                <strong>
+                  <Money
+                    value={quoteOrder(review.lines, data.pricing).totalCents}
+                  />
+                </strong>
+              </div>
+              <div className="total-row">
+                <span>Simulated advance</span>
+                <Money value={money(review.advance)} />
+              </div>
+              <div className="total-row grand-total">
+                <span>Balance due</span>
+                <Money
+                  value={
+                    quoteOrder(review.lines, data.pricing).totalCents -
+                    money(review.advance)
+                  }
+                />
+              </div>
+            </div>
+            {review.notes && <p>{review.notes}</p>}
+            {command.error && <Notice tone="error">{command.error}</Notice>}
+          </div>
+        )}
+      </Sheet>
+    </>
+  );
 }

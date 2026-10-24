@@ -6,24 +6,43 @@ import { Sheet } from "./sheet";
 import { Button } from "./button";
 function Fixture({ dirty = false }: { dirty?: boolean }) {
   const [open, setOpen] = useState(false);
-  return <Sheet open={open} onOpenChange={setOpen} title="Edit material" description="Change the demo item." dirty={dirty} trigger={<Button>Edit</Button>}><label htmlFor="material">Material</label><input id="material" /><Button>Save</Button></Sheet>;
+  return (
+    <Sheet
+      open={open}
+      onOpenChange={setOpen}
+      title="Edit material"
+      description="Change the demo item."
+      dirty={dirty}
+      trigger={<Button>Edit</Button>}
+    >
+      <label htmlFor="material">Material</label>
+      <input id="material" />
+      <Button>Save</Button>
+    </Sheet>
+  );
 }
 test("drawer labels, keyboard focus, Escape and focus return", async () => {
-  const user = userEvent.setup(); render(<Fixture />);
+  const user = userEvent.setup();
+  render(<Fixture />);
   const trigger = screen.getByRole("button", { name: /^Edit$/ });
   await user.click(trigger);
   expect(screen.getByRole("dialog", { name: "Edit material" })).toBeVisible();
-  await user.tab(); expect(screen.getByLabelText("Material")).toHaveFocus();
+  await user.tab();
+  expect(screen.getByLabelText("Material")).toHaveFocus();
   await user.keyboard("{Escape}");
-  await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
+  await waitFor(() =>
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+  );
   expect(trigger).toHaveFocus();
 });
 test("dirty drawer preserves edits when discard is declined", async () => {
   const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
-  const user = userEvent.setup(); render(<Fixture dirty />);
+  const user = userEvent.setup();
+  render(<Fixture dirty />);
   await user.click(screen.getByRole("button", { name: /^Edit$/ }));
   await user.type(screen.getByLabelText("Material"), "Paper");
   await user.keyboard("{Escape}");
   expect(screen.getByLabelText("Material")).toHaveValue("Paper");
-  expect(confirm).toHaveBeenCalled(); confirm.mockRestore();
+  expect(confirm).toHaveBeenCalled();
+  confirm.mockRestore();
 });
