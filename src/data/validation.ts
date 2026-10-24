@@ -1,6 +1,7 @@
 import { demoDataSchema, type DemoData, DomainError } from "@/domain/model";
+import { migrateDemoData } from "./migration";
 export function validateData(value: unknown): DemoData {
-  const data = demoDataSchema.parse(value);
+  const data = demoDataSchema.parse(migrateDemoData(value));
   const fail = (message: string): never => {
     throw new DomainError("validation", message);
   };
@@ -17,6 +18,10 @@ export function validateData(value: unknown): DemoData {
     "movements",
     "transfers",
     "audit",
+    "customers",
+    "categories",
+    "services",
+    "usages",
   ] as const)
     unique(data[key], key);
   if (
@@ -36,6 +41,17 @@ export function validateData(value: unknown): DemoData {
     )
       fail("Demo role and branch assignment do not match.");
   for (const order of data.orders) {
+    if (
+      order.customerId &&
+      !data.customers.some((c) => c.id === order.customerId)
+    )
+      fail("Saved customer link is missing.");
+    for (const line of order.lines) {
+      if (line.serviceId && !data.services.some((s) => s.id === line.serviceId))
+        fail("Saved service reference is missing.");
+      if (line.serviceSnapshot && line.serviceSnapshot.id !== line.serviceId)
+        fail("Saved service snapshot reference is inconsistent.");
+    }
     if (!data.users.some((u) => u.id === order.actorId))
       fail("Order author is missing.");
     if (
@@ -51,6 +67,17 @@ export function validateData(value: unknown): DemoData {
         .reduce((n, p) => n + p.amountCents, 0) > order.totalCents
     )
       fail("Saved payments exceed the order total.");
+  }
+  for (const service of data.services) {
+    if (!data.categories.some((c) => c.id === service.categoryId))
+      fail("Service category reference is missing.");
+    for (const recipe of service.materials)
+      if (
+        !data.items.some(
+          (i) => i.id === recipe.itemId && i.unit === recipe.unit,
+        )
+      )
+        fail("Service material reference or unit is inconsistent.");
   }
   for (const payment of data.payments) {
     const order = data.orders.find((o) => o.id === payment.orderId);

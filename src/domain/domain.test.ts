@@ -271,7 +271,7 @@ describe("Colombo reporting and persistence invariants", () => {
   test("fixtures validate and reject corrupt snapshots, schema versions and stock ledgers", () => {
     const d = fixture();
     expect(validateData(JSON.parse(JSON.stringify(d)))).toEqual(d);
-    expect(() => validateData({ ...d, version: 2 })).toThrow();
+    expect(() => validateData({ ...d, version: 99 })).toThrow();
     const bad = fixture();
     bad.orders[0].totalCents++;
     expect(() => validateData(bad)).toThrow();

@@ -7,6 +7,7 @@ import {
 } from "@/domain/model";
 import { businessDate, shiftDate } from "@/domain/dates";
 import { blankLine, quoteOrder } from "@/domain/pricing";
+import { seedCatalogue, seedCustomers } from "./catalogue-seed";
 export function seedData(today = businessDate()): DemoData {
   const pricing = {
     version: 1,
@@ -170,6 +171,15 @@ export function seedData(today = businessDate()): DemoData {
       quantities: { b1: 18, b2: 90 },
       thresholds: { b1: 25, b2: 25 },
     },
+    {
+      id: "banner-roll",
+      name: "Banner paper rolls · demo",
+      sku: "BAN-ROLL",
+      unit: "rolls",
+      active: true,
+      quantities: { b1: 20, b2: 12 },
+      thresholds: { b1: 5, b2: 3 },
+    },
   ];
   const movements: StockMovement[] = items.flatMap((item) =>
     branches.map((branch) => ({
@@ -208,7 +218,10 @@ export function seedData(today = businessDate()): DemoData {
     },
   );
   return {
-    version: 1,
+    version: 2,
+    customers: seedCustomers(instant(10)),
+    ...seedCatalogue(instant(10)),
+    usages: [],
     revision: 0,
     sessionId: null,
     branches,
