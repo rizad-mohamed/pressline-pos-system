@@ -5,8 +5,8 @@ import { useState } from "react";
 import {
   LayoutDashboard,
   ShoppingBag,
-  ClipboardList,
   Printer,
+  ClipboardList,
   Package,
   ArrowLeftRight,
   Tags,
@@ -25,6 +25,14 @@ import { RequireSession, adminPaths } from "@/features/auth/access";
 import { Button } from "@/components/ui/button";
 import { Sheet } from "@/components/ui/sheet";
 import { Badge, Notice, SkeletonPage } from "@/components/shared/presentation";
+import { Brand } from "@/components/shared/brand";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 import type { Scope } from "@/domain/model";
 const groups = [
   {
@@ -68,18 +76,16 @@ export function Shell({ children }: { children: React.ReactNode }) {
   function nav(mobile = false) {
     return (
       <aside
-        className={`sidebar ${mobile ? "sidebar-mobile" : ""}`}
+        className={cn("sidebar", mobile && "sidebar-mobile")}
         aria-label={mobile ? "Mobile navigation" : "Workspace navigation"}
       >
         <Link
           href="/dashboard"
-          className="brand"
+          className="brand-home"
+          aria-label="Pressline overview"
           onClick={() => setMenu(false)}
         >
-          <span className="brand-mark">
-            <Printer />
-          </span>
-          pressline<span style={{ color: "var(--primary)" }}>.</span>
+          <Brand compact={!mobile} />
         </Link>
         <nav aria-label={mobile ? "Mobile primary" : "Primary"}>
           {groups.map((group) => {
@@ -91,22 +97,31 @@ export function Shell({ children }: { children: React.ReactNode }) {
               <div className="nav-group" key={group.label}>
                 <p className="nav-label">{group.label}</p>
                 {items.map((item) => (
-                  <Link
-                    className="nav-link"
-                    key={item.href}
-                    href={item.href}
-                    aria-current={
-                      pathname === item.href ||
-                      (item.href === "/orders" &&
-                        pathname.startsWith("/orders/"))
-                        ? "page"
-                        : undefined
-                    }
-                    onClick={() => setMenu(false)}
-                  >
-                    <item.icon />
-                    {item.label}
-                  </Link>
+                  <Tooltip key={item.href}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        className="nav-link"
+                        href={item.href}
+                        aria-label={item.label}
+                        aria-current={
+                          pathname === item.href ||
+                          (item.href === "/orders" &&
+                            pathname.startsWith("/orders/"))
+                            ? "page"
+                            : undefined
+                        }
+                        onClick={() => setMenu(false)}
+                      >
+                        <item.icon />
+                        <span>{item.label}</span>
+                      </Link>
+                    </TooltipTrigger>
+                    {!mobile && (
+                      <TooltipContent side="right" sideOffset={12}>
+                        {item.label}
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
                 ))}
               </div>
             ) : null;
@@ -170,12 +185,25 @@ export function Shell({ children }: { children: React.ReactNode }) {
     );
   }
   return (
-    <>
+    <TooltipProvider delayDuration={250}>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
       {nav()}
       <header className="topbar">
+        <div className="topbar-context desktop-only">
+          <span>Workspace</span>
+          <span aria-hidden="true">/</span>
+          <strong>
+            {groups
+              .flatMap((g) => g.items)
+              .find(
+                (i) =>
+                  pathname === i.href ||
+                  (i.href === "/orders" && pathname.startsWith("/orders/")),
+              )?.label ?? (pathname === "/settings" ? "Settings" : "Profile")}
+          </strong>
+        </div>
         <div className="row" style={{ flexWrap: "nowrap" }}>
           <Button
             variant="ghost"
@@ -229,7 +257,13 @@ export function Shell({ children }: { children: React.ReactNode }) {
             aria-label="Personal settings"
           >
             <Link href="/profile">
-              <UserRound size={20} />
+              <span className="avatar avatar-account" aria-hidden="true">
+                {user?.role === "admin"
+                  ? "AD"
+                  : user?.branchId === "b1"
+                    ? "B1"
+                    : "B2"}
+              </span>
             </Link>
           </Button>
         </div>
@@ -313,6 +347,6 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </p>
         </div>
       </Sheet>
-    </>
+    </TooltipProvider>
   );
 }

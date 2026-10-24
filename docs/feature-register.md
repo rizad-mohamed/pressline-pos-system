@@ -30,6 +30,8 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 | UI-004    | Split POS presentation from orchestration / FR-015                    | P1       | refactor/ui-004-pos-composition      | integrated; 093dab5 / merge a67330b                   | Typecheck, lint, order and input recovery E2E      |
 | UI-005    | Contain mobile table labels and keyboard scrolling / UI-001           | P0       | fix/ui-005-mobile-table-reflow       | integrated; 958ad70 / merge eb90b82                   | Document-width and ArrowRight scrolling regression |
 
-| PREM-001 | Redesign discovery and preservation audit | updated | docs/prem-001-redesign-audit | integrated; awaiting hash | Baseline c73980c; clean tree; inspect prompt/references/tooling before source edits |
+| PREM-001 | Redesign discovery and preservation audit | updated | docs/prem-001-redesign-audit | integrated; eb20d7e / merge f57771a | Baseline c73980c; clean tree; inspect prompt/references/tooling before source edits |
 
-| PREM-002 | Reviewed shadcn and Taste installation / component reuse | created | chore/prem-002-design-tooling | integrated; awaiting hash | Existing config retained; official components and app-screen design guidance actively used |
+| PREM-002 | Reviewed shadcn and Taste installation / component reuse | created | chore/prem-002-design-tooling | integrated; b559192 / merge 8d7920a | Existing config retained; official components and app-screen design guidance actively used |
+
+| PREM-003 | Premium tokens, local typography, responsive rail and entry | updated | feat/prem-003-premium-shell | integrated; awaiting hash | Brand tokens, labeled charcoal navigation, accessible tooltip/focus, preserved routes and controls |
