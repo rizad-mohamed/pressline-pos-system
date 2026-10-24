@@ -2238,6 +2238,39 @@ button.text-link {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
 }
+.job-materials {
+  padding-block: var(--space-6);
+  border-block: 1px solid var(--border);
+}
+.record-ref {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.material-evidence {
+  border-left: 2px solid var(--input-border);
+  padding-left: var(--space-3);
+  min-width: 0;
+}
+.choice-check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-height: var(--control-height);
+  padding-block: var(--space-2);
+  cursor: pointer;
+}
+.choice-check input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--link);
+}
+.job-materials .line-card,
+.job-materials article {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .choice-checks {
   display: flex;
   flex-wrap: wrap;

@@ -1,5 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
 import { Plus, Package, SlidersHorizontal } from "lucide-react";
 import { useDemo, useCommand, requestId } from "@/data/provider";
@@ -91,8 +92,9 @@ export function Inventory() {
         </section>
       </div>
       <Notice>
-        Stock consumption on order creation is not configured. Quantities change
-        only through demo opening balances, adjustments and transfers.
+        Saving an order does not deduct stock. Confirm actual usage in its job
+        details. Opening balances, adjustments, transfers and reasoned usage
+        corrections remain separate ledger events.
       </Notice>
       <section>
         <div className="toolbar">
@@ -248,7 +250,7 @@ export function Inventory() {
           <div>
             <h2>Stock movement history</h2>
             <p className="small muted">
-              Opening balances, adjustments and both sides of transfers
+              Opening balances, adjustments, transfers and confirmed job usage
             </p>
           </div>
           <Badge>{movements.length} movements</Badge>
@@ -280,6 +282,20 @@ export function Inventory() {
                       {m.reason}
                       {m.transferId ? ` · ${m.transferId}` : ""}
                     </p>
+                    {m.orderId && (
+                      <>
+                        <Link
+                          className="table-title small"
+                          href={`/orders/${m.orderId}`}
+                        >
+                          {m.orderId} · {m.serviceName}
+                        </Link>
+                        <p className="table-sub record-ref">{m.id}</p>
+                        <p className="table-sub">
+                          {m.before} → {m.after} {m.unit} · {m.lineId}
+                        </p>
+                      </>
+                    )}
                   </td>
                   <td>
                     {data.branches.find((b) => b.id === m.branchId)!.name}

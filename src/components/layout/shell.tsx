@@ -344,8 +344,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </p>
           <Notice tone="warning">
             Use fictional data only. No account security, payment settlement,
-            stock consumption, SMS delivery, or cross-device synchronization is
-            provided.
+            SMS delivery, or cross-device synchronization is provided. Material
+            usage updates only this browser&apos;s demonstration stock ledger.
           </Notice>
           <p className="small muted">
             Reset fixtures in Settings. Browser printing opens the native print

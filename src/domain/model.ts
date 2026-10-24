@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { CustomerCommand } from "./customers";
 import type { ServiceCommand } from "./services";
+import type { MaterialCommand } from "./materials";
 export const branchIdSchema = z.enum(["b1", "b2"]);
 export type BranchId = z.infer<typeof branchIdSchema>;
 export type Scope = BranchId | "all";
@@ -175,7 +176,7 @@ export type MaterialInput = z.infer<typeof materialInputSchema>;
 export const materialPlanSchema = z.object({
   id: z.string().min(1),
   revision: z.number().int().nonnegative(),
-  lines: z.array(materialInputSchema).max(30),
+  lines: z.array(materialInputSchema).max(600),
 });
 export type MaterialPlan = z.infer<typeof materialPlanSchema>;
 export const usageSchema = z.object({
@@ -199,7 +200,7 @@ export const usageSchema = z.object({
       }),
     )
     .min(1)
-    .max(30),
+    .max(600),
 });
 export type MaterialUsage = z.infer<typeof usageSchema>;
 
@@ -469,6 +470,7 @@ export type SettingsCommand =
   | { type: "application-settings"; requestId: string; values: SettingsValues }
   | { type: "preferences"; requestId: string; values: DemoData["preferences"] };
 export type Command =
+  | MaterialCommand
   | ServiceCommand
   | CustomerCommand
   | OrderCommand
