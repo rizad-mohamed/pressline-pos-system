@@ -76,3 +76,5 @@ Requirements below come from the owner-approved follow-up; original FR/NFR refer
 | MAT-008  | Explicit planned/confirmed job usage, atomic movements, idempotency and correction | feat/mat-003-confirmed-usage    | implemented; focused checks recorded below/in change log; full integration gate pending |
 
 Cross-feature verification: test/fup-001-connected-workflows. Final documentation: docs/fup-001-handover. Scope audit: docs/fup-000-scope.
+
+FUP-002 · `fix/fup-002-drawer-notifications`: reproduce and correct success-toast overlap of a subsequent mobile drawer action; focused browser regression and production gate required.
