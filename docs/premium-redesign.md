@@ -33,3 +33,15 @@ Pressline is a print-production workbench: paper-shaped service specimens and ex
 ## Verification record
 
 Initial and final evidence, actual commands, visual critique, contrast results, skill usage and limitations will be appended as work proceeds. Historical 58 unit/component and 24 E2E results are baseline evidence, not a claim that the redesign has already passed.
+
+## Reference update and baseline evidence
+
+Owner supplied `docs/references/Engineering-disciplines-to-follow.txt` and `Screenshot_1.png`, `Screenshot_2.png`, `Screenshot_3.png` during discovery. All three images inspected: disciplined admin tables, compact headers, split detail panels, quiet metrics and restrained chart chrome. Treat them as composition references, not licensed source or permission to invent retail shipping/tax/card flows. Preserve these owner-supplied files unchanged; their hashes are recorded in ignored local evidence. Engineering handbook applicable sections reviewed: foundations, frontend/UI/accessibility/internationalization, supply chain, development/Git, testing, performance, maintainability/documentation and readiness; backend/launch obligations stay future work.
+
+Baseline: 58/58 tests passed. Initial desktop screenshots captured for login and all 11 workspace routes, mobile POS/inventory/reports and order drawer; manually inspected POS/dashboard. Browser plugin discovery returned no browser after troubleshooting; standalone Playwright is the available visual surface.
+
+Reviewed public npm metadata: skills 1.7.4 and shadcn 4.22.1, MIT; skill source reviewed before execution. Both requested skills installed via npx skills add, project-local for Codex. The official bundle also installs migrate-radix-to-base; it is not invoked and no primitive migration is authorized. Installer assessments include medium-risk labels and one Taste alert; these are not a security certification. Reviewed executable behavior: draw writes local direction/history; inspect drives a temporary browser, cleans only its owned profiles/output, and contains no provider integration. Set history and temporary paths inside .local. No external photo/font links from dealt snippets will be used at runtime.
+
+Ran requested shadcn init -t next; explicitly declined overwriting the detected config. shadcn info confirmed Next 16, Tailwind 4, Radix and project aliases. Dry-run additions preserve existing button/sheet. Skills are local installations ignored by application lint; their source/hash provenance remains in skills-lock.json. Existing tested wrappers take precedence over blanket component migration.
+
+Taste actively run: commerce app directions, seed 20261024, framed-sheet selected for print-paper geometry and low-chrome operational density, no redraw. Explicit prompt overrides the skill house ban on charcoal navigation/lime controls; use limited lime and a labeled compact rail so many destinations remain discoverable. Manrope is locally self-hosted under SIL OFL 1.1.

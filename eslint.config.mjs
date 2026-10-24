@@ -7,6 +7,8 @@ export default defineConfig([
   globalIgnores([
     ".next/**",
     ".local/**",
+    ".agents/**",
+    ".taste-skill/**",
     "coverage/**",
     "playwright-report/**",
     "test-results/**",

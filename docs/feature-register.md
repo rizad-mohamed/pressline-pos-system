@@ -31,3 +31,5 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 | UI-005    | Contain mobile table labels and keyboard scrolling / UI-001           | P0       | fix/ui-005-mobile-table-reflow       | integrated; 958ad70 / merge eb90b82                   | Document-width and ArrowRight scrolling regression |
 
 | PREM-001 | Redesign discovery and preservation audit | updated | docs/prem-001-redesign-audit | integrated; awaiting hash | Baseline c73980c; clean tree; inspect prompt/references/tooling before source edits |
+
+| PREM-002 | Reviewed shadcn and Taste installation / component reuse | created | chore/prem-002-design-tooling | integrated; awaiting hash | Existing config retained; official components and app-screen design guidance actively used |
