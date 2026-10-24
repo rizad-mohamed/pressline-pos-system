@@ -1,15 +1,8 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Plus,
-  ArrowRight,
-  CheckCircle2,
-  RotateCcw,
-  ShoppingBag,
-} from "lucide-react";
+import { Plus, RotateCcw } from "lucide-react";
 import { useDemo, useCommand, requestId } from "@/data/provider";
 import { blankLine, quoteOrder } from "@/domain/pricing";
 import { money } from "@/domain/money";
@@ -17,14 +10,10 @@ import type { BranchId, LineInput } from "@/domain/model";
 import { orderFormSchema, orderFormBase, type OrderFormValues } from "./schema";
 import { LineEditor } from "./line-editor";
 import { Button } from "@/components/ui/button";
-import { Sheet } from "@/components/ui/sheet";
-import {
-  Badge,
-  Field,
-  Notice,
-  PageHeader,
-} from "@/components/shared/presentation";
-import { Money } from "@/components/shared/domain-display";
+import { Badge, Field, PageHeader } from "@/components/shared/presentation";
+import { OrderReview } from "./order-review";
+import { OrderSummary } from "./order-summary";
+import { OrderConfirmation } from "./order-confirmation";
 const draftKey = "pressline.draft.v1";
 export function Composer() {
   const { data, user, scope } = useDemo(),
@@ -146,46 +135,11 @@ export function Composer() {
   const saved = completed ? data.orders.find((o) => o.id === completed) : null;
   if (saved)
     return (
-      <div className="stack">
-        <PageHeader
-          eyebrow="ORDER SAVED LOCALLY"
-          title={`${saved.id} is ready for production`}
-          description="Your demonstration order is now available in history, jobs and reports."
-        />
-        <div className="card card-body stack">
-          <CheckCircle2 size={36} style={{ color: "var(--success)" }} />
-          <h2>Order created successfully</h2>
-          <div className="summary-grid">
-            <div>
-              <p className="muted">Order total</p>
-              <h2>
-                <Money value={saved.totalCents} />
-              </h2>
-            </div>
-            <div>
-              <p className="muted">Branch</p>
-              <h2>
-                {data.branches.find((b) => b.id === saved.branchId)!.name}
-              </h2>
-            </div>
-          </div>
-          <Notice>
-            Payment events are simulated. Stock was not consumed automatically.
-          </Notice>
-          <div className="row">
-            <Button asChild>
-              <Link href={`/orders/${saved.id}`}>
-                Open order
-                <ArrowRight size={16} />
-              </Link>
-            </Button>
-            <Button variant="outline" onClick={() => setCompleted(null)}>
-              <Plus size={16} />
-              Create another order
-            </Button>
-          </div>
-        </div>
-      </div>
+      <OrderConfirmation
+        order={saved}
+        branches={data.branches}
+        onNewOrder={() => setCompleted(null)}
+      />
     );
   const errors = form.formState.errors;
   return (
@@ -350,173 +304,24 @@ export function Composer() {
               </Field>
             </section>
           </div>
-          <aside className="card pos-summary" aria-label="Order summary">
-            <div className="card-header">
-              <h2>Order summary</h2>
-              <ShoppingBag size={18} className="muted" />
-            </div>
-            <div className="card-body stack">
-              <Notice tone="warning">
-                <strong>DEMO PRICE — NOT APPROVED</strong>
-                <br />
-                Sample rates. No tax or discount policy is configured.
-              </Notice>
-              <div>
-                {quote?.lines.map((line, index) => (
-                  <div
-                    key={line.id}
-                    style={{
-                      paddingBlock: "var(--space-3)",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    <div className="total-row">
-                      <strong className="grow">
-                        {index + 1}. {line.description}
-                      </strong>
-                      <Money value={line.totalCents} />
-                    </div>
-                    <p className="small muted">
-                      {line.quantity} × <Money value={line.unitCents} /> +{" "}
-                      <Money value={line.setupCents} /> binding/finishing
-                    </p>
-                  </div>
-                ))}
-                {!quote && (
-                  <p className="muted">
-                    Complete valid print quantities to calculate your total.
-                  </p>
-                )}
-                <div className="total-row grand-total">
-                  <span>Order total</span>
-                  <span data-testid="order-total">
-                    {quote ? <Money value={quote.totalCents} /> : "—"}
-                  </span>
-                </div>
-              </div>
-              <Field
-                label="Simulated advance (LKR)"
-                id="order-advance"
-                error={errors.advance?.message}
-                hint="Enter 0 for unpaid, or any amount up to the total."
-              >
-                <input
-                  id="order-advance"
-                  className="input money"
-                  inputMode="decimal"
-                  {...form.register("advance")}
-                  aria-invalid={!!errors.advance}
-                  aria-describedby={
-                    errors.advance
-                      ? "order-advance-error"
-                      : "order-advance-hint"
-                  }
-                />
-              </Field>
-              <div className="total-row">
-                <span className="muted">Balance after advance</span>
-                <strong data-testid="preview-balance">
-                  {quote && advance <= quote.totalCents ? (
-                    <Money value={quote.totalCents - advance} />
-                  ) : (
-                    "—"
-                  )}
-                </strong>
-              </div>
-              <Button
-                type="submit"
-                className="full"
-                disabled={!quote || command.pending}
-              >
-                Review order
-                <ArrowRight size={16} />
-              </Button>
-              <p className="small muted">
-                Valid drafts stay in this browser tab for this demo account.
-                Review does not save an order.
-              </p>
-              {draftIssue && <Notice tone="error">{draftIssue}</Notice>}
-            </div>
-          </aside>
+          <OrderSummary
+            form={form}
+            quote={quote}
+            advance={advance}
+            pending={command.pending}
+            draftIssue={draftIssue}
+          />
         </div>
       </form>
-      <Sheet
-        open={!!review}
-        onOpenChange={(open) => {
-          if (!open) setReview(null);
-        }}
-        title="Review your print order"
-        description="Check every item, branch and simulated advance before saving."
-        footer={
-          <>
-            <Button
-              variant="outline"
-              onClick={() => setReview(null)}
-              disabled={command.pending}
-            >
-              Back to editing
-            </Button>
-            <Button onClick={save} disabled={command.pending}>
-              {command.pending ? "Saving locally…" : "Save demo order"}
-            </Button>
-          </>
-        }
-      >
-        {review && (
-          <div className="stack">
-            <Notice tone="warning">
-              Demonstration prices and simulated payment only. No charge or
-              stock consumption will occur.
-            </Notice>
-            <div className="row between">
-              <strong>
-                {data.branches.find((b) => b.id === review.branchId)!.name}
-              </strong>
-              <span className="muted">
-                {review.customer.name || "Walk-in customer"}
-              </span>
-            </div>
-            {quoteOrder(review.lines, data.pricing).lines.map((line) => (
-              <div className="line-card" key={line.id}>
-                <div className="total-row">
-                  <strong>{line.description}</strong>
-                  <Money value={line.totalCents} />
-                </div>
-                <p className="small muted">
-                  {line.size} · {line.color} · {line.sides} · {line.quantity}{" "}
-                  sheets · {line.binding} binding · {line.finishing}
-                </p>
-                {line.notes && <p className="small">{line.notes}</p>}
-              </div>
-            ))}
-            <div>
-              <div className="total-row">
-                <span>Order total</span>
-                <strong>
-                  <Money
-                    value={quoteOrder(review.lines, data.pricing).totalCents}
-                  />
-                </strong>
-              </div>
-              <div className="total-row">
-                <span>Simulated advance</span>
-                <Money value={money(review.advance)} />
-              </div>
-              <div className="total-row grand-total">
-                <span>Balance due</span>
-                <Money
-                  value={
-                    quoteOrder(review.lines, data.pricing).totalCents -
-                    money(review.advance)
-                  }
-                />
-              </div>
-            </div>
-            {review.notes && <p>{review.notes}</p>}
-            {command.error && <Notice tone="error">{command.error}</Notice>}
-          </div>
-        )}
-      </Sheet>
+      <OrderReview
+        review={review}
+        branches={data.branches}
+        pricing={data.pricing}
+        pending={command.pending}
+        error={command.error}
+        onClose={() => setReview(null)}
+        onSave={save}
+      />
     </>
   );
 }
