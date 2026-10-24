@@ -1,0 +1,12 @@
+import { Info, Search, Inbox } from "lucide-react";
+export function PageHeader({ eyebrow, title, description, action }: { eyebrow?: string; title: string; description: string; action?: React.ReactNode }) {
+  return <div className="page-heading"><div>{eyebrow && <div className="eyebrow">{eyebrow}</div>}<h1>{title}</h1><p>{description}</p></div>{action && <div className="row">{action}</div>}</div>;
+}
+export function Badge({ children, tone = "neutral" }: { children: React.ReactNode; tone?: "neutral" | "success" | "warning" | "info" | "primary" | "danger" }) { return <span className={`badge badge-${tone}`}>{children}</span>; }
+export function Notice({ children, tone = "info" }: { children: React.ReactNode; tone?: "info" | "warning" | "error" | "success" }) { return <div className={`notice notice-${tone}`} role={tone === "error" ? "alert" : "status"}><Info size={16} /><div>{children}</div></div>; }
+export function Field({ label, id, error, hint, children }: { label: string; id: string; error?: string; hint?: string; children: React.ReactNode }) {
+  return <div className="field"><label htmlFor={id}>{label}</label>{children}{hint && <p id={`${id}-hint`} className="small muted">{hint}</p>}{error && <p id={`${id}-error`} className="field-error" role="alert">{error}</p>}</div>;
+}
+export function EmptyState({ title = "No records yet", description, action }: { title?: string; description: string; action?: React.ReactNode }) { return <div className="empty"><Inbox size={28} /><h2>{title}</h2><p>{description}</p>{action}</div>; }
+export function SearchField({ value, onChange, label = "Search", placeholder = "Search records…" }: { value: string; onChange: (value: string) => void; label?: string; placeholder?: string }) { return <div className="field search-field"><label htmlFor="record-search">{label}</label><Search size={16} /><input id="record-search" type="search" className="input" value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} /></div>; }
+export function SkeletonPage() { return <div className="stack" role="status" aria-label="Loading workspace"><span className="sr-only">Loading saved demonstration data…</span><div className="skeleton" style={{ height: 32, width: "40%" }} /><div className="metrics">{[1,2,3,4].map(n => <div className="card card-body" key={n}><div className="skeleton skeleton-line" /><div className="skeleton" style={{ height: 38, width: "70%" }} /></div>)}</div><div className="card card-body">{[1,2,3,4,5].map(n => <div className="skeleton skeleton-line" key={n} />)}</div></div>; }
