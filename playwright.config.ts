@@ -13,6 +13,7 @@ export default defineConfig({
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL,
+    timezoneId: "Asia/Colombo",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
