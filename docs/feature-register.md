@@ -78,3 +78,5 @@ Requirements below come from the owner-approved follow-up; original FR/NFR refer
 Cross-feature verification: test/fup-001-connected-workflows. Final documentation: docs/fup-001-handover. Scope audit: docs/fup-000-scope.
 
 FUP-002 · `fix/fup-002-drawer-notifications`: reproduce and correct success-toast overlap of a subsequent mobile drawer action; focused browser regression and production gate required.
+
+FUP-003 · `fix/cust-006-long-name-reflow`: repair the observed long customer-name overflow at 200% text; preserve the failing assertion and verify mobile and focus recovery.

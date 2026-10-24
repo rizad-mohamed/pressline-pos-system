@@ -55,3 +55,9 @@ The full browser banner workflow passed: stock 20→15 at Branch 1, Branch 2 unc
 ## Drawer notification correction
 
 FUP-002 sets the canonical toast layer to 40, above navigation (30) and below modal overlays/sheets (50/51). A first center-point-only browser assertion passed despite the captured overlap; strengthened the regression to inspect the live layer order as well as bounds/hit testing. It failed before correction (80 above 51), then passed at 390/320/768 with the real confirmation action. Failed trace retained locally. All 22 token contrast checks and scoped formatting passed. Modal success feedback now appears after the closing drawer rather than covering the next drawer's action.
+
+## Expanded verification checkpoint
+
+Added a validated local test-port override so production tests can run at 3001 while the owner's development server remains at 3000. Next's installed documentation confirms `.next/dev` is separate from production build output. The expanded nine-width test timed out while entering its ninth width during concurrent local build/dev work; the trace contains no preceding overflow assertion failure. Do not count this as a pass or weaken its 180-second limit; rerun sequentially against production.
+
+The new tagged axe scans passed for customer directory/editor/account, service recipe editor, POS customer selection, material history/plan/confirmation/correction at desktop/mobile. The multilingual/200% test found actual long-name page overflow (3076px on a 1440px viewport); preserve the trace and correct on `fix/cust-006-long-name-reflow` before integration. The full checkpoint independently passed typecheck, lint, 83 tests/18 files and production build. Formatting first found one callback in connected-workflows.spec.ts; formatted it and reran the full format check successfully. No claim that the complete production E2E gate has passed yet.
