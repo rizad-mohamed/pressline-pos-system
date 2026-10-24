@@ -255,6 +255,8 @@ export function applyMaterialCommand(
         // Correction labels retain the original recorded names, even after a rename.
         const serviceName =
           original?.lines[index]?.serviceName ??
+          order.lines.find((l) => l.id === line.lineId)!.serviceSnapshot
+            ?.name ??
           order.lines.find((l) => l.id === line.lineId)!.description;
         const materialName = original?.lines[index]?.materialName ?? item.name;
         item.quantities[order.branchId] = after;
