@@ -28,4 +28,6 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | STYLE-001 | Consistent formatting / all source                                    | P1       | style/ui-003-source-formatting       | integrated; 500874a / merge 35beb00 | Prettier, typecheck and lint                       |
 | INIT-003  | Align tested Node prerequisites and clean unused tooling / INIT-002   | P0       | fix/init-003-supported-tooling       | integrated; 6842180 / merge 312e165 | Engine/peer metadata, install, typecheck and lint  |
 
-| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | integrated; awaiting hash | Typecheck, lint, order and input recovery E2E |
+| UI-004 | Split POS presentation from orchestration / FR-015 | P1 | refactor/ui-004-pos-composition | integrated; 093dab5 / merge a67330b | Typecheck, lint, order and input recovery E2E |
+
+| UI-005 | Contain mobile table labels and keyboard scrolling / UI-001 | P0 | fix/ui-005-mobile-table-reflow | integrated; awaiting hash | Document-width and ArrowRight scrolling regression |

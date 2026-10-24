@@ -194,7 +194,11 @@ export function SmsPage() {
           <h2>Values used in this preview</h2>
           <Badge>Same report engine</Badge>
         </div>
-        <div className="table-scroll">
+        <div
+          className="table-scroll"
+          tabIndex={0}
+          aria-label="Scrollable data table"
+        >
           <table>
             <caption className="sr-only">
               Daily SMS preview source values in LKR

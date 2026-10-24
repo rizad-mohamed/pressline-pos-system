@@ -61,7 +61,11 @@ export function SettingsPage() {
           </div>
           <Badge>UI restrictions only</Badge>
         </div>
-        <div className="table-scroll">
+        <div
+          className="table-scroll"
+          tabIndex={0}
+          aria-label="Scrollable data table"
+        >
           <table>
             <caption className="sr-only">
               Fixed demonstration accounts and their role/branch context
