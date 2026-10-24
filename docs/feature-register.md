@@ -22,7 +22,7 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | TEST-001 | E2E, responsive, keyboard, accessibility review / all features | P0 | test/test-001-workflow-validation | planned | Playwright + RTL |
 | DOC-002 | Coverage, handover, audit / TEST-001 | P0 | docs/doc-002-delivery-evidence | planned | history cross-check |
 | DOM-002 | Correct future-dated current-day fixtures / DOM-001 | P0 | fix/dom-002-fixture-timestamps | integrated; 1f16dac / merge d091653 | Early-day payment regression; HCI 03.09 |
-| DOM-003 | Align typed read/command adapter contract / all features | P0 | refactor/dom-003-repository-contract | integrated; awaiting hash | Typed adapter parity and existing repository tests |
-| DOM-004 | Guard saved-data changes across reset/removal / DOM-003 | P0 | fix/dom-004-reset-conflicts | planned | Stale-tab reset/deletion regressions |
+| DOM-003 | Align typed read/command adapter contract / all features | P0 | refactor/dom-003-repository-contract | integrated; f1c8aa9 / merge 4e38d19 | Typed adapter parity and existing repository tests |
+| DOM-004 | Guard saved-data changes across reset/removal / DOM-003 | P0 | fix/dom-004-reset-conflicts | integrated; awaiting hash | Stale-tab reset/deletion regressions |
 | UI-002 | Form recovery, focus and responsive refinement / all features | P0 | fix/ui-002-accessible-recovery | planned | Keyboard, invalid quantity, zoom and layout checks |
 | STYLE-001 | Consistent formatting / all source | P1 | style/ui-003-source-formatting | planned | Prettier, typecheck and lint |
