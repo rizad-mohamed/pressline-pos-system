@@ -38,4 +38,6 @@ Date: 2026-10-24. Requirement group meanings come only from the supplied prompt;
 
 | PREM-004 | Existing-capability service presets and adaptive current order | created / updated | feat/prem-004-service-workspace | integrated; a4bbb44 / merge aefd582 | Search/category/configure, preserved manual editor, empty recovery, single desktop/mobile summary and save review |
 
-| PREM-005 | Operational surface, metric, chart, drawer and print craft | updated | style/prem-005-operational-screens | integrated; awaiting hash | Consistent administrative tables and numeric alignment; truthful scales; responsive summaries; preserved business behavior |
+| PREM-005 | Operational surface, metric, chart, drawer and print craft | updated | style/prem-005-operational-screens | integrated; f80e521 / merge e802124 | Consistent administrative tables and numeric alignment; truthful scales; responsive summaries; preserved business behavior |
+
+| PREM-008 | Long content and mobile focus/contrast hardening | fixed | fix/prem-008-long-content-reflow | integrated; awaiting hash | Unbroken and Sinhala/Tamil content fits review/cart; visible landscape save; reduced motion and legible control boundaries |

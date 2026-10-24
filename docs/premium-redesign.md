@@ -67,3 +67,13 @@ Second visual review inspected desktop dashboard, inventory, reports, SMS and se
 Taste app-mode rerun: no failures across 21 route/viewport combinations; two remaining spacing warnings led to a closer team-help inset and a flexible SMS text-preview area that shares the control panel height. All other workspace measurements were clear. Native entry inspector results and final production reruns are recorded in the final validation log.
 
 Native Taste inspector executed on login at 1440/768/390: zero failures, four warnings. Replaced the tiny tracked welcome label with sentence case and neutral role icons with meaningful B1/B2/AD identity markers. Two brand-entry exceptions are intentional: the story headline is larger than working-screen titles, and the full-height branding panel uses composed whitespace. Working routes retain 24?30px titles. Added scroll padding for the persistent mobile order bar and 44px mobile cart controls. No style check is a WCAG certification.
+
+## Long-content regression and scoped repair
+
+PREM-008 isolated on fix/prem-008-long-content-reflow. An initial outer-sheet-only check passed but did not prove the scroll body fit. Strengthening the assertion exposed 464px of content inside a 319px mobile sheet body at a 320px viewport. Added explicit wrapping for user specifications/names and shrinkable flex totals, preserving values; no clipping/hidden-overflow workaround. The regression includes Sinhala/Tamil content, a long unbroken fictional customer name, landscape save visibility and reduced motion. Native token measurement also found input-border/canvas contrast at 2.891:1 (3.083:1 on white); darkened the canonical border so both adjacent surfaces meet 3:1. No financial/domain/repository behavior changed. Final scoped verification pending.
+
+The first wrapping repair fixed cart overflow but the review still exposed 328px inside 319px: DOM inspection showed its nonwrapping currency span shrinking to 21px while painting 70px. Protected amount flex sizing while allowing the description to wrap. This is a layout repair, with displayed values and calculations retained.
+
+Latest Taste workspace measurement: all 21 combinations (7 routes ? 1440/768/390) clear of findings. Reference files retain their original SHA-256 values. Full final production verification follows the scoped repair.
+
+PREM-008 verified: typecheck/lint passed; four focused browser checks passed, including the stronger internal scroll-body assertion, Unicode/long names, fixed landscape save, reduced motion, service/cart pricing, empty reload and mobile focus/review. Failed intermediate assertions remain documented above.
