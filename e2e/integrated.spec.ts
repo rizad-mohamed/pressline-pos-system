@@ -2,6 +2,7 @@ import { test, expect, type Page } from "@playwright/test";
 async function enter(page: Page, name: RegExp) {
   await page.goto("/login");
   await page.getByRole("button", { name }).click();
+  await expect(page).toHaveURL(/\/dashboard$/);
   await expect(page.locator("main h1")).toBeVisible();
 }
 const amount = (text: string) => Number(text.replace(/[^0-9.]/g, ""));
@@ -42,6 +43,7 @@ test("one order remains consistent through advance, receipt, jobs, branch isolat
     page.getByRole("heading", { name: "Order created successfully" }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Open order", exact: true }).click();
+  await expect(page).toHaveURL(/\/orders\/PL-\d+$/);
   const orderUrl = page.url(),
     id = orderUrl.split("/").at(-1)!;
   await expect(page.getByTestId("detail-paid")).toContainText("30.00");
