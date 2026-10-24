@@ -11,7 +11,7 @@ Date: 2026-10-24. Requirements below use only the group meanings reproduced in t
 | DOM-001 | Pricing, payments, stock, reporting, fixtures, persistence / INIT-002 | P0 | feat/dom-001-demo-domain | integrated; 5222108 / merge 8a16d16 | Vitest domain invariants |
 | FR-001 | Demo accounts, role shell, dashboard / UI-001, DOM-001 | P0 | feat/fr-001-demo-access | integrated; 09a63ef / merge 3496cb1 | role and route checks |
 | FR-015 | Multi-item POS and review / FR-001 | P0 | feat/fr-015-order-composer | integrated; 5d194a9 / merge 170515b | pricing/order tests |
-| FR-021 | History, details, payments, production states / FR-015 | P0 | feat/fr-021-order-operations | planned | payments/status isolation |
+| FR-021 | History, details, payments, production states / FR-015 | P0 | feat/fr-021-order-operations | integrated; awaiting hash | payments/status isolation |
 | FR-024 | Receipt and separate job ticket / FR-021 | P0 | feat/fr-024-print-documents | planned | print/E2E checks |
 | FR-033 | Inventory CRUD, adjustments, low stock / FR-001 | P0 | feat/fr-033-branch-inventory | planned | validation/movements |
 | FR-035 | Atomic mock transfers / FR-033 | P0 | feat/fr-035-stock-transfers | planned | transfer invariants |
