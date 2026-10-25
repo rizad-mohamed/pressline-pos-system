@@ -97,3 +97,12 @@ Follow-up handover provenance backfilled: `docs/fup-001-handover` primary source
 | ------- | ------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | CI-001  | Repeatable locked frontend quality workflow and clean-checkout type generation | chore/ci-001-quality-gates | integrated; 817327f / merge 41a97ef               | Fresh install, zero advisories, strict gates, 84 unit and 44 production Chromium tests passed |
 | AUD-001 | Final CI provenance, source security review and honest limits                  | docs/aud-001-final-review  | verified documentation; final integration follows | Fresh CI evidence, Git audit and documentation checks                                         |
+
+## Mobile refinement · 2026-10-25
+
+MOB-000: docs/mob-000-scope — registered scope, supplied specification and baseline.
+MOB-001 / MOB-002 / TAB-001: feat/mob-001-center-dashboard-bottom-tabs — registered navigation/shell/tablet.
+MOB-003: feat/mob-003-mobile-pos-order-experience — planned POS/form ergonomics.
+MOB-004: feat/mob-004-mobile-management-screens — planned operational route review.
+MOB-006: test/mob-006-responsive-accessibility-regression — planned regression gates.
+MOB-007: docs/mob-007-mobile-handover — planned final evidence.
