@@ -1,25 +1,23 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  LayoutDashboard,
-  ShoppingBag,
-  Printer,
-  ClipboardList,
-  Package,
-  ArrowLeftRight,
-  Tags,
-  ChartNoAxesCombined,
-  MessageSquare,
   Settings,
   CircleHelp,
   LogOut,
-  Menu,
   MapPin,
   UserRound,
   ShieldCheck,
+  ChevronRight,
 } from "lucide-react";
+import { MobileBottomNavigation } from "./mobile-bottom-navigation";
+import {
+  navigationGroups,
+  navigationLocation,
+  isCurrentRoute,
+  moreNavigation,
+} from "./navigation";
 import { useDemoState } from "@/data/provider";
 import { RequireSession, adminPaths } from "@/features/auth/access";
 import { Button } from "@/components/ui/button";
@@ -32,65 +30,51 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
 import type { Scope } from "@/domain/model";
-const groups = [
-  {
-    label: "WORKSPACE",
-    items: [
-      { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-      { href: "/pos", label: "New order", icon: ShoppingBag },
-      { href: "/orders", label: "Orders", icon: ClipboardList },
-      { href: "/customers", label: "Customers", icon: UserRound },
-      { href: "/jobs", label: "Production jobs", icon: Printer },
-    ],
-  },
-  {
-    label: "MANAGEMENT",
-    items: [
-      { href: "/inventory", label: "Inventory", icon: Package },
-      { href: "/transfers", label: "Stock transfers", icon: ArrowLeftRight },
-      { href: "/pricing", label: "Services", icon: Tags },
-    ],
-  },
-  {
-    label: "INSIGHTS",
-    items: [
-      { href: "/reports", label: "Reports", icon: ChartNoAxesCombined },
-      { href: "/sms", label: "SMS reports", icon: MessageSquare },
-    ],
-  },
-];
+const groups = navigationGroups.filter((group) => group.label !== "ACCOUNT");
 export function Shell({ children }: { children: React.ReactNode }) {
   const { data, user, scope, setScope, enter, issue, reset } = useDemoState();
   const pathname = usePathname(),
     router = useRouter();
-  const current = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
+  const current = (href: string) => isCurrentRoute(pathname, href);
   const [menu, setMenu] = useState(false),
     [help, setHelp] = useState(false),
     [error, setError] = useState("");
+  useEffect(() => {
+    if (!menu) return;
+    const closeMenu = () => setMenu(false);
+    window.addEventListener("popstate", closeMenu);
+    return () => window.removeEventListener("popstate", closeMenu);
+  }, [menu]);
+  const workspaceAllowed = Boolean(
+    user && (user.role === "admin" || !adminPaths.some(current)),
+  );
+  const location = navigationLocation(pathname);
+  function leaveWorkspace() {
+    const result = enter(null);
+    if (result.ok) {
+      setMenu(false);
+      router.push("/login");
+    } else setError(result.error.message);
+  }
   if (!data)
     return (
       <main style={{ padding: "var(--space-8)" }}>
         <SkeletonPage />
       </main>
     );
-  function nav(mobile = false) {
+  function nav() {
     return (
-      <aside
-        className={cn("sidebar", mobile && "sidebar-mobile")}
-        aria-label={mobile ? "Mobile navigation" : "Workspace navigation"}
-      >
+      <aside className="sidebar" aria-label="Workspace navigation">
         <Link
           href="/dashboard"
           className="brand-home"
           aria-label="Pressline overview"
           onClick={() => setMenu(false)}
         >
-          <Brand compact={!mobile} />
+          <Brand compact />
         </Link>
-        <nav aria-label={mobile ? "Mobile primary" : "Primary"}>
+        <nav aria-label="Primary">
           {groups.map((group) => {
             const items = group.items.filter(
               (item) =>
@@ -113,11 +97,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
                         <span>{item.label}</span>
                       </Link>
                     </TooltipTrigger>
-                    {!mobile && (
-                      <TooltipContent side="right" sideOffset={12}>
-                        {item.label}
-                      </TooltipContent>
-                    )}
+                    <TooltipContent side="right" sideOffset={12}>
+                      {item.label}
+                    </TooltipContent>
                   </Tooltip>
                 ))}
               </div>
@@ -166,14 +148,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <UserRound />
             Switch account
           </Link>
-          <button
-            className="nav-link full"
-            onClick={() => {
-              const r = enter(null);
-              if (r.ok) router.push("/login");
-              else setError(r.error.message);
-            }}
-          >
+          <button className="nav-link full" onClick={leaveWorkspace}>
             <LogOut />
             Leave workspace
           </button>
@@ -191,21 +166,15 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <div className="topbar-context desktop-only">
           <span>Workspace</span>
           <span aria-hidden="true">/</span>
-          <strong>
-            {groups.flatMap((g) => g.items).find((i) => current(i.href))
-              ?.label ?? (pathname === "/settings" ? "Settings" : "Profile")}
-          </strong>
+          <strong>{location?.label ?? "Profile"}</strong>
         </div>
-        <div className="row" style={{ flexWrap: "nowrap" }}>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="mobile-menu"
-            aria-label="Open navigation"
-            onClick={() => setMenu(true)}
-          >
-            <Menu size={21} />
-          </Button>
+        <div className="row topbar-branch-group" style={{ flexWrap: "nowrap" }}>
+          {workspaceAllowed && (
+            <div className="mobile-page-context">
+              <span>Pressline</span>
+              <strong>{location?.mobileLabel ?? "Workspace"}</strong>
+            </div>
+          )}
           <div className="branch-control">
             <MapPin size={16} className="desktop-only" />
             <label className="sr-only" htmlFor="global-branch">
@@ -301,13 +270,70 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </div>
         </RequireSession>
       </main>
+      {workspaceAllowed && user && (
+        <MobileBottomNavigation
+          role={user.role}
+          pathname={pathname}
+          open={menu}
+          onMore={() => setMenu(true)}
+        />
+      )}
       <Sheet
-        open={menu}
+        open={menu && workspaceAllowed}
         onOpenChange={setMenu}
-        title="Navigation"
-        description="Open a section of the demonstration workspace."
+        title="More navigation"
+        description="Your other workspace tools, account and demo guide."
+        className="mobile-more-sheet no-print"
       >
-        {nav(true)}
+        {user && (
+          <nav className="more-navigation" aria-label="More workspace">
+            {moreNavigation(user.role).map((group) => (
+              <section key={group.label}>
+                <h3>
+                  {group.label.charAt(0) + group.label.slice(1).toLowerCase()}
+                </h3>
+                {group.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="more-navigation-link"
+                    aria-current={current(item.href) ? "page" : undefined}
+                    onClick={() => setMenu(false)}
+                  >
+                    <item.icon aria-hidden="true" />
+                    <span>{item.mobileLabel}</span>
+                    <ChevronRight aria-hidden="true" />
+                  </Link>
+                ))}
+              </section>
+            ))}
+          </nav>
+        )}
+        <div className="more-account-actions">
+          <Button
+            variant="outline"
+            onClick={() => {
+              setMenu(false);
+              setHelp(true);
+            }}
+          >
+            <CircleHelp aria-hidden="true" />
+            Demo guide
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/login" onClick={() => setMenu(false)}>
+              <UserRound aria-hidden="true" />
+              Switch account
+            </Link>
+          </Button>
+          <Button variant="ghost" onClick={leaveWorkspace}>
+            <LogOut aria-hidden="true" />
+            Leave workspace
+          </Button>
+        </div>
+        <p className="more-demo-note small muted">
+          Local demonstration. Fictional data stays in this browser.
+        </p>
       </Sheet>
       <Sheet
         open={help}
