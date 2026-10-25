@@ -3,6 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useRef } from "react";
 import { X } from "lucide-react";
 import { Button } from "./button";
+import { cn } from "@/lib/utils";
 export const SheetClose = Dialog.Close;
 export function Sheet({
   open,
@@ -14,6 +15,7 @@ export function Sheet({
   dirty = false,
   trigger,
   onAfterClose,
+  className,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -24,6 +26,7 @@ export function Sheet({
   dirty?: boolean;
   trigger?: React.ReactNode;
   onAfterClose?: () => void;
+  className?: string;
 }) {
   const returnFocus = useRef<HTMLElement | null>(null);
   function change(next: boolean) {
@@ -43,7 +46,7 @@ export function Sheet({
       <Dialog.Portal>
         <Dialog.Overlay className="overlay" />
         <Dialog.Content
-          className="sheet"
+          className={cn("sheet", className)}
           // Portal events still bubble through React parents, including a POS form.
           onSubmit={(event) => event.stopPropagation()}
           onOpenAutoFocus={() => {

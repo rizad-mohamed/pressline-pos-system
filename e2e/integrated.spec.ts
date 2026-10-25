@@ -181,7 +181,7 @@ test("mobile keyboard menu and dirty drawer cancellation preserve focus and inpu
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page, /Demo Administrator/);
   const menu = page.getByRole("button", {
-    name: "Open navigation",
+    name: "More navigation",
     exact: true,
   });
   for (
@@ -193,7 +193,7 @@ test("mobile keyboard menu and dirty drawer cancellation preserve focus and inpu
   await expect(menu).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(
-    page.getByRole("dialog", { name: "Navigation", exact: true }),
+    page.getByRole("dialog", { name: "More navigation", exact: true }),
   ).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(menu).toBeFocused();

@@ -39,10 +39,7 @@ test("service filters support keyboard selection and mobile sheets return focus"
   await page.keyboard.press("Escape");
   await expect(viewOrder).toBeFocused();
   await page
-    .getByRole("button", { name: "Open navigation", exact: true })
-    .click();
-  await page
-    .getByRole("navigation", { name: "Mobile primary", exact: true })
+    .getByRole("navigation", { name: "Mobile workspace", exact: true })
     .getByRole("link", { name: "Orders", exact: true })
     .click();
   await expect(page).toHaveURL(/\/orders$/);

@@ -76,6 +76,8 @@
   --z-sheet: 51;
   --z-tooltip: 70;
   --z-toast: 40;
+  --mobile-nav-height: 0px;
+  --mobile-order-height: 0px;
 }
 
 @theme inline {

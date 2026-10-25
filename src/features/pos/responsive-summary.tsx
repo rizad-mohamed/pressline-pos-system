@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet } from "@/components/ui/sheet";
 import { Money } from "@/components/shared/domain-display";
 import { OrderSummary } from "./order-summary";
+import { useOrderBarHeight } from "./use-bar-height";
 
 const compactQuery = "(max-width: 1100px)";
 function subscribe(onChange: () => void) {
@@ -26,10 +27,12 @@ export function ResponsiveSummary({
   const compact = useSyncExternalStore(subscribe, snapshot, serverSnapshot);
   const [open, setOpen] = useState(false);
   const editTarget = useRef<number | null>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+  useOrderBarHeight(barRef, compact);
   if (!compact) return <OrderSummary {...props} />;
   return (
     <>
-      <div className="mobile-order-bar">
+      <div className="mobile-order-bar" ref={barRef}>
         <div>
           <span className="small muted">
             Current order · {props.count} {props.count === 1 ? "item" : "items"}
