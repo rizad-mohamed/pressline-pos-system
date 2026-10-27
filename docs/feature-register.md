@@ -107,5 +107,6 @@ MOB-004: feat/mob-004-mobile-management-screens — implemented adaptive filters
 MOB-005: fix/mob-005-enlarged-text-and-labels — demonstrated 200% text/header/form-footer overflow, safe-area coverage and profile label mismatch corrected; four focused production checks passed, full integration regression follows.
 MOB-005 focus: fix/mob-005-webkit-focus-return — actual WebKit pointer-focus failure corrected; Chromium 156, Firefox 157 and WebKit 27.2 cart/More/customer-editor focus and tablet checks passed.
 MOB-005 More: fix/mob-005-more-sheet-height — final visual review found the generic max-height overriding More's compact limit; specific 88dvh rule and both-role browser size assertions restored.
+MOB-005 landscape: fix/mob-005-landscape-safe-gutters — emulated 44px landscape side insets exposed order text at 24px and wider-sheet padding at 20px; both now honor the inset, retaining zero-inset spacing.
 MOB-006: test/mob-006-responsive-accessibility-regression — planned regression gates.
 MOB-007: docs/mob-007-mobile-handover — planned final evidence.
