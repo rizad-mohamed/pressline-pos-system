@@ -1112,3 +1112,21 @@ chore(integration): merge chore/ci-001-quality-gates
 
 Requirement: CI-001; existing CUST-001..006, SVC-001..006 and MAT-001..008 regression preservation. Validation: Fresh temporary source copy: npm ci installed 544/audited 545, zero known vulnerabilities; advisory audit/typegen+typecheck/lint/format/84 tests/22 contrast pairs/browser install passed; CI=true production build and all 44 Chromium tests passed (347.63s), no configured retries; YAML parse/immutable action pins/read-only permissions verified. No hosted CI run claimed. Retain verified topic history; main unchanged.
 ```
+
+## Mobile refinement integration · 2026-10-28
+
+Verified application/regression integration before this handover: `bb27c36c6364ee13c03fa558c0756ff37512d6dc`. Recovery started at clean 9a29ad4 on the existing MOB-003 branch; the earlier mobile baseline was 92ec826. Main remains `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604`. All topics below are retained and integrated; no reset/rebase/squash, remote, push, publish, main integration or backend operation occurred. Git identity remains repository-local Codex Automation. Staged diffs were reviewed; no conflicts remain. This documentation topic's own source/merge necessarily follow this snapshot and are reported in the final handoff.
+
+| Retained topic                                     | Source commit                              | Verified no-ff integration                 |
+| -------------------------------------------------- | ------------------------------------------ | ------------------------------------------ |
+| `docs/mob-000-scope`                               | `fdf5e69efa6c9446fcbd7fbca25138e19458ecd1` | `bda704aeba0885d5faaf29e16796e4185857cfc9` |
+| `feat/mob-001-center-dashboard-bottom-tabs`        | `eeb6577cfa89d7befa4cf35cf222bde35d2031a1` | `9a29ad4dff08d0667ab188448f903f378eee0f69` |
+| `feat/mob-003-mobile-pos-order-experience`         | `30fc5ac61fa064062cf1ee63bd9cc1cbe2f763d0` | `a08211c25fb9803ce32c7241747d9cab731089f3` |
+| `feat/mob-004-mobile-management-screens`           | `e2504c2c6ee6f149f3ad173bf2a327354b1eda15` | `eaaab287b4a292e62793a636bc1e6c9d3f869b9e` |
+| `fix/mob-005-enlarged-text-and-labels`             | `97492206540807688f804c0ed9df45782a950e40` | `06b3f8202deeadaf2dd41eb638847180031107f4` |
+| `fix/mob-005-webkit-focus-return`                  | `2eb89d8d1ef6ce77004577ac05546644c48d7409` | `29160a7b23514b50c0e115a328147c9ce1324311` |
+| `fix/mob-005-more-sheet-height`                    | `3a77cfaedd2f36bd01b47f6650d41ac83369d849` | `c51b4c0f9a10d580c0f9812a7a8bff70d428c75a` |
+| `fix/mob-005-landscape-safe-gutters`               | `6cefbee8bbd415664bddf596781d0499a2b64a9a` | `65e8f6399efb03a929fe279c370f763ff329d064` |
+| `test/mob-006-responsive-accessibility-regression` | `12d41feb9dbcd6e9d0e3f3d136695fcd6314c209` | `bb27c36c6364ee13c03fa558c0756ff37512d6dc` |
+
+Actual gates: 91 unit/component tests, 78/78 CI-mode production Chromium checks, strict typecheck/lint/format/build, 22 token contrast pairs; current advisory audit reports zero known vulnerabilities. Matching browser engines also passed the focused interaction check. Interrupted/failed checkpoints and physical/hosted-CI limits are documented in mobile-refinement.md and validation-log.md.

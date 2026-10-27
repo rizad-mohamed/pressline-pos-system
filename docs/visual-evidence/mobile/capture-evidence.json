@@ -1,0 +1,641 @@
+{
+  "clock": "2026-10-25T06:30:00Z, matching baseline",
+  "captures": [
+    {
+      "filename": "dashboard-390.png",
+      "path": "/dashboard",
+      "width": 390,
+      "height": 900,
+      "sha256": "3eea5a8c5257f4edc11f6ddfce616fc580ab4a2e4c9c795e0af0e7c31a02c6d1"
+    },
+    {
+      "filename": "pos-390.png",
+      "path": "/pos",
+      "width": 390,
+      "height": 900,
+      "sha256": "db138528884e7dbf083da1475fd939a33a16dead5fb4bc52a789a4da8c7380c8"
+    },
+    {
+      "filename": "orders-390.png",
+      "path": "/orders",
+      "width": 390,
+      "height": 900,
+      "sha256": "31a0d678500c3267d3a16801d0e30f764d1f05bcac82784b0f5fc36d4a4baf02"
+    },
+    {
+      "filename": "customers-390.png",
+      "path": "/customers",
+      "width": 390,
+      "height": 900,
+      "sha256": "c74c74d38a5ab3dd9f10d1867dd83ab1dd33048bd0040bb3a218430fc4f3dd92"
+    },
+    {
+      "filename": "jobs-390.png",
+      "path": "/jobs",
+      "width": 390,
+      "height": 900,
+      "sha256": "e537d1ab989905d65bdc28f3582984a57356d8e19a436c0b0afd16671b6fc164"
+    },
+    {
+      "filename": "inventory-390.png",
+      "path": "/inventory",
+      "width": 390,
+      "height": 900,
+      "sha256": "9283f7842470b2517b742e5b5078b087c5d8528b2e30bfce3c76039d7f5c38fd"
+    },
+    {
+      "filename": "transfers-390.png",
+      "path": "/transfers",
+      "width": 390,
+      "height": 900,
+      "sha256": "0cd3862b56c574ccad46fea7ea41bb6ee7cac99099d79b9ac182a2a251f87ff2"
+    },
+    {
+      "filename": "pricing-390.png",
+      "path": "/pricing",
+      "width": 390,
+      "height": 900,
+      "sha256": "f030c78b87be807dbcffbc05e4164ccc72c99de7bb4e639314db69ad6aa6192b"
+    },
+    {
+      "filename": "reports-390.png",
+      "path": "/reports",
+      "width": 390,
+      "height": 900,
+      "sha256": "c52a19bb4e4fcaf8f5223221c7d1ef17e2a084f7e0cfb144af84a3a6ddbf1f39"
+    },
+    {
+      "filename": "sms-390.png",
+      "path": "/sms",
+      "width": 390,
+      "height": 900,
+      "sha256": "4781dbe05e07010db8c2e840a817da325daf81d0b41d9b456bb85bb056679419"
+    },
+    {
+      "filename": "settings-390.png",
+      "path": "/settings",
+      "width": 390,
+      "height": 900,
+      "sha256": "29cccb12c7a15dca3e188b111de89fe8aaf3af054afc1a78ee99c6b40c998003"
+    },
+    {
+      "filename": "profile-390.png",
+      "path": "/profile",
+      "width": 390,
+      "height": 900,
+      "sha256": "b88b62eb902980a59cdf1a776a91dfb468de36bec2c563d5b5aaf1829df24b5f"
+    },
+    {
+      "filename": "dashboard-820.png",
+      "path": "/dashboard",
+      "width": 820,
+      "height": 900,
+      "sha256": "56efae32bc96b2c34998a0151b464521b2ee4fa40e18baee24b66969e415b0d7"
+    },
+    {
+      "filename": "pos-820.png",
+      "path": "/pos",
+      "width": 820,
+      "height": 900,
+      "sha256": "7ec9b03ba9fef5bcff1d0d6b5ffed66d012072eb8e4997254060671d715798f6"
+    },
+    {
+      "filename": "orders-820.png",
+      "path": "/orders",
+      "width": 820,
+      "height": 900,
+      "sha256": "07650c1f507ceb462e70cc6e295e968d9037c91617cf96c513ce0ef8aea7e790"
+    },
+    {
+      "filename": "customers-820.png",
+      "path": "/customers",
+      "width": 820,
+      "height": 900,
+      "sha256": "1b0c6c5df7f5bf2a26e4b48e7275d9e201cf509bc34ac5f76dd49715a1c03e56"
+    },
+    {
+      "filename": "jobs-820.png",
+      "path": "/jobs",
+      "width": 820,
+      "height": 900,
+      "sha256": "3cf137fd7cc4792e08709c33c724a916e5dd0e29463de1c81bdfc831d04a178a"
+    },
+    {
+      "filename": "inventory-820.png",
+      "path": "/inventory",
+      "width": 820,
+      "height": 900,
+      "sha256": "8da292a454dfb92467567eb37e4c120b6778175c08981c046d853315620e0c9b"
+    },
+    {
+      "filename": "transfers-820.png",
+      "path": "/transfers",
+      "width": 820,
+      "height": 900,
+      "sha256": "a606a3c13f6240a319d5bfdfc1d51507801f8b1a134efd2d7850dbe1829ccd7e"
+    },
+    {
+      "filename": "pricing-820.png",
+      "path": "/pricing",
+      "width": 820,
+      "height": 900,
+      "sha256": "af65f3a4fc5efd9d45f8a153c16120a0177a931e4984d3e7e2f86c59cda75d4c"
+    },
+    {
+      "filename": "reports-820.png",
+      "path": "/reports",
+      "width": 820,
+      "height": 900,
+      "sha256": "bdcb7d7290a6746dbd7c8a02afa56bb374d038def7ea2d45d952ef6170d656ff"
+    },
+    {
+      "filename": "sms-820.png",
+      "path": "/sms",
+      "width": 820,
+      "height": 900,
+      "sha256": "36ae64afe53be9c371e5d0653b97bc6475fd30105d50c1ef11446956388eacfb"
+    },
+    {
+      "filename": "settings-820.png",
+      "path": "/settings",
+      "width": 820,
+      "height": 900,
+      "sha256": "89316f9a5b5c462fc979bf2d1a9b3f166b8a24aca5122f14c0c5586598b17269"
+    },
+    {
+      "filename": "profile-820.png",
+      "path": "/profile",
+      "width": 820,
+      "height": 900,
+      "sha256": "e269f602a5b8c058c00cd83a3175541550ed40244005375ca787cf9d6f679430"
+    },
+    {
+      "filename": "dashboard-1280.png",
+      "path": "/dashboard",
+      "width": 1280,
+      "height": 900,
+      "sha256": "97696e38c2c1b01534c4c7a7b6782faccc89f73a18425f80917615804952214e"
+    },
+    {
+      "filename": "pos-1280.png",
+      "path": "/pos",
+      "width": 1280,
+      "height": 900,
+      "sha256": "60f1caaa1514cce83ef67edc6a198e07ae27df1a94c482cfad34370d2e96a115"
+    },
+    {
+      "filename": "orders-1280.png",
+      "path": "/orders",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ebadf824deb2bd8fbffc35c0a86a0d19c7a982bf4d66a6dbed1fdfca4044f938"
+    },
+    {
+      "filename": "customers-1280.png",
+      "path": "/customers",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f95b2fd4b71c086a133b368426becf8a35224c9ace3b3701e617f4abc9a02292"
+    },
+    {
+      "filename": "jobs-1280.png",
+      "path": "/jobs",
+      "width": 1280,
+      "height": 900,
+      "sha256": "369487d4bf4c8d9a765d4b12b171c7a5c019b8ec662d23cbd5cdab1719de231f"
+    },
+    {
+      "filename": "inventory-1280.png",
+      "path": "/inventory",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c0f8598eceba3ff750bc2798cc2f56d197fffa52418313c52c26449c27ff44a4"
+    },
+    {
+      "filename": "transfers-1280.png",
+      "path": "/transfers",
+      "width": 1280,
+      "height": 900,
+      "sha256": "719fa2b4454c0af98a4bbfa86367dca410e9c5819a2f66419dd1d8470a4cdcc2"
+    },
+    {
+      "filename": "pricing-1280.png",
+      "path": "/pricing",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ad1e5f722dd54450b3a73dddac8db517e4014ba884d64d88f82470aab63e2356"
+    },
+    {
+      "filename": "reports-1280.png",
+      "path": "/reports",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b6967cfd4d77e5bc931f7f8bacd9e6d5d2acbc1638299ce8c07c51d5ac957ce6"
+    },
+    {
+      "filename": "sms-1280.png",
+      "path": "/sms",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a9f52e2f352d1f92700e7e631bbec52d6c6808bf76c844c892e16c70fbf13d9a"
+    },
+    {
+      "filename": "settings-1280.png",
+      "path": "/settings",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0f382f2e4e9aa3af194fc67eff702c5ed51dba08539358061fde8ed929d400f1"
+    },
+    {
+      "filename": "profile-1280.png",
+      "path": "/profile",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a33f5d33001a4d2a50ca869fb1becf5a7dd42c4ce537c8b3371223c3f1b7f8dd"
+    },
+    {
+      "filename": "dashboard-1440.png",
+      "path": "/dashboard",
+      "width": 1440,
+      "height": 900,
+      "sha256": "5f50a7a358acba8f5485ae59b47e2cd27eb7a79d335fe3be38f3a6ae5afde634"
+    },
+    {
+      "filename": "pos-1440.png",
+      "path": "/pos",
+      "width": 1440,
+      "height": 900,
+      "sha256": "d169d147d862823a7d313dd09f0e99606ac2a22429623fb2f7a214bb00ce672b"
+    },
+    {
+      "filename": "orders-1440.png",
+      "path": "/orders",
+      "width": 1440,
+      "height": 900,
+      "sha256": "6d46eaf23b27c98a357eca06e45eed756b9015b09c40e99116ff240796caf8e0"
+    },
+    {
+      "filename": "customers-1440.png",
+      "path": "/customers",
+      "width": 1440,
+      "height": 900,
+      "sha256": "a0d770130a1486a180de544090b104293b5fe03beabba6e75a1caaae114eedc7"
+    },
+    {
+      "filename": "jobs-1440.png",
+      "path": "/jobs",
+      "width": 1440,
+      "height": 900,
+      "sha256": "caa569fb689fd01615568fee757a4e70f091a8177f89e291e1e373ab06619e2d"
+    },
+    {
+      "filename": "inventory-1440.png",
+      "path": "/inventory",
+      "width": 1440,
+      "height": 900,
+      "sha256": "51a2466c88541e66e1986b085375ba15a61c7bb640de8427f9aa1869b0939c9a"
+    },
+    {
+      "filename": "transfers-1440.png",
+      "path": "/transfers",
+      "width": 1440,
+      "height": 900,
+      "sha256": "2b2f56627e0d952cace15f826478c5436ec46215e55d1d22cc0f1532bd65f321"
+    },
+    {
+      "filename": "pricing-1440.png",
+      "path": "/pricing",
+      "width": 1440,
+      "height": 900,
+      "sha256": "b2f66ffb63bd9d0b2c21d22c29815c8221a64ac4747b16b292a27170da429ad3"
+    },
+    {
+      "filename": "reports-1440.png",
+      "path": "/reports",
+      "width": 1440,
+      "height": 900,
+      "sha256": "976061c4e3a0c3baf7fcd8d2d35ddd5b66bbcbf1345b0c562326b9391dca52dc"
+    },
+    {
+      "filename": "sms-1440.png",
+      "path": "/sms",
+      "width": 1440,
+      "height": 900,
+      "sha256": "c0f6b3dc9708e0cbb1b3f37f0542b8aaecd26f4e2cfa1d5ab2250cbc873dc4ce"
+    },
+    {
+      "filename": "settings-1440.png",
+      "path": "/settings",
+      "width": 1440,
+      "height": 900,
+      "sha256": "480f89a5b1962409be8fa14ad613a1f792e58d948460a5f75672223e9ceac806"
+    },
+    {
+      "filename": "profile-1440.png",
+      "path": "/profile",
+      "width": 1440,
+      "height": 900,
+      "sha256": "19d96e53657822f53875d2e2fe13521efbdb3dff15f65b6acbb6d84d36932f17"
+    },
+    {
+      "filename": "dashboard-1920.png",
+      "path": "/dashboard",
+      "width": 1920,
+      "height": 900,
+      "sha256": "395478872456bdd25540776917ef72a3f9222032b31a299b5927a442e4d7e846"
+    },
+    {
+      "filename": "pos-1920.png",
+      "path": "/pos",
+      "width": 1920,
+      "height": 900,
+      "sha256": "7355e764421644122fbf7bdc1611bd6ef93559e911f4742bcdaefe959e4edb6d"
+    },
+    {
+      "filename": "orders-1920.png",
+      "path": "/orders",
+      "width": 1920,
+      "height": 900,
+      "sha256": "b8f099ba065176a6d518a45d463e9e2748f8310ccd260421758fe104561b2d25"
+    },
+    {
+      "filename": "customers-1920.png",
+      "path": "/customers",
+      "width": 1920,
+      "height": 900,
+      "sha256": "99b5cba04526606112420238b31b52f3327732261f525e62f551e5dace685677"
+    },
+    {
+      "filename": "jobs-1920.png",
+      "path": "/jobs",
+      "width": 1920,
+      "height": 900,
+      "sha256": "25ad7141f0f54807ec4de3d2e10f961bdc9b66bad315a108bf20d7aa982e0482"
+    },
+    {
+      "filename": "inventory-1920.png",
+      "path": "/inventory",
+      "width": 1920,
+      "height": 900,
+      "sha256": "c1d3ea93d6254569f379ea1797e3995245aed5b5bbc904963f1599d28cf122a5"
+    },
+    {
+      "filename": "transfers-1920.png",
+      "path": "/transfers",
+      "width": 1920,
+      "height": 900,
+      "sha256": "4454289913344d34c5a2f2fe6dc92741273c9eecaacc0e674615dcaa0ffa6a29"
+    },
+    {
+      "filename": "pricing-1920.png",
+      "path": "/pricing",
+      "width": 1920,
+      "height": 900,
+      "sha256": "e0879ae84c229150ec121ebc020b1f9cd7466dc5ba880ebe742b976ced31d6b2"
+    },
+    {
+      "filename": "reports-1920.png",
+      "path": "/reports",
+      "width": 1920,
+      "height": 900,
+      "sha256": "71c221eb29d5ce884f0d1ad109090dd6916e4fa3f431b04d237c73b83978145d"
+    },
+    {
+      "filename": "sms-1920.png",
+      "path": "/sms",
+      "width": 1920,
+      "height": 900,
+      "sha256": "034de35d4f75bb39f3368d8ded62cc3104560dc601e39f92a8ed0512dc8772e3"
+    },
+    {
+      "filename": "settings-1920.png",
+      "path": "/settings",
+      "width": 1920,
+      "height": 900,
+      "sha256": "914b4d76ece0df818a3e33d32c5930112cd220277017fea31aaf357f6af7c999"
+    },
+    {
+      "filename": "profile-1920.png",
+      "path": "/profile",
+      "width": 1920,
+      "height": 900,
+      "sha256": "a57238f979029d81c9e3db7ae64700cbe878a1deacd505ad8bd1f26742f1c688"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "taste": [
+    {
+      "route": "dashboard",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "pos",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "orders",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "customers",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "jobs",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "transfers",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "pricing",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "reports",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "sms",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "settings",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "profile",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "dashboard",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "pos",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "orders",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "customers",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "jobs",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "transfers",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "pricing",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "reports",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "sms",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "settings",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "profile",
+      "width": 820,
+      "findings": []
+    },
+    {
+      "route": "dashboard",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "pos",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "orders",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "customers",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 43px in \"2 customers\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        }
+      ]
+    },
+    {
+      "route": "jobs",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "transfers",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "31% of the first screen is one empty block (1320×300px at 120,600).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        }
+      ]
+    },
+    {
+      "route": "pricing",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 57px in \"Service catalogue\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        }
+      ]
+    },
+    {
+      "route": "reports",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "sms",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "settings",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "profile",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 98px in \"Browser preferences\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        }
+      ]
+    }
+  ]
+}

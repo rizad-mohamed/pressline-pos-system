@@ -308,3 +308,7 @@ The original 25-page/238-practice inventory is retained. This adds relevant appl
 | 11.13/07.14, 12.01/12.03/12.07/12.08, 17.03/17.04/17.08/17.13/17.14 | Validated migration, explicit legacy association, no profile notes on receipts, preserved failures and separate corrections | migration/repository tests; source review; validation and Git audits     |
 
 No participant, real screen reader, physical device/printer, legal/security assessment or full WCAG conformity evaluation was conducted.
+
+## Mobile refinement application
+
+Retains the existing 238-practice catalogue. Relevant practices 10.02/10.05/10.06/10.08/10.09/10.12 and 11.01–11.06/11.09–11.12 guide visible labeled navigation, non-color current states, touch targets, modal focus/dirty guards, reflow, orientation, progressive viewport handling and restrained runtime cost. Five actual destinations and grouped More support recognition and task access. Secondary filters retain a visible summary and their existing state; native scroll regions expose their extra columns. Physical device, screen-reader and participant validation is not claimed. See mobile-refinement.md and visual-evidence/mobile/README.md for executed evidence.

@@ -171,3 +171,19 @@ Shared executed gate: 84 unit/component tests in 18 files; 44/44 production Chro
 CI-001: `.github/workflows/frontend-quality.yml`, package typegen/format scripts and explicit Playwright Asia/Colombo timezone; branch `chore/ci-001-quality-gates`, source `817327fa652bb30c49135a1b3f44fe1a6d1cd19a`, merge `41a97ef3b10f32cddf469983b9b94cead7320dd5`. Verified by a fresh locked install, zero advisory results, strict gates, 84 unit/component tests and 44 production browser tests with CI=true. The 20 follow-up IDs above remain unchanged and reran. Hosted CI is configured, not executed.
 
 AUD-001: `docs/security-review.md`, current status/validation/Git evidence; branch `docs/aud-001-final-review`. Source/final merge are reported at delivery because this commit cannot contain its own hash. Source reconnaissance/advisory and Git audits are explicitly bounded; the full security skill run/validators and hosted CI remain unverified, not silently passed.
+
+## Mobile refinement work-unit trace
+
+These are local implementation units mapped to the supplied mobile/recovery specifications; they do not replace missing original approved FR/NFR criteria. All earlier CUST/SVC/MAT and original frontend workflows remain intact and reran.
+
+| Unit                    | Implementation                                                                                     | Executed evidence                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| MOB-000                 | Scope/references and recovered actual Git baseline                                                 | mobile-refinement.md, 60 baseline captures                                     |
+| MOB-001/MOB-002/TAB-001 | shared role map, five tabs/Dashboard third, More, adaptive shell/root entry                        | navigation/entry unit tests; mobile-navigation.spec.ts; 11-width role matrix   |
+| MOB-003                 | measured order-bar clearance, visual viewport and guarded sheets                                   | mobile-viewport.spec.ts; POS/full workflow checks                              |
+| MOB-004                 | adaptive filters and overflow-aware native tables                                                  | mobile-management.spec.ts; all operational workflows and gallery               |
+| MOB-005                 | reproduced enlarged text, name matching, WebKit focus, More height and landscape inset corrections | mobile-responsive.spec.ts; mobile-navigation.spec.ts; check-mobile-engines.mjs |
+| MOB-006                 | 26 added matrix/reflow/a11y/inset/form cases and reusable engine check                             | complete 78-test CI-mode production run, 91 unit/component tests               |
+| MOB-007                 | visual/runtime/Git/validation handover                                                             | visual-evidence/mobile/README.md; final format/link/provenance audit           |
+
+Actual counts, failures, limits and source/merge hashes are in validation-log.md and git-audit.md. No backend or production readiness gate is implied.

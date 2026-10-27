@@ -99,4 +99,6 @@ $env:PRESSLINE_TEST_PORT='3001'
 npm.cmd run test:e2e
 ```
 
-Current evidence: **84 unit/component and 44 production browser tests passed**. See FRONTEND_STATUS.md and docs/validation-log.md. `node scripts/capture-followup.mjs` captures the local production build at port 3001; it additionally requires the already-reviewed local Taste skill pinned by skills-lock.json. It uses an isolated fictional browser context. No deploy or backend is involved.
+Current mobile evidence: **91 unit/component and 78 production browser tests passed**. See FRONTEND_STATUS.md and docs/validation-log.md. `node scripts/capture-followup.mjs` captures the local production build at port 3001; it additionally requires the already-reviewed local Taste skill pinned by skills-lock.json. It uses an isolated fictional browser context. No deploy or backend is involved.
+
+The [mobile refinement evidence](docs/visual-evidence/mobile/README.md) includes phone/tablet/desktop captures, safe areas, print comparison and runtime limits. Five role-aware bottom destinations appear through 900px with Dashboard centered; the desktop rail remains above that boundary. `node scripts/check-mobile-engines.mjs` checks the already-started local production frontend in the installed Chromium/Firefox/WebKit engines. Hosted CI and real devices remain separate checks.

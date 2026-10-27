@@ -15,3 +15,5 @@ Captured from the final local production build with fictional demo data, Chromiu
 Viewport emulation and PDF rendering do not establish physical-device, assistive-technology or printer compatibility. Runtime samples are account-primed local lab navigations; see scope and throttling in the raw JSON. No field CWV/INP or Lighthouse claim.
 
 Newer connected customer/service/material evidence is in [followup](followup/README.md). The captures and runtime values above remain the earlier premium-phase checkpoint, not the current feature evidence.
+
+Current mobile refinement evidence is in [mobile](mobile/README.md). Earlier premium and connected-follow-up galleries remain historical checkpoints.
