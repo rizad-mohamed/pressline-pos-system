@@ -2604,7 +2604,7 @@ button.text-link {
       var(--space-6) + var(--mobile-nav-height) + var(--mobile-order-height)
     );
   }
-  .mobile-more-sheet {
+  .sheet.mobile-more-sheet {
     top: auto;
     bottom: 0;
     left: 0;
