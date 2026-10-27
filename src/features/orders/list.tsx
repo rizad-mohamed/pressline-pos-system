@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -21,6 +22,7 @@ import {
   ProductionBadge,
 } from "@/components/shared/domain-display";
 import { OrderDetail } from "./detail";
+import { AdaptiveFilters } from "@/components/shared/adaptive-filters";
 export function OrderList({ jobs = false }: { jobs?: boolean }) {
   const { data, user, scope } = useDemo(),
     params = useSearchParams(),
@@ -74,7 +76,9 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
           </Button>
         }
       />
-      <div className="toolbar">
+      <AdaptiveFilters
+        summary={`${status === "all" ? "All production" : status === "active" ? "Active jobs" : status} · ${payment === "all" ? "Any payment" : payment} · ${sort === "oldest" ? "Oldest first" : sort === "balance" ? "Largest balance" : "Newest first"}`}
+      >
         <SearchField
           label="Search orders"
           value={q}
@@ -120,10 +124,10 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
             <option value="balance">Largest balance</option>
           </select>
         </Field>
-      </div>
+      </AdaptiveFilters>
       <section className="card">
         {rows.length ? (
-          <div
+          <ScrollTable
             className="table-scroll"
             tabIndex={0}
             aria-label="Orders table, scroll horizontally for more columns"
@@ -207,7 +211,7 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
                 ))}
               </tbody>
             </table>
-          </div>
+          </ScrollTable>
         ) : (
           <EmptyState
             title="No matching orders"

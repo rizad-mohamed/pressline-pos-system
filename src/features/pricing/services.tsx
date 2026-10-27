@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useCommand, useDemo, requestId } from "@/data/provider";
@@ -17,6 +18,7 @@ import {
 import { Money } from "@/components/shared/domain-display";
 import { ServiceEditor } from "./service-editor";
 import { Categories } from "./categories";
+import { AdaptiveFilters } from "@/components/shared/adaptive-filters";
 
 export function ServiceManager() {
   const { data } = useDemo();
@@ -82,7 +84,9 @@ export function ServiceManager() {
         </div>
       </div>
       <div className="card-body">
-        <div className="toolbar">
+        <AdaptiveFilters
+          summary={`${category === "all" ? "All categories" : (data.categories.find((c) => c.id === category)?.name ?? "Selected category")} · ${status === "all" ? "All availability" : status} · ${sort === "recent" ? "Recently updated" : "Name A–Z"}`}
+        >
           <SearchField
             label="Search managed services"
             value={query}
@@ -131,10 +135,10 @@ export function ServiceManager() {
               <option value="recent">Recently updated</option>
             </select>
           </Field>
-        </div>
+        </AdaptiveFilters>
       </div>
       {rows.length ? (
-        <div
+        <ScrollTable
           className="table-scroll"
           tabIndex={0}
           aria-label="Scrollable service catalogue"
@@ -253,7 +257,7 @@ export function ServiceManager() {
               })}
             </tbody>
           </table>
-        </div>
+        </ScrollTable>
       ) : (
         <EmptyState
           title="No matching services"

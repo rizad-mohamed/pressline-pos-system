@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -94,7 +95,7 @@ export function PricingPage() {
           </div>
           <Badge tone="primary">Version {data.pricing.version}</Badge>
         </div>
-        <div
+        <ScrollTable
           className="table-scroll"
           tabIndex={0}
           aria-label="Scrollable data table"
@@ -136,7 +137,7 @@ export function PricingPage() {
               </tr>
             </tbody>
           </table>
-        </div>
+        </ScrollTable>
       </section>
       <section className="card card-body stack">
         <h2>How a quote is calculated</h2>

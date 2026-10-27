@@ -2664,7 +2664,70 @@ button.text-link {
 }
 
 /* Mobile forms retain one Radix dialog and one scrollable body at every size. */
+.mobile-filter-toggle,
+.mobile-filter-summary {
+  display: none;
+}
 @media screen and (max-width: 900px) {
+  .adaptive-toolbar {
+    gap: var(--space-3);
+  }
+  .adaptive-toolbar .search-field {
+    flex: 1 1 10rem;
+    min-width: min(100%, 10rem);
+    max-width: none;
+    order: 0;
+  }
+  .mobile-filter-toggle {
+    display: inline-flex;
+    order: 1;
+  }
+  .mobile-filter-toggle[aria-expanded="true"] > svg:last-child {
+    transform: rotate(180deg);
+  }
+  .adaptive-toolbar > .field:not(.search-field) {
+    order: 3;
+    flex: 1 1 10rem;
+    min-width: 0;
+  }
+  .adaptive-toolbar[data-expanded="false"] > .field:not(.search-field) {
+    display: none;
+  }
+  .mobile-filter-summary {
+    display: block;
+    flex-basis: 100%;
+    order: 2;
+    overflow-wrap: anywhere;
+  }
+  .table-scroll[data-overflow="true"]::before {
+    content: "Scroll sideways for more columns →";
+    display: block;
+    position: sticky;
+    left: 0;
+    width: fit-content;
+    max-width: 100%;
+    padding: var(--space-2) var(--space-3);
+    color: var(--muted);
+    font-size: var(--text-xs);
+    background: var(--surface-muted);
+  }
+  .workspace .text-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .workspace[data-screen="inventory"] .inventory-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .inventory-metrics .metric {
+    padding: var(--space-3);
+  }
+  .inventory-metrics .metric-note {
+    font-size: var(--text-xs);
+  }
+  .inventory-metrics .metric-value {
+    font-size: var(--text-xl);
+  }
   .btn,
   .input,
   .select,
