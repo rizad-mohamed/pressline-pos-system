@@ -98,15 +98,19 @@ Follow-up handover provenance backfilled: `docs/fup-001-handover` primary source
 | CI-001  | Repeatable locked frontend quality workflow and clean-checkout type generation | chore/ci-001-quality-gates | integrated; 817327f / merge 41a97ef               | Fresh install, zero advisories, strict gates, 84 unit and 44 production Chromium tests passed |
 | AUD-001 | Final CI provenance, source security review and honest limits                  | docs/aud-001-final-review  | verified documentation; final integration follows | Fresh CI evidence, Git audit and documentation checks                                         |
 
-## Mobile refinement · 2026-10-25
+## Mobile refinement · current state 2026-10-28
 
-MOB-000: docs/mob-000-scope — integrated fdf5e69 / merge bda704a; supplied specification and 60-route/width baseline.
-MOB-001 / MOB-002 / TAB-001: feat/mob-001-center-dashboard-bottom-tabs — verified foundation: 91 unit/component and 6 production navigation/keyboard/reflow/print checks; strict typecheck/lint/build/format. Exact source/merge follows in the next audit; full mobile refinement gate remains pending.
-MOB-003: feat/mob-003-mobile-pos-order-experience — implemented viewport/keyboard and sheet ergonomics; six focused production checks, typecheck/lint/build passed; full integration gate follows.
-MOB-004: feat/mob-004-mobile-management-screens — implemented adaptive filters, visible overflow guidance and phone inventory density; focused production workflow checks and 60-capture visual review; final regression gate follows.
-MOB-005: fix/mob-005-enlarged-text-and-labels — demonstrated 200% text/header/form-footer overflow, safe-area coverage and profile label mismatch corrected; four focused production checks passed, full integration regression follows.
-MOB-005 focus: fix/mob-005-webkit-focus-return — actual WebKit pointer-focus failure corrected; Chromium 156, Firefox 157 and WebKit 27.2 cart/More/customer-editor focus and tablet checks passed.
-MOB-005 More: fix/mob-005-more-sheet-height — final visual review found the generic max-height overriding More's compact limit; specific 88dvh rule and both-role browser size assertions restored.
-MOB-005 landscape: fix/mob-005-landscape-safe-gutters — emulated 44px landscape side insets exposed order text at 24px and wider-sheet padding at 20px; both now honor the inset, retaining zero-inset spacing.
-MOB-006: test/mob-006-responsive-accessibility-regression — complete: 78/78 CI-mode production Chromium checks, 91 unit/component tests, strict gates; real Chromium/WebKit emulated touch and Firefox pointer workflows passed.
-MOB-007: docs/mob-007-mobile-handover — planned final evidence.
+Opened 2026-10-25; recovered 2026-10-27. Final shared gate: 91 unit/component and 78 CI-mode production Chromium checks, strict gates and focused Chromium/Firefox/WebKit checks passed. Exact full hashes, failed checkpoints and physical/hosted-CI limits are in [Git audit](git-audit.md), [implementation](mobile-refinement.md) and [validation](validation-log.md). Handover commit/integration hashes necessarily follow this document snapshot and are reported at delivery.
+
+| Unit                    | Retained branch                                    | Source              | Integration         | State                                                |
+| ----------------------- | -------------------------------------------------- | ------------------- | ------------------- | ---------------------------------------------------- |
+| MOB-000                 | `docs/mob-000-scope`                               | `fdf5e69`           | `bda704a`           | Completed and integrated                             |
+| MOB-001/MOB-002/TAB-001 | `feat/mob-001-center-dashboard-bottom-tabs`        | `eeb6577`           | `9a29ad4`           | Completed and integrated                             |
+| MOB-003                 | `feat/mob-003-mobile-pos-order-experience`         | `30fc5ac`           | `a08211c`           | Completed and integrated                             |
+| MOB-004                 | `feat/mob-004-mobile-management-screens`           | `e2504c2`           | `eaaab28`           | Completed and integrated                             |
+| MOB-005 reflow          | `fix/mob-005-enlarged-text-and-labels`             | `9749220`           | `06b3f82`           | Completed and integrated                             |
+| MOB-005 focus           | `fix/mob-005-webkit-focus-return`                  | `2eb89d8`           | `29160a7`           | Completed and integrated                             |
+| MOB-005 More            | `fix/mob-005-more-sheet-height`                    | `3a77cfa`           | `c51b4c0`           | Completed and integrated                             |
+| MOB-005 landscape       | `fix/mob-005-landscape-safe-gutters`               | `6cefbee`           | `65e8f63`           | Completed and integrated                             |
+| MOB-006                 | `test/mob-006-responsive-accessibility-regression` | `12d41fe`           | `bb27c36`           | Completed and integrated                             |
+| MOB-007                 | `docs/mob-007-mobile-handover`                     | Final handoff / Git | Final handoff / Git | Verified handover; integration follows this snapshot |

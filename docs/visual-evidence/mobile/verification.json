@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-28",
+  "applicationSource": "65e8f6399efb03a929fe279c370f763ff329d064",
+  "unitPassed": 91,
+  "unitFiles": 20,
+  "unitSeconds": 57.11,
+  "e2ePassed": 78,
+  "e2eDuration": "15.2 minutes",
+  "ciExitCode": 0,
+  "ci": true,
+  "workers": 1,
+  "retries": 0,
+  "skips": 0,
+  "engines": [
+    "Chromium 156.0.8078.4 emulated touch",
+    "Firefox 157.0 pointer/keyboard",
+    "WebKit 27.2 emulated touch"
+  ],
+  "hostedCIExecuted": false,
+  "backendOperations": false
+}

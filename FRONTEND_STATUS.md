@@ -1,5 +1,13 @@
 # Pressline frontend status
 
+## Mobile refinement delivery · 2026-10-28
+
+Completed and locally integrated. The existing centered role-aware navigation was retained; resumed work finishes viewport/keyboard and safe-area coordination, usable mobile sheets, adaptive secondary filters, visible native table scrolling, enlarged-text reflow and WebKit focus return. Five tabs apply through 900px with Dashboard third; above 900px the original rail remains, and the existing POS summary changes at 1100px. Root entry resumes Dashboard without overriding deep links, printing or explicit account switching.
+
+Final source gate: **91 unit/component tests across 20 files and all 78 production Chromium tests passed**, with CI=true, one worker, retries=0 and a fresh build/server lifecycle. Strict typecheck/lint/format and all 22 token contrast pairs pass; the unchanged dependency set has zero known advisories at execution. Chromium/Firefox/WebKit focused interactions pass; see actual input modes in the engine evidence. Domain/data, dependencies/lock, print component and hosted workflow are unchanged from the pre-mobile baseline.
+
+[Implementation and recovery](docs/mobile-refinement.md), [visual evidence](docs/visual-evidence/mobile/README.md), [actual checks and limits](docs/validation-log.md), [Git provenance](docs/git-audit.md). Hosted CI was not run. Physical phones/tablets/software keyboards, real assistive technology, participant testing, physical printers and production security/full WCAG certification remain unverified. No backend/provider/database/deployment operation or remote push occurred.
+
 Connected customer/service/material follow-up implemented and verified on 2026-10-24–25 (Asia/Colombo). This is one interconnected browser-local frontend demonstration. No backend, API, SQL, Supabase, provider, deployment or production authentication operation was performed.
 
 Customers supports create/edit/search/duplicate review/archive/reactivate, quick POS selection/creation, walk-in and explicit legacy linking. Profiles derive order, payment and outstanding history within role/branch scope. Administrator **Services & pricing** manages reusable print/unit services, rates/setup, categories/status and material suggestions; POS reads the live catalogue. Accepted prices and customer/service snapshots survive rename/archive.
