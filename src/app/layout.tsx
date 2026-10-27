@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 const manrope = localFont({
@@ -7,6 +7,13 @@ const manrope = localFont({
   display: "swap",
 });
 import { DemoProvider } from "@/data/provider";
+import { MobileViewport } from "@/components/layout/mobile-viewport";
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+};
 export const metadata: Metadata = {
   title: "Pressline · Print shop workspace",
   description:
@@ -20,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={manrope.variable}>
       <body>
-        <DemoProvider>{children}</DemoProvider>
+        <DemoProvider>
+          <MobileViewport />
+          {children}
+        </DemoProvider>
       </body>
     </html>
   );

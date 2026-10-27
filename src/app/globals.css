@@ -2662,3 +2662,81 @@ button.text-link {
     display: none;
   }
 }
+
+/* Mobile forms retain one Radix dialog and one scrollable body at every size. */
+@media screen and (max-width: 900px) {
+  .btn,
+  .input,
+  .select,
+  textarea {
+    min-height: 44px;
+  }
+  .input,
+  .select,
+  textarea {
+    font-size: max(1rem, 16px);
+  }
+  .sheet {
+    max-height: 100vh;
+    max-height: 100dvh;
+  }
+  .sheet-header,
+  .sheet-footer {
+    flex-shrink: 0;
+  }
+  .sheet-header {
+    padding-top: max(var(--space-5), env(safe-area-inset-top, 0px));
+  }
+  .sheet-header .row {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+  .sheet-title {
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .sheet-header .btn-icon {
+    flex-shrink: 0;
+  }
+  .sheet-body {
+    min-height: 0;
+    scroll-padding-block: var(--space-4);
+  }
+  .sheet-footer {
+    flex-wrap: wrap;
+    padding-bottom: max(var(--space-4), env(safe-area-inset-bottom, 0px));
+  }
+  .sheet-footer > .btn {
+    flex: 1 1 9rem;
+    white-space: normal;
+    text-align: center;
+  }
+  .sheet .form-grid,
+  .sheet .form-grid.three {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+  :root[data-mobile-keyboard] .mobile-bottom-navigation,
+  :root[data-mobile-keyboard] .mobile-order-bar {
+    visibility: hidden;
+    pointer-events: none;
+  }
+  :root[data-mobile-keyboard] .sheet {
+    top: var(--visual-top);
+    bottom: auto;
+    height: var(--visual-height);
+    max-height: var(--visual-height);
+  }
+  :root[data-mobile-keyboard] .sheet-header,
+  :root[data-mobile-keyboard] .sheet-footer {
+    padding-block: var(--space-2);
+  }
+  :root[data-mobile-keyboard] .sheet-description {
+    display: none;
+  }
+}
+@media screen and (max-width: 680px) {
+  .sheet:not(.mobile-more-sheet) {
+    border-radius: 0;
+    border-left: 0;
+  }
+}
