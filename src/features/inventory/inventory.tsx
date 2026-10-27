@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,6 +19,7 @@ import {
 } from "@/components/shared/presentation";
 import { ItemDrawer } from "./item-drawer";
 import { AdjustDrawer } from "./adjust-drawer";
+import { AdaptiveFilters } from "@/components/shared/adaptive-filters";
 export function Inventory() {
   const { data, scope } = useDemo(),
     command = useCommand(),
@@ -97,7 +99,9 @@ export function Inventory() {
         corrections remain separate ledger events.
       </Notice>
       <section>
-        <div className="toolbar">
+        <AdaptiveFilters
+          summary={`${status === "active" ? "Active materials" : status === "inactive" ? "Inactive materials" : "All materials"} · ${stock === "low" ? "Low stock only" : "All stock levels"}`}
+        >
           <SearchField
             label="Search materials"
             value={search}
@@ -127,10 +131,10 @@ export function Inventory() {
               <option value="low">Low stock only</option>
             </select>
           </Field>
-        </div>
+        </AdaptiveFilters>
         <div className="card">
           {items.length ? (
-            <div
+            <ScrollTable
               className="table-scroll"
               tabIndex={0}
               aria-label="Inventory table, scroll for branch quantities"
@@ -228,7 +232,7 @@ export function Inventory() {
                   ))}
                 </tbody>
               </table>
-            </div>
+            </ScrollTable>
           ) : (
             <EmptyState
               title="No matching materials"
@@ -255,7 +259,7 @@ export function Inventory() {
           </div>
           <Badge>{movements.length} movements</Badge>
         </div>
-        <div
+        <ScrollTable
           className="table-scroll"
           tabIndex={0}
           aria-label="Scrollable data table"
@@ -312,7 +316,7 @@ export function Inventory() {
               ))}
             </tbody>
           </table>
-        </div>
+        </ScrollTable>
         {movements.length > historyLimit && (
           <div className="table-footer">
             <span>

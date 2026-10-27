@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import { useState } from "react";
 import { CalendarDays, ArrowRight, ChartNoAxesCombined } from "lucide-react";
 import { useDemo } from "@/data/provider";
@@ -218,7 +219,7 @@ export function Reports() {
           </div>
           <ChartNoAxesCombined size={18} className="muted" />
         </div>
-        <div
+        <ScrollTable
           className="table-scroll"
           tabIndex={0}
           aria-label="Financial report table"
@@ -271,7 +272,7 @@ export function Reports() {
               </tr>
             </tfoot>
           </table>
-        </div>
+        </ScrollTable>
       </section>
       <div className="summary-grid">
         <section className="card">

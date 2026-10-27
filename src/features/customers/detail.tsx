@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import Link from "next/link";
 import { useState } from "react";
 import { useCommand, useDemo, requestId } from "@/data/provider";
@@ -173,7 +174,7 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
           />
         </div>
         {orders.length ? (
-          <div
+          <ScrollTable
             className="table-scroll"
             tabIndex={0}
             aria-label="Scrollable customer orders"
@@ -225,7 +226,7 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
                 ))}
               </tbody>
             </table>
-          </div>
+          </ScrollTable>
         ) : (
           <EmptyState
             title="No linked orders in this view"

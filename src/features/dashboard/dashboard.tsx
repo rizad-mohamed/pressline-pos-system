@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import Link from "next/link";
 import { ArrowRight, Plus, AlertTriangle } from "lucide-react";
 import { useDemo } from "@/data/provider";
@@ -123,7 +124,7 @@ export function Dashboard() {
                 date. Outstanding is cumulative as of period end; it is not
                 period cash flow.
               </p>
-              <div
+              <ScrollTable
                 className="table-scroll"
                 tabIndex={0}
                 aria-label="Scrollable data table"
@@ -153,7 +154,7 @@ export function Dashboard() {
                     ))}
                   </tbody>
                 </table>
-              </div>
+              </ScrollTable>
             </details>
           </div>
         </section>
@@ -219,7 +220,7 @@ export function Dashboard() {
         {!orders.length ? (
           <EmptyState description="Create a printing order to start this branch's history." />
         ) : (
-          <div
+          <ScrollTable
             className="table-scroll"
             tabIndex={0}
             aria-label="Scrollable data table"
@@ -260,7 +261,7 @@ export function Dashboard() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </ScrollTable>
         )}
         <div className="table-footer">
           <span>Shared local demo data · no live branch synchronization</span>

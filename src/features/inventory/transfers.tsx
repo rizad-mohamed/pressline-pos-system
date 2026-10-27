@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import { useState } from "react";
 import { ArrowLeftRight, Plus } from "lucide-react";
 import { useDemo } from "@/data/provider";
@@ -59,7 +60,7 @@ export function Transfers() {
       </div>
       <section className="card">
         {rows.length ? (
-          <div
+          <ScrollTable
             className="table-scroll"
             tabIndex={0}
             aria-label="Transfers table"
@@ -114,7 +115,7 @@ export function Transfers() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </ScrollTable>
         ) : (
           <EmptyState
             title="No matching transfers"

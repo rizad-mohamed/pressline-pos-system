@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -187,7 +188,7 @@ export function SmsPage() {
           <h2>Values used in this preview</h2>
           <Badge>Same report engine</Badge>
         </div>
-        <div
+        <ScrollTable
           className="table-scroll"
           tabIndex={0}
           aria-label="Scrollable data table"
@@ -225,7 +226,7 @@ export function SmsPage() {
               ))}
             </tbody>
           </table>
-        </div>
+        </ScrollTable>
       </section>
       {configOpen && (
         <ConfigDrawer

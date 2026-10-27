@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import { useState } from "react";
 import { Building2, Pencil, RotateCcw, ShieldCheck } from "lucide-react";
 import { useDemo } from "@/data/provider";
@@ -61,7 +62,7 @@ export function SettingsPage() {
           </div>
           <Badge>UI restrictions only</Badge>
         </div>
-        <div
+        <ScrollTable
           className="table-scroll"
           tabIndex={0}
           aria-label="Scrollable data table"
@@ -103,7 +104,7 @@ export function SettingsPage() {
               ))}
             </tbody>
           </table>
-        </div>
+        </ScrollTable>
         <div className="card-body">
           <Notice>
             Real account creation, invitations, password recovery, authorization

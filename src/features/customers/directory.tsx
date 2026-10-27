@@ -1,4 +1,5 @@
 "use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
 import Link from "next/link";
 import { useState } from "react";
 import { Plus, ArrowUpRight } from "lucide-react";
@@ -78,7 +79,7 @@ export function CustomerDirectory() {
           </span>
         </div>
         {rows.length ? (
-          <div
+          <ScrollTable
             className="table-scroll"
             tabIndex={0}
             aria-label="Scrollable customer directory"
@@ -148,7 +149,7 @@ export function CustomerDirectory() {
                 })}
               </tbody>
             </table>
-          </div>
+          </ScrollTable>
         ) : (
           <EmptyState
             title={
