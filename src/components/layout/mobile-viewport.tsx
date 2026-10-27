@@ -4,6 +4,29 @@ import { useEffect } from "react";
 /** Presentation only: keep a mobile form and its actions inside the visual viewport. */
 export function MobileViewport() {
   useEffect(() => {
+    // WebKit pointer activation need not focus a button. Establish its focus
+    // before React opens a sheet, so the existing Radix return contract works.
+    function focusActivatedButton(event: MouseEvent) {
+      if (
+        !window.matchMedia("(max-width: 900px)").matches ||
+        event.button !== 0
+      )
+        return;
+      const button =
+        event.target instanceof Element ? event.target.closest("button") : null;
+      if (
+        button instanceof HTMLButtonElement &&
+        !button.disabled &&
+        document.activeElement !== button
+      ) {
+        button.focus({ preventScroll: true });
+      }
+    }
+    document.addEventListener("click", focusActivatedButton, true);
+    return () =>
+      document.removeEventListener("click", focusActivatedButton, true);
+  }, []);
+  useEffect(() => {
     const viewport = window.visualViewport;
     if (!viewport) return;
     const media = window.matchMedia("(max-width: 900px)");

@@ -105,5 +105,6 @@ MOB-001 / MOB-002 / TAB-001: feat/mob-001-center-dashboard-bottom-tabs — verif
 MOB-003: feat/mob-003-mobile-pos-order-experience — implemented viewport/keyboard and sheet ergonomics; six focused production checks, typecheck/lint/build passed; full integration gate follows.
 MOB-004: feat/mob-004-mobile-management-screens — implemented adaptive filters, visible overflow guidance and phone inventory density; focused production workflow checks and 60-capture visual review; final regression gate follows.
 MOB-005: fix/mob-005-enlarged-text-and-labels — demonstrated 200% text/header/form-footer overflow, safe-area coverage and profile label mismatch corrected; four focused production checks passed, full integration regression follows.
+MOB-005 focus: fix/mob-005-webkit-focus-return — actual WebKit pointer-focus failure corrected; Chromium 156, Firefox 157 and WebKit 27.2 cart/More/customer-editor focus and tablet checks passed.
 MOB-006: test/mob-006-responsive-accessibility-regression — planned regression gates.
 MOB-007: docs/mob-007-mobile-handover — planned final evidence.
