@@ -39,6 +39,9 @@ for (const role of ["cashier", "admin"] as const) {
       exact: true,
     });
     await expect(dialog).toBeVisible();
+    expect((await dialog.boundingBox())!.height).toBeLessThanOrEqual(
+      844 * 0.88 + 1,
+    );
     const more = dialog.getByRole("navigation", { name: "More workspace" });
     const hrefs = await more
       .getByRole("link")
