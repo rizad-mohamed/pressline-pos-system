@@ -104,5 +104,6 @@ MOB-000: docs/mob-000-scope — integrated fdf5e69 / merge bda704a; supplied spe
 MOB-001 / MOB-002 / TAB-001: feat/mob-001-center-dashboard-bottom-tabs — verified foundation: 91 unit/component and 6 production navigation/keyboard/reflow/print checks; strict typecheck/lint/build/format. Exact source/merge follows in the next audit; full mobile refinement gate remains pending.
 MOB-003: feat/mob-003-mobile-pos-order-experience — implemented viewport/keyboard and sheet ergonomics; six focused production checks, typecheck/lint/build passed; full integration gate follows.
 MOB-004: feat/mob-004-mobile-management-screens — implemented adaptive filters, visible overflow guidance and phone inventory density; focused production workflow checks and 60-capture visual review; final regression gate follows.
+MOB-005: fix/mob-005-enlarged-text-and-labels — demonstrated 200% text/header/form-footer overflow, safe-area coverage and profile label mismatch corrected; four focused production checks passed, full integration regression follows.
 MOB-006: test/mob-006-responsive-accessibility-regression — planned regression gates.
 MOB-007: docs/mob-007-mobile-handover — planned final evidence.

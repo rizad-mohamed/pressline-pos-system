@@ -215,7 +215,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             asChild
             variant="ghost"
             size="icon"
-            aria-label="Personal settings"
+            aria-label={`Personal settings, ${user?.role === "admin" ? "AD" : user?.branchId === "b1" ? "B1" : "B2"}`}
           >
             <Link href="/profile">
               <span className="avatar avatar-account" aria-hidden="true">

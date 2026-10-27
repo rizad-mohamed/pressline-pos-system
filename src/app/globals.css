@@ -2669,6 +2669,40 @@ button.text-link {
   display: none;
 }
 @media screen and (max-width: 900px) {
+  .workspace .card-header,
+  .workspace .table-footer {
+    flex-wrap: wrap;
+  }
+  .workspace .card-header > *,
+  .workspace .row > *,
+  .workspace .notice > div {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .workspace .btn,
+  .workspace .badge {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .workspace .money {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .workspace .table-scroll .money {
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+  .topbar {
+    border-top: env(safe-area-inset-top, 0px) solid var(--surface);
+    border-left: env(safe-area-inset-left, 0px) solid var(--surface);
+    border-right: env(safe-area-inset-right, 0px) solid var(--surface);
+  }
+  .workspace {
+    border-left: env(safe-area-inset-left, 0px) solid transparent;
+    border-right: env(safe-area-inset-right, 0px) solid transparent;
+  }
   .adaptive-toolbar {
     gap: var(--space-3);
   }
@@ -2748,7 +2782,10 @@ button.text-link {
     flex-shrink: 0;
   }
   .sheet-header {
-    padding-top: max(var(--space-5), env(safe-area-inset-top, 0px));
+    padding: 20px;
+    padding-top: max(20px, env(safe-area-inset-top, 0px));
+    max-height: 40dvh;
+    overflow-y: auto;
   }
   .sheet-header .row {
     flex-wrap: nowrap;
@@ -2763,11 +2800,15 @@ button.text-link {
   }
   .sheet-body {
     min-height: 0;
+    padding: 20px;
     scroll-padding-block: var(--space-4);
   }
   .sheet-footer {
     flex-wrap: wrap;
-    padding-bottom: max(var(--space-4), env(safe-area-inset-bottom, 0px));
+    padding: 16px 20px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+    max-height: 45dvh;
+    overflow-y: auto;
   }
   .sheet-footer > .btn {
     flex: 1 1 9rem;
@@ -2801,5 +2842,11 @@ button.text-link {
   .sheet:not(.mobile-more-sheet) {
     border-radius: 0;
     border-left: 0;
+  }
+  .sheet-header,
+  .sheet-body,
+  .sheet-footer {
+    padding-inline-start: max(20px, env(safe-area-inset-left, 0px));
+    padding-inline-end: max(20px, env(safe-area-inset-right, 0px));
   }
 }
