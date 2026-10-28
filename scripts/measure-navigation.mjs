@@ -58,14 +58,12 @@ for (const [engine, kind] of [
       resources.push({
         route,
         entries: await page.evaluate(() =>
-          performance
-            .getEntriesByType("resource")
-            .map((resource) => ({
-              name: resource.name,
-              transfer: resource.transferSize,
-              bytes: resource.encodedBodySize,
-              duration: resource.duration,
-            })),
+          performance.getEntriesByType("resource").map((resource) => ({
+            name: resource.name,
+            transfer: resource.transferSize,
+            bytes: resource.encodedBodySize,
+            duration: resource.duration,
+          })),
         ),
       });
     }

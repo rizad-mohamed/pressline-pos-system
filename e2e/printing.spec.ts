@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 test("customer receipt and separate production ticket render and print without navigation", async ({
   page,
+  browserName,
 }, testInfo) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
@@ -18,11 +19,13 @@ test("customer receipt and separate production ticket render and print without n
   await expect(
     page.getByRole("button", { name: "Print receipt", exact: true }),
   ).toBeHidden();
-  await page.pdf({
-    path: testInfo.outputPath("customer-receipt.pdf"),
-    format: "A4",
-    printBackground: true,
-  });
+  // Headless PDF export is Chromium-only; every engine retains print-media checks.
+  if (browserName === "chromium")
+    await page.pdf({
+      path: testInfo.outputPath("customer-receipt.pdf"),
+      format: "A4",
+      printBackground: true,
+    });
   await page.screenshot({
     path: testInfo.outputPath("customer-receipt.png"),
     fullPage: true,
@@ -38,11 +41,12 @@ test("customer receipt and separate production ticket render and print without n
   ).toBeVisible();
   await expect(page.getByText("Order total", { exact: true })).toHaveCount(0);
   await page.emulateMedia({ media: "print" });
-  await page.pdf({
-    path: testInfo.outputPath("production-ticket.pdf"),
-    format: "A4",
-    printBackground: true,
-  });
+  if (browserName === "chromium")
+    await page.pdf({
+      path: testInfo.outputPath("production-ticket.pdf"),
+      format: "A4",
+      printBackground: true,
+    });
   await page.screenshot({
     path: testInfo.outputPath("production-ticket.png"),
     fullPage: true,

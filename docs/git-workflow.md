@@ -1,5 +1,9 @@
 # Local Git governance
 
+## Explicit frontend delivery authorization · 2026-10-29
+
+The current owner request authorizes delivery to `rizad-mohamed/pressline-pos-system` / `main` through the permitted GitHub review/check workflow, after verification. Earlier no-remote/no-main-approval statements below describe their historical checkpoints. The repository is now public and was observed empty with no branches, rulesets or Actions runs; existing Git credentials authenticate as the owner. No protection setting is changed by this task. Bootstrap only the preserved root baseline if needed, push verified `develop`, open a PR to `main`, honor actual required reviews/checks, and verify the final remote commit and its hosted run. Source integration is not deployment or permission to implement backend/authentication.
+
 Delivery retains every topic reference and the full non-fast-forward graph. No main integration is authorized by frontend completion. Feature register and chronological change log map source units and verification; git-audit.md inventories branch/commit/merge evidence. Audit snapshots necessarily precede their own commits, so exact final tips come from Git and the final handoff rather than a fabricated self-referential hash.
 
 Initialized from an empty workspace on 2026-10-24. Stable `main` contains baseline `e0b62dc`; `develop` is the integration branch. No remotes or branch protections exist. Nothing is published.

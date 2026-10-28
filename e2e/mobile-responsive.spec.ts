@@ -150,7 +150,12 @@ test("mobile tabs, More and expanded filters pass selected WCAG A/AA rules", asy
 
 test("emulated safe areas reserve space for tabs, order actions and sheet controls", async ({
   page,
+  browserName,
 }) => {
+  test.skip(
+    browserName !== "chromium",
+    "CDP safe-area override is Chromium-only; viewport and layout checks run in every engine.",
+  );
   await page.setViewportSize({ width: 390, height: 844 });
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Emulation.setSafeAreaInsetsOverride", {
