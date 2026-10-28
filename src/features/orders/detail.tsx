@@ -50,7 +50,9 @@ export function OrderDetail({ orderId }: { orderId: string }) {
         description="The order does not exist in this demo account's branch scope. Check its reference or switch accounts."
         action={
           <Button variant="outline" asChild>
-            <Link href="/orders">Back to orders</Link>
+            <Link prefetch={false} href="/orders">
+              Back to orders
+            </Link>
           </Button>
         }
       />
@@ -83,7 +85,11 @@ export function OrderDetail({ orderId }: { orderId: string }) {
       </div>
       <div className="row">
         {order.customerId ? (
-          <Link className="table-title" href={`/customers/${order.customerId}`}>
+          <Link
+            prefetch={false}
+            className="table-title"
+            href={`/customers/${order.customerId}`}
+          >
             Saved customer account ·{" "}
             {data.customers.find((c) => c.id === order.customerId)?.name}
           </Link>
@@ -240,13 +246,13 @@ export function OrderDetail({ orderId }: { orderId: string }) {
       <Separator />
       <div className="row">
         <Button variant="outline" asChild>
-          <Link href={`/print/receipt/${order.id}`}>
+          <Link prefetch={false} href={`/print/receipt/${order.id}`}>
             <FileText size={16} />
             Customer receipt
           </Link>
         </Button>
         <Button variant="outline" asChild>
-          <Link href={`/print/job/${order.id}`}>
+          <Link prefetch={false} href={`/print/job/${order.id}`}>
             <Printer size={16} />
             Production ticket
           </Link>
@@ -289,7 +295,9 @@ export function OrderPage({ orderId }: { orderId: string }) {
         description="Saved specifications, production state and simulated payments."
         action={
           <Button asChild variant="outline">
-            <Link href="/orders">Back to orders</Link>
+            <Link prefetch={false} href="/orders">
+              Back to orders
+            </Link>
           </Button>
         }
       />

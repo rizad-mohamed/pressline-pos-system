@@ -53,7 +53,9 @@ function DocumentBody({
           description="This order is missing or outside the selected demo account's branch access."
           action={
             <Button asChild variant="outline">
-              <Link href="/orders">Back to orders</Link>
+              <Link prefetch={false} href="/orders">
+                Back to orders
+              </Link>
             </Button>
           }
         />
@@ -66,7 +68,7 @@ function DocumentBody({
     <>
       <div className="row between no-print">
         <Button asChild variant="outline">
-          <Link href={`/orders/${order.id}`}>
+          <Link prefetch={false} href={`/orders/${order.id}`}>
             <ArrowLeft size={16} />
             Back to order
           </Link>

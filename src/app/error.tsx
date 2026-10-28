@@ -18,7 +18,9 @@ export default function ErrorPage({
         <div className="row">
           <Button onClick={reset}>Retry view</Button>
           <Button asChild variant="outline">
-            <Link href="/login">Choose demo account</Link>
+            <Link prefetch={false} href="/login">
+              Choose demo account
+            </Link>
           </Button>
         </div>
       </div>

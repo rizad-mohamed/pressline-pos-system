@@ -51,7 +51,7 @@ export function CustomerSelector({
       {selected && (
         <div className="row">
           <Button variant="ghost" size="sm" asChild>
-            <Link href={`/customers/${selected.id}`}>
+            <Link prefetch={false} href={`/customers/${selected.id}`}>
               View customer history
             </Link>
           </Button>

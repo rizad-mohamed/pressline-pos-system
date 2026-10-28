@@ -293,6 +293,7 @@ export function Inventory() {
                     {m.orderId && (
                       <>
                         <Link
+                          prefetch={false}
                           className="table-title small"
                           href={`/orders/${m.orderId}`}
                         >

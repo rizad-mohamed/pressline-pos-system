@@ -69,7 +69,7 @@ export function Dashboard() {
         description={`${new Intl.DateTimeFormat("en-LK", { timeZone: "Asia/Colombo", weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(new Date())} · ${scope === "all" ? "All branches" : data.branches.find((b) => b.id === scope)!.name}`}
         action={
           <Button asChild>
-            <Link href="/pos">
+            <Link prefetch={false} href="/pos">
               <Plus size={17} />
               New order
             </Link>
@@ -162,7 +162,7 @@ export function Dashboard() {
           <div className="card-header">
             <h2>Production snapshot</h2>
             <Button asChild variant="ghost" size="sm">
-              <Link href="/jobs">
+              <Link prefetch={false} href="/jobs">
                 View jobs
                 <ArrowRight size={14} />
               </Link>
@@ -195,7 +195,11 @@ export function Dashboard() {
               stock automatically.
             </p>
             {user.role === "admin" && (
-              <Link href="/inventory?stock=low" className="text-link small">
+              <Link
+                prefetch={false}
+                href="/inventory?stock=low"
+                className="text-link small"
+              >
                 Review low stock →
               </Link>
             )}
@@ -211,7 +215,7 @@ export function Dashboard() {
             </p>
           </div>
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/orders">
+            <Link prefetch={false} href="/orders">
               All orders
               <ArrowRight size={14} />
             </Link>
@@ -240,7 +244,11 @@ export function Dashboard() {
                 {orders.slice(0, 6).map((o) => (
                   <tr key={o.id}>
                     <td data-label="Order / customer">
-                      <Link href={`/orders/${o.id}`} className="text-link">
+                      <Link
+                        prefetch={false}
+                        href={`/orders/${o.id}`}
+                        className="text-link"
+                      >
                         {o.id}
                       </Link>
                       <div className="table-sub">
