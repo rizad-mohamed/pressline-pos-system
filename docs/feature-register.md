@@ -2,13 +2,13 @@
 
 ## Frontend optimization lifecycle · 2026-10-29
 
-| ID      | Scope                                                                  | Branch                          | State / evidence                                                                                                         |
-| ------- | ---------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| OPT-000 | Inspect preserved history/modules and actual production baseline       | docs/opt-000-readiness-baseline | Baseline verified: 91 tests, strict gates/build, reproduced hidden branch validation; [record](frontend-optimization.md) |
-| OPT-001 | Mobile Review Order validation and functional regression               | fix/opt-001-mobile-review       | Planned                                                                                                                  |
-| OPT-002 | Visible, consistent operational mobile card states                     | fix/opt-002-mobile-status-cards | Planned                                                                                                                  |
-| OPT-003 | Measured cleanup/performance and comprehensive regression              | chore/opt-003-verified-cleanup  | Planned                                                                                                                  |
-| OPT-004 | Security/accessibility/Lighthouse/release and backend handoff evidence | docs/opt-004-readiness-handover | Planned                                                                                                                  |
+| ID      | Scope                                                                  | Branch                          | State / evidence                                                                                                                                           |
+| ------- | ---------------------------------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| OPT-000 | Inspect preserved history/modules and actual production baseline       | docs/opt-000-readiness-baseline | Baseline verified: 91 tests, strict gates/build, reproduced hidden branch validation; [record](frontend-optimization.md)                                   |
+| OPT-001 | Mobile Review Order validation and functional regression               | fix/opt-001-mobile-review       | Verified: new regression fails before fix; four widths plus four preserved workflow/viewport tests pass in production. Source/merge backfilled next event. |
+| OPT-002 | Visible, consistent operational mobile card states                     | fix/opt-002-mobile-status-cards | Planned                                                                                                                                                    |
+| OPT-003 | Measured cleanup/performance and comprehensive regression              | chore/opt-003-verified-cleanup  | Planned                                                                                                                                                    |
+| OPT-004 | Security/accessibility/Lighthouse/release and backend handoff evidence | docs/opt-004-readiness-handover | Planned                                                                                                                                                    |
 
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 

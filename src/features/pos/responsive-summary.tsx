@@ -6,6 +6,7 @@ import { Sheet } from "@/components/ui/sheet";
 import { Money } from "@/components/shared/domain-display";
 import { OrderSummary } from "./order-summary";
 import { useOrderBarHeight } from "./use-bar-height";
+import type { OrderFormValues } from "./schema";
 
 const compactQuery = "(max-width: 1100px)";
 function subscribe(onChange: () => void) {
@@ -22,11 +23,16 @@ function serverSnapshot() {
 
 export function ResponsiveSummary({
   reviewOpen,
+  onReview,
   ...props
-}: React.ComponentProps<typeof OrderSummary> & { reviewOpen: boolean }) {
+}: React.ComponentProps<typeof OrderSummary> & {
+  reviewOpen: boolean;
+  onReview: (values: OrderFormValues) => void;
+}) {
   const compact = useSyncExternalStore(subscribe, snapshot, serverSnapshot);
   const [open, setOpen] = useState(false);
   const editTarget = useRef<number | null>(null);
+  const focusInvalid = useRef(false);
   const barRef = useRef<HTMLDivElement>(null);
   useOrderBarHeight(barRef, compact);
   if (!compact) return <OrderSummary {...props} />;
@@ -62,16 +68,28 @@ export function ResponsiveSummary({
         description="Your specifications, sample prices and simulated advance."
         footer={
           <Button
-            type="submit"
-            form="pos-form"
             className="full"
             disabled={!props.quote || props.pending}
+            onClick={() =>
+              void props.form.handleSubmit(onReview, (errors) => {
+                // The advance lives in this sheet; other invalid controls are
+                // behind the modal and must be revealed before RHF can focus them.
+                if (Object.keys(errors).some((key) => key !== "advance")) {
+                  focusInvalid.current = true;
+                  setOpen(false);
+                }
+              })()
+            }
           >
             Review order
             <ArrowRight size={16} />
           </Button>
         }
         onAfterClose={() => {
+          if (focusInvalid.current) {
+            focusInvalid.current = false;
+            void props.form.trigger(undefined, { shouldFocus: true });
+          }
           if (editTarget.current !== null) {
             props.onEdit?.(editTarget.current);
             editTarget.current = null;
