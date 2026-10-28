@@ -1,5 +1,7 @@
 # Functionality lifecycle
 
+2026-10-29 / Codex Automation — OPT-000 inspected and baseline verified on `docs/opt-000-readiness-baseline` from clean develop c52a3e2. Existing mobile work is complete/integrated. Thirteen actual areas mapped; no backend scope added. Typecheck/lint/format/build and 91 unit/component tests passed. Production Chromium reproduced hidden administrator branch validation behind Current order. Advisory audit has zero known advisories. No configured remote/connected GitHub workflow; supplied remote advertises no refs. See [optimization record](frontend-optimization.md). Source/merge hashes are backfilled by subsequent lifecycle records.
+
 Validation checkpoint 8a1e71f on test/test-001-workflow-validation added production integration/recovery coverage. It was intentionally unverified/unmerged at 22 of 23 tests: a hidden table label escaped its mobile scroll container. UI-005 corrected the defect separately in 958ad70; complete retesting follows this dependency merge. Earlier lifecycle entries are preserved below.
 
 Generated-file lifecycle: commit `aaa16dc` on `fix/init-003-supported-tooling` removed `next-env.d.ts` from tracking and added its ignore rule. The local generated file remains; Next recreates it. Reason: dev/build route imports differ. Validation: typecheck, lint and all 58 tests passed. No application capability was removed.
