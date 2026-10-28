@@ -61,11 +61,11 @@ export function Transfers() {
       <section className="card">
         {rows.length ? (
           <ScrollTable
-            className="table-scroll"
+            className="table-scroll mobile-cards"
             tabIndex={0}
             aria-label="Transfers table"
           >
-            <table>
+            <table role="table">
               <caption className="sr-only">
                 Simulated branch stock transfer history
               </caption>
@@ -82,7 +82,7 @@ export function Transfers() {
               <tbody>
                 {rows.map((t) => (
                   <tr key={t.id}>
-                    <td>
+                    <td data-label="Reference / material">
                       <strong>
                         {t.id === "TR-SEED" ? t.id : `TR-${t.id.slice(3, 11)}`}
                       </strong>
@@ -90,18 +90,20 @@ export function Transfers() {
                         {data.items.find((i) => i.id === t.itemId)?.name}
                       </p>
                     </td>
-                    <td>
+                    <td data-label="Source">
                       {data.branches.find((b) => b.id === t.source)!.name}
                     </td>
-                    <td>
+                    <td data-label="Destination">
                       {data.branches.find((b) => b.id === t.target)!.name}
                     </td>
-                    <td className="money right">
+                    <td className="money right" data-label="Quantity">
                       {t.quantity}{" "}
                       {data.items.find((i) => i.id === t.itemId)?.unit}
                     </td>
-                    <td className="small muted">{dateTime(t.createdAt)}</td>
-                    <td>
+                    <td className="small muted" data-label="Date">
+                      {dateTime(t.createdAt)}
+                    </td>
+                    <td data-label="Actions">
                       <Button
                         size="sm"
                         variant="outline"

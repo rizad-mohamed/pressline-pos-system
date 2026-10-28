@@ -139,11 +139,11 @@ export function ServiceManager() {
       </div>
       {rows.length ? (
         <ScrollTable
-          className="table-scroll"
+          className="table-scroll mobile-cards"
           tabIndex={0}
           aria-label="Scrollable service catalogue"
         >
-          <table>
+          <table role="table">
             <caption className="sr-only">
               Managed demonstration services and current price basis
             </caption>
@@ -174,14 +174,14 @@ export function ServiceManager() {
                 const cat = data.categories.find((c) => c.id === s.categoryId)!;
                 return (
                   <tr key={s.id}>
-                    <td>
+                    <td data-label="Service">
                       <strong>{s.name}</strong>
                       <p className="small muted">
                         {s.code} · v{s.version}
                       </p>
                       <p className="small muted">{s.description}</p>
                     </td>
-                    <td>
+                    <td data-label="Category / status">
                       <span>{cat.name}</span>
                       <p>
                         <Badge
@@ -195,16 +195,16 @@ export function ServiceManager() {
                         </Badge>
                       </p>
                     </td>
-                    <td>
+                    <td data-label="Pricing basis">
                       {s.model === "print"
                         ? "Shared print rates + selected options"
                         : `Per ${s.unitLabel} + setup`}
                     </td>
-                    <td className="right">
+                    <td className="right" data-label="One-unit sample">
                       <Money value={price} />
                       <p className="small muted">Demo · not approved</p>
                     </td>
-                    <td>
+                    <td data-label="Actions">
                       <div className="row">
                         <Button
                           size="sm"

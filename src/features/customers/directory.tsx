@@ -80,11 +80,11 @@ export function CustomerDirectory() {
         </div>
         {rows.length ? (
           <ScrollTable
-            className="table-scroll"
+            className="table-scroll mobile-cards"
             tabIndex={0}
             aria-label="Scrollable customer directory"
           >
-            <table>
+            <table role="table">
               <caption className="sr-only">
                 Saved customers and permitted outstanding balances
               </caption>
@@ -105,7 +105,7 @@ export function CustomerDirectory() {
                   const ledger = customerLedger(data, user, c.id);
                   return (
                     <tr key={c.id}>
-                      <td>
+                      <td data-label="Customer">
                         <Link
                           className="table-title"
                           href={`/customers/${c.id}`}
@@ -118,22 +118,24 @@ export function CustomerDirectory() {
                             : "Individual"}
                         </p>
                       </td>
-                      <td>
+                      <td data-label="Contact">
                         <span>{c.phone || "No phone saved"}</span>
                         <p className="small muted">
                           {c.contactPerson || c.email || "Optional details"}
                         </p>
                       </td>
-                      <td>
+                      <td data-label="Status">
                         <Badge tone={c.active ? "success" : "neutral"}>
                           {c.active ? "Active" : "Archived"}
                         </Badge>
                       </td>
-                      <td className="right money">{ledger.orders.length}</td>
-                      <td className="right">
+                      <td className="right money" data-label="Orders">
+                        {ledger.orders.length}
+                      </td>
+                      <td className="right" data-label="Outstanding · LKR">
                         <Money value={ledger.outstanding} />
                       </td>
-                      <td>
+                      <td data-label="Actions">
                         <Button variant="ghost" size="sm" asChild>
                           <Link
                             href={`/customers/${c.id}`}

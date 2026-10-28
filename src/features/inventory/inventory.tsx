@@ -135,11 +135,11 @@ export function Inventory() {
         <div className="card">
           {items.length ? (
             <ScrollTable
-              className="table-scroll"
+              className="table-scroll mobile-cards"
               tabIndex={0}
               aria-label="Inventory table, scroll for branch quantities"
             >
-              <table>
+              <table role="table">
                 <caption className="sr-only">
                   Materials with quantities and low-stock thresholds by branch
                 </caption>
@@ -158,7 +158,7 @@ export function Inventory() {
                 <tbody>
                   {items.map((item) => (
                     <tr key={item.id}>
-                      <td>
+                      <td data-label="Material">
                         <button
                           className="text-link table-title"
                           onClick={() => setEditing(item)}
@@ -170,7 +170,11 @@ export function Inventory() {
                         </p>
                       </td>
                       {branches.map((b) => (
-                        <td key={b.id} className="right money">
+                        <td
+                          key={b.id}
+                          className="right money"
+                          data-label={`${b.name} balance`}
+                        >
                           <strong>
                             {item.quantities[b.id].toLocaleString("en-LK")}
                           </strong>
@@ -179,7 +183,7 @@ export function Inventory() {
                           </p>
                         </td>
                       ))}
-                      <td>
+                      <td data-label="Status">
                         <Badge
                           tone={
                             !item.active
@@ -196,7 +200,7 @@ export function Inventory() {
                               : "In stock"}
                         </Badge>
                       </td>
-                      <td>
+                      <td data-label="Actions">
                         <div className="row">
                           <Button
                             variant="outline"
