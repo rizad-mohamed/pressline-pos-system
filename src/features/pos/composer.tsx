@@ -77,7 +77,8 @@ export function Composer({
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(schema),
     defaultValues: defaults(),
-    mode: "onBlur",
+    // After first blur, clear corrected errors before a following pointer click.
+    mode: "onTouched",
     reValidateMode: "onChange",
   });
   const { fields, append, remove, update } = useFieldArray({
