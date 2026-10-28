@@ -221,11 +221,11 @@ export function Dashboard() {
           <EmptyState description="Create a printing order to start this branch's history." />
         ) : (
           <ScrollTable
-            className="table-scroll"
+            className="table-scroll mobile-cards"
             tabIndex={0}
-            aria-label="Scrollable data table"
+            aria-label="Recent orders"
           >
-            <table>
+            <table role="table">
               <caption className="sr-only">Recent branch-scoped orders</caption>
               <thead>
                 <tr>
@@ -239,7 +239,7 @@ export function Dashboard() {
               <tbody>
                 {orders.slice(0, 6).map((o) => (
                   <tr key={o.id}>
-                    <td>
+                    <td data-label="Order / customer">
                       <Link href={`/orders/${o.id}`} className="text-link">
                         {o.id}
                       </Link>
@@ -247,14 +247,16 @@ export function Dashboard() {
                         {o.customer.name || "Walk-in customer"}
                       </div>
                     </td>
-                    <td className="small muted">{dateTime(o.createdAt)}</td>
-                    <td>
+                    <td className="small muted" data-label="Created">
+                      {dateTime(o.createdAt)}
+                    </td>
+                    <td data-label="Production">
                       <ProductionBadge value={o.production} />
                     </td>
-                    <td>
+                    <td data-label="Payment">
                       <PaymentBadge value={paymentState(data, o)} />
                     </td>
-                    <td className="right">
+                    <td className="right" data-label="Order total">
                       <Money value={o.totalCents} />
                     </td>
                   </tr>

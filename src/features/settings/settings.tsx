@@ -63,11 +63,11 @@ export function SettingsPage() {
           <Badge>UI restrictions only</Badge>
         </div>
         <ScrollTable
-          className="table-scroll"
+          className="table-scroll mobile-cards"
           tabIndex={0}
           aria-label="Scrollable data table"
         >
-          <table>
+          <table role="table">
             <caption className="sr-only">
               Fixed demonstration accounts and their role/branch context
             </caption>
@@ -82,20 +82,20 @@ export function SettingsPage() {
             <tbody>
               {data.users.map((account) => (
                 <tr key={account.id}>
-                  <td className="table-title">
+                  <td className="table-title" data-label="Demo account">
                     {account.name}
                     <p className="table-sub">{account.id} · no password</p>
                   </td>
-                  <td>
+                  <td data-label="Role">
                     {account.role === "admin" ? "Administrator" : "Cashier"}
                   </td>
-                  <td>
+                  <td data-label="Branch scope">
                     {account.branchId
                       ? data.branches.find((b) => b.id === account.branchId)!
                           .name
                       : "All branches"}
                   </td>
-                  <td>
+                  <td data-label="Availability">
                     <Badge tone={account.active ? "success" : "neutral"}>
                       {account.active ? "Available" : "Inactive"}
                     </Badge>

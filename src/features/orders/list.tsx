@@ -128,11 +128,11 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
       <section className="card">
         {rows.length ? (
           <ScrollTable
-            className="table-scroll"
+            className="table-scroll mobile-cards"
             tabIndex={0}
             aria-label="Orders table, scroll horizontally for more columns"
           >
-            <table>
+            <table role="table">
               <caption className="sr-only">
                 {jobs ? "Production queue" : "Order history"} for the selected
                 branch scope
@@ -157,7 +157,7 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
               <tbody>
                 {rows.map((o) => (
                   <tr key={o.id}>
-                    <td>
+                    <td data-label="Order / customer">
                       <Link className="text-link" href={`/orders/${o.id}`}>
                         {o.id}
                       </Link>
@@ -166,7 +166,7 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
                       </div>
                       <div className="table-sub">{dateTime(o.createdAt)}</div>
                     </td>
-                    <td>
+                    <td data-label="Print work">
                       <div className="table-title">
                         {o.lines[0].description}
                       </div>
@@ -180,23 +180,23 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
                           : `${o.lines.reduce((n, l) => n + l.quantity, 0)} sheets`}
                       </div>
                     </td>
-                    <td className="small muted">
+                    <td className="small muted" data-label="Branch">
                       {data.branches.find((b) => b.id === o.branchId)!.name}
                     </td>
-                    <td>
+                    <td data-label="Production">
                       <ProductionBadge value={o.production} />
                     </td>
                     {!jobs && (
                       <>
-                        <td>
+                        <td data-label="Payment">
                           <PaymentBadge value={paymentState(data, o)} />
                         </td>
-                        <td className="right">
+                        <td className="right" data-label="Balance">
                           <Money value={balanceFor(data, o)} />
                         </td>
                       </>
                     )}
-                    <td>
+                    <td data-label="Actions">
                       <Button
                         variant="outline"
                         size="sm"
