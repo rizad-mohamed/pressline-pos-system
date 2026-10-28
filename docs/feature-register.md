@@ -11,7 +11,9 @@
 | OPT-004 | Security/accessibility/Lighthouse/release and backend handoff evidence | docs/opt-004-readiness-handover    | Planned                                                                                                                                                    |
 | OPT-006 | Dynamic customer-order history mobile statuses and snapshot regression | fix/opt-006-customer-history-cards | Verified: 2 production customer/history reflow regressions; unchanged accepted snapshots and balances at 320px/200% text                                   |
 
-OPT-007 ? `fix/opt-007-pos-validation-click`: correct stale quantity errors before pointer activation, preserve delayed initial validation and one-click Add/remove/undo; Verified: production build and 15 quantity/mobile-review checks across Chromium, Firefox and WebKit pass, retries=0.
+OPT-007 - `fix/opt-007-pos-validation-click`: correct stale quantity errors before pointer activation, preserve delayed initial validation and one-click Add/remove/undo; Verified: production build and 15 quantity/mobile-review checks across Chromium, Firefox and WebKit pass, retries=0.
+
+OPT-008 - `fix/opt-008-enlarged-card-reflow`: font-aware phone card columns and capped spacing retain readable labels/status words/amounts at 320px and 200% text. Original production readability assertion fails (Production needs 127.6px; only 58px available). Verified: production build and all 30 card/customer-history checks pass in Chromium, Firefox and WebKit (5.8m, retries=0); focused lint passes.
 
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
