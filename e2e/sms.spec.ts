@@ -4,6 +4,7 @@ test("SMS preview matches reports, persists demo settings and cannot send", asyn
 }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/reports");
   const collected = await page.getByTestId("report-collected").innerText();
   await page.goto("/sms");

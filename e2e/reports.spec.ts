@@ -4,6 +4,7 @@ test("reports respond to payments, branch scope, periods and invalid custom date
 }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/reports");
   const initial = Number(
     (await page.getByTestId("report-collected").innerText()).replace(

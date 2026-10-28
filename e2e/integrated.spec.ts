@@ -145,6 +145,7 @@ test("corrupt saved schema is recoverable and failed local writes preserve the r
     .getByRole("button", { name: "Reset demo data", exact: true })
     .click();
   await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/pos");
   await page.getByLabel("Customer name (optional)").fill("Demo recovery");
   await page.getByLabel("Quantity (printed sheets)").fill("2");
