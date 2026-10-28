@@ -74,10 +74,25 @@ test("phone order cards update independent production and payment states after a
     "In Progress",
   );
   await dialog
+    .getByRole("button", { name: "Record payment", exact: true })
+    .click();
+  await page.getByLabel("Payment amount (LKR)", { exact: true }).fill("100.00");
+  await page
+    .getByRole("button", { name: "Record simulated payment", exact: true })
+    .click();
+  await expect(dialog.getByTestId("detail-balance")).toContainText("1,130.00");
+  await dialog
     .getByRole("button", { name: "Close drawer", exact: true })
     .click();
   await expect(row.locator('[data-label="Production"]')).toContainText(
     "In Progress",
   );
-  await expect(row.locator('[data-label="Payment"]')).toContainText("Unpaid");
+  await expect(row.locator('[data-label="Payment"]')).toContainText("Partial");
+  await expect(row.locator('[data-label="Balance"]')).toContainText("1,130.00");
+  await page.reload();
+  await expect(row.locator('[data-label="Production"]')).toContainText(
+    "In Progress",
+  );
+  await expect(row.locator('[data-label="Payment"]')).toContainText("Partial");
+  await expect(row.locator('[data-label="Balance"]')).toContainText("1,130.00");
 });

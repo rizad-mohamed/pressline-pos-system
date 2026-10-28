@@ -2,9 +2,22 @@ name: Frontend quality
 
 on:
   pull_request:
-    branches: [develop]
+    branches: [main, develop]
   push:
-    branches: [develop, "feat/**", "fix/**", "test/**", "docs/**", "chore/**"]
+    branches:
+      [
+        main,
+        develop,
+        "feat/**",
+        "fix/**",
+        "test/**",
+        "docs/**",
+        "chore/**",
+        "refactor/**",
+        "style/**",
+        "perf/**",
+        "revert/**",
+      ]
   workflow_dispatch:
 
 permissions:
@@ -16,13 +29,18 @@ concurrency:
 
 jobs:
   verify:
-    name: TypeScript, lint, unit and production Chromium
+    name: Frontend gates (${{ matrix.browser }})
     runs-on: windows-2025
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     timeout-minutes: 35
     env:
       CI: "true"
       NEXT_TELEMETRY_DISABLED: "1"
       PRESSLINE_TEST_PORT: "3001"
+      PRESSLINE_TEST_BROWSER: ${{ matrix.browser }}
       TZ: "Asia/Colombo"
     steps:
       - name: Check out the triggering revision
@@ -51,11 +69,11 @@ jobs:
         run: npm run test
       - name: Verify canonical color contrast
         run: node scripts/check-design.mjs
-      - name: Install the locked Playwright Chromium browser
-        run: npx --no-install playwright install chromium
+      - name: Install the selected locked Playwright browser
+        run: npx --no-install playwright install ${{ matrix.browser }}
       # Playwright's webServer builds and starts production, refuses server reuse
       # in CI and tears its server down after all tests. Retries remain disabled.
-      - name: Production build and complete Chromium workflows
+      - name: Production build and complete browser workflows
         run: npm run test:e2e
       - name: Report aggregate production assets
         run: node scripts/bundle-report.mjs
