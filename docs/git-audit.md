@@ -1,3 +1,17 @@
+# Optimization Git delivery audit - 2026-10-29
+
+Initial clean integration c52a3e27d2bc8df5ce63c613f607b3bbc1066d07 and root main e0b62dcb03330778fcdc8b6b1a4e5cc421beb604 were preserved. OPT-000/001/002/003/006/007/008/009/010/011 topics remain retained and integrated with no-ff merges; [source/integration table](frontend-optimization.md#8-git-provenance-and-delivery). The CI topic retains failed c86af59, develop-combining merge a0952c3 and verified source cb10f459bffd0203ffad9ea8c0445cbd729ca1eb, integrated into develop as 0346cf6 after all three hosted jobs succeeded.
+
+Current evidence unit docs/opt-004-readiness-handover branches from that verified develop. Its source/final integration hashes necessarily follow this snapshot and are recorded at delivery. All existing topic references are retained; no squash, force, reset or clean. Repository-local automated Git identity and per-command safe.directory preserve global settings. Exact staged paths/diffs are reviewed; no node_modules, .next, next-env, .local, private credentials or test-results are staged.
+
+The owner made the initially private repository public. Discovery confirmed an empty remote; preserved root main was bootstrapped and the CI topic published normally. Its cb10f45 remote SHA matched local. Current authorized scope permits gated develop-to-main PR delivery; old no-remote/no-main statements below are historical. Actual inspection showed no protected branches/rulesets and no protection setting was changed. Recheck actual policy before merging; never bypass required reviews/checks.
+
+Final gate: run scripts/verify-git.mjs after the evidence no-ff integration, push verified develop normally, verify exact PR head Actions, merge using the standard workflow only when checks/reviews permit, verify exact-main Actions, fetch/fast-forward local main and assert local/remote equality plus a clean tree. The final PR description/delivery records exact release SHA/run rather than fabricating a self-referential document hash. Source delivery does not authorize deployment or backend development.
+
+---
+
+## Historical audit snapshots
+
 # Local Git delivery audit
 
 Date: 2026-10-24 (Asia/Colombo). Initial workspace was empty and had no repository. Stable main remains the root baseline `e0b62dc`. Integration is develop. No remote, push, deployment, package publication, remote PR or branch protection exists or is claimed. Local author is Codex Automation <codex@local.invalid>; global Git identity was not changed.

@@ -1,0 +1,36 @@
+{
+  "revision": "cb10f459bffd0203ffad9ea8c0445cbd729ca1eb",
+  "run": "https://github.com/rizad-mohamed/pressline-pos-system/actions/runs/40776712433",
+  "status": "success",
+  "uniqueUnitComponentTests": 91,
+  "unitComponentFiles": 20,
+  "engines": [
+    {
+      "name": "chromium",
+      "jobId": 123127788862,
+      "passed": 92,
+      "skipped": 0,
+      "minutes": 4.6
+    },
+    {
+      "name": "firefox",
+      "jobId": 123127788410,
+      "passed": 91,
+      "skipped": 1,
+      "minutes": 7.9
+    },
+    {
+      "name": "webkit",
+      "jobId": 123127788946,
+      "passed": 91,
+      "skipped": 1,
+      "minutes": 5.7
+    }
+  ],
+  "totalBrowserPassed": 274,
+  "totalBrowserSkipped": 2,
+  "skipReason": "CDP safe-area override is Chromium-only; all shared layout and print checks still run. PDF export is Chromium-only; other engines retain print-media assertions.",
+  "strictGates": "Fresh locked install, zero known advisories, typecheck, lint, format, 91 unit/component tests, 22 contrast pairs, production build and full browser suite passed in every job.",
+  "retries": 0,
+  "deliveryLimit": "Verified candidate evidence; final PR/main exact-SHA checks and synchronization are required and recorded at delivery."
+}

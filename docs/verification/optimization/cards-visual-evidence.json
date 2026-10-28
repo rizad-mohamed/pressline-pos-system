@@ -1,0 +1,104 @@
+{
+  "checkpoint": "Final production source cb10f45",
+  "pageErrors": [],
+  "unexpectedFailures": [],
+  "external": [],
+  "evidence": [
+    {
+      "route": "dashboard",
+      "width": 390,
+      "overflow": 0,
+      "row": "PL-1012\nWalk-in customer\nOct 29, 2026, 12:00 AM\nNew\nUnpaid\nLKR 1,230.00"
+    },
+    {
+      "route": "dashboard",
+      "width": 1440,
+      "overflow": 0,
+      "row": "PL-1012\nWalk-in customer\n\tOct 29, 2026, 12:00 AM\tNew\tUnpaid\tLKR 1,230.00"
+    },
+    {
+      "route": "orders",
+      "width": 390,
+      "overflow": 0,
+      "row": "PL-1012\nWalk-in customer\nOct 29, 2026, 12:00 AM\nCoursework printing\n1 item · 40 sheets\nBranch 1\nNew\nUnpaid\nLKR 1,230.00\nView"
+    },
+    {
+      "route": "orders",
+      "width": 1440,
+      "overflow": 0,
+      "row": "PL-1012\nWalk-in customer\nOct 29, 2026, 12:00 AM\n\t\nCoursework printing\n1 item · 40 sheets\n\tBranch 1\tNew\tUnpaid\tLKR 1,230.00\tView"
+    },
+    {
+      "route": "jobs",
+      "width": 390,
+      "overflow": 0,
+      "row": "PL-1012\nWalk-in customer\nOct 29, 2026, 12:00 AM\nCoursework printing\n1 item · 40 sheets\nBranch 1\nNew\nView"
+    },
+    {
+      "route": "jobs",
+      "width": 1440,
+      "overflow": 0,
+      "row": "PL-1012\nWalk-in customer\nOct 29, 2026, 12:00 AM\n\t\nCoursework printing\n1 item · 40 sheets\n\tBranch 1\tNew\tView"
+    },
+    {
+      "route": "customers",
+      "width": 390,
+      "overflow": 0,
+      "row": "Nila Perera · demo\n\nIndividual\n\nNo phone saved\n\nOptional details\n\nActive\n0\nLKR 0.00\nView"
+    },
+    {
+      "route": "customers",
+      "width": 1440,
+      "overflow": 0,
+      "row": "Nila Perera · demo\n\nIndividual\n\n\tNo phone saved\n\nOptional details\n\n\tActive\t0\tLKR 0.00\tView"
+    },
+    {
+      "route": "inventory",
+      "width": 390,
+      "overflow": 0,
+      "row": "A4 copy paper · 80 gsm\n\nPAP-A4-80 · sheets\n\n6,800\n\nLow at ≤ 1000\n\n4,200\n\nLow at ≤ 1000\n\nIn stock\nAdjust\nDeactivate"
+    },
+    {
+      "route": "inventory",
+      "width": 1440,
+      "overflow": 0,
+      "row": "A4 copy paper · 80 gsm\n\nPAP-A4-80 · sheets\n\n\t6,800\n\nLow at ≤ 1000\n\n\t4,200\n\nLow at ≤ 1000\n\n\tIn stock\t\nAdjust\nDeactivate"
+    },
+    {
+      "route": "pricing",
+      "width": 390,
+      "overflow": 0,
+      "row": "A3 documents\n\nPRINT-LARGE · v1\n\nMore room for the details\n\nPrinting\n\nactive\n\nShared print rates + selected options\nLKR 30.00\n\nDemo · not approved\n\nView\nEdit\nDeactivate\nArchive"
+    },
+    {
+      "route": "pricing",
+      "width": 1440,
+      "overflow": 0,
+      "row": "A3 documents\n\nPRINT-LARGE · v1\n\nMore room for the details\n\n\tPrinting\n\nactive\n\n\tShared print rates + selected options\tLKR 30.00\n\nDemo · not approved\n\n\t\nView\nEdit\nDeactivate\nArchive"
+    },
+    {
+      "route": "transfers",
+      "width": 390,
+      "overflow": 0,
+      "row": "TR-SEED\n\nA4 copy paper · 80 gsm\n\nBranch 1\nBranch 2\n100 sheets\nOct 28, 2026, 9:00 AM\nReview"
+    },
+    {
+      "route": "transfers",
+      "width": 1440,
+      "overflow": 0,
+      "row": "TR-SEED\n\nA4 copy paper · 80 gsm\n\n\tBranch 1\tBranch 2\t100 sheets\tOct 28, 2026, 9:00 AM\tReview"
+    },
+    {
+      "route": "settings",
+      "width": 390,
+      "overflow": 0,
+      "row": "Branch 1 cashier\n\ncashier-b1 · no password\n\nCashier\nBranch 1\nAvailable"
+    },
+    {
+      "route": "settings",
+      "width": 1440,
+      "overflow": 0,
+      "row": "Branch 1 cashier\n\ncashier-b1 · no password\n\n\tCashier\tBranch 1\tAvailable"
+    }
+  ]
+}

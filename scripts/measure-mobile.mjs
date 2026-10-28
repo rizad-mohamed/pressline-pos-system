@@ -3,7 +3,14 @@ import { mkdir, writeFile } from "node:fs/promises";
 const phase = process.argv[2];
 if (!["baseline", "final"].includes(phase))
   throw Error("Supply baseline or final phase");
-await mkdir("docs/visual-evidence/mobile", { recursive: true });
+const target = process.argv[3] ?? "mobile";
+if (!["mobile", "optimization"].includes(target))
+  throw Error("Measurement target must be mobile or optimization.");
+const output =
+  target === "optimization"
+    ? "docs/verification/optimization"
+    : "docs/visual-evidence/mobile";
+await mkdir(output, { recursive: true });
 const browser = await chromium.launch();
 const context = await browser.newContext({
   viewport: { width: 390, height: 844 },
@@ -86,7 +93,7 @@ const result = {
   external,
 };
 await writeFile(
-  `docs/visual-evidence/mobile/${phase}-runtime.json`,
+  `${output}/${phase}-runtime.json`,
   JSON.stringify(result, null, 2),
 );
 console.log(JSON.stringify(result, null, 2));

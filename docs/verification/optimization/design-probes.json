@@ -1,0 +1,386 @@
+{
+  "source": {
+    "files": 129,
+    "findings": [
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 56,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 93,
+        "match": ".eyebrow {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 166,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 205,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 219,
+        "match": ".section-label {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 244,
+        "match": ".eyebrow {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 500,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 547,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 560,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 1198,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 1205,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 1348,
+        "match": ".eyebrow {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 1674,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 1802,
+        "match": ".eyebrow {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "shadow",
+        "file": "src/app/globals.css",
+        "line": 2018,
+        "match": "box-shadow:",
+        "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 2036,
+        "match": ".eyebrow {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 2127,
+        "match": ".eyebrow {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/app/globals.css",
+        "line": 2174,
+        "match": ".eyebrow {",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/components/shared/presentation.tsx",
+        "line": 20,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "numbering",
+        "file": "src/data/seed.ts",
+        "line": 62,
+        "match": "padStart(2, \"0\")",
+        "message": "Zero-padding in script. Fine for a clock, a date or a price; if it builds 01 / 02 / 03 labels, remove it."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/features/auth/login.tsx",
+        "line": 58,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/features/materials/job-materials.tsx",
+        "line": 39,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "numbering",
+        "file": "src/features/pos/line-editor.tsx",
+        "line": 52,
+        "match": "padStart(2, \"0\")",
+        "message": "Zero-padding in script. Fine for a clock, a date or a price; if it builds 01 / 02 / 03 labels, remove it."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/features/printing/document.tsx",
+        "line": 111,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/features/printing/document.tsx",
+        "line": 116,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/features/printing/document.tsx",
+        "line": 121,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/features/printing/document.tsx",
+        "line": 128,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "eyebrow",
+        "file": "src/features/settings/settings.tsx",
+        "line": 38,
+        "match": "className=\"eyebrow",
+        "message": "Eyebrow / kicker label above a heading."
+      },
+      {
+        "level": "WARN",
+        "id": "em-dash",
+        "file": "(all files)",
+        "line": 0,
+        "match": "10 em dashes",
+        "message": "Em-dash habit. Use a full stop or a comma; keep at most one or two on a page."
+      }
+    ]
+  },
+  "runtime": [
+    {
+      "route": "dashboard",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "dashboard",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "dashboard",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "orders",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "orders",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "orders",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "jobs",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "jobs",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "jobs",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "customers",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 43px in \"2 customers\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        }
+      ]
+    },
+    {
+      "route": "customers",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "customers",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "inventory",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "pricing",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 57px in \"Service catalogue\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        }
+      ]
+    },
+    {
+      "route": "pricing",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "pricing",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "transfers",
+      "width": 1440,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "31% of the first screen is one empty block (1320\u00c3\u2014300px at 120,600).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        }
+      ]
+    },
+    {
+      "route": "transfers",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "transfers",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "route": "settings",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "route": "settings",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "route": "settings",
+      "width": 390,
+      "findings": []
+    }
+  ],
+  "review": "29 source WARNs concern existing approved shadows/eyebrows/numbering/em dash. Three runtime spacing WARNs concern existing desktop fixture-list panels; no blocking findings, no redesign to satisfy generic heuristics."
+}

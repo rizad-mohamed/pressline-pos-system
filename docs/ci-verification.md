@@ -1,3 +1,15 @@
+# Current hosted verification - 2026-10-29
+
+[Candidate run 40776712433](https://github.com/rizad-mohamed/pressline-pos-system/actions/runs/40776712433), exact source cb10f459bffd0203ffad9ea8c0445cbd729ca1eb: Chromium/Firefox/WebKit jobs all succeed. Fresh locked install and zero-advisory gate, typecheck/lint/format, 91 unit/component tests, 22 contrast pairs and production build pass in each job. Browser totals: Chromium 92; Firefox 91 plus one unsupported CDP skip; WebKit 91 plus one unsupported CDP skip; 274 passes/two documented skips, no retries. All shared print/layout assertions run; PDF export remains Chromium-only.
+
+The first hosted run failed and remains documented. The corrected run passes previously failing quantity/focus/prefetch/redirect/drawer cases and corresponding local tool-injection failures; local failed checkpoints remain failed. The workflow pins Node/npm and immutable action commits, uses read-only permissions/non-persisted checkout credentials, and retains failure-only diagnostic artifacts for seven days with hidden files excluded. No privileged trigger, deployment or publication step exists.
+
+Final release requires successful actual PR-head and main-SHA runs plus required remote reviews/checks and remote synchronization. Those final exact references are recorded in the release PR and final delivery after this source document's own integration. Candidate results do not certify a later SHA. [Complete report and limits](frontend-optimization.md), [evidence](verification/optimization/README.md).
+
+---
+
+## Historical CI snapshots
+
 # Repeatable frontend quality checks
 
 CI-001 closes the missing automation configuration discovered during the 2026-10-25 continuation review. The customer, catalogue and material workflows remain implemented and integrated; this change adds verification infrastructure and preserves their production source.
