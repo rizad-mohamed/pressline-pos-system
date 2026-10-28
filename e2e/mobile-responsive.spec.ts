@@ -130,10 +130,18 @@ test("mobile tabs, More and expanded filters pass selected WCAG A/AA rules", asy
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
   await page.waitForURL("**/dashboard");
   for (const state of ["dashboard", "more", "filters"]) {
-    if (state === "more")
+    if (state === "more") {
       await page
         .getByRole("button", { name: "More navigation", exact: true })
         .click();
+      const dialog = page.getByRole("dialog");
+      await dialog.evaluate(async (element) => {
+        await Promise.all(
+          element.getAnimations().map((animation) => animation.finished),
+        );
+      });
+      await expect(dialog).toHaveCSS("opacity", "1");
+    }
     if (state === "filters") {
       await page.keyboard.press("Escape");
       await page.goto("/inventory");

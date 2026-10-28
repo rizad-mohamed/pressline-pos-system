@@ -24,6 +24,8 @@ OPT-011 - `test/opt-011-browser-settling`: wait for the account redirect before 
 
 OPT-004 opened on `docs/opt-004-readiness-handover` from verified develop 0346cf6. Scope: actual ten-part report, evidence/visual/performance/security/operations records and controlled final PR/main delivery. No application behavior or backend implementation changes. Final self hashes are reported at delivery.
 
+OPT-012 - `test/opt-012-a11y-animation-settling`: final integration run 40780290343 catches a More-sheet contrast scan during the existing fade. Frame samples show opacity 0.836 to 1 while canonical text remains rgb(97,104,92). Await actual animation completion and assert settled opacity before all unchanged axe rules; no CSS/animation or threshold changes. Verified: all three production dashboard/More/filter axe cases pass (54.5s, retries=0), retaining all rules and actual animations; replacement full hosted gate remains required.
+
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
 | ID        | Scope / dependencies                                                  | Priority | Branch                               | State                                                 | Checks / references                                |

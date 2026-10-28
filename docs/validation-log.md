@@ -1,5 +1,7 @@
 # Frontend verification evidence
 
+2026-10-29 OPT-012: final develop 95d4d585 run 40780290343 exposes one Chromium More contrast scan during opacity animation; PR held. Actual frame evidence shows canonical rgb(97,104,92) unchanged while opacity rises from 0.836 to 1. Await actual animation completion/opacity 1; all three production dashboard/More/filter axe cases pass in 54.5s, retries=0. No rules, thresholds, motion or app source changed. Fresh exact integration/PR/main verification remains required.
+
 ## Optimization handover - 2026-10-29
 
 Exact application candidate cb10f459bffd0203ffad9ea8c0445cbd729ca1eb: [hosted run 40776712433](https://github.com/rizad-mohamed/pressline-pos-system/actions/runs/40776712433) **all three jobs succeeded**. Actual logs: Chromium 92 passed (4.6m), Firefox 91 passed/one unsupported CDP skip (7.9m), WebKit 91 passed/one unsupported CDP skip (5.7m), retries=0. Aggregate 274 browser passes/two capability skips. Every job passed fresh locked install/advisory, strict typecheck/lint/format, 91 unit/component tests/20 files, 22 contrast pairs and production build. Shared print assertions run everywhere; Chromium retains PDF export. Local full strict gates also pass. Source/data/domain/brand/font preservation and provenance are in the [ten-part report](frontend-optimization.md).

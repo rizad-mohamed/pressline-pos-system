@@ -1,0 +1,155 @@
+{
+  "sourceRevision": "cb10f459bffd0203ffad9ea8c0445cbd729ca1eb",
+  "method": "390px production More click; CSS animation sampled on each actual animation frame, no fixed sleep.",
+  "samples": [
+    {
+      "elapsedMs": 0,
+      "opacity": "0.835974",
+      "transform": "matrix(1, 0, 0, 1, 0, 3.93662)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 14,
+      "opacity": "0.903285",
+      "transform": "matrix(1, 0, 0, 1, 0, 2.32116)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 31,
+      "opacity": "0.944863",
+      "transform": "matrix(1, 0, 0, 1, 0, 1.32328)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 49,
+      "opacity": "0.96979",
+      "transform": "matrix(1, 0, 0, 1, 0, 0.725035)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 64,
+      "opacity": "0.984553",
+      "transform": "matrix(1, 0, 0, 1, 0, 0.370721)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 81,
+      "opacity": "0.992864",
+      "transform": "matrix(1, 0, 0, 1, 0, 0.171255)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 98,
+      "opacity": "0.997189",
+      "transform": "matrix(1, 0, 0, 1, 0, 0.0674671)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 114,
+      "opacity": "0.999184",
+      "transform": "matrix(1, 0, 0, 1, 0, 0.0195938)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 131,
+      "opacity": "0.999881",
+      "transform": "matrix(1, 0, 0, 1, 0, 0.00285898)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 148,
+      "opacity": "1",
+      "transform": "matrix(1, 0, 0, 1, 0, 1.16569e-05)",
+      "activeAnimations": 1,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 166,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 181,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 198,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 215,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 231,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 248,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 264,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 281,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 298,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    },
+    {
+      "elapsedMs": 314,
+      "opacity": "1",
+      "transform": "none",
+      "activeAnimations": 0,
+      "descriptionColor": "rgb(97, 104, 92)"
+    }
+  ],
+  "hostedFailure": {
+    "run": 40780290343,
+    "job": 123139970243,
+    "rule": "color-contrast",
+    "ratio": 3.97,
+    "foreground": "#767c71",
+    "background": "#f6f6f6"
+  },
+  "conclusion": "The scan observed composite colors during the existing More opacity animation; settled text uses canonical muted color. Wait for actual animation completion before auditing stable content, without disabling rules or motion."
+}

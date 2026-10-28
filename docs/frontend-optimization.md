@@ -51,6 +51,7 @@ Authentication and User Management are not finalized. No backend endpoint, SQL/R
 - **OPT-009:** Existing WebKit pointer-focus normalization covered only mobile. Extend it to desktop so the unchanged 1440px dirty/focus-return regression passes. Keep primary-button, disabled, prevent-scroll, Radix Escape and unsaved-change contracts.
 - **OPT-010:** Measured speculative route traffic and cancelled-prefetch exceptions justify native `prefetch={false}` at 38 Link sites. Preserve hrefs/client navigation without a new wrapper/dependency. First route visits load on demand; no authentication/role/data logic changes.
 - **OPT-011:** Hosted tests exposed account redirect and drawer-entry-animation races. Await the dashboard URL before eleven further second navigations and full action visibility before the existing exact drawer bounds/unobscured assertions. No retries, fixed test delays or relaxed thresholds.
+- **OPT-012:** Final develop verification caught a More-sheet axe contrast scan during its existing opacity fade. Actual frame samples retain canonical text color while ancestor opacity rises from 0.836 to 1. Await the real animation completion and assert full opacity before unchanged axe rules; no animation, palette, delay, retry or threshold change. All three production dashboard/More/filter cases pass (54.5s, retries=0); exact replacement release verification follows.
 - **OPT-005:** Extend the existing immutable, read-only quality workflow to main PR/push and all three engines. Preserve unsupported-capability boundaries; retain failure diagnostics for seven days with a verified pinned official action. No release safeguard is bypassed.
 
 Financial calculations, integer LKR cents, branch isolation, v1-to-v2 migration, accepted customer/service/name/category/price/material snapshots, production/payment separation and actual-use stock rules were not rewritten. Domain/data source equality and connected regressions support preservation; browser restrictions still do not establish server security.
@@ -76,6 +77,8 @@ Financial calculations, integer LKR cents, branch isolation, v1-to-v2 migration,
 The matrix covers realistic connected customer/service/order/payment/report/printing journeys, historical snapshots, branch isolation, stock/transfer/material consistency, duplicate guards, malformed input, corrupt/quota/stale storage, loading, recovery and navigation. All shared print assertions run in every engine; PDF export is Chromium-only. Selected axe/Lighthouse rules and token contrast are automated evidence, not full WCAG or physical-device certification.
 
 **Failed checkpoints remain failed:** the first complete local run at c86af59 ended 247 passed / 27 failed / two capability skips in 59.4m. The first hosted run also failed. Preserved reports distinguish genuine quantity/focus/prefetch defects and timing races from local Playwright/axe injection/JSON parsing failures. Later local OPT-010 axe injection and OPT-011 Chromium locator parsing failures also remain recorded; their cause is unconfirmed. Every corresponding case passes in the fresh hosted full candidate. The installed Playwright core bundle matched the independently integrity-verified locked tarball; no unsupported environment root cause is asserted.
+
+The subsequent develop run [40780290343](https://github.com/rizad-mohamed/pressline-pos-system/actions/runs/40780290343) exposed a More-sheet contrast scan during entry opacity, so PR creation was held. [Frame evidence](verification/optimization/more-animation-timing.json) establishes the timing boundary; OPT-012 audits only after the actual animation completes, retaining all rules. Exact replacement PR/main checks remain required.
 
 Other rejected checkpoints: an initial intended desktop Lighthouse run actually used mobile settings and was excluded; clean install found a hidden umbrella import; a sandboxed Windows wrapper stalled during cleanup and native QA completed separately; the first giant card test was split into independent route cases after timeout without removing assertions; a formatting failure was corrected and the complete gate rerun. [Evidence index](verification/optimization/README.md).
 
@@ -121,20 +124,21 @@ The [first failed run](https://github.com/rizad-mohamed/pressline-pos-system/act
 
 ## 8. Git provenance and delivery
 
-| Unit    | Retained topic                     | Source                                         | Develop integration                              |
-| ------- | ---------------------------------- | ---------------------------------------------- | ------------------------------------------------ |
-| OPT-000 | docs/opt-000-readiness-baseline    | 6440d4d                                        | 18becdd                                          |
-| OPT-001 | fix/opt-001-mobile-review          | 6ae3f2d                                        | 50354a3                                          |
-| OPT-002 | fix/opt-002-mobile-status-cards    | 40bb6c2                                        | b7873ac                                          |
-| OPT-003 | chore/opt-003-verified-cleanup     | 05e924c                                        | e421758                                          |
-| OPT-006 | fix/opt-006-customer-history-cards | b3d4ef6                                        | 70d3498                                          |
-| OPT-007 | fix/opt-007-pos-validation-click   | 203c109                                        | bd772a7                                          |
-| OPT-008 | fix/opt-008-enlarged-card-reflow   | b68daf0                                        | c3246f0                                          |
-| OPT-009 | fix/opt-009-desktop-focus-return   | 3df3d20                                        | 0fd5f4c                                          |
-| OPT-010 | perf/opt-010-demand-navigation     | a6b08ec                                        | 4ef23e2                                          |
-| OPT-011 | test/opt-011-browser-settling      | 764e318                                        | 83a4de7                                          |
-| OPT-005 | chore/opt-005-release-gates        | c86af59, a0952c3, cb10f45                      | 0346cf6                                          |
-| OPT-004 | docs/opt-004-readiness-handover    | This evidence snapshot; exact hash at delivery | Verified no-ff integration follows this snapshot |
+| Unit    | Retained topic                       | Source                                         | Develop integration                              |
+| ------- | ------------------------------------ | ---------------------------------------------- | ------------------------------------------------ |
+| OPT-000 | docs/opt-000-readiness-baseline      | 6440d4d                                        | 18becdd                                          |
+| OPT-001 | fix/opt-001-mobile-review            | 6ae3f2d                                        | 50354a3                                          |
+| OPT-002 | fix/opt-002-mobile-status-cards      | 40bb6c2                                        | b7873ac                                          |
+| OPT-003 | chore/opt-003-verified-cleanup       | 05e924c                                        | e421758                                          |
+| OPT-006 | fix/opt-006-customer-history-cards   | b3d4ef6                                        | 70d3498                                          |
+| OPT-007 | fix/opt-007-pos-validation-click     | 203c109                                        | bd772a7                                          |
+| OPT-008 | fix/opt-008-enlarged-card-reflow     | b68daf0                                        | c3246f0                                          |
+| OPT-009 | fix/opt-009-desktop-focus-return     | 3df3d20                                        | 0fd5f4c                                          |
+| OPT-010 | perf/opt-010-demand-navigation       | a6b08ec                                        | 4ef23e2                                          |
+| OPT-011 | test/opt-011-browser-settling        | 764e318                                        | 83a4de7                                          |
+| OPT-012 | test/opt-012-a11y-animation-settling | Follow-up source recorded at delivery          | Verified no-ff integration follows               |
+| OPT-005 | chore/opt-005-release-gates          | c86af59, a0952c3, cb10f45                      | 0346cf6                                          |
+| OPT-004 | docs/opt-004-readiness-handover      | This evidence snapshot; exact hash at delivery | Verified no-ff integration follows this snapshot |
 
 All meaningful units branch from develop and retain atomic Conventional Commits, staged diff review and no-ff integration. The CI topic merged newer develop without rebasing away failed evidence. Local automated Git identity remains repository-specific. No force/reset/clean or global Git configuration change was used.
 
