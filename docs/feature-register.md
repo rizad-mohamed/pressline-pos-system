@@ -11,6 +11,8 @@
 | OPT-004 | Security/accessibility/Lighthouse/release and backend handoff evidence | docs/opt-004-readiness-handover    | Planned                                                                                                                                                    |
 | OPT-006 | Dynamic customer-order history mobile statuses and snapshot regression | fix/opt-006-customer-history-cards | Verified: 2 production customer/history reflow regressions; unchanged accepted snapshots and balances at 320px/200% text                                   |
 
+OPT-007 ? `fix/opt-007-pos-validation-click`: correct stale quantity errors before pointer activation, preserve delayed initial validation and one-click Add/remove/undo; Verified: production build and 15 quantity/mobile-review checks across Chromium, Firefox and WebKit pass, retries=0.
+
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
 | ID        | Scope / dependencies                                                  | Priority | Branch                               | State                                                 | Checks / references                                |
