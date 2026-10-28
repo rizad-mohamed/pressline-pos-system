@@ -1,5 +1,17 @@
 # Frontend security review and explicit limits · 2026-10-25
 
+## Optimization continuation - 2026-10-29
+
+This continuation remains frontend-only. Fresh source sink/URL reconnaissance finds no application raw-HTML/eval sink or external URL, aside from the preserved Manrope license references. Demo-role selection and browser storage are not trusted identity, IDOR resistance or production authorization. No authentication logic, API, database, RLS, payment/SMS provider, deployment or privileged credential was added.
+
+The locked cleanup installation reported zero known advisories (509 installed / 510 audited), with retained dependency versions unchanged. Checksum-verified Gitleaks scanned actual history patches (167 reachable commits including merges, 3,261,611 bytes), source (561,072 bytes) and generated browser assets (1,313,855 bytes), with zero findings. An initial zero-commit ownership-guard result was rejected and rerun through repository-trusted Git output; no global trust changed. Evidence is pinned to the candidate snapshot, with final history rechecked after documentation. No complete security certification follows from an advisory or secret scan.
+
+The skill's required isolated OS sandbox and Windows artifact validation remain unavailable as described below. Ordinary frontend regression, performance and source/secret/dependency checks are separate engineering evidence; no target-controlled dynamic security audit or penetration test was run. Production transport/headers, trusted identity/authorization, minimal API projections, transactional integrity, durable idempotency and privacy controls remain the future backend/hosting engineer's responsibility.
+
+The first real hosted browser matrix failed and is retained in the optimization report. The corrected exact candidate cb10f459bffd0203ffad9ea8c0445cbd729ca1eb passes all three fresh hosted jobs (274 browser passes/two unsupported CDP skips), including previously failing scans/workflows. Current authorization permits gated PR delivery; no branch protection change or deployment is authorized. Final exact-main Actions, reviews/rules and remote SHA are verified in the release PR/final delivery.
+
+## Historical source review - 2026-10-25
+
 The completed customer/catalogue/material frontend received four independent source reconnaissance passes at clean develop `52e41f94c71f4824a09c1f4184d4d6a25231ab1d`: product/runtime, principal/control, input/sink and execution/dependency configuration. No source-grounded cross-principal vulnerability candidate was established in those passes. Reconnaissance is partial security evidence; it is not a completed penetration test or full security audit.
 
 The source establishes fictional selectable personas, not authenticated identities. The browser owner controls the local dataset. `src/data/repository.ts` derives the active actor from the validated store, validates the complete proposed state, rejects stale raw storage and publishes only after durable save. Invalid saved data remains read-only until explicit reset. Domain commands repeat branch/administrator checks. Material posting checks order branch, plan identity/revision, aggregate availability and non-negative balances; correction adds compensating history. Customer financial history filters through branch-readable orders. These are tested demo safeguards, not trusted server authorization or database transactions.

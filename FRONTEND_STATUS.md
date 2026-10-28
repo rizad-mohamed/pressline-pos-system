@@ -1,3 +1,19 @@
+# Current frontend optimization handover - 2026-10-29
+
+The application candidate cb10f459bffd0203ffad9ea8c0445cbd729ca1eb passes the fresh hosted Chromium/Firefox/WebKit matrix: **274 browser passes, two explicitly unsupported CDP skips**, 91 unique unit/component tests across 20 files, locked install/advisory/typecheck/lint/format/build and 22 contrast pairs. [Actual candidate run](https://github.com/rizad-mohamed/pressline-pos-system/actions/runs/40776712433).
+
+Mobile Review Order, phone statuses/cards, narrow enlarged-text readability and WebKit desktop focus return are corrected with original-failure evidence and regressions. Desktop/premium/centered Dashboard navigation, financial calculations, stock quantities/history, branch isolation, accepted snapshots and backend contracts are preserved. Domain/data/brand/font source matches the inspected initial task baseline. Measured Link loading reduces speculative requests from 74 to zero in each observed engine; no bundle or causal runtime-speedup claim is made.
+
+**Overall production readiness is NOT PASS.** Mobile Lighthouse performance is 83/82/88/96 (90 aim unmet on three routes); full security-audit isolation/Windows validation is unavailable; field INP, physical devices/AT/printer output are unverified. Real identity/User Management, APIs, trusted authorization, transactions/idempotency, hosting headers, backups and monitoring remain explicitly out of scope and are live-production blockers. Backend functionality or authentication was not implemented or finalized.
+
+Failed local automation parsing checks remain failed; corresponding fresh hosted full cases pass. No failed/blocked check is relabeled PASS. [Ten-part report](docs/frontend-optimization.md), [raw evidence index](docs/verification/optimization/README.md), [actual validation](docs/validation-log.md), [security limits](docs/security-review.md), [operations/backend handoff](docs/frontend-operations.md).
+
+Delivery uses retained topics, atomic commits and no-ff develop integration, then an authorized PR to main without bypassing reviews/checks or changing protection. Final exact-main-SHA Actions, remote synchronization and clean-tree evidence are recorded in the release PR/final delivery after this source snapshot; no source document fabricates its own future hash. No deployment is included.
+
+---
+
+## Historical status snapshots
+
 # Pressline frontend status
 
 ## Mobile refinement delivery · 2026-10-28

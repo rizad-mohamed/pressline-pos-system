@@ -1,0 +1,101 @@
+{
+  "method": "Pixel comparison against OPT-002/006 captures before final enlarged-text/prefetch fixes; normal 390px and desktop 1440px views, same viewport and fixtures. Counts include incidental rendering/timing changes.",
+  "images": [
+    {
+      "image": "customers-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "customers-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "dashboard-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "dashboard-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "inventory-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "inventory-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "jobs-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "jobs-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "orders-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "orders-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "pricing-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "pricing-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "settings-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "settings-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "transfers-cards-1440.png",
+      "changedPixels": 0,
+      "pixels": 1296000,
+      "changedPercent": 0.0
+    },
+    {
+      "image": "transfers-cards-390.png",
+      "changedPixels": 0,
+      "pixels": 329160,
+      "changedPercent": 0.0
+    }
+  ]
+}
