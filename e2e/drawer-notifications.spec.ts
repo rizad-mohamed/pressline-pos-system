@@ -36,6 +36,7 @@ test("a preceding success notification cannot obscure the next drawer confirmati
   );
   for (const width of [390, 320, 768]) {
     await page.setViewportSize({ width, height: 844 });
+    await expect(action).toBeInViewport({ ratio: 1 });
     const box = await action.boundingBox();
     expect(box).not.toBeNull();
     expect(box!.x).toBeGreaterThanOrEqual(0);

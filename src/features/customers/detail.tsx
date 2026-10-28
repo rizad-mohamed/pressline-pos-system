@@ -35,7 +35,9 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
         description="This saved customer is not in the current local dataset."
         action={
           <Button asChild variant="outline">
-            <Link href="/customers">Back to customers</Link>
+            <Link prefetch={false} href="/customers">
+              Back to customers
+            </Link>
           </Button>
         }
       />
@@ -60,11 +62,16 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
         action={
           <>
             <Button variant="outline" asChild>
-              <Link href="/customers">Customers</Link>
+              <Link prefetch={false} href="/customers">
+                Customers
+              </Link>
             </Button>
             {customer.active && (
               <Button asChild>
-                <Link href={`/pos?customer=${encodeURIComponent(customer.id)}`}>
+                <Link
+                  prefetch={false}
+                  href={`/pos?customer=${encodeURIComponent(customer.id)}`}
+                >
                   New order for this customer
                 </Link>
               </Button>
@@ -198,7 +205,11 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
                 {orders.map((o) => (
                   <tr key={o.id}>
                     <td data-label="Order / date / branch">
-                      <Link className="table-title" href={`/orders/${o.id}`}>
+                      <Link
+                        prefetch={false}
+                        className="table-title"
+                        href={`/orders/${o.id}`}
+                      >
                         {o.id}
                       </Link>
                       <p className="small muted">{dateTime(o.createdAt)}</p>
@@ -246,7 +257,11 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
             payments.map((p) => (
               <div className="row between" key={p.id}>
                 <div>
-                  <Link href={`/orders/${p.orderId}`} className="table-title">
+                  <Link
+                    prefetch={false}
+                    href={`/orders/${p.orderId}`}
+                    className="table-title"
+                  >
                     {p.orderId}
                   </Link>
                   <p className="small muted">

@@ -114,7 +114,7 @@ export function Login() {
             </>
           )}
           {user && !recoveryRequired && (
-            <Link href="/dashboard" className="text-link">
+            <Link prefetch={false} href="/dashboard" className="text-link">
               Continue as {user.name} →
             </Link>
           )}

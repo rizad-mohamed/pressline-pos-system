@@ -4,6 +4,7 @@ test("order retrieval, negative payment, subsequent collection and independent p
 }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/orders/PL-1012");
   await expect(page.getByTestId("detail-balance")).toContainText("1,230.00");
   await page
@@ -44,6 +45,7 @@ test("order retrieval, negative payment, subsequent collection and independent p
   ).toBeVisible();
   await page.goto("/login");
   await page.getByRole("button", { name: /Branch 2 cashier/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/orders/PL-1012");
   await expect(
     page.getByRole("heading", { name: "Order unavailable" }),

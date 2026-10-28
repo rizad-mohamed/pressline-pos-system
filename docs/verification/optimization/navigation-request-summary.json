@@ -1,0 +1,37 @@
+{
+  "method": "Same six routes, 390px viewport, account-primed production build, fixed 750ms observation per route. Browser request events, not guaranteed network round trips. Before overlaps an ordinary baseline assertion; no CPU/latency claim.",
+  "samples": [
+    {
+      "phase": "before",
+      "engine": "chromium",
+      "requestEvents": 215,
+      "speculativeRequests": 74,
+      "failedRequests": 11,
+      "pageErrors": 0
+    },
+    {
+      "phase": "before",
+      "engine": "webkit",
+      "requestEvents": 215,
+      "speculativeRequests": 74,
+      "failedRequests": 0,
+      "pageErrors": 4
+    },
+    {
+      "phase": "after",
+      "engine": "chromium",
+      "requestEvents": 108,
+      "speculativeRequests": 0,
+      "failedRequests": 0,
+      "pageErrors": 0
+    },
+    {
+      "phase": "after",
+      "engine": "webkit",
+      "requestEvents": 108,
+      "speculativeRequests": 0,
+      "failedRequests": 0,
+      "pageErrors": 0
+    }
+  ]
+}

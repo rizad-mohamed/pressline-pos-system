@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
+import { enterDemo } from "./followup-helpers";
 const axeSource = readFileSync(
   createRequire(import.meta.url).resolve("axe-core/axe.min.js"),
   "utf8",
@@ -9,8 +10,7 @@ const axeSource = readFileSync(
 test("POS invalid quantity explains the correction and preserves editable lines", async ({
   page,
 }) => {
-  await page.goto("/login");
-  await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await enterDemo(page, /Branch 1 cashier/);
   await page.goto("/pos");
   await page.getByLabel("Quantity (printed sheets)").fill("0");
   await page.getByLabel("Quantity (printed sheets)").press("Tab");
@@ -21,9 +21,16 @@ test("POS invalid quantity explains the correction and preserves editable lines"
     page.getByRole("button", { name: "Review order", exact: true }),
   ).toBeDisabled();
   await page.getByLabel("Quantity (printed sheets)").fill("2");
+  await expect(
+    page.getByText("Enter at least 1 sheet.", { exact: true }),
+  ).toBeHidden();
+  await expect(
+    page.getByRole("button", { name: "Review order", exact: true }),
+  ).toBeEnabled();
   await page
     .getByRole("button", { name: "Add print item", exact: true })
     .click();
+  await expect(page.getByLabel("Quantity (printed sheets)")).toHaveCount(2);
   await page
     .getByRole("button", { name: "Remove item 2", exact: true })
     .click();
@@ -37,8 +44,7 @@ for (const width of [320, 360, 390, 430, 768, 1024, 1280, 1440, 1920])
   test(`workspace reflows at ${width} CSS pixels`, async ({ page }, info) => {
     test.setTimeout(120000);
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/login");
-    await page.getByRole("button", { name: /Demo Administrator/ }).click();
+    await enterDemo(page, /Demo Administrator/);
     for (const [route, title] of [
       ["dashboard", "Branch overview"],
       ["pos", "Create a print order"],

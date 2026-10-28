@@ -12,6 +12,16 @@
 | OPT-005 | Main release workflow and full browser quality matrix                  | chore/opt-005-release-gates        | In progress; preserve strict gates and actual capability limits                                                                                            |
 | OPT-006 | Dynamic customer-order history mobile statuses and snapshot regression | fix/opt-006-customer-history-cards | Verified: 2 production customer/history reflow regressions; unchanged accepted snapshots and balances at 320px/200% text                                   |
 
+OPT-007 - `fix/opt-007-pos-validation-click`: correct stale quantity errors before pointer activation, preserve delayed initial validation and one-click Add/remove/undo; Verified: production build and 15 quantity/mobile-review checks across Chromium, Firefox and WebKit pass, retries=0.
+
+OPT-008 - `fix/opt-008-enlarged-card-reflow`: font-aware phone card columns and capped spacing retain readable labels/status words/amounts at 320px and 200% text. Original production readability assertion fails (Production needs 127.6px; only 58px available). Verified: production build and all 30 card/customer-history checks pass in Chromium, Firefox and WebKit (5.8m, retries=0); focused lint passes.
+
+OPT-009 - `fix/opt-009-desktop-focus-return`: extend existing WebKit activated-button focus normalization to desktop; retain Radix Escape/dirty/focus contracts. Original unchanged 1440px/200% assertion fails in both local and hosted WebKit. Verified: production build and all 9 focus/keyboard/current-order regressions pass across three engines (2.1m, retries=0); focused lint passes.
+
+OPT-010 - `perf/opt-010-demand-navigation`: evidence-based on-demand route loading with native Next Link prefetch=false (38 sites, 15 files), preserving hrefs, client navigation and rendering. Baseline six routes produce 215 requests / 74 speculative requests per engine; WebKit surfaces four canceled-prefetch page errors. Verified request/navigation targets: matched probe 108 request events / zero speculative / zero failed / zero page errors in both engines; all 24 WebKit role/navigation/reflow cases pass. One separate axe injection fails with invalid-character parsing; full accessibility/hosted release gate remains pending, not PASS.
+
+OPT-011 - `test/opt-011-browser-settling`: wait for the account redirect before starting a second navigation in eleven remaining identical race sites; wait for full drawer action visibility before retaining exact bounds/unobscured assertions. No retries, arbitrary delays or weaker thresholds. All three drawer cases pass. Representative production run: 14 pass / 1 Chromium locator-injection parsing failure (cause unconfirmed), not a full PASS; equivalent Firefox/WebKit transfer assertions pass. Focused lint passes; independent hosted matrix remains required.
+
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
 | ID        | Scope / dependencies                                                  | Priority | Branch                               | State                                                 | Checks / references                                |

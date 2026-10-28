@@ -7,11 +7,7 @@ export function MobileViewport() {
     // WebKit pointer activation need not focus a button. Establish its focus
     // before React opens a sheet, so the existing Radix return contract works.
     function focusActivatedButton(event: MouseEvent) {
-      if (
-        !window.matchMedia("(max-width: 900px)").matches ||
-        event.button !== 0
-      )
-        return;
+      if (event.button !== 0) return;
       const button =
         event.target instanceof Element ? event.target.closest("button") : null;
       if (

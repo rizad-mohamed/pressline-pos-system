@@ -5,6 +5,7 @@ test("customer receipt and separate production ticket render and print without n
 }, testInfo) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/print/receipt/PL-1012");
   await expect(
     page.getByRole("heading", { name: "Customer receipt", exact: true }),
