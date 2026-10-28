@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { enterDemo } from "./followup-helpers";
+import { expectReadableCards } from "./card-readability";
 
 for (const route of [
   "dashboard",
@@ -41,6 +42,15 @@ for (const route of [
     }
     await page.setViewportSize({ width: 820, height: 1180 });
     await expect(rows.first()).toHaveCSS("display", "table-row");
+    await page.setViewportSize({ width: 320, height: 900 });
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = "200%";
+    });
+    await page.evaluate(() => document.fonts.ready);
+    await expectReadableCards(table);
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = "";
+    });
     await page.setViewportSize({ width: 390, height: 844 });
     expect(
       (

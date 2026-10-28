@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { expectReadableCards } from "./card-readability";
 import {
   createBannerOrder,
   enterDemo,
@@ -37,6 +38,7 @@ test("mobile customer history retains statuses, balances and accepted snapshots 
     document.documentElement.style.fontSize = "32px";
   });
   await expect(row).toHaveCSS("display", "grid");
+  await expectReadableCards(page.locator(".mobile-cards").first());
   await expect(row).toHaveText(expected!);
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
