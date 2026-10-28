@@ -4,6 +4,7 @@ test("administrator creates, edits, adjusts and deactivates a material with reta
 }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/inventory");
   await page.getByRole("button", { name: "Add material", exact: true }).click();
   await page
@@ -55,6 +56,7 @@ test("administrator creates, edits, adjusts and deactivates a material with reta
   ).toBeVisible();
   await page.goto("/login");
   await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/inventory");
   await expect(
     page.getByRole("heading", { name: "Administrator access required" }),

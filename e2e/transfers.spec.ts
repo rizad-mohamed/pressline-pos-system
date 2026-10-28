@@ -4,6 +4,7 @@ test("transfer rejects same branch and excess quantity then updates both invento
 }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/transfers");
   await page.getByRole("button", { name: "New transfer", exact: true }).click();
   await page.getByLabel("Transfer material").selectOption("paper-a4");

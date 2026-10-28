@@ -4,6 +4,7 @@ test("price version changes future quotes while saved order prices stay fixed", 
 }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/pricing");
   await page
     .getByRole("button", { name: "Edit price catalogue", exact: true })

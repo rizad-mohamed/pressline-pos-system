@@ -19,6 +19,8 @@ OPT-009 - `fix/opt-009-desktop-focus-return`: extend existing WebKit activated-b
 
 OPT-010 - `perf/opt-010-demand-navigation`: evidence-based on-demand route loading with native Next Link prefetch=false (38 sites, 15 files), preserving hrefs, client navigation and rendering. Baseline six routes produce 215 requests / 74 speculative requests per engine; WebKit surfaces four canceled-prefetch page errors. Verified request/navigation targets: matched probe 108 request events / zero speculative / zero failed / zero page errors in both engines; all 24 WebKit role/navigation/reflow cases pass. One separate axe injection fails with invalid-character parsing; full accessibility/hosted release gate remains pending, not PASS.
 
+OPT-011 - `test/opt-011-browser-settling`: wait for the account redirect before starting a second navigation in eleven remaining identical race sites; wait for full drawer action visibility before retaining exact bounds/unobscured assertions. No retries, arbitrary delays or weaker thresholds. All three drawer cases pass. Representative production run: 14 pass / 1 Chromium locator-injection parsing failure (cause unconfirmed), not a full PASS; equivalent Firefox/WebKit transfer assertions pass. Focused lint passes; independent hosted matrix remains required.
+
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
 | ID        | Scope / dependencies                                                  | Priority | Branch                               | State                                                 | Checks / references                                |

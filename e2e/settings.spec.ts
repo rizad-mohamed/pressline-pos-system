@@ -4,6 +4,7 @@ test("demo configuration, personal preferences and explicit fixture reset persis
 }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: /Demo Administrator/ }).click();
+  await page.waitForURL("**/dashboard");
   await page.goto("/settings");
   await page
     .getByRole("button", { name: "Edit demo configuration", exact: true })
