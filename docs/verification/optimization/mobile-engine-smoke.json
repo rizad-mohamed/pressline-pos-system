@@ -1,0 +1,26 @@
+[
+  {
+    "name": "chromium",
+    "version": "156.0.8078.4",
+    "input": "emulated mobile touch",
+    "outcome": "passed",
+    "checks": "role tabs, centered Dashboard, POS draft/cart, Escape/focus, tablet resize, authorized More and conditional customer editor focus",
+    "errors": []
+  },
+  {
+    "name": "firefox",
+    "version": "157.0",
+    "input": "desktop-engine pointer at mobile widths",
+    "outcome": "passed",
+    "checks": "role tabs, centered Dashboard, POS draft/cart, Escape/focus, tablet resize, authorized More and conditional customer editor focus",
+    "errors": []
+  },
+  {
+    "name": "webkit",
+    "version": "27.2",
+    "input": "emulated mobile touch",
+    "outcome": "passed",
+    "checks": "role tabs, centered Dashboard, POS draft/cart, Escape/focus, tablet resize, authorized More and conditional customer editor focus",
+    "errors": []
+  }
+]

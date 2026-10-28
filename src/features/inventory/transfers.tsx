@@ -1,0 +1,201 @@
+"use client";
+import { ScrollTable } from "@/components/shared/scroll-table";
+import { useState } from "react";
+import { ArrowLeftRight, Plus } from "lucide-react";
+import { useDemo } from "@/data/provider";
+import { dateTime } from "@/domain/dates";
+import { Button } from "@/components/ui/button";
+import { Sheet } from "@/components/ui/sheet";
+import {
+  Badge,
+  EmptyState,
+  Notice,
+  PageHeader,
+  SearchField,
+} from "@/components/shared/presentation";
+import { TransferDrawer } from "./transfer-drawer";
+export function Transfers() {
+  const { data, scope } = useDemo();
+  const [creating, setCreating] = useState(false),
+    [search, setSearch] = useState(""),
+    [selected, setSelected] = useState<string | null>(null);
+  const rows = data.transfers.filter(
+    (t) =>
+      (scope === "all" || t.source === scope || t.target === scope) &&
+      `${t.id} ${data.items.find((i) => i.id === t.itemId)?.name} ${t.note}`
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+  );
+  const transfer = data.transfers.find((t) => t.id === selected),
+    material = transfer
+      ? data.items.find((i) => i.id === transfer.itemId)
+      : null;
+  return (
+    <div className="stack">
+      <PageHeader
+        eyebrow="BETWEEN BRANCHES"
+        title="Stock transfers"
+        description="Replenish one branch while keeping both balances consistent."
+        action={
+          <Button
+            onClick={() => setCreating(true)}
+            disabled={!data.items.some((i) => i.active)}
+          >
+            <Plus size={16} />
+            New transfer
+          </Button>
+        }
+      />
+      <Notice tone="warning">
+        Instant local transfer is a demonstration policy. Dispatch approval and
+        destination acceptance must be agreed before backend implementation.
+      </Notice>
+      <div className="toolbar">
+        <SearchField
+          label="Search transfers"
+          value={search}
+          onChange={setSearch}
+          placeholder="Reference, material or transfer note…"
+        />
+      </div>
+      <section className="card">
+        {rows.length ? (
+          <ScrollTable
+            className="table-scroll mobile-cards"
+            tabIndex={0}
+            aria-label="Transfers table"
+          >
+            <table role="table">
+              <caption className="sr-only">
+                Simulated branch stock transfer history
+              </caption>
+              <thead>
+                <tr>
+                  <th>Reference / material</th>
+                  <th>Source</th>
+                  <th>Destination</th>
+                  <th className="right">Quantity</th>
+                  <th>Date</th>
+                  <th>Review</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((t) => (
+                  <tr key={t.id}>
+                    <td data-label="Reference / material">
+                      <strong>
+                        {t.id === "TR-SEED" ? t.id : `TR-${t.id.slice(3, 11)}`}
+                      </strong>
+                      <p className="table-sub">
+                        {data.items.find((i) => i.id === t.itemId)?.name}
+                      </p>
+                    </td>
+                    <td data-label="Source">
+                      {data.branches.find((b) => b.id === t.source)!.name}
+                    </td>
+                    <td data-label="Destination">
+                      {data.branches.find((b) => b.id === t.target)!.name}
+                    </td>
+                    <td className="money right" data-label="Quantity">
+                      {t.quantity}{" "}
+                      {data.items.find((i) => i.id === t.itemId)?.unit}
+                    </td>
+                    <td className="small muted" data-label="Date">
+                      {dateTime(t.createdAt)}
+                    </td>
+                    <td data-label="Actions">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => setSelected(t.id)}
+                        aria-label={`Review transfer ${t.id}`}
+                      >
+                        Review
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </ScrollTable>
+        ) : (
+          <EmptyState
+            title="No matching transfers"
+            description="Try a different search or create a demonstration stock transfer."
+          />
+        )}
+        <div className="table-footer">
+          <span>{rows.length} transfers</span>
+          <span>One transfer · two balanced movement events</span>
+        </div>
+      </section>
+      {creating && <TransferDrawer onClose={() => setCreating(false)} />}
+      <Sheet
+        open={!!selected}
+        onOpenChange={(open) => {
+          if (!open) setSelected(null);
+        }}
+        title="Transfer details"
+        description="A mock transfer and its paired movement references."
+      >
+        {transfer && material && (
+          <div className="stack">
+            <div className="row">
+              <ArrowLeftRight size={20} />
+              <h2>{material.name}</h2>
+              <Badge tone="primary">Simulated</Badge>
+            </div>
+            <p className="small muted" style={{ overflowWrap: "anywhere" }}>
+              {transfer.id}
+            </p>
+            <div className="total-row">
+              <span>From</span>
+              <strong>
+                {data.branches.find((b) => b.id === transfer.source)!.name}
+              </strong>
+            </div>
+            <div className="total-row">
+              <span>To</span>
+              <strong>
+                {data.branches.find((b) => b.id === transfer.target)!.name}
+              </strong>
+            </div>
+            <div className="total-row">
+              <span>Quantity</span>
+              <strong>
+                {transfer.quantity} {material.unit}
+              </strong>
+            </div>
+            <p>{transfer.note || "No additional transfer instructions."}</p>
+            <p className="small muted">
+              {dateTime(transfer.createdAt)} ·{" "}
+              {data.users.find((u) => u.id === transfer.actorId)?.name}
+            </p>
+            <h3>Paired stock movements</h3>
+            {data.movements
+              .filter((m) => m.transferId === transfer.id)
+              .map((m) => (
+                <div className="line-card" key={m.id}>
+                  <strong>
+                    {data.branches.find((b) => b.id === m.branchId)!.name}:{" "}
+                    {m.delta > 0 ? "+" : ""}
+                    {m.delta} {material.unit}
+                  </strong>
+                  <p
+                    className="small muted"
+                    style={{ overflowWrap: "anywhere" }}
+                  >
+                    {m.id}
+                  </p>
+                </div>
+              ))}
+            <Notice>
+              Movement entries remain available when a material is deactivated.
+              No destination delivery was confirmed.
+            </Notice>
+          </div>
+        )}
+      </Sheet>
+    </div>
+  );
+}

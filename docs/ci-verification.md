@@ -1,0 +1,29 @@
+# Current hosted verification - 2026-10-29
+
+[Candidate run 40776712433](https://github.com/rizad-mohamed/pressline-pos-system/actions/runs/40776712433), exact source cb10f459bffd0203ffad9ea8c0445cbd729ca1eb: Chromium/Firefox/WebKit jobs all succeed. Fresh locked install and zero-advisory gate, typecheck/lint/format, 91 unit/component tests, 22 contrast pairs and production build pass in each job. Browser totals: Chromium 92; Firefox 91 plus one unsupported CDP skip; WebKit 91 plus one unsupported CDP skip; 274 passes/two documented skips, no retries. All shared print/layout assertions run; PDF export remains Chromium-only.
+
+The first hosted run failed and remains documented. The corrected run passes previously failing quantity/focus/prefetch/redirect/drawer cases and corresponding local tool-injection failures; local failed checkpoints remain failed. The workflow pins Node/npm and immutable action commits, uses read-only permissions/non-persisted checkout credentials, and retains failure-only diagnostic artifacts for seven days with hidden files excluded. No privileged trigger, deployment or publication step exists.
+
+Final release requires successful actual PR-head and main-SHA runs plus required remote reviews/checks and remote synchronization. Those final exact references are recorded in the release PR and final delivery after this source document's own integration. Candidate results do not certify a later SHA. [Complete report and limits](frontend-optimization.md), [evidence](verification/optimization/README.md).
+
+---
+
+## Historical CI snapshots
+
+# Repeatable frontend quality checks
+
+CI-001 closes the missing automation configuration discovered during the 2026-10-25 continuation review. The customer, catalogue and material workflows remain implemented and integrated; this change adds verification infrastructure and preserves their production source.
+
+The [workflow](../.github/workflows/frontend-quality.yml) checks pull requests targeting `develop`, pushes to `develop` and the established topic families, and manual dispatch. It uses Windows 2025, Node 24.14.1 and npm 11.11.0. Both GitHub actions are pinned to the exact upstream commit inspected on 2026-10-25: checkout `3d3c42e5aac5ba805825da76410c181273ba90b1`, setup-node `949feb2413d6458794dcd2491c4babbbce0c15c1`. Repository permissions are read-only; checkout does not persist credentials or add a global Git safe-directory entry; dependency caching is disabled; no secrets, publishing or deployment steps are configured. Pinning and limited token permissions follow the [GitHub secure-use guidance](https://docs.github.com/en/actions/reference/security/secure-use).
+
+Installation uses the existing lockfile. Each quality command is a separate failing step: advisory audit, typecheck, lint, formatting, 84 unit/component tests, contrast checks, browser installation and all 44 Chromium tests. Playwright's existing server command executes `npm run build` before `npm run start`; `CI=true` prohibits server reuse. Thus an unsuccessful production build fails the browser gate before tests. Browser installation follows [Playwright's CI guidance](https://playwright.dev/docs/ci-intro), restricted to this project's Chromium browser. The job has a 35-minute bound, one browser worker and no test retries. Concurrent obsolete runs are cancelled.
+
+`typecheck` now runs `next typegen` before `tsc --noEmit`. This follows the installed Next 16.4.3 CLI guide and makes clean checkouts independent of an earlier dev/build run: ignored `next-env.d.ts` and `.next/types` are generated first. Formatting covers `.github`; existing `.gitattributes` enforces LF. Browser contexts explicitly use Asia/Colombo, matching the domain calendar contract.
+
+Local verification uses a fresh temporary source copy with no `node_modules`, `.next` or `next-env.d.ts`, then a locked installation and the workflow's gate sequence with `CI=true`, `NEXT_TELEMETRY_DISABLED=1`, `PRESSLINE_TEST_PORT=3001` and `TZ=Asia/Colombo`. The owner's development server remained running; the fresh CI installation used a separate dependency tree. The subsequent workspace formatter repair is recorded below. Actual outcomes are recorded in the validation log after execution.
+
+Hosted runner execution and repository branch protection remain unverified. The repository has no remote; no push or publication was authorized or performed. Local workflow-equivalent success cannot certify a future hosted run, dependency advisory availability or runner availability. The Git branch audit remains a local handover check because hosted checkout does not contain all retained local topic refs.
+
+Actual clean-copy result: Fresh temporary source copy: npm ci installed 544/audited 545, zero known vulnerabilities; advisory audit/typegen+typecheck/lint/format/84 tests/22 contrast pairs/browser install passed; CI=true production build and all 44 Chromium tests passed (347.63s), no configured retries; YAML parse/immutable action pins/read-only permissions verified. No hosted CI run claimed. The local log-printing harness initially stopped on a Windows Unicode checkmark after successful typechecking; UTF-8 output was enabled and the remaining gates resumed. No application check failed or assertion/retry policy changed. This is a harness correction, not an application defect.
+
+Final workspace formatting initially failed because installed node_modules/prettier/index.mjs contained one differing byte (space replaced by a backtick at offset 87446) compared with the fresh locked installation. The syntax error was reproduced with node --check; the damaged file was retained in ignored local evidence and restored byte-for-byte from the clean installation. node --check and the full workspace format gate then passed. Cause is unconfirmed; no source, lockfile or dependency version changed.

@@ -1,0 +1,56 @@
+import { test, expect } from "@playwright/test";
+test("customer receipt and separate production ticket render and print without navigation", async ({
+  page,
+  browserName,
+}, testInfo) => {
+  await page.goto("/login");
+  await page.getByRole("button", { name: /Branch 1 cashier/ }).click();
+  await page.waitForURL("**/dashboard");
+  await page.goto("/print/receipt/PL-1012");
+  await expect(
+    page.getByRole("heading", { name: "Customer receipt", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByTestId("receipt-total")).toContainText("1,230.00");
+  await expect(page.getByTestId("receipt-balance")).toContainText("1,230.00");
+  await expect(
+    page.getByText(/NOT PROOF OF FINANCIAL SETTLEMENT/),
+  ).toBeVisible();
+  await page.emulateMedia({ media: "print" });
+  await expect(
+    page.getByRole("button", { name: "Print receipt", exact: true }),
+  ).toBeHidden();
+  // Headless PDF export is Chromium-only; every engine retains print-media checks.
+  if (browserName === "chromium")
+    await page.pdf({
+      path: testInfo.outputPath("customer-receipt.pdf"),
+      format: "A4",
+      printBackground: true,
+    });
+  await page.screenshot({
+    path: testInfo.outputPath("customer-receipt.png"),
+    fullPage: true,
+    animations: "disabled",
+  });
+  await page.emulateMedia({ media: "screen" });
+  await page.goto("/print/job/PL-1012");
+  await expect(
+    page.getByRole("heading", { name: "Production job ticket", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Binding: Spiral · Finishing: None"),
+  ).toBeVisible();
+  await expect(page.getByText("Order total", { exact: true })).toHaveCount(0);
+  await page.emulateMedia({ media: "print" });
+  if (browserName === "chromium")
+    await page.pdf({
+      path: testInfo.outputPath("production-ticket.pdf"),
+      format: "A4",
+      printBackground: true,
+    });
+  await page.screenshot({
+    path: testInfo.outputPath("production-ticket.png"),
+    fullPage: true,
+    animations: "disabled",
+  });
+  await expect(page.locator(".sidebar")).toHaveCount(0);
+});

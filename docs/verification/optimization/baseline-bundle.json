@@ -1,0 +1,40 @@
+{
+  "scope": "All generated route assets combined; not an initial-page transfer or runtime performance score",
+  "javascript": {
+    "files": 34,
+    "bytes": 1250747,
+    "gzipBytes": 397703
+  },
+  "css": {
+    "files": 1,
+    "bytes": 60120,
+    "gzipBytes": 12262
+  },
+  "largest": [
+    {
+      "path": ".next\\static\\chunks\\3wbm-994r45kr.js",
+      "bytes": 229820,
+      "gzipBytes": 71969
+    },
+    {
+      "path": ".next\\static\\chunks\\2oi9n3b4syua3.js",
+      "bytes": 159205,
+      "gzipBytes": 44236
+    },
+    {
+      "path": ".next\\static\\chunks\\2n28koan02vny.js",
+      "bytes": 157797,
+      "gzipBytes": 46224
+    },
+    {
+      "path": ".next\\static\\chunks\\0cz1d0mv5g_q7.js",
+      "bytes": 112594,
+      "gzipBytes": 39627
+    },
+    {
+      "path": ".next\\static\\chunks\\3qs4uyg68g78j.css",
+      "bytes": 60120,
+      "gzipBytes": 12262
+    }
+  ]
+}

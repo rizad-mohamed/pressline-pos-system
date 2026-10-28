@@ -1,0 +1,32 @@
+{
+  "checkpoint": "Original onBlur production build before OPT-007",
+  "staleErrorAfterCorrection": true,
+  "firstClickAddsItem": false,
+  "secondClickAddsItem": true,
+  "pointerEvents": [
+    {
+      "kind": "pointerdown",
+      "time": 3087,
+      "target": "BUTTON#",
+      "text": "Add print item",
+      "buttonY": 475.95001220703125,
+      "errors": ["Enter at least 1 sheet."]
+    },
+    {
+      "kind": "pointerup",
+      "time": 3179,
+      "target": "DIV#",
+      "text": "Print item 1Item 01LKR\u00a030.00Item descriptionPaper sizeA4A3Print typeBlack & whit",
+      "buttonY": 445.54998779296875,
+      "errors": []
+    },
+    {
+      "kind": "click",
+      "time": 3183,
+      "target": "DIV#",
+      "text": "Print item 1Item 01LKR\u00a030.00Item descriptionPaper sizeA4A3Print typeBlack & whit",
+      "buttonY": 445.54998779296875,
+      "errors": []
+    }
+  ]
+}

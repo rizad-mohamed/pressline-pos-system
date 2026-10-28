@@ -1,0 +1,237 @@
+{
+  "files": 120,
+  "findings": [
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 56,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 93,
+      "match": ".eyebrow {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 166,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 205,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 219,
+      "match": ".section-label {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 244,
+      "match": ".eyebrow {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 500,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 547,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 560,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 1198,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 1205,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 1348,
+      "match": ".eyebrow {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 1674,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 1776,
+      "match": ".eyebrow {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "shadow",
+      "file": "src/app/globals.css",
+      "line": 1992,
+      "match": "box-shadow:",
+      "message": "Shadow. Elements at rest carry none; only real overlays (menu, dialog, sticky bar) may."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 2010,
+      "match": ".eyebrow {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 2101,
+      "match": ".eyebrow {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/app/globals.css",
+      "line": 2148,
+      "match": ".eyebrow {",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/components/shared/presentation.tsx",
+      "line": 20,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "numbering",
+      "file": "src/data/seed.ts",
+      "line": 62,
+      "match": "padStart(2, \"0\")",
+      "message": "Zero-padding in script. Fine for a clock, a date or a price; if it builds 01 / 02 / 03 labels, remove it."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/features/auth/login.tsx",
+      "line": 58,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/features/materials/job-materials.tsx",
+      "line": 39,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "numbering",
+      "file": "src/features/pos/line-editor.tsx",
+      "line": 52,
+      "match": "padStart(2, \"0\")",
+      "message": "Zero-padding in script. Fine for a clock, a date or a price; if it builds 01 / 02 / 03 labels, remove it."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/features/printing/document.tsx",
+      "line": 109,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/features/printing/document.tsx",
+      "line": 114,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/features/printing/document.tsx",
+      "line": 119,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/features/printing/document.tsx",
+      "line": 126,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "eyebrow",
+      "file": "src/features/settings/settings.tsx",
+      "line": 37,
+      "match": "className=\"eyebrow",
+      "message": "Eyebrow / kicker label above a heading."
+    },
+    {
+      "level": "WARN",
+      "id": "em-dash",
+      "file": "(all files)",
+      "line": 0,
+      "match": "10 em dashes",
+      "message": "Em-dash habit. Use a full stop or a comma; keep at most one or two on a page."
+    }
+  ]
+}

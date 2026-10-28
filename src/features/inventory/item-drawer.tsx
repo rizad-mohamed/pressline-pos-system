@@ -1,0 +1,166 @@
+"use client";
+import { useState } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { inventoryValuesSchema } from "@/domain/inventory";
+import { countSchema, type StockItem } from "@/domain/model";
+import { useDemo, useCommand, requestId } from "@/data/provider";
+import { Sheet, SheetClose } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Field, Notice } from "@/components/shared/presentation";
+const schema = inventoryValuesSchema.extend({
+  opening: z.object({ b1: countSchema, b2: countSchema }),
+});
+type Values = z.infer<typeof schema>;
+export function ItemDrawer({
+  item,
+  onClose,
+}: {
+  item: StockItem | null;
+  onClose: () => void;
+}) {
+  const { data } = useDemo(),
+    command = useCommand();
+  const [id] = useState(requestId);
+  const form = useForm<Values>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: item?.name ?? "",
+      sku: item?.sku ?? "",
+      unit: item?.unit ?? "sheets",
+      thresholds: item?.thresholds ?? { b1: 100, b2: 100 },
+      opening: { b1: 0, b2: 0 },
+    },
+  });
+  const e = form.formState.errors;
+  return (
+    <Sheet
+      open
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
+      title={item ? "Edit material" : "Add inventory material"}
+      description="Use fictional materials, quantities and low-stock thresholds."
+      dirty={form.formState.isDirty}
+      footer={
+        <>
+          <SheetClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </SheetClose>
+          <Button form="item-form" type="submit" disabled={command.pending}>
+            {command.pending ? "Saving locally…" : "Save material"}
+          </Button>
+        </>
+      }
+    >
+      <form
+        id="item-form"
+        className="stack"
+        noValidate
+        onSubmit={form.handleSubmit(async (values) => {
+          const { opening, ...metadata } = values;
+          const r = await command.run(
+            {
+              type: "stock-item",
+              requestId: id,
+              itemId: item?.id ?? null,
+              values: metadata,
+              opening,
+            },
+            item
+              ? "Material updated. Movement history retained."
+              : "Demonstration material and opening balances saved.",
+          );
+          if (r.ok) onClose();
+        })}
+      >
+        <Field label="Material name" id="material-name" error={e.name?.message}>
+          <input
+            id="material-name"
+            className="input"
+            {...form.register("name")}
+            aria-invalid={!!e.name}
+            aria-describedby={e.name ? "material-name-error" : undefined}
+          />
+        </Field>
+        <div className="form-grid">
+          <Field
+            label="Material code / SKU"
+            id="material-sku"
+            error={e.sku?.message}
+          >
+            <input
+              id="material-sku"
+              className="input"
+              {...form.register("sku")}
+            />
+          </Field>
+          <Field
+            label="Stock unit"
+            id="material-unit"
+            error={e.unit?.message}
+            hint={
+              item
+                ? "Existing units are fixed to preserve the ledger."
+                : "For example sheets, coils, cartridges or pouches."
+            }
+          >
+            <input
+              id="material-unit"
+              className="input"
+              {...form.register("unit")}
+              readOnly={!!item}
+            />
+          </Field>
+        </div>
+        {data.branches.map((branch) => (
+          <fieldset className="form-section" key={branch.id}>
+            <legend>{branch.name}</legend>
+            <div className="form-grid">
+              {!item && (
+                <Field
+                  label={`${branch.name} opening quantity`}
+                  id={`opening-${branch.id}`}
+                  error={e.opening?.[branch.id]?.message}
+                >
+                  <input
+                    id={`opening-${branch.id}`}
+                    className="input"
+                    type="number"
+                    min="0"
+                    step="1"
+                    {...form.register(`opening.${branch.id}`, {
+                      valueAsNumber: true,
+                    })}
+                  />
+                </Field>
+              )}
+              <Field
+                label={`${branch.name} low-stock threshold`}
+                id={`threshold-${branch.id}`}
+                error={e.thresholds?.[branch.id]?.message}
+              >
+                <input
+                  id={`threshold-${branch.id}`}
+                  className="input"
+                  type="number"
+                  min="0"
+                  step="1"
+                  {...form.register(`thresholds.${branch.id}`, {
+                    valueAsNumber: true,
+                  })}
+                />
+              </Field>
+            </div>
+          </fieldset>
+        ))}
+        <Notice>
+          Opening balances and adjustments are mock movements. Actual job usage
+          is recorded explicitly from order details, against this stock unit.
+        </Notice>
+        {command.error && <Notice tone="error">{command.error}</Notice>}
+      </form>
+    </Sheet>
+  );
+}

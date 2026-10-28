@@ -1,0 +1,90 @@
+name: Frontend quality
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches:
+      [
+        main,
+        develop,
+        "feat/**",
+        "fix/**",
+        "test/**",
+        "docs/**",
+        "chore/**",
+        "refactor/**",
+        "style/**",
+        "perf/**",
+        "revert/**",
+      ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Frontend gates (${{ matrix.browser }})
+    runs-on: windows-2025
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    timeout-minutes: 35
+    env:
+      CI: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+      PRESSLINE_TEST_PORT: "3001"
+      PRESSLINE_TEST_BROWSER: ${{ matrix.browser }}
+      TZ: "Asia/Colombo"
+    steps:
+      - name: Check out the triggering revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+          set-safe-directory: false
+      - name: Use the verified Node runtime
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24.14.1"
+          package-manager-cache: false
+      - name: Use the verified npm version
+        run: npm install --global npm@11.11.0
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Audit locked dependencies
+        run: npm audit --audit-level=low
+      - name: Generate Next route types and typecheck
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Check formatting including this workflow
+        run: npm run format:check
+      - name: Unit and component tests
+        run: npm run test
+      - name: Verify canonical color contrast
+        run: node scripts/check-design.mjs
+      - name: Install the selected locked Playwright browser
+        run: npx --no-install playwright install ${{ matrix.browser }}
+      # Playwright's webServer builds and starts production, refuses server reuse
+      # in CI and tears its server down after all tests. Retries remain disabled.
+      - name: Production build and complete browser workflows
+        run: npm run test:e2e
+      - name: Report aggregate production assets
+        run: node scripts/bundle-report.mjs
+      - name: Retain failed browser diagnostics
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: browser-failure-${{ matrix.browser }}
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
+          include-hidden-files: false

@@ -1,0 +1,101 @@
+# Mobile refinement · implementation record
+
+## Recovery audit · 2026-10-27
+
+- Completed: MOB-000 scope/baseline and MOB-001/MOB-002/TAB-001 navigation. Actual source eeb6577, integration 9a29ad4dff08d0667ab188448f903f378eee0f69; shared route map, root entry, five tabs, More, measured POS clearance and six browser checks exist in source. Recorded 91 unit tests and focused production passes agree with retained evidence.
+- In progress: existing clean feat/mob-003-mobile-pos-order-experience at that integration, with no uncommitted work at recovery. Keyboard/viewport and mobile sheet refinements were not implemented; continue that branch.
+- Not started: operational route refinements, expanded final responsive/accessibility regression, final matching desktop gallery, mobile performance comparison and delivery/Git documentation. Historical follow-up CI/security records do not certify these new changes.
+- Blocked: no implementation blocker found. Physical devices/software keyboards, real assistive technology, hosted CI and production security remain unverified rather than passed.
+
+Inspected recovery specification, original mobile specification, actual branch/ref/reflog/diffs, navigation/shell/POS/sheet source, installed Next viewport guide, design system, Git/validation/requirements/HCI records and retained screenshot/failure artifacts. Main remains e0b62dcb03330778fcdc8b6b1a4e5cc421beb604. No files were modified before recovery inspection; the first resumed edits address the missing viewport/sheet behavior only.
+
+Baseline: clean develop `92ec826bebd3448ec322721119dcefa3d558b626`; main `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604`. No remote. Existing frontend has 84 unit/component and 44 production Chromium checks. This task changes presentation/navigation only, preserving pure domain/data and all financial, service/customer snapshot and material-usage behavior.
+
+The supplied mobile specification is transcribed in references. The existing master prompts, engineering handbook, HCI handbook transcription/catalogue, design system, visual references, previous follow-up and Git/validation records inform this scoped change. Original unknown FR/NFR and production-readiness source gaps remain historical limits. No backend, auth-provider, API, database, payment/SMS, infrastructure or deployment action is authorized.
+
+## Existing experience and direction
+
+Before capture: all 12 workspace routes at 390, 820, 1280, 1440 and 1920 pixels, fictional Administrator, fixed clock and loaded local fonts; no browser exceptions. Raw screenshots are initially retained in ignored `.local/mobile-before` and selected before/after evidence will be promoted at handover. Phone Dashboard/POS and portrait-tablet inventory were visually inspected. The existing phone hamburger hides frequent destinations; the order bar occupies the viewport bottom. Existing desktop rail, Manrope/paper/charcoal/lime palette, cards and data tables are retained.
+
+Navigation direction: five equal phone/portrait-tablet destinations up to and including 900px, reusing the current content-driven rail breakpoint. Cashier: New order, Orders, Dashboard, Production, More. Administrator: Orders, Inventory, Dashboard, Reports, More. Dashboard is exactly third. Above 900px the existing 104px rail is retained; the existing POS summary switches at 1100px. More contains all remaining authorized destinations plus guide/account actions, using the existing Radix sheet/focus contract. Do not invent another permissions model.
+
+Pressline's face remains the paper/ink identity and real print-job/branch figures, with the existing Taste app direction retained under the explicit desktop-preservation requirement. No new theme draw, font, chart, framework or runtime dependency is needed. Taste source/browser checks and screenshot critique will be reused to judge the mobile work. The main phone question is: which branch task can I carry out next, without losing my current print order?
+
+## Work units
+
+| ID                          | Intended unit                                                                      | Branch                                           | Gate                                                           |
+| --------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------- |
+| MOB-000                     | Scope, references and actual baseline                                              | docs/mob-000-scope                               | Trace and baseline captures                                    |
+| MOB-001 / MOB-002 / TAB-001 | Shared role-aware destinations, centered fixed navigation, More and adaptive shell | feat/mob-001-center-dashboard-bottom-tabs        | Navigation/entry unit checks and responsive browser checks     |
+| MOB-003                     | Mobile POS/order-bar and form/sheet ergonomics                                     | feat/mob-003-mobile-pos-order-experience         | Totals/review, focus, keyboard/rotation and draft preservation |
+| MOB-004                     | Operational route/form/table usability                                             | feat/mob-004-mobile-management-screens           | Every route and real drawer/management workflow                |
+| MOB-006                     | Mobile/tablet/accessibility and desktop preservation regression                    | test/mob-006-responsive-accessibility-regression | Full existing and new quality gates                            |
+| MOB-007                     | Gallery, measurements, traceability and handover                                   | docs/mob-007-mobile-handover                     | Final format/Git/evidence audit                                |
+
+Create a separate correction branch only for an actual demonstrated defect. Keep meaningful source changes atomic and merge verified topics with no-ff; retain refs. Exact source/merge values follow in subsequent audit entries.
+
+## Required verification
+
+Widths: 320, 360, 390, 430, 600, 768, 820, 1024, 1280, 1440, 1920; both landscape and resize transitions; 200% text; long English/Sinhala/Tamil, no fabricated translations; safe-area variables and browser keyboard simulations distinguished from physical devices. Navigation and More role coverage, current nested routes, root entry, deep links/Back/Forward, access denial, focus/Escape, print isolation, POS sheet/review and all connected customer/service/material/payment/report/SMS/reset scenarios must remain correct. Compare matching desktop captures and asset/runtime evidence with this actual baseline. Run strict typecheck/lint/format/unit/build/production E2E. No real device, AT, printer or field-performance claim without execution.
+
+## Navigation implementation checkpoints
+
+The shared navigation now resolves the real existing administrator-path policy and all 12 destinations. Desktop labels/order remain unchanged; mobile tabs and grouped More reuse those records. Root entry alone resumes an active validated persona at Dashboard; signed-out/recovery entry opens login. Direct routes and account switching do not receive a global redirect. More uses the existing Radix sheet, Escape/focus return, and closes on browser history navigation. Bottom tabs are omitted for missing session/access denial and from standalone print routes; print media hides tabs, More and its overlay.
+
+The initial large phone header was reduced after screenshot review. The bottom bar uses five equal columns, a restrained central Dashboard, real links and an actual More button, text labels and non-color current markers. A 4rem bar plus the real bottom safe area reserves label space; icons keep their physical size when text grows. The POS bar can wrap, and one ResizeObserver publishes its measured height for content/focus/toast clearance. No calculation, draft, store, customer/service snapshot, production or inventory rule changed.
+
+Actual checkpoints: strict typecheck caught a readonly-union inference in the breadcrumb and was corrected by using the shared location resolver; typecheck/lint and production build then passed. Initial concurrent dev compilation/type/lint/testing caused Vitest worker-start timeouts before tests executed; checks were subsequently sequenced, and the focused six then full **91 tests across 20 files passed**. An initial dev browser run passed two flows and timed out navigating an admin order under compilation load. Production subsequently passed all four original focused navigation/keyboard flows in 22.5 seconds.
+
+The first 60-route/width after-gallery had no page errors; all **36 desktop images at 1280/1440/1920 were pixel-identical** to baseline. Enlarged-text checks were strengthened and reproduced labels below the viewport (904.59px at 900px height), squeezed POS money, then a pre-existing POS card badge/fieldset causing 348px page width at 320px/200% text. Fixed-size icons, wrapping bar/header, a constrained fieldset and adaptive narrow form columns address the actual parents. The category strip intentionally remains internally scrollable. The failed traces/screens are retained locally; no assertion is removed or threshold relaxed.
+
+One production round also failed before a customer-heading assertion in Playwright's injected script with `SyntaxError: Unexpected identifier 'element'`. All 186 installed Playwright package files matched the previously verified locked clean install; root cause is unconfirmed. The failure is preserved and must be followed by a complete successful unchanged focused run and final suite; no retry or suppression is configured. Latest fixes are awaiting their final production checkpoint before integration.
+
+Final navigation checkpoint: all six production checks passed unchanged after the text/fieldset fixes, including exact role maps, all More links, active nested routes, root/deep-link/Back/Forward behavior, 320/390/820 at 200% text, POS amount/bar containment, focus/dirty cancellation, account/access/print navigation isolation. Full 91 unit/component tests and production build/typecheck passed. The isolated earlier injected-script failure did not recur in this complete run; root cause remains unconfirmed and evidence retained. The measurement hook is included here because navigation cannot be safely introduced without coordinating the existing POS bar; the next POS topic focuses on viewport/keyboard and sheet ergonomics.
+
+## MOB-003 · resumed viewport and sheet ergonomics
+
+Static Next viewport settings enable cover safe areas and content resizing where supported, without restricting zoom. A feature-detected visualViewport listener coordinates mobile text editing only: a substantial unscaled height loss hides the underlying fixed bars and fits the existing Radix sheet/header/scroll body/footer to the visible area. Pinch zoom is excluded; focusout/resize restore presentation. No form state is moved or duplicated. Mobile inputs use at least 16px text and 44px control heights; phone edit sheets are full width and footer actions wrap. Desktop styles are unchanged.
+
+Actual validation: typecheck, lint, production build and all six focused production Chromium checks passed (41.0s), including the existing four navigation checks, simulated visual keyboard/pinch distinction, dirty cancellation/focus return, Unicode input, landscape/tablet/desktop resizing, retained POS draft and review/save footer visibility. The keyboard test is a viewport simulation, not a physical keyboard result. Baseline runtime measurement was corrected after two helper assumptions failed (missing navigation timing entry and Configure being an inline editor); the final six baseline navigations/cart timings completed with no external requests. These helper failures did not change application assertions.
+
+## MOB-004 · operational routes
+
+Orders/Production, Inventory and Service catalogue share a phone/tablet filter disclosure through 900px. Search and a truthful selected-filter summary remain visible; the same secondary controls stay mounted and owning URL/local state remains unchanged. Keyboard focus on a desktop filter expands its mobile presentation before resize, preserving focus and values. Simpler customer/transfer searches and report date controls remain directly accessible.
+
+Existing table divs become an equivalent shared ScrollTable div with the same names/tabindex/table markup. ResizeObserver detects actual overflow and enables a mobile-only visible sideways-scroll hint; the underlying native keyboard scrolling remains intact. Inventory metrics use two compact columns on phones, and mobile row links meet 44px height. The print component is byte-for-byte unchanged. No domain/data, payment, service/customer snapshots or material rules changed.
+
+Reviewed all twelve phone screens in the 60-capture gallery; tablet and three desktop widths were captured without browser exceptions. Desktop comparison: 35/36 images exact, one jobs-1440 search-icon edge difference of 12 pixels in a 3×12px region, with no layout change. Initial two focused production tests passed: real secondary filter selections survive collapse/resize/focus, and eight operational routes expose actual keyboard-scrollable overflow without page overflow. A final small search/filter flex adjustment follows screenshot review; its rebuilt focused checkpoint is recorded with integration and full regression follows.
+
+## MOB-005 · demonstrated regression corrections · 2026-10-28
+
+The expanded test checkpoint passed all 22 role/width cases, then failed new all-route 200% reflow (Dashboard 418px at 320px) and axe label-content-name-mismatch on the existing account avatar. Diagnosing every route found nowrap card headers/badges/actions and insufficient flex minima on eight additional screens. Mobile-only wrapping contains those elements while table currency remains natively horizontally scrollable. Header/workspace safe-area borders and phone sheet edge padding cover actual emulated insets; desktop presentation remains unchanged.
+
+The first correction passed all-route doubled text but the enlarged customer drawer put its footer at 912.34px in a 900px viewport: rem padding plus its lengthy description exhausted the sheet. Bounded physical mobile padding and scrollable capped header/footer retain the form body and reachable actions. Avatar initials are now included plainly in the accessible name. An intermediate parenthesized label still failed: inspection of the installed axe source confirmed parenthetical text is excluded from this rule's token comparison; no accessibility rule was disabled.
+
+Final focused production result: all four checks passed (42.3s): all twelve routes at 320px and short landscape/200%/reduced motion, selected A/AA scans of Dashboard/More/expanded Inventory filters, actual Chromium safe-area emulation (24px top, 34px bottom), and four enlarged management drawers with contained bodies/footer and focus return. Failed traces/screens remain under ignored .local/mobile-failures/responsive-round-1 and round-2. Production build, lint and focused formatting passed. Full regression remains the next gate; these are simulated viewport/inset results, not physical-device certification.
+
+### WebKit focus correction
+
+Installed the Firefox/WebKit engines matching the existing locked Playwright package; application dependencies remain unchanged. Chromium and Firefox initially passed, while actual WebKit pointer activation left the cart opener inactive after Escape. Mobile-only capture-phase button activation now establishes button focus before React opens a sheet, without scrolling, preventing the existing Radix focus contract from remembering the page body. It applies only to enabled primary-clicked buttons through 900px; keyboard activation retains its existing focused target. No gesture interception, timer, autofocus override or user-agent sniffing is used.
+
+The unchanged cart/More assertions plus a conditional customer-editor focus check subsequently passed in Chromium 156.0.8078.4, Firefox 157.0 and WebKit 27.2, including centered/authorized tabs, draft, tablet resize and Escape/focus return, with no browser exceptions. Production build and lint passed. The initial engine result is retained in .local/mobile-engine-smoke-round-1.json; these desktop-engine viewport checks do not establish physical iOS/Android keyboard behavior.
+
+### Final visual checkpoint
+
+The generic mobile sheet limit was more recent than More's intended 88dvh rule and overrode it by equal specificity. Final screenshot review identified the near-full-height result; a specific sheet-plus-More selector restores the compact bottom sheet, with a direct both-role height assertion and refreshed affected screenshots. Other route captures are reused because this correction changes only More.
+
+The final full unit rerun initially passed 83 tests but failed to start three workers while the visual inspector was running. Stopped browser work and reran the unchanged suite alone: all 91 tests across 20 files passed in 57.11s. No retry, assertion relaxation or concurrency configuration change was made. Selected seed print evidence is receipt two A4 pages / job ticket one page. The exact same pre-mobile seed receipt also spans two pages and its matching print screenshot is pixel-identical; historical single-page examples used a different order. The new print source remains byte-identical.
+
+### Landscape inset completion
+
+A later actual side-inset probe at 844×390 found order text starting at 24px with a 44px emulated inset, and the wider sheet retaining 20px right padding. Paused the first CI-mode run after 38 completed passes to correct this demonstrated gap; that interrupted run is not a full pass. Mobile order gutters now take the maximum of their existing spacing token and the actual inset, and all mobile-width sheets honor side insets. Zero-inset phone/tablet/desktop presentation remains unchanged. Strengthened the existing safe-area test with both 44px sides and actual order/sheet padding assertions. The corrected probe measures order content at 44px and sheet right padding 44px; a landscape inset screenshot is retained. Full production regression restarts after the focused checkpoint.
+
+## MOB-006 · complete regression gate
+
+Final application source 65e8f6399efb03a929fe279c370f763ff329d064: strict typecheck/lint/full formatting passed, then CI=true production build/start and **all 78 Chromium checks passed in 15.2 minutes**, one worker, retries=0, no skips. The suite includes every original connected workflow and 26 new role/width/reflow/axe/inset/enlarged-form cases. Final unit/component run passed 91 across 20 files in 57.11s; subsequent changes were isolated responsive CSS with focused browser checks and this complete production rerun.
+
+The reusable browser-engine check passed Chromium 156.0.8078.4 and WebKit 27.2 with emulated mobile touch, plus Firefox 157.0 pointer/keyboard at mobile widths. Assertions include role tabs, centered Dashboard, POS draft/cart, Escape/focus, tablet resize, authorized More and conditional customer-editor focus. No page exceptions occurred. Physical iOS/Android and real software keyboard/AT remain unverified. Captures/measurements and full source/merge references are completed on the handover topic; no backend operations or dependency changes occurred.
+
+## Completed delivery checkpoint · 2026-10-28
+
+Application and regression integrated through `bb27c36c6364ee13c03fa558c0756ff37512d6dc` before this final documentation topic. All remaining work units are implemented: 91 unit/component and 78 production Chromium checks passed, strict gates passed, and focused Chromium/Firefox/WebKit checks passed. The retained visual gallery, runtime comparison, known failures/limits and exact source/merge references are linked in [status](../FRONTEND_STATUS.md), [validation](validation-log.md), [Git audit](git-audit.md) and [mobile evidence](visual-evidence/mobile/README.md). No known failing frontend check remains. Hosted CI and physical/production gates remain unverified, not passed.

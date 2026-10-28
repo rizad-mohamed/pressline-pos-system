@@ -1,0 +1,45 @@
+{
+  "phase": "final-paired",
+  "method": "Six account-primed local production navigations at 390x844; Chromium 4x CPU, 40ms latency, 1,250,000 bytes/s, HTTP cache disabled. Font/core assets may be warm. Playwright-observed heading/fonts and dialog timings include automation overhead, not INP, cold startup or field performance.",
+  "samples": [
+    {
+      "route": "dashboard",
+      "headingAndFontsMs": 1603,
+      "lcpMs": 1144,
+      "cls": 0
+    },
+    {
+      "route": "pos",
+      "headingAndFontsMs": 2222,
+      "lcpMs": 1988,
+      "cls": 0,
+      "observedClickToDialogMs": 373
+    },
+    {
+      "route": "reports",
+      "headingAndFontsMs": 1915,
+      "lcpMs": 1188,
+      "cls": 0
+    },
+    {
+      "route": "dashboard",
+      "headingAndFontsMs": 1680,
+      "lcpMs": 1224,
+      "cls": 0
+    },
+    {
+      "route": "pos",
+      "headingAndFontsMs": 1623,
+      "lcpMs": 1372,
+      "cls": 0,
+      "observedClickToDialogMs": 401
+    },
+    {
+      "route": "reports",
+      "headingAndFontsMs": 1431,
+      "lcpMs": 792,
+      "cls": 0
+    }
+  ],
+  "external": []
+}

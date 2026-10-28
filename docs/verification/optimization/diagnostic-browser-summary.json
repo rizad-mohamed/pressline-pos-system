@@ -1,0 +1,191 @@
+{
+  "revision": "c86af59342ac0bd98584a5d4b077a9dfc089dd6c",
+  "counts": {
+    "chromium": {
+      "passed": 89,
+      "failed": 3
+    },
+    "firefox": {
+      "timedOut": 1,
+      "passed": 90,
+      "skipped": 1
+    },
+    "webkit": {
+      "passed": 68,
+      "failed": 23,
+      "skipped": 1
+    }
+  },
+  "failures": [
+    {
+      "engine": "firefox",
+      "file": "accessibility.spec.ts",
+      "title": "POS invalid quantity explains the correction and preserves editable lines",
+      "error": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "followup-accessibility.spec.ts",
+      "title": "new customer, service and material dialogs have no detected tagged accessibility violations",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/customers?_rsc=Ay3A8Be3865RqJw0 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=GGBLDV6mpcgJ_i7- due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?stock=low&_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=_m6fuj-PlNhe5fG1 due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "followup-accessibility.spec.ts",
+      "title": "long multilingual customer content, 200 percent text, reduced motion and dirty focus recovery work",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Edit customer', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('button', { name: 'Edit customer', exact: true }) with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Edit customer', exact: true })\u001b[22m\n\u001b[2m    31 \u00d7 locator resolved to <button type=\"button\" class=\"btn btn-outline\">Edit customer</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n"
+    },
+    {
+      "engine": "chromium",
+      "file": "integrated.spec.ts",
+      "title": "one order remains consistent through advance, receipt, jobs, branch isolation, reports, SMS and reset",
+      "error": "Error: locator.click: SyntaxError: Unexpected identifier 'errors'\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Record payment', exact: true })\u001b[22m\n"
+    },
+    {
+      "engine": "chromium",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 390px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { level: 1 })\nExpected: visible\nError: SyntaxError: Unexpected token '{'\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { level: 1 }) with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { level: 1 })\u001b[22m\n"
+    },
+    {
+      "engine": "chromium",
+      "file": "mobile-responsive.spec.ts",
+      "title": "mobile tabs, More and expanded filters pass selected WCAG A/AA rules",
+      "error": "Error: page.evaluate: SyntaxError: Expected double-quoted property name in JSON at position 149828 (line 1 column 149829)\n    at JSON.parse (<anonymous>)\n    at eval (eval at evaluate (:370:30), <anonymous>:4:36)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 320px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=0jCBZcPy8NIZBnZI due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 360px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 390px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 430px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 600px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 768px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 820px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 4\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=GGBLDV6mpcgJ_i7- due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=_m6fuj-PlNhe5fG1 due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 1024px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/transfers?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pricing?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 1280px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 10\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=ak1BQt774ybaAC2f due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/transfers?_rsc=mhepQDdBzFa2yakg due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pricing?_rsc=TzuNNleaVCaBT4pZ due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=XuyZj19OoO4rRZ55 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/sms?_rsc=n7c6KSzauYFkIUW- due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/settings?_rsc=o1T-IB7u40lfw5J2 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=0jCBZcPy8NIZBnZI due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders/PL-1012?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 1440px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 14\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/transfers?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pricing?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/reports?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/sms?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/settings?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/inventory?stock=low&_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/order"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "admin workspace reflows at 1920px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 10\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/sms?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/settings?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders/PL-1012?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=_m6fuj-PlNhe5fG1 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/customers?_rsc=Ay3A8Be3865RqJw0 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=GGBLDV6mpcgJ_i7- due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 360px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 390px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=0jCBZcPy8NIZBnZI due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=GGBLDV6mpcgJ_i7- due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=_m6fuj-PlNhe5fG1 due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 430px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 600px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=0jCBZcPy8NIZBnZI due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=GGBLDV6mpcgJ_i7- due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=_m6fuj-PlNhe5fG1 due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 768px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 820px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 1024px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/customers?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 1280px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=_m6fuj-PlNhe5fG1 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/customers?_rsc=Ay3A8Be3865RqJw0 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=GGBLDV6mpcgJ_i7- due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/login?_rsc=ApaKSaz0coXtL6P1 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=0jCBZcPy8NIZBnZI due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders/PL-1012?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 1440px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders?_rsc=_m6fuj-PlNhe5fG1 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/customers?_rsc=Ay3A8Be3865RqJw0 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/jobs?_rsc=GGBLDV6mpcgJ_i7- due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/login?_rsc=ApaKSaz0coXtL6P1 due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=0jCBZcPy8NIZBnZI due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders/PL-1012?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    },
+    {
+      "engine": "webkit",
+      "file": "mobile-responsive.spec.ts",
+      "title": "cashier workspace reflows at 1920px with intact adaptive navigation",
+      "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 6\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/login?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/profile?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/orders/PL-1012?_rsc=j79Vj4yH5aoiafxS due to access control checks.\",\u001b[39m\n\u001b[31m+   \"/127.0.0.1:3001/pos?_rsc=IOe_mmh6jQxP6_Ru due to access control checks.\",\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-28T20:23:17.671Z",
+    "duration": 3566350.422,
+    "expected": 247,
+    "skipped": 2,
+    "unexpected": 27,
+    "flaky": 0
+  }
+}

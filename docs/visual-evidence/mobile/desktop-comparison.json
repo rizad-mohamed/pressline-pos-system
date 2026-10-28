@@ -1,0 +1,254 @@
+[
+  {
+    "file": "customers-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "f95b2fd4b71c086a133b368426becf8a35224c9ace3b3701e617f4abc9a02292",
+    "finalSha256": "f95b2fd4b71c086a133b368426becf8a35224c9ace3b3701e617f4abc9a02292"
+  },
+  {
+    "file": "dashboard-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "97696e38c2c1b01534c4c7a7b6782faccc89f73a18425f80917615804952214e",
+    "finalSha256": "97696e38c2c1b01534c4c7a7b6782faccc89f73a18425f80917615804952214e"
+  },
+  {
+    "file": "inventory-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "c0f8598eceba3ff750bc2798cc2f56d197fffa52418313c52c26449c27ff44a4",
+    "finalSha256": "c0f8598eceba3ff750bc2798cc2f56d197fffa52418313c52c26449c27ff44a4"
+  },
+  {
+    "file": "jobs-1280.png",
+    "differentPixels": 12,
+    "bounds": [157, 286, 160, 298],
+    "baselineSha256": "29231b14a281c1bef42b6e3f62b53bc11bc1da3951a4b1153f2dc02807e96e08",
+    "finalSha256": "369487d4bf4c8d9a765d4b12b171c7a5c019b8ec662d23cbd5cdab1719de231f"
+  },
+  {
+    "file": "orders-1280.png",
+    "differentPixels": 12,
+    "bounds": [157, 286, 160, 298],
+    "baselineSha256": "af793560035fab25975008fc149c63c1a9d925f1daf50f61ff94dbd884d8e09d",
+    "finalSha256": "ebadf824deb2bd8fbffc35c0a86a0d19c7a982bf4d66a6dbed1fdfca4044f938"
+  },
+  {
+    "file": "pos-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "60f1caaa1514cce83ef67edc6a198e07ae27df1a94c482cfad34370d2e96a115",
+    "finalSha256": "60f1caaa1514cce83ef67edc6a198e07ae27df1a94c482cfad34370d2e96a115"
+  },
+  {
+    "file": "pricing-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "ad1e5f722dd54450b3a73dddac8db517e4014ba884d64d88f82470aab63e2356",
+    "finalSha256": "ad1e5f722dd54450b3a73dddac8db517e4014ba884d64d88f82470aab63e2356"
+  },
+  {
+    "file": "profile-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "a33f5d33001a4d2a50ca869fb1becf5a7dd42c4ce537c8b3371223c3f1b7f8dd",
+    "finalSha256": "a33f5d33001a4d2a50ca869fb1becf5a7dd42c4ce537c8b3371223c3f1b7f8dd"
+  },
+  {
+    "file": "reports-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "b6967cfd4d77e5bc931f7f8bacd9e6d5d2acbc1638299ce8c07c51d5ac957ce6",
+    "finalSha256": "b6967cfd4d77e5bc931f7f8bacd9e6d5d2acbc1638299ce8c07c51d5ac957ce6"
+  },
+  {
+    "file": "settings-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "0f382f2e4e9aa3af194fc67eff702c5ed51dba08539358061fde8ed929d400f1",
+    "finalSha256": "0f382f2e4e9aa3af194fc67eff702c5ed51dba08539358061fde8ed929d400f1"
+  },
+  {
+    "file": "sms-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "a9f52e2f352d1f92700e7e631bbec52d6c6808bf76c844c892e16c70fbf13d9a",
+    "finalSha256": "a9f52e2f352d1f92700e7e631bbec52d6c6808bf76c844c892e16c70fbf13d9a"
+  },
+  {
+    "file": "transfers-1280.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "719fa2b4454c0af98a4bbfa86367dca410e9c5819a2f66419dd1d8470a4cdcc2",
+    "finalSha256": "719fa2b4454c0af98a4bbfa86367dca410e9c5819a2f66419dd1d8470a4cdcc2"
+  },
+  {
+    "file": "customers-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "a0d770130a1486a180de544090b104293b5fe03beabba6e75a1caaae114eedc7",
+    "finalSha256": "a0d770130a1486a180de544090b104293b5fe03beabba6e75a1caaae114eedc7"
+  },
+  {
+    "file": "dashboard-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "5f50a7a358acba8f5485ae59b47e2cd27eb7a79d335fe3be38f3a6ae5afde634",
+    "finalSha256": "5f50a7a358acba8f5485ae59b47e2cd27eb7a79d335fe3be38f3a6ae5afde634"
+  },
+  {
+    "file": "inventory-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "51a2466c88541e66e1986b085375ba15a61c7bb640de8427f9aa1869b0939c9a",
+    "finalSha256": "51a2466c88541e66e1986b085375ba15a61c7bb640de8427f9aa1869b0939c9a"
+  },
+  {
+    "file": "jobs-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "caa569fb689fd01615568fee757a4e70f091a8177f89e291e1e373ab06619e2d",
+    "finalSha256": "caa569fb689fd01615568fee757a4e70f091a8177f89e291e1e373ab06619e2d"
+  },
+  {
+    "file": "orders-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "6d46eaf23b27c98a357eca06e45eed756b9015b09c40e99116ff240796caf8e0",
+    "finalSha256": "6d46eaf23b27c98a357eca06e45eed756b9015b09c40e99116ff240796caf8e0"
+  },
+  {
+    "file": "pos-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "d169d147d862823a7d313dd09f0e99606ac2a22429623fb2f7a214bb00ce672b",
+    "finalSha256": "d169d147d862823a7d313dd09f0e99606ac2a22429623fb2f7a214bb00ce672b"
+  },
+  {
+    "file": "pricing-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "b2f66ffb63bd9d0b2c21d22c29815c8221a64ac4747b16b292a27170da429ad3",
+    "finalSha256": "b2f66ffb63bd9d0b2c21d22c29815c8221a64ac4747b16b292a27170da429ad3"
+  },
+  {
+    "file": "profile-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "19d96e53657822f53875d2e2fe13521efbdb3dff15f65b6acbb6d84d36932f17",
+    "finalSha256": "19d96e53657822f53875d2e2fe13521efbdb3dff15f65b6acbb6d84d36932f17"
+  },
+  {
+    "file": "reports-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "976061c4e3a0c3baf7fcd8d2d35ddd5b66bbcbf1345b0c562326b9391dca52dc",
+    "finalSha256": "976061c4e3a0c3baf7fcd8d2d35ddd5b66bbcbf1345b0c562326b9391dca52dc"
+  },
+  {
+    "file": "settings-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "480f89a5b1962409be8fa14ad613a1f792e58d948460a5f75672223e9ceac806",
+    "finalSha256": "480f89a5b1962409be8fa14ad613a1f792e58d948460a5f75672223e9ceac806"
+  },
+  {
+    "file": "sms-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "c0f6b3dc9708e0cbb1b3f37f0542b8aaecd26f4e2cfa1d5ab2250cbc873dc4ce",
+    "finalSha256": "c0f6b3dc9708e0cbb1b3f37f0542b8aaecd26f4e2cfa1d5ab2250cbc873dc4ce"
+  },
+  {
+    "file": "transfers-1440.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "2b2f56627e0d952cace15f826478c5436ec46215e55d1d22cc0f1532bd65f321",
+    "finalSha256": "2b2f56627e0d952cace15f826478c5436ec46215e55d1d22cc0f1532bd65f321"
+  },
+  {
+    "file": "customers-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "99b5cba04526606112420238b31b52f3327732261f525e62f551e5dace685677",
+    "finalSha256": "99b5cba04526606112420238b31b52f3327732261f525e62f551e5dace685677"
+  },
+  {
+    "file": "dashboard-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "395478872456bdd25540776917ef72a3f9222032b31a299b5927a442e4d7e846",
+    "finalSha256": "395478872456bdd25540776917ef72a3f9222032b31a299b5927a442e4d7e846"
+  },
+  {
+    "file": "inventory-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "c1d3ea93d6254569f379ea1797e3995245aed5b5bbc904963f1599d28cf122a5",
+    "finalSha256": "c1d3ea93d6254569f379ea1797e3995245aed5b5bbc904963f1599d28cf122a5"
+  },
+  {
+    "file": "jobs-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "25ad7141f0f54807ec4de3d2e10f961bdc9b66bad315a108bf20d7aa982e0482",
+    "finalSha256": "25ad7141f0f54807ec4de3d2e10f961bdc9b66bad315a108bf20d7aa982e0482"
+  },
+  {
+    "file": "orders-1920.png",
+    "differentPixels": 12,
+    "bounds": [157, 286, 160, 298],
+    "baselineSha256": "3d9a153cc1fc6c23f172405c188f97f1531cfd019927934e8785a9e61826642d",
+    "finalSha256": "b8f099ba065176a6d518a45d463e9e2748f8310ccd260421758fe104561b2d25"
+  },
+  {
+    "file": "pos-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "7355e764421644122fbf7bdc1611bd6ef93559e911f4742bcdaefe959e4edb6d",
+    "finalSha256": "7355e764421644122fbf7bdc1611bd6ef93559e911f4742bcdaefe959e4edb6d"
+  },
+  {
+    "file": "pricing-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "e0879ae84c229150ec121ebc020b1f9cd7466dc5ba880ebe742b976ced31d6b2",
+    "finalSha256": "e0879ae84c229150ec121ebc020b1f9cd7466dc5ba880ebe742b976ced31d6b2"
+  },
+  {
+    "file": "profile-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "a57238f979029d81c9e3db7ae64700cbe878a1deacd505ad8bd1f26742f1c688",
+    "finalSha256": "a57238f979029d81c9e3db7ae64700cbe878a1deacd505ad8bd1f26742f1c688"
+  },
+  {
+    "file": "reports-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "71c221eb29d5ce884f0d1ad109090dd6916e4fa3f431b04d237c73b83978145d",
+    "finalSha256": "71c221eb29d5ce884f0d1ad109090dd6916e4fa3f431b04d237c73b83978145d"
+  },
+  {
+    "file": "settings-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "914b4d76ece0df818a3e33d32c5930112cd220277017fea31aaf357f6af7c999",
+    "finalSha256": "914b4d76ece0df818a3e33d32c5930112cd220277017fea31aaf357f6af7c999"
+  },
+  {
+    "file": "sms-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "034de35d4f75bb39f3368d8ded62cc3104560dc601e39f92a8ed0512dc8772e3",
+    "finalSha256": "034de35d4f75bb39f3368d8ded62cc3104560dc601e39f92a8ed0512dc8772e3"
+  },
+  {
+    "file": "transfers-1920.png",
+    "differentPixels": 0,
+    "bounds": null,
+    "baselineSha256": "4454289913344d34c5a2f2fe6dc92741273c9eecaacc0e674615dcaa0ffa6a29",
+    "finalSha256": "4454289913344d34c5a2f2fe6dc92741273c9eecaacc0e674615dcaa0ffa6a29"
+  }
+]

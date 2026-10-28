@@ -1,0 +1,63 @@
+# Current frontend optimization handover - 2026-10-29
+
+The application candidate cb10f459bffd0203ffad9ea8c0445cbd729ca1eb passes the fresh hosted Chromium/Firefox/WebKit matrix: **274 browser passes, two explicitly unsupported CDP skips**, 91 unique unit/component tests across 20 files, locked install/advisory/typecheck/lint/format/build and 22 contrast pairs. [Actual candidate run](https://github.com/rizad-mohamed/pressline-pos-system/actions/runs/40776712433).
+
+Mobile Review Order, phone statuses/cards, narrow enlarged-text readability and WebKit desktop focus return are corrected with original-failure evidence and regressions. Desktop/premium/centered Dashboard navigation, financial calculations, stock quantities/history, branch isolation, accepted snapshots and backend contracts are preserved. Domain/data/brand/font source matches the inspected initial task baseline. Measured Link loading reduces speculative requests from 74 to zero in each observed engine; no bundle or causal runtime-speedup claim is made.
+
+**Overall production readiness is NOT PASS.** Mobile Lighthouse performance is 83/82/88/96 (90 aim unmet on three routes); full security-audit isolation/Windows validation is unavailable; field INP, physical devices/AT/printer output are unverified. Real identity/User Management, APIs, trusted authorization, transactions/idempotency, hosting headers, backups and monitoring remain explicitly out of scope and are live-production blockers. Backend functionality or authentication was not implemented or finalized.
+
+Failed local automation parsing checks remain failed; corresponding fresh hosted full cases pass. No failed/blocked check is relabeled PASS. [Ten-part report](docs/frontend-optimization.md), [raw evidence index](docs/verification/optimization/README.md), [actual validation](docs/validation-log.md), [security limits](docs/security-review.md), [operations/backend handoff](docs/frontend-operations.md).
+
+Delivery uses retained topics, atomic commits and no-ff develop integration, then an authorized PR to main without bypassing reviews/checks or changing protection. Final exact-main-SHA Actions, remote synchronization and clean-tree evidence are recorded in the release PR/final delivery after this source snapshot; no source document fabricates its own future hash. No deployment is included.
+
+---
+
+## Historical status snapshots
+
+# Pressline frontend status
+
+## Mobile refinement delivery · 2026-10-28
+
+Completed and locally integrated. The existing centered role-aware navigation was retained; resumed work finishes viewport/keyboard and safe-area coordination, usable mobile sheets, adaptive secondary filters, visible native table scrolling, enlarged-text reflow and WebKit focus return. Five tabs apply through 900px with Dashboard third; above 900px the original rail remains, and the existing POS summary changes at 1100px. Root entry resumes Dashboard without overriding deep links, printing or explicit account switching.
+
+Final source gate: **91 unit/component tests across 20 files and all 78 production Chromium tests passed**, with CI=true, one worker, retries=0 and a fresh build/server lifecycle. Strict typecheck/lint/format and all 22 token contrast pairs pass; the unchanged dependency set has zero known advisories at execution. Chromium/Firefox/WebKit focused interactions pass; see actual input modes in the engine evidence. Domain/data, dependencies/lock, print component and hosted workflow are unchanged from the pre-mobile baseline.
+
+[Implementation and recovery](docs/mobile-refinement.md), [visual evidence](docs/visual-evidence/mobile/README.md), [actual checks and limits](docs/validation-log.md), [Git provenance](docs/git-audit.md). Hosted CI was not run. Physical phones/tablets/software keyboards, real assistive technology, participant testing, physical printers and production security/full WCAG certification remain unverified. No backend/provider/database/deployment operation or remote push occurred.
+
+Connected customer/service/material follow-up implemented and verified on 2026-10-24–25 (Asia/Colombo). This is one interconnected browser-local frontend demonstration. No backend, API, SQL, Supabase, provider, deployment or production authentication operation was performed.
+
+Customers supports create/edit/search/duplicate review/archive/reactivate, quick POS selection/creation, walk-in and explicit legacy linking. Profiles derive order, payment and outstanding history within role/branch scope. Administrator **Services & pricing** manages reusable print/unit services, rates/setup, categories/status and material suggestions; POS reads the live catalogue. Accepted prices and customer/service snapshots survive rename/archive.
+
+**Materials for this job** separates plans from actual use. Confirming five banner rolls debits Branch 1 20→15, Branch 2 stays 12, and reload cannot post the same event again. Administrator correction adds reasoned compensating movements; corrected actual use is a new event. The executed example restores 15→20, records two actual rolls to 18, and rejects a 99-roll plan without changing stock. For the fictional LKR 3,500 order, a 1,000 advance leaves 2,500 outstanding; a later 500 payment leaves 2,000. Stock operations change neither charges nor payments; customer/order/receipt/report data reconcile.
+
+| Gate                          | Actual final evidence                                                                                                                                        |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Typecheck / lint / formatting | Passed strict TypeScript, ESLint and full Prettier check; delivery docs receive their own final format check                                                 |
+| Unit/component                | 84/84 across 18 files                                                                                                                                        |
+| Production build              | Passed Next 16.4.3; thin customer and POS routes, no API handlers                                                                                            |
+| Production Chromium           | 44/44, one worker, no skip/retry; existing workflows and complete new connected scenarios                                                                    |
+| Reflow and accessibility      | Nine specified widths; 200% text; long English/Sinhala/Tamil; keyboard/focus/dirty-close/reduced motion; selected A/AA axe scans; all 22 contrast pairs pass |
+| Visual / print                | 26 production captures at desktop/tablet/mobile; PDFs and actual print media; browser errors/external runtime requests empty; selected captures inspected    |
+| Taste                         | 18 signed-in route/width combinations, 0 FAIL / 5 WARN; source 0 FAIL / 29 contextual WARN retained                                                          |
+| Assets                        | All 32 route JS assets combined 1,202,301 bytes / 382,365 gzip; CSS 50,151 / 10,454 gzip; not initial transfer or runtime scores                             |
+| Dependencies / scope          | Manifest and lock unchanged; existing reviewed install reused; npm ls returned 0 with optional WASM extras; no fresh follow-up npm ci/audit result claimed   |
+
+The first complete production run was 43/44: explicit printing labels were restored and the original assertion preserved. Other observed failures and corrections (portal submit, long-name reflow, notification layering, accepted service identity, test-only locator/format corrections and a dev timeout) remain in [validation history](docs/validation-log.md) and [implementation checkpoints](docs/followup-implementation.md).
+
+All 20 exact follow-up IDs map to files, branches, actual source/merge SHAs and executed tests in [requirements coverage](docs/requirements-coverage.md). The earlier 54 FR/35 NFR catalogue and 238 HCI-practice inventory are retained; unknown original FR/NFR definitions remain unverified. Earlier premium-phase 58/33 counts are historical. See the [new gallery](docs/visual-evidence/followup/README.md), [architecture](docs/frontend-architecture.md), [design system](docs/visual-design-system.md) and [Git audit](docs/git-audit.md).
+
+Demo conventions: optional fictional contacts, whole units including meters, no-negative stock, full-event compensating correction, instant transfers and Monday-start weeks. Real rates/tax/refund/cancellation/retention/stock policy, database transactions, authentication/RLS, accounting, SMS delivery/scheduling, physical printing and cloud/offline reconciliation require explicit future scope. Browser roles/stale-write guards/audit are demonstration behavior, not trusted server security. No full WCAG, field performance, uptime or production-readiness certification; no participant, real AT or physical device/printer study.
+
+Git snapshot before handover-document commits: develop `c264ab05611860a18772fa6966b5c7fac9ecc6f9`, main `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604` unchanged. Retained topic branches use atomic Conventional Commits and no-ff integration. No remote/push/publication. Subsequent audit backfills the primary handover source/merge; the final response reports its own post-audit tip and clean-tree result.
+
+Primary handover provenance: source `06da62a0a8f7ca8fbe999ad1143e1b0c13e741b7` / no-ff develop merge `d1c3e900448c22fbc4990c5dbb4911f5e8633b5f`. At that snapshot all 50 retained branches were registered/integrated and the tree was clean. The subsequent audit-only commit backfills these references; the final response reports the exact post-audit develop tip and clean status. No application behavior changed after the final production gate.
+
+## Final continuation review · 2026-10-25
+
+The follow-up remains fully connected and merged. The missing [CI workflow](.github/workflows/frontend-quality.yml) is now implemented: fresh locked install, zero known dependency advisories, Next route generation/strict typecheck/lint/format, 84 unit/component tests, 22 contrast pairs and production build plus 44 Chromium tests passed from an independent temporary copy with CI=true. Browser timezone is explicitly Asia/Colombo; the owner development server was preserved. The later one-byte formatter corruption was repaired from the fresh locked installation and workspace formatting passed, as documented below. Manifest script changes support clean typechecking and workflow formatting; lockfile/runtime dependencies and all src files are unchanged by this continuation.
+
+CI source `817327fa652bb30c49135a1b3f44fe1a6d1cd19a` / no-ff merge `41a97ef3b10f32cddf469983b9b94cead7320dd5`. At the verified CI integration snapshot all 51 retained branches were registered/integrated, main remained `e0b62dcb03330778fcdc8b6b1a4e5cc421beb604`, the tree was clean and no remote existed. This subsequent audit-document topic backfills those actual hashes; its own source/final merge and clean result are reported at delivery.
+
+The [security review](docs/security-review.md) records four source reconnaissance passes and fresh advisory results. No confirmed vulnerability candidate was established, but the full skill audit is incomplete: mandatory dynamic sandbox capabilities and Windows validator protection are unavailable. Hosted CI has not run. This browser-local demonstration is not certified production-secure, bug-free or fully WCAG compliant. [CI evidence](docs/ci-verification.md) and [actual validation](docs/validation-log.md) distinguish executed passes from those limits.
+
+After the formatter repair, all 31,502 expected installed dependency files matched the clean locked copy (machine-generated metadata/shims and 51 generated Vitest caches excluded; pre-existing extra optional packages retained). Full workspace formatting and documentation trace/link checks passed. The development server still returned HTTP 200; the test-owned production server was stopped.

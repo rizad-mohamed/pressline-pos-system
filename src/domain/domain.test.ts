@@ -1,0 +1,282 @@
+import { describe, expect, test } from "vitest";
+import { seedData } from "@/data/seed";
+import { validateData } from "@/data/validation";
+import { blankLine, quoteLine, quoteOrder } from "./pricing";
+import { money } from "./money";
+import {
+  applyOrderCommand,
+  balanceFor,
+  paidFor,
+  paymentState,
+  scopedOrders,
+} from "./orders";
+import { businessDate, periodRange, cutoffInstant } from "./dates";
+import { report, smsSummary } from "./reports";
+import { lineInputSchema } from "./model";
+const now = "2026-10-24T10:00:00.000Z";
+const fixture = () => seedData("2026-10-24");
+describe("quotes and validation", () => {
+  test("exact decimal cents and rejection of unsupported amounts", () => {
+    expect(money("0.29")).toBe(29);
+    expect(money("125.1")).toBe(12510);
+    for (const v of ["-1", "NaN", "Infinity", "1.001", "1e4", ""])
+      expect(() => money(v)).toThrow();
+  });
+  test.each([1, 2, 10, 999])("itemized total for quantity %i", (quantity) => {
+    const d = fixture();
+    const q = quoteLine(
+      {
+        ...blankLine(),
+        quantity,
+        sides: "Duplex",
+        binding: "Spiral",
+        finishing: "Lamination",
+      },
+      d.pricing,
+    );
+    expect(q.totalCents).toBe(quantity * 2700 + 23000);
+  });
+  test.each(["A4", "A3"] as const)(
+    "size/color/simplex permutations for %s",
+    (size) => {
+      const d = fixture();
+      for (const color of ["B&W", "Color"] as const)
+        for (const sides of ["Simplex", "Duplex"] as const) {
+          const l = quoteLine(
+            { ...blankLine(), size, color, sides, quantity: 2 },
+            d.pricing,
+          );
+          expect(l.totalCents).toBe(l.unitCents * 2);
+        }
+    },
+  );
+  test("rejects nonfinite, fractional, zero, negative and unsupported print inputs", () => {
+    for (const quantity of [NaN, Infinity, 0, -1, 1.5])
+      expect(() =>
+        quoteLine({ ...blankLine(), quantity }, fixture().pricing),
+      ).toThrow();
+    expect(
+      lineInputSchema.safeParse({ ...blankLine(), size: "A2" }).success,
+    ).toBe(false);
+    expect(() => quoteOrder([], fixture().pricing)).toThrow();
+  });
+  test("historical snapshots survive catalogue edits", () => {
+    const d = fixture();
+    const old = d.orders[0].totalCents;
+    d.pricing.a4Bw += 200;
+    expect(d.orders[0].totalCents).toBe(old);
+    expect(quoteLine(blankLine(), d.pricing).unitCents).toBe(1700);
+  });
+});
+describe("orders and independent payments", () => {
+  test.each([0, 500, 1500])(
+    "create with zero/partial/full advance %i",
+    (advanceCents) => {
+      const d = fixture();
+      const s = applyOrderCommand(
+        d,
+        d.users[0],
+        {
+          type: "create-order",
+          requestId: "new",
+          branchId: "b1",
+          customer: { name: "", phone: "" },
+          lines: [blankLine()],
+          notes: "",
+          advanceCents,
+        },
+        now,
+      );
+      const o = s.orders[0];
+      expect(o.totalCents).toBe(1500);
+      expect(balanceFor(s, o)).toBe(1500 - advanceCents);
+      expect(s.items).toEqual(d.items);
+      expect(s.orders[0].production).toBe("New");
+      expect(validateData(s)).toEqual(s);
+    },
+  );
+  test("subsequent payments settle a balance, reject overpay/negative/zero and duplicate events", () => {
+    const d = fixture(),
+      o = d.orders[0];
+    const c = {
+      type: "payment" as const,
+      requestId: "pay-1",
+      orderId: o.id,
+      amountCents: 100,
+      note: "Advance",
+    };
+    const s = applyOrderCommand(d, d.users[0], c, now);
+    expect(paidFor(s, o.id)).toBe(100);
+    expect(paymentState(s, o)).toBe("Partial");
+    expect(() => applyOrderCommand(s, s.users[0], c, now)).toThrow(
+      /already recorded/,
+    );
+    for (const amountCents of [-1, 0, NaN, o.totalCents + 1])
+      expect(() =>
+        applyOrderCommand(d, d.users[0], { ...c, amountCents }, now),
+      ).toThrow();
+    const settled = applyOrderCommand(
+      s,
+      s.users[0],
+      { ...c, requestId: "pay-2", amountCents: balanceFor(s, o) },
+      now,
+    );
+    expect(paymentState(settled, o)).toBe("Paid");
+    expect(settled.orders[0].production).toBe("New");
+  });
+  test("cashier cannot read or write another branch", () => {
+    const d = fixture();
+    expect(
+      scopedOrders(d, d.users[0], "all").every((o) => o.branchId === "b1"),
+    ).toBe(true);
+    expect(() =>
+      applyOrderCommand(
+        d,
+        d.users[0],
+        {
+          type: "payment",
+          requestId: "x",
+          orderId: d.orders.find((o) => o.branchId === "b2")!.id,
+          amountCents: 100,
+          note: "",
+        },
+        now,
+      ),
+    ).toThrow(/assigned branch/);
+    expect(() =>
+      applyOrderCommand(
+        d,
+        d.users[0],
+        {
+          type: "create-order",
+          requestId: "x",
+          branchId: "b2",
+          customer: { name: "", phone: "" },
+          lines: [blankLine()],
+          notes: "",
+          advanceCents: 0,
+        },
+        now,
+      ),
+    ).toThrow();
+  });
+  test("production is sequential and does not imply paid", () => {
+    const d = fixture(),
+      o = d.orders[0];
+    expect(() =>
+      applyOrderCommand(
+        d,
+        d.users[0],
+        { type: "production", requestId: "skip", orderId: o.id, next: "Ready" },
+        now,
+      ),
+    ).toThrow();
+    let s = d;
+    for (const next of ["In Progress", "Ready", "Completed"] as const)
+      s = applyOrderCommand(
+        s,
+        s.users[0],
+        { type: "production", requestId: next, orderId: o.id, next },
+        now,
+      );
+    expect(paymentState(s, o)).toBe("Unpaid");
+    expect(() =>
+      applyOrderCommand(
+        s,
+        s.users[0],
+        {
+          type: "order-info",
+          requestId: "edit",
+          orderId: o.id,
+          customer: { name: "New", phone: "" },
+          notes: "",
+        },
+        now,
+      ),
+    ).toThrow(/read-only/);
+  });
+});
+describe("Colombo reporting and persistence invariants", () => {
+  test("business date crosses UTC boundary", () => {
+    expect(businessDate("2026-10-23T18:29:59Z")).toBe("2026-10-23");
+    expect(businessDate("2026-10-23T18:30:00Z")).toBe("2026-10-24");
+  });
+  test("calendar periods, leap month, year boundary", () => {
+    expect(periodRange("weekly", "2027-01-01")).toEqual({
+      from: "2026-12-28",
+      to: "2027-01-03",
+    });
+    expect(periodRange("monthly", "2028-02-17")).toEqual({
+      from: "2028-02-01",
+      to: "2028-02-29",
+    });
+    expect(() => periodRange("daily", "2026-02-30")).toThrow();
+  });
+  test("collections use payment date regardless of order cohort", () => {
+    const d = fixture(),
+      o = d.orders.find(
+        (o) =>
+          o.createdAt < "2026-10-24" &&
+          o.branchId === "b1" &&
+          paidFor(d, o.id) === 0,
+      )!;
+    const s = applyOrderCommand(
+      d,
+      d.users[0],
+      {
+        type: "payment",
+        requestId: "today-pay",
+        orderId: o.id,
+        amountCents: 100,
+        note: "",
+      },
+      now,
+    );
+    const q = { from: "2026-10-24", to: "2026-10-24", scope: "all" as const };
+    const before = report(d, q),
+      after = report(s, q);
+    expect(after.orderValue).toBe(before.orderValue);
+    expect(after.collected).toBe(before.collected + 100);
+    expect(after.outstanding).toBe(before.outstanding - 100);
+  });
+  test("branch reports sum to consolidated and invalid range is rejected", () => {
+    const d = fixture();
+    const q = { from: "2026-10-01", to: "2026-10-31" };
+    const all = report(d, { ...q, scope: "all" }),
+      b1 = report(d, { ...q, scope: "b1" }),
+      b2 = report(d, { ...q, scope: "b2" });
+    for (const k of [
+      "count",
+      "orderValue",
+      "collected",
+      "outstanding",
+    ] as const)
+      expect(all[k]).toBe(b1[k] + b2[k]);
+    expect(() => report(d, { from: q.to, to: q.from, scope: "all" })).toThrow();
+  });
+  test("cutoff excludes later payments and SMS uses the same report", () => {
+    const d = fixture();
+    const cutoff = cutoffInstant("2026-10-24", "10:00");
+    const r = report(d, {
+      from: "2026-10-24",
+      to: "2026-10-24",
+      scope: "all",
+      cutoff,
+    });
+    const text = smsSummary(d, "2026-10-24", cutoff);
+    expect(text).toContain("NOT SENT");
+    expect(text).toContain(`${r.count} orders`);
+    expect(new Date(cutoff).toISOString()).toBe("2026-10-24T04:30:00.000Z");
+  });
+  test("fixtures validate and reject corrupt snapshots, schema versions and stock ledgers", () => {
+    const d = fixture();
+    expect(validateData(JSON.parse(JSON.stringify(d)))).toEqual(d);
+    expect(() => validateData({ ...d, version: 99 })).toThrow();
+    const bad = fixture();
+    bad.orders[0].totalCents++;
+    expect(() => validateData(bad)).toThrow();
+    const stock = fixture();
+    stock.items[0].quantities.b1++;
+    expect(() => validateData(stock)).toThrow(/ledger/);
+  });
+});

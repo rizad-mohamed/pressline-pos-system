@@ -1,0 +1,17 @@
+{
+  "checkpoint": "OPT-010 local WebKit owned production run",
+  "test": "new customer, service and material dialogs",
+  "status": "failed during axe-source injection; root cause unconfirmed",
+  "errors": [
+    {
+      "name": "",
+      "message": "Error: page.evaluate: SyntaxError: Invalid character '\\u0008'",
+      "stack": "Error: page.evaluate: SyntaxError: Invalid character '\\u0008'\n    at AxeBuilder.finishRun (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\@axe-core\\playwright\\dist\\index.mjs:320:21)\n    at AxeBuilder.analyze (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\@axe-core\\playwright\\dist\\index.mjs:217:14)\n    at scan (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\e2e\\followup-accessibility.spec.ts:108:22)\n    at C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\e2e\\followup-accessibility.spec.ts:116:3"
+    },
+    {
+      "message": "SyntaxError: Invalid character '\\u0008'",
+      "stack": "Error: SyntaxError: Invalid character '\\u0008'\n    at WKExecutionContext.evaluateWithArguments (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:47596:19)\n    at LongStandingScope._race (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:3619:18)\n    at evaluateExpression (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:20623:12)\n    at _Frame._evaluateExpression (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:25000:24)\n    at _Frame.evaluateExpression (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:24996:16)\n    at _FrameDispatcher.evaluateExpression (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:56171:41)\n    at _ProgressController.run (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:13018:27)\n    at DispatcherConnection.dispatch (C:\\Users\\HARSHANA\\Desktop\\POS_SYS_WS\\node_modules\\playwright-core\\lib\\coreBundle.js:20191:27)",
+      "name": "Error"
+    }
+  ]
+}
