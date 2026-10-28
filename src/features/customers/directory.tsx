@@ -107,6 +107,7 @@ export function CustomerDirectory() {
                     <tr key={c.id}>
                       <td data-label="Customer">
                         <Link
+                          prefetch={false}
                           className="table-title"
                           href={`/customers/${c.id}`}
                         >
@@ -138,6 +139,7 @@ export function CustomerDirectory() {
                       <td data-label="Actions">
                         <Button variant="ghost" size="sm" asChild>
                           <Link
+                            prefetch={false}
                             href={`/customers/${c.id}`}
                             aria-label={`View customer ${c.name}`}
                           >

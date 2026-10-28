@@ -21,10 +21,14 @@ export function AccessDenied() {
         action={
           <div className="row">
             <Button asChild variant="outline">
-              <Link href="/dashboard">Back to dashboard</Link>
+              <Link prefetch={false} href="/dashboard">
+                Back to dashboard
+              </Link>
             </Button>
             <Button asChild>
-              <Link href="/login">Switch demo account</Link>
+              <Link prefetch={false} href="/login">
+                Switch demo account
+              </Link>
             </Button>
           </div>
         }
@@ -49,7 +53,7 @@ export function RequireSession({
           description="Use a cashier or Administrator demonstration account to open the workspace. This account selector does not provide real authentication."
           action={
             <Button asChild>
-              <Link href="/login">
+              <Link prefetch={false} href="/login">
                 <ShieldCheck size={16} />
                 Choose demo account
               </Link>

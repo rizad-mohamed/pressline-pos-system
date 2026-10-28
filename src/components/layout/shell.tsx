@@ -67,6 +67,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
     return (
       <aside className="sidebar" aria-label="Workspace navigation">
         <Link
+          prefetch={false}
           href="/dashboard"
           className="brand-home"
           aria-label="Pressline overview"
@@ -87,6 +88,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                   <Tooltip key={item.href}>
                     <TooltipTrigger asChild>
                       <Link
+                        prefetch={false}
                         className="nav-link"
                         href={item.href}
                         aria-label={item.label}
@@ -109,6 +111,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <div className="sidebar-bottom">
           {user?.role === "admin" && (
             <Link
+              prefetch={false}
               href="/settings"
               className="nav-link"
               aria-current={pathname === "/settings" ? "page" : undefined}
@@ -141,6 +144,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             </p>
           </div>
           <Link
+            prefetch={false}
             className="nav-link"
             href="/login"
             onClick={() => setMenu(false)}
@@ -217,7 +221,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             size="icon"
             aria-label={`Personal settings, ${user?.role === "admin" ? "AD" : user?.branchId === "b1" ? "B1" : "B2"}`}
           >
-            <Link href="/profile">
+            <Link prefetch={false} href="/profile">
               <span className="avatar avatar-account" aria-hidden="true">
                 {user?.role === "admin"
                   ? "AD"
@@ -294,6 +298,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 </h3>
                 {group.items.map((item) => (
                   <Link
+                    prefetch={false}
                     key={item.href}
                     href={item.href}
                     className="more-navigation-link"
@@ -321,7 +326,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             Demo guide
           </Button>
           <Button asChild variant="outline">
-            <Link href="/login" onClick={() => setMenu(false)}>
+            <Link prefetch={false} href="/login" onClick={() => setMenu(false)}>
               <UserRound aria-hidden="true" />
               Switch account
             </Link>

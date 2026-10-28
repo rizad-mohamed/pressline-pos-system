@@ -69,7 +69,7 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
         }
         action={
           <Button asChild>
-            <Link href="/pos">
+            <Link prefetch={false} href="/pos">
               <Plus size={16} />
               New order
             </Link>
@@ -158,7 +158,11 @@ export function OrderList({ jobs = false }: { jobs?: boolean }) {
                 {rows.map((o) => (
                   <tr key={o.id}>
                     <td data-label="Order / customer">
-                      <Link className="text-link" href={`/orders/${o.id}`}>
+                      <Link
+                        prefetch={false}
+                        className="text-link"
+                        href={`/orders/${o.id}`}
+                      >
                         {o.id}
                       </Link>
                       <div className="table-sub">

@@ -41,7 +41,7 @@ export function OrderConfirmation({
         </Notice>
         <div className="row">
           <Button asChild>
-            <Link href={`/orders/${order.id}`}>
+            <Link prefetch={false} href={`/orders/${order.id}`}>
               Open order
               <ArrowRight size={16} />
             </Link>

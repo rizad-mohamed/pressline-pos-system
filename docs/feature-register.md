@@ -17,6 +17,8 @@ OPT-008 - `fix/opt-008-enlarged-card-reflow`: font-aware phone card columns and 
 
 OPT-009 - `fix/opt-009-desktop-focus-return`: extend existing WebKit activated-button focus normalization to desktop; retain Radix Escape/dirty/focus contracts. Original unchanged 1440px/200% assertion fails in both local and hosted WebKit. Verified: production build and all 9 focus/keyboard/current-order regressions pass across three engines (2.1m, retries=0); focused lint passes.
 
+OPT-010 - `perf/opt-010-demand-navigation`: evidence-based on-demand route loading with native Next Link prefetch=false (38 sites, 15 files), preserving hrefs, client navigation and rendering. Baseline six routes produce 215 requests / 74 speculative requests per engine; WebKit surfaces four canceled-prefetch page errors. Verified request/navigation targets: matched probe 108 request events / zero speculative / zero failed / zero page errors in both engines; all 24 WebKit role/navigation/reflow cases pass. One separate axe injection fails with invalid-character parsing; full accessibility/hosted release gate remains pending, not PASS.
+
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
 | ID        | Scope / dependencies                                                  | Priority | Branch                               | State                                                 | Checks / references                                |

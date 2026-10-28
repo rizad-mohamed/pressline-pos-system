@@ -27,6 +27,7 @@ export function MobileBottomNavigation({
     >
       {destinations.map((item) => (
         <Link
+          prefetch={false}
           href={item.href}
           key={item.href}
           className={cn(

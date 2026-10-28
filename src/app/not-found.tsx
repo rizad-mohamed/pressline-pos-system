@@ -10,7 +10,9 @@ export default function NotFound() {
           description="Check the address or return to your demonstration workspace."
           action={
             <Button asChild>
-              <Link href="/dashboard">Back to dashboard</Link>
+              <Link prefetch={false} href="/dashboard">
+                Back to dashboard
+              </Link>
             </Button>
           }
         />
