@@ -1,5 +1,9 @@
 # Functionality lifecycle
 
+2026-10-29 / Codex Automation - OPT-009 verified: production build and all 9 original desktop/dirty/keyboard/mobile-current-order checks pass across Chromium, Firefox and WebKit (2.1m, retries=0); focused lint passes. No Radix or form contracts changed. OPT-008 source b68daf0 / merge c3246f0.
+
+2026-10-29 / Codex Automation - OPT-009 opened: WebKit does not focus pointer-activated buttons. Existing normalization applies only below 900px, leaving a desktop customer editor unable to return focus. Remove that width restriction from the existing capture listener, retaining primary-button/disabled/prevent-scroll guards and unchanged Radix contracts. Preserve original failed focus assertion. Validation pending.
+
 2026-10-29 / Codex Automation - OPT-008 verified: all 30 production card/customer-history regressions pass across Chromium, Firefox and WebKit (5.8m, retries=0), including 320px/200% word readability, mobile/desktop values/statuses, selected axe rules, action persistence and accepted snapshots/balances. Focused lint passes. Visual inspection confirms restored readable Production/New/Partial/amount text; final clean viewport captures follow.
 
 2026-10-29 / Codex Automation - OPT-008 opened after visual inspection finds fragmented status and currency text despite no overflow. Strengthened label/word-width assertion fails on the original 320px/200% layout. Cap phone card padding/gap at existing normal dimensions and use at most two font-aware columns that stack when words need room. Preserve semantic rows, data and desktop layout. OPT-007 source 203c109 / merge bd772a7. Production cross-engine validation pending.

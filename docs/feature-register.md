@@ -15,6 +15,8 @@ OPT-007 - `fix/opt-007-pos-validation-click`: correct stale quantity errors befo
 
 OPT-008 - `fix/opt-008-enlarged-card-reflow`: font-aware phone card columns and capped spacing retain readable labels/status words/amounts at 320px and 200% text. Original production readability assertion fails (Production needs 127.6px; only 58px available). Verified: production build and all 30 card/customer-history checks pass in Chromium, Firefox and WebKit (5.8m, retries=0); focused lint passes.
 
+OPT-009 - `fix/opt-009-desktop-focus-return`: extend existing WebKit activated-button focus normalization to desktop; retain Radix Escape/dirty/focus contracts. Original unchanged 1440px/200% assertion fails in both local and hosted WebKit. Verified: production build and all 9 focus/keyboard/current-order regressions pass across three engines (2.1m, retries=0); focused lint passes.
+
 Date: 2026-10-24. Requirement group meanings come only from the supplied prompt; per-ID approved baseline unavailable. All 25 HCI pages were read; evidence is scoped, not a 238-practice certification.
 
 | ID        | Scope / dependencies                                                  | Priority | Branch                               | State                                                 | Checks / references                                |
