@@ -175,11 +175,11 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
         </div>
         {orders.length ? (
           <ScrollTable
-            className="table-scroll"
+            className="table-scroll mobile-cards"
             tabIndex={0}
             aria-label="Scrollable customer orders"
           >
-            <table>
+            <table role="table">
               <caption className="sr-only">
                 Customer orders with separate production, payment and balance
               </caption>
@@ -197,7 +197,7 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
               <tbody>
                 {orders.map((o) => (
                   <tr key={o.id}>
-                    <td>
+                    <td data-label="Order / date / branch">
                       <Link className="table-title" href={`/orders/${o.id}`}>
                         {o.id}
                       </Link>
@@ -206,20 +206,22 @@ export function CustomerDetail({ customerId }: { customerId: string }) {
                         {data.branches.find((b) => b.id === o.branchId)?.name}
                       </p>
                     </td>
-                    <td>{o.lines.map((l) => l.description).join(", ")}</td>
-                    <td>
+                    <td data-label="Print work">
+                      {o.lines.map((l) => l.description).join(", ")}
+                    </td>
+                    <td data-label="Production">
                       <ProductionBadge value={o.production} />
                     </td>
-                    <td>
+                    <td data-label="Payment">
                       <PaymentBadge value={paymentState(data, o)} />
                     </td>
-                    <td className="right">
+                    <td className="right" data-label="Order value">
                       <Money value={o.totalCents} />
                     </td>
-                    <td className="right">
+                    <td className="right" data-label="Paid">
                       <Money value={paidFor(data, o.id)} />
                     </td>
-                    <td className="right">
+                    <td className="right" data-label="Balance">
                       <Money value={balanceFor(data, o)} />
                     </td>
                   </tr>
