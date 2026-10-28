@@ -191,6 +191,11 @@ export function Composer({
     else append(line, { shouldFocus: false });
     window.requestAnimationFrame(() => editLine(index));
   }
+  function reviewOrder(value: OrderFormValues) {
+    setSubmission(requestId());
+    setReview(value);
+    command.setError("");
+  }
   const errors = form.formState.errors;
   return (
     <>
@@ -201,11 +206,7 @@ export function Composer({
       />
       <form
         id="pos-form"
-        onSubmit={form.handleSubmit((value) => {
-          setSubmission(requestId());
-          setReview(value);
-          command.setError("");
-        })}
+        onSubmit={form.handleSubmit(reviewOrder)}
         noValidate
         className="pos-workspace"
       >
@@ -386,6 +387,7 @@ export function Composer({
           </div>
           <ResponsiveSummary
             reviewOpen={!!review}
+            onReview={reviewOrder}
             count={fields.length}
             onEdit={editLine}
             onRemove={removeLine}
