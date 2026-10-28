@@ -7,6 +7,7 @@ Application source: hosted candidate cb10f459bffd0203ffad9ea8c0445cbd729ca1eb. F
 - [Hosted candidate](hosted-candidate-summary.json): 274 browser passes / two unsupported CDP skips; all three strict-gate jobs pass.
 - [Failed first local matrix summary](diagnostic-browser-summary.json) and [compressed raw report](diagnostic-browser-matrix.json.gz): failures remain failed.
 - [Original quantity-click evidence](quantity-click-before.json), [local axe injection failure](axe-injection-diagnostic.json) and [local locator injection failure](locator-injection-diagnostic.json).
+- [More animation timing evidence](more-animation-timing.json): retain the failed final-integration contrast observation and actual stable-scan boundary; no palette/motion/rule change.
 - [Final touch/pointer smoke](mobile-engine-smoke.json), [source/runtime design probes](design-probes.json), [pixel comparisons](card-image-comparisons.json).
 - [Actual advisory result](npm-audit-final.json) and [bounded secret-scan evidence](secret-scan-summary.json). These are not a full security audit.
 
